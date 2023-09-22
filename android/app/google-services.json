@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "451552389540",
+    "project_id": "roome-app-ed23e",
+    "storage_bucket": "roome-app-ed23e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:451552389540:android:9d08c8b6dff63456793931",
+        "android_client_info": {
+          "package_name": "com.example.roome"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAB3upTEbg36HHHXKwP_Fxh8on-x72lNY4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
