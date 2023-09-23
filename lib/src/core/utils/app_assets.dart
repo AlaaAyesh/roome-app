@@ -47,15 +47,15 @@ class AppAssets {
 
   /// Assets for imageOnBoarding1
   /// assets/image/onBoarding1.svg
-  static const String imageOnBoarding1 = "assets/image/onBoarding1.svg";
+  static const String imageOnBoarding1 = "assets/image/onBoarding1.png";
 
   /// Assets for imageOnBoarding2
   /// assets/image/onBoarding2.svg
-  static const String imageOnBoarding2 = "assets/image/onBoarding2.svg";
+  static const String imageOnBoarding2 = "assets/image/onBoarding2.png";
 
   /// Assets for imageOnBoarding3
   /// assets/image/onBoarding3.svg
-  static const String imageOnBoarding3 = "assets/image/onBoarding3.svg";
+  static const String imageOnBoarding3 = "assets/image/onBoarding3.png";
 
   /// Assets for imageQrCode
   /// assets/image/qrCode.svg

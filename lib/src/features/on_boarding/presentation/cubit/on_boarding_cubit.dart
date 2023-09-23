@@ -1,9 +1,10 @@
-import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:flutter/material.dart';
-import 'package:roome/src/features/on_boarding/domain/repositories/on_boarding_repo.dart';
 
-import '../../data/models/on_boarding_model.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import 'package:roome/src/features/on_boarding/domain/entities/on_boarding_entity.dart';
+import 'package:roome/src/features/on_boarding/domain/repositories/on_boarding_repo.dart';
 
 part 'on_boarding_state.dart';
 
@@ -14,17 +15,17 @@ class OnBoardingCubit extends Cubit<OnBoardingState> {
 
   bool isLastBoarding = false;
 
-  void onChangePageIndex({
-    required int index,
-    required List<OnBoardingModel> pages,
-  }) {
-    onBoardingRepo.onChangePageIndex(
-      index: index,
-      pages: pages,
-      isLastBoarding: isLastBoarding,
-    );
+  List<OnBoardingEntity> getPages() {
+    return onBoardingRepo.getPages();
+  }
 
-    emit(PageViewIndexChangedState());
+  void onChangePageIndex(int index) {
+    if (index == getPages().length - 1) {
+      isLastBoarding = true;
+    } else {
+      isLastBoarding = false;
+    }
+    emit(PageViewIndexChangedState(index: index));
   }
 
   void navigateBetweenPages({
@@ -37,12 +38,18 @@ class OnBoardingCubit extends Cubit<OnBoardingState> {
       isLastBoarding: isLastBoarding,
     );
 
-    emit(PageViewIndexChangedState());
+    emit(NavigateBetweenPages());
   }
 
-  void navigateToAuth({required BuildContext context}) {
-    onBoardingRepo.navigateToAuth(context: context);
+  void navigateToLoginOrHome({required BuildContext context}) {
+    onBoardingRepo.navigateToLoginOrHome(context: context);
 
-    emit(GetToAuthScreenState());
+    emit(SkipToSignInOrHome());
+  }
+
+  void previousPage({required PageController pageController}) {
+    onBoardingRepo.previousPage(pageController: pageController);
+
+    emit(MoveToPreviousPage());
   }
 }

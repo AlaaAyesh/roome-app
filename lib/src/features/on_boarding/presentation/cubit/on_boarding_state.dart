@@ -9,6 +9,17 @@ abstract class OnBoardingState extends Equatable {
 
 class OnBoardingInitial extends OnBoardingState {}
 
-class PageViewIndexChangedState extends OnBoardingState {}
+class PageViewIndexChangedState extends OnBoardingState {
+  final int index;
 
-class GetToAuthScreenState extends OnBoardingState {}
+  const PageViewIndexChangedState({required this.index});
+
+  @override
+  List<Object> get props => [index];
+}
+
+class SkipToSignInOrHome extends OnBoardingState {}
+
+class NavigateBetweenPages extends OnBoardingState {}
+
+class MoveToPreviousPage extends OnBoardingState {}
