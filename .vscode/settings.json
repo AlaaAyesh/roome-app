@@ -1,5 +1,12 @@
 {
   "cmake.sourceDirectory": "D:/My Stuff/Courses/Mobile Development Course/Flutter Course/Project/Roome/windows/flutter",
-  "cSpell.words": ["dartz", "roome", "screenutil"],
+  "cSpell.words": [
+    "dartz",
+    "datasource",
+    "datasources",
+    "roome",
+    "screenutil",
+    "usecases"
+  ],
   "java.configuration.updateBuildConfiguration": "interactive"
 }
