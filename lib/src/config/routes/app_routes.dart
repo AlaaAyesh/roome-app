@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:roome/src/features/on_boarding/presentation/views/on_baording_view.dart';
+import 'package:roome/src/features/on_boarding/presentation/views/on_boarding_view.dart';
 import 'package:roome/src/features/splash/presentation/views/splash_view.dart';
 
 class Routes {

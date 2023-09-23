@@ -20,15 +20,16 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_bloc: ^8.1.3
+  flutter_launcher_icons: ^0.13.1
   flutter_screenutil: ^5.9.0
   flutter_svg: ^2.0.7
   google_fonts: ^6.1.0
+  google_sign_in: ^6.1.4
+  image_picker: ^1.0.4
   reusable_components:
     git:
       url: https://github.com/ahmedghaly15/Reusable-Components-Package
   shared_preferences: ^2.2.0
-  google_sign_in: ^6.1.4
-  image_picker: ^1.0.4
 
 dev_dependencies:
   flutter_lints: ^2.0.0
@@ -39,11 +40,17 @@ flutter:
   uses-material-design: true
 
   assets:
-    - assets/image/introduction/
+    - assets/
+    - assets/image/
     - assets/icon/
 
 flutter_assets:
   assets_path: assets/
-  output_path: lib/constants/
-  filename: assets.dart
-  field_prefix:
+  output_path: lib/src/core/utils/
+  filename: app_assets.dart
+  field_prefix: null
+
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "assets/appIcon.png"
