@@ -28,8 +28,7 @@ class _OnBoardingViewBodyState extends State<OnBoardingViewBody> {
     return SingleChildScrollView(
       child: Column(
         children: <Widget>[
-          Container(
-            color: Colors.red,
+          SizedBox(
             width: SizeConfig.screenWidth,
             height: SizeConfig.screenHeight! * 0.75,
             child: PageView.builder(
