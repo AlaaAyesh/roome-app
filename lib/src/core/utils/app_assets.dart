@@ -67,5 +67,5 @@ class AppAssets {
 
   /// Assets for imageSplashCover
   /// assets/image/splashCover.svg
-  static const String imageSplashCover = "assets/image/splashCover.svg";
+  static const String imageSplashCover = "assets/image/splashCover.png";
 }
