@@ -8,3 +8,7 @@ abstract class OnBoardingState extends Equatable {
 }
 
 class OnBoardingInitial extends OnBoardingState {}
+
+class PageViewIndexChangedState extends OnBoardingState {}
+
+class GetToAuthScreenState extends OnBoardingState {}
