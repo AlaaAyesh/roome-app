@@ -24,7 +24,28 @@ class AppTextStyle {
     color: Colors.white,
   );
 
-  static TextStyle onBoardingSubHeadingTextStyle = TextStyle(
+  static TextStyle snackBarTitle = TextStyle(
+    fontSize: 18.sp,
+    fontWeight: FontWeight.w500,
+    color: Colors.white,
+  );
+
+  static TextStyle snackBarMessage = TextStyle(
+    fontSize: 16.sp,
+    color: Colors.white,
+  );
+
+  static TextStyle hintStyle = TextStyle(
+    fontSize: 16.sp,
+    color: AppColors.hintColor,
+  );
+
+  static TextStyle textStyle15 = TextStyle(
     fontSize: 15.sp,
+  );
+
+  static TextStyle textStyle14Medium = TextStyle(
+    fontSize: 14.sp,
+    fontWeight: FontWeight.w500,
   );
 }
