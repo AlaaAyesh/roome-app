@@ -1,17 +1,22 @@
 import 'package:flutter/material.dart';
+
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:reusable_components/reusable_components.dart';
 import 'package:roome/src/core/utils/app_assets.dart';
 import 'package:roome/src/core/utils/app_colors.dart';
 import 'package:roome/src/core/utils/app_text_styles.dart';
+import 'package:roome/src/features/auth/sign_in/presentation/cubit/login_cubit.dart';
 import 'package:roome/src/features/auth/sign_in/presentation/widgets/login_form.dart';
 
 import '../../../../../core/widgets/auth_title.dart';
 import 'login_with_social_buttons.dart';
 
 class LoginViewBody extends StatelessWidget {
-  const LoginViewBody({super.key});
+  const LoginViewBody({super.key, required this.cubit, required this.state});
+
+  final LoginCubit cubit;
+  final LoginState state;
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +28,7 @@ class LoginViewBody extends StatelessWidget {
           children: <Widget>[
             SvgPicture.asset(AppAssets.arrowLeftIcon),
             const AuthTitle(title: 'Log in'),
-            const LoginForm(),
+            LoginForm(cubit: cubit, state: state),
             Align(
               alignment: Alignment.center,
               child: Text(
@@ -32,7 +37,12 @@ class LoginViewBody extends StatelessWidget {
               ),
             ),
             SizedBox(height: SizeConfig.screenHeight! * 0.016),
-            const LoginWithSocialButtons(),
+            LoginWithSocialButtons(
+              googleOnTap: () => cubit.signInWithGoogle(),
+              appleOnTap: () {
+                // TODO: Login with Apple
+              },
+            ),
             SizedBox(height: SizeConfig.screenHeight! * 0.036),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -44,7 +54,7 @@ class LoginViewBody extends StatelessWidget {
                 SizedBox(width: 10.w),
                 CustomTextButton(
                   onTap: () {
-                    /// TODO:
+                    /// TODO: Navigate to SignUpView
                   },
                   child: Text(
                     'Sign up',

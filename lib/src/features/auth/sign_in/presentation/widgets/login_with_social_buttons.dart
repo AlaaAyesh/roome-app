@@ -7,7 +7,12 @@ import 'custom_social_button.dart';
 class LoginWithSocialButtons extends StatelessWidget {
   const LoginWithSocialButtons({
     super.key,
+    this.googleOnTap,
+    this.appleOnTap,
   });
+
+  final VoidCallback? googleOnTap;
+  final VoidCallback? appleOnTap;
 
   @override
   Widget build(BuildContext context) {
@@ -15,13 +20,13 @@ class LoginWithSocialButtons extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
         CustomSocialButton(
-          onTap: () {},
+          onTap: googleOnTap,
           title: 'Google',
           icon: AppAssets.iconGoogleIcon,
         ),
         SizedBox(width: 45.w),
         CustomSocialButton(
-          onTap: () {},
+          onTap: appleOnTap,
           title: 'Apple',
           icon: AppAssets.iconAppleIcon,
         ),

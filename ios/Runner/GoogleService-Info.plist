@@ -2,18 +2,22 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>CLIENT_ID</key>
+	<string>549759014374-6hg4citl98r3b8pva6pnttktqvv46lne.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.549759014374-6hg4citl98r3b8pva6pnttktqvv46lne</string>
 	<key>API_KEY</key>
-	<string>AIzaSyA4Wf0V8c14D09r_ZC8BzdkBtjbtzJFbCw</string>
+	<string>AIzaSyADcoEJhm1IQ-x_hIuFwol5NR073s9gDSQ</string>
 	<key>GCM_SENDER_ID</key>
-	<string>451552389540</string>
+	<string>549759014374</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
 	<string>com.example.roome</string>
 	<key>PROJECT_ID</key>
-	<string>roome-app-ed23e</string>
+	<string>roome-app-66c39</string>
 	<key>STORAGE_BUCKET</key>
-	<string>roome-app-ed23e.appspot.com</string>
+	<string>roome-app-66c39.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -25,6 +29,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:451552389540:ios:0dd11d1a9268c2b1793931</string>
+	<string>1:549759014374:ios:1d41c176198c9207faf227</string>
 </dict>
 </plist>

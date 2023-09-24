@@ -75,7 +75,7 @@ class _OnBoardingViewBodyState extends State<OnBoardingViewBody> {
             },
             buttonText: widget.cubit.isLastBoarding ? 'Return' : 'Skip',
             padding: EdgeInsets.only(left: 10.w, right: 10.w, bottom: 10.h),
-            backgroundColor: AppColors.lightWight,
+            backgroundColor: AppColors.lightWightColor,
             textStyle: AppTextStyle.onBoardingButtonStyle
                 .copyWith(color: Colors.black),
           ),

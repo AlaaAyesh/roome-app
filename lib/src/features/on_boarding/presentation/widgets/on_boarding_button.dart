@@ -26,7 +26,7 @@ class OnBoardingButton extends StatelessWidget {
         onPressed: onPressed,
         hasPrefix: false,
         backgroundColor: backgroundColor,
-        radius: 50.r,
+        borderRadius: BorderRadius.all(Radius.circular(50.r)),
         height: 46.h,
         width: 396.w,
         child: Center(
