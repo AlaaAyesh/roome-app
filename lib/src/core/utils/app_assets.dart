@@ -28,6 +28,8 @@ class AppAssets {
   static const String iconPaymentSuccessfulIcon =
       "assets/icon/paymentSuccessfulIcon.svg";
 
+  static const String arrowLeftIcon = "assets/icon/arrow-left.svg";
+
   /// Assets for imageBlueCircles
   /// assets/image/blueCircles.svg
   static const String imageBlueCircles = "assets/image/blueCircles.svg";
