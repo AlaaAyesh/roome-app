@@ -46,7 +46,7 @@ class OnBoardingDataSourceImpl implements OnBoardingDataSource {
   @override
   void navigateToLoginOrHome({required BuildContext context}) {
     if (Helper.uId == null) {
-      Navigator.pushReplacementNamed(context, Routes.signInViewRoute);
+      Navigator.pushReplacementNamed(context, Routes.loginViewRoute);
     } else {
       Navigator.pushReplacementNamed(context, Routes.homeViewRoute);
     }

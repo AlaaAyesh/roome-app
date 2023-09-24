@@ -369,7 +369,7 @@ packages:
     source: sdk
     version: "0.0.0"
   get:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: get
       sha256: e4e7335ede17452b391ed3b2ede016545706c01a02292a6c97619705e7d2a85e
@@ -528,6 +528,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.2.1+1"
+  internet_connection_checker:
+    dependency: "direct main"
+    description:
+      name: internet_connection_checker
+      sha256: "1c683e63e89c9ac66a40748b1b20889fd9804980da732bf2b58d6d5456c8e876"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.0+1"
   js:
     dependency: transitive
     description:
@@ -709,7 +717,7 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: "3f9ab96a590df5f0c88f48ae68aa7097a06b0b1d"
+      resolved-ref: c6e96c415f5db3eba4b1243ac7e1b6cfa60c47b5
       url: "https://github.com/ahmedghaly15/Reusable-Components-Package"
     source: git
     version: "0.0.1"

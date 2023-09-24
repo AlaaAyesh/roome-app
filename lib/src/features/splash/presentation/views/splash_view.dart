@@ -18,7 +18,7 @@ class _SplashViewState extends State<SplashView> {
 
   @override
   void initState() {
-    // _startDelay();
+    _startDelay();
     setSystemUIOverlayStyle();
     super.initState();
   }

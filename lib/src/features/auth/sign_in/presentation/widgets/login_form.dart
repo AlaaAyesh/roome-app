@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 
 import 'package:reusable_components/reusable_components.dart';
 import 'package:roome/src/core/utils/app_colors.dart';
@@ -8,11 +9,17 @@ import 'package:roome/src/core/utils/app_text_styles.dart';
 import 'package:roome/src/core/widgets/reusable_pass_text_form_field.dart';
 
 import 'package:roome/src/core/widgets/reusable_text_form_field.dart';
+import 'package:roome/src/features/auth/sign_in/presentation/cubit/login_cubit.dart';
 
+import '../../../../../core/helpers/helper.dart';
+import '../../../../../core/widgets/my_circular_progress_indicator.dart';
 import 'remember_me_checkbox.dart';
 
 class LoginForm extends StatefulWidget {
-  const LoginForm({super.key});
+  const LoginForm({super.key, required this.cubit, required this.state});
+
+  final LoginCubit cubit;
+  final LoginState state;
 
   @override
   State<LoginForm> createState() => _LoginFormState();
@@ -50,9 +57,15 @@ class _LoginFormState extends State<LoginForm> {
             keyboardType: TextInputType.emailAddress,
             prefixIcon: Icons.email,
             validating: (String? value) {
+              Helper.validatingEmailField(
+                context: context,
+                value: value,
+              );
               return null;
             },
-            onEditingComplete: () {},
+            onEditingComplete: () {
+              FocusScope.of(context).requestFocus(passwordFocusNode);
+            },
           ),
           SizedBox(height: SizeConfig.screenHeight! * 0.056),
           ReusablePassTextField(
@@ -60,13 +73,20 @@ class _LoginFormState extends State<LoginForm> {
             thisFocusNode: passwordFocusNode,
             hint: 'Password',
             prefixIcon: Icons.lock,
-            visibilityIcon: Icons.visibility,
-            obscure: true,
+            visibilityIcon: widget.cubit.passVisibility
+                ? Icons.visibility_rounded
+                : Icons.visibility_off_rounded,
+            obscure: widget.cubit.passVisibility,
             validating: (String? value) {
+              Helper.validatingPasswordField(
+                context: context,
+                value: value,
+              );
               return null;
             },
-            onSubmit: (String value) {},
-            visibilityButtonOnPressed: () {},
+            onSubmit: (String value) => login(context),
+            visibilityButtonOnPressed: () =>
+                widget.cubit.switchPassVisibility(),
           ),
           SizedBox(height: SizeConfig.screenHeight! * 0.03),
           Row(
@@ -80,7 +100,7 @@ class _LoginFormState extends State<LoginForm> {
               const Spacer(),
               CustomTextButton(
                 onTap: () {
-                  // TODO:
+                  // TODO: Navigate to ForgotPasswordView
                 },
                 child: Text(
                   'Forgot Password?',
@@ -92,28 +112,42 @@ class _LoginFormState extends State<LoginForm> {
           SizedBox(height: SizeConfig.screenHeight! * 0.04),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 15.w),
-            child: MyCustomButton(
-              height: 47.h,
-              width: 305.w,
-              onPressed: () {},
-              hasPrefix: false,
-              backgroundColor: AppColors.primaryColor,
-              borderRadius: BorderRadius.all(Radius.circular(10.r)),
-              child: Center(
-                child: Text(
-                  'Log in',
-                  style: AppTextStyle.textStyle15.copyWith(
-                    color: Colors.white,
-                    fontWeight: FontWeight.w600,
+            child: ConditionalBuilder(
+              condition: widget.state is! SignInLoadingState,
+              builder: (context) => MyCustomButton(
+                height: 47.h,
+                width: 305.w,
+                onPressed: () => login(context),
+                hasPrefix: false,
+                backgroundColor: AppColors.primaryColor,
+                borderRadius: BorderRadius.all(Radius.circular(10.r)),
+                child: Center(
+                  child: Text(
+                    'Log in',
+                    style: AppTextStyle.textStyle15.copyWith(
+                      color: Colors.white,
+                      fontWeight: FontWeight.w600,
+                    ),
                   ),
                 ),
               ),
+              fallback: (context) => const MyCircularProgressIndicator(),
             ),
           ),
           SizedBox(height: SizeConfig.screenHeight! * 0.04),
         ],
       ),
     );
+  }
+
+  void login(BuildContext context) {
+    if (_formKey.currentState!.validate()) {
+      CustomHelper.keyboardUnfocus(context);
+      widget.cubit.userSignIn(
+        email: emailController.text.trim(),
+        password: passwordController.text,
+      );
+    }
   }
 
   void disposeFocusNodes() {
