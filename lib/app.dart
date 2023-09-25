@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 import 'package:reusable_components/reusable_components.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -18,7 +17,7 @@ class RoomeApp extends StatelessWidget {
       designSize: const Size(360, 690),
       minTextAdapt: true,
       splitScreenMode: true,
-      child: GetMaterialApp(
+      child: MaterialApp(
         title: AppStrings.appTitle,
         debugShowCheckedModeBanner: false,
         theme: lightTheme(),
