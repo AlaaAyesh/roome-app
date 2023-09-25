@@ -11,7 +11,7 @@ class SignUpUseCase implements BaseUseCases<UserCredential, UserEntity> {
   const SignUpUseCase({required this.signUpRepo});
 
   @override
-  Future<Either<Failure, UserCredential>> call(UserEntity user) {
-    return signUpRepo.userSignUp(user: user);
+  Future<Either<Failure, UserCredential>> call(UserEntity user) async {
+    return await signUpRepo.userSignUp(user: user);
   }
 }

@@ -8,6 +8,14 @@ import 'package:roome/src/features/auth/sign_in/domain/repositories/login_repo.d
 import 'package:roome/src/features/auth/sign_in/domain/usecases/login_usecase.dart';
 import 'package:roome/src/features/auth/sign_in/domain/usecases/login_with_google_usecase.dart';
 import 'package:roome/src/features/auth/sign_in/presentation/cubit/login_cubit.dart';
+import 'package:roome/src/features/auth/sign_up/data/datasources/sign_up_datasource.dart';
+import 'package:roome/src/features/auth/sign_up/data/datasources/sign_up_datasource_impl.dart';
+import 'package:roome/src/features/auth/sign_up/data/repositories/sign_up_repo_impl.dart';
+import 'package:roome/src/features/auth/sign_up/domain/repositories/sign_up_repo.dart';
+import 'package:roome/src/features/auth/sign_up/domain/usecases/create_uer_usecase.dart';
+import 'package:roome/src/features/auth/sign_up/domain/usecases/sign_up_usecase.dart';
+import 'package:roome/src/features/auth/sign_up/domain/usecases/sign_up_with_google_usecase.dart';
+import 'package:roome/src/features/auth/sign_up/presentation/cubit/sign_up_cubit.dart';
 import 'package:roome/src/features/on_boarding/data/datasources/on_boarding_datasource.dart';
 import 'package:roome/src/features/on_boarding/data/repositories/on_boarding_repo_impl.dart';
 import 'package:roome/src/features/on_boarding/domain/repositories/on_boarding_repo.dart';
@@ -21,27 +29,59 @@ final GetIt serviceLocator = GetIt.instance;
 
 void setUpServiceLocator() {
   // ==================== Cubits ====================
-  serviceLocator.registerFactory<OnBoardingCubit>(() => OnBoardingCubit(
-        onBoardingRepo: serviceLocator.get<OnBoardingRepo>(),
-      ));
+  setUpForCubits();
 
-  serviceLocator.registerFactory<LoginCubit>(
-    () => LoginCubit(
-      loginUseCase: serviceLocator.get<LoginUseCase>(),
-      loginWithGoogleUseCase: serviceLocator.get<LoginWithGoogleUseCase>(),
+  // ==================== UseCases ====================
+  setUpForUseCases();
+
+  // ==================== Repos ====================
+  setUpForRepos();
+
+  // ==================== DataSources ====================
+  setUpForDataSources();
+
+  // ==================== Core ====================
+  setUpForCore();
+
+  // ==================== External ====================
+
+  setUpForExternal();
+}
+
+void setUpForExternal() {
+  serviceLocator.registerLazySingleton<InternetConnectionChecker>(
+    () => InternetConnectionChecker(),
+  );
+
+  serviceLocator
+      .registerLazySingleton<FirebaseAuth>(() => FirebaseAuth.instance);
+}
+
+void setUpForCore() {
+  serviceLocator.registerLazySingleton<NetworkInfo>(
+    () => NetworkInfoImpl(
+      connectionChecker: serviceLocator.get<InternetConnectionChecker>(),
+    ),
+  );
+}
+
+void setUpForDataSources() {
+  serviceLocator.registerLazySingleton<OnBoardingDataSource>(
+    () => OnBoardingDataSourceImpl(),
+  );
+
+  serviceLocator.registerLazySingleton<LoginDataSource>(
+    () => LoginDataSourceImpl(
+      firebaseAuth: serviceLocator.get<FirebaseAuth>(),
     ),
   );
 
-  // ==================== UseCases ====================
-  serviceLocator.registerLazySingleton<LoginUseCase>(
-    () => LoginUseCase(loginRepo: serviceLocator.get<LoginRepo>()),
+  serviceLocator.registerLazySingleton<SignUpDataSource>(
+    () => SignUpDataSourceImpl(),
   );
+}
 
-  serviceLocator.registerLazySingleton<LoginWithGoogleUseCase>(
-    () => LoginWithGoogleUseCase(loginRepo: serviceLocator.get<LoginRepo>()),
-  );
-
-  // ==================== Repos ====================
+void setUpForRepos() {
   serviceLocator.registerLazySingleton<OnBoardingRepo>(() => OnBoardingRepoImpl(
         onBoardingDataSource: serviceLocator.get<OnBoardingDataSource>(),
       ));
@@ -53,30 +93,53 @@ void setUpServiceLocator() {
     ),
   );
 
-  // ==================== DataSources ====================
-  serviceLocator.registerLazySingleton<OnBoardingDataSource>(
-    () => OnBoardingDataSourceImpl(),
+  serviceLocator.registerLazySingleton<SignUpRepo>(
+    () => SignUpRepoImpl(
+      networkInfo: serviceLocator.get<NetworkInfo>(),
+      signUpDataSource: serviceLocator.get<SignUpDataSource>(),
+    ),
+  );
+}
+
+void setUpForUseCases() {
+  serviceLocator.registerLazySingleton<LoginUseCase>(
+    () => LoginUseCase(loginRepo: serviceLocator.get<LoginRepo>()),
   );
 
-  serviceLocator.registerLazySingleton<LoginDataSource>(
-    () => LoginDataSourceImpl(
-      firebaseAuth: serviceLocator.get<FirebaseAuth>(),
+  serviceLocator.registerLazySingleton<LoginWithGoogleUseCase>(
+    () => LoginWithGoogleUseCase(loginRepo: serviceLocator.get<LoginRepo>()),
+  );
+
+  serviceLocator.registerLazySingleton<SignUpUseCase>(
+    () => SignUpUseCase(signUpRepo: serviceLocator.get<SignUpRepo>()),
+  );
+
+  serviceLocator.registerLazySingleton<CreateUserUseCase>(
+    () => CreateUserUseCase(signUpRepo: serviceLocator.get<SignUpRepo>()),
+  );
+
+  serviceLocator.registerLazySingleton<SignUpWithGoogleUseCase>(
+    () => SignUpWithGoogleUseCase(signUpRepo: serviceLocator.get<SignUpRepo>()),
+  );
+}
+
+void setUpForCubits() {
+  serviceLocator.registerFactory<OnBoardingCubit>(() => OnBoardingCubit(
+        onBoardingRepo: serviceLocator.get<OnBoardingRepo>(),
+      ));
+
+  serviceLocator.registerFactory<LoginCubit>(
+    () => LoginCubit(
+      loginUseCase: serviceLocator.get<LoginUseCase>(),
+      loginWithGoogleUseCase: serviceLocator.get<LoginWithGoogleUseCase>(),
     ),
   );
 
-  // ==================== Core ====================
-  serviceLocator.registerLazySingleton<NetworkInfo>(
-    () => NetworkInfoImpl(
-      connectionChecker: serviceLocator.get<InternetConnectionChecker>(),
+  serviceLocator.registerFactory<SignUpCubit>(
+    () => SignUpCubit(
+      signUpUseCase: serviceLocator.get<SignUpUseCase>(),
+      createUserUseCase: serviceLocator.get<CreateUserUseCase>(),
+      signUpWithGoogleUseCase: serviceLocator.get<SignUpWithGoogleUseCase>(),
     ),
   );
-
-  // ==================== External ====================
-
-  serviceLocator.registerLazySingleton<InternetConnectionChecker>(
-    () => InternetConnectionChecker(),
-  );
-
-  serviceLocator
-      .registerLazySingleton<FirebaseAuth>(() => FirebaseAuth.instance);
 }

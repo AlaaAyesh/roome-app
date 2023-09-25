@@ -30,11 +30,6 @@ class AppTextStyle {
     color: Colors.white,
   );
 
-  static TextStyle snackBarMessage = TextStyle(
-    fontSize: 16.sp,
-    color: Colors.white,
-  );
-
   static TextStyle hintStyle = TextStyle(
     fontSize: 16.sp,
     color: AppColors.hintColor,
