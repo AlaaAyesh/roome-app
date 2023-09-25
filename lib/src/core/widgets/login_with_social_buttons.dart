@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../../core/utils/app_assets.dart';
+import '../utils/app_assets.dart';
 import 'custom_social_button.dart';
 
 class LoginWithSocialButtons extends StatelessWidget {
