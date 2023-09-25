@@ -7,13 +7,16 @@ class CustomSnackBar {
     required BuildContext context,
     required String message,
     required String title,
+    IconData icon = Icons.warning_rounded,
+    Color backgroundColor = Colors.red,
+    bool showCloseIcon = true,
   }) {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         padding: EdgeInsets.symmetric(horizontal: 12.0.w, vertical: 12.h),
         content: Row(
           children: <Widget>[
-            Icon(Icons.warning_rounded, color: Colors.white, size: 40.w),
+            Icon(icon, color: Colors.white, size: 40.w),
             SizedBox(width: 10.w),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -25,16 +28,16 @@ class CustomSnackBar {
                 SizedBox(height: 5.h),
                 Text(
                   message,
-                  style: AppTextStyle.snackBarMessage,
+                  style: AppTextStyle.textStyle15.copyWith(color: Colors.white),
                 ),
               ],
             ),
           ],
         ),
         dismissDirection: DismissDirection.horizontal,
-        showCloseIcon: true,
+        showCloseIcon: showCloseIcon,
         closeIconColor: Colors.white,
-        backgroundColor: Colors.red,
+        backgroundColor: backgroundColor,
         duration: const Duration(seconds: 3),
         behavior: SnackBarBehavior.floating,
         shape: RoundedRectangleBorder(

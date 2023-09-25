@@ -38,9 +38,11 @@ class SignUpCubit extends Cubit<SignUpState> {
         password: password,
       ),
     ).then((value) {
-      emit(SignUpSuccessState(
+      firestoreCreateUser(
+        name: username,
+        email: email,
         uId: value.foldRight('sign up', (r, _) => r.user!.uid),
-      ));
+      );
     }).catchError((error) {
       if (error is FirebaseAuthException) {
         emit(SignUpErrorState(error: error.code.toString()));
@@ -68,7 +70,7 @@ class SignUpCubit extends Cubit<SignUpState> {
     });
   }
 
-  void signInWithGoogle() {
+  void signUpWithGoogle() {
     emit(SignUpWithGoogleLoadingState());
 
     signUpWithGoogleUseCase(NoParams()).then((value) {

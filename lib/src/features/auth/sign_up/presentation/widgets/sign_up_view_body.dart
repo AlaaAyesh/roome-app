@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:reusable_components/reusable_components.dart';
+import 'package:roome/src/features/auth/sign_up/presentation/cubit/sign_up_cubit.dart';
 import 'package:roome/src/features/auth/sign_up/presentation/widgets/sign_up_form.dart';
 
 import '../../../../../core/utils/app_assets.dart';
@@ -12,7 +13,10 @@ import '../../../../../core/widgets/login_with_social_buttons.dart';
 import '../../../../../core/widgets/or_text.dart';
 
 class SignUpViewBody extends StatelessWidget {
-  const SignUpViewBody({super.key});
+  const SignUpViewBody({super.key, required this.cubit, required this.state});
+
+  final SignUpCubit cubit;
+  final SignUpState state;
 
   @override
   Widget build(BuildContext context) {
@@ -33,11 +37,11 @@ class SignUpViewBody extends StatelessWidget {
                 bottom: 49.h,
               ),
             ),
-            const SignUpForm(),
+            SignUpForm(cubit: cubit, state: state),
             const OrText(),
             SizedBox(height: SizeConfig.screenHeight! * 0.016),
             LoginWithSocialButtons(
-              googleOnTap: () {},
+              googleOnTap: () => cubit.signUpWithGoogle(),
               appleOnTap: () {
                 // TODO: Login with Apple
               },

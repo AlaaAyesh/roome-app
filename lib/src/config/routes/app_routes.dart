@@ -4,6 +4,7 @@ import 'package:roome/src/core/utils/app_text_styles.dart';
 import 'package:roome/src/core/utils/service_locator.dart';
 import 'package:roome/src/features/auth/sign_in/presentation/cubit/login_cubit.dart';
 import 'package:roome/src/features/auth/sign_in/presentation/views/login_view.dart';
+import 'package:roome/src/features/auth/sign_up/presentation/cubit/sign_up_cubit.dart';
 import 'package:roome/src/features/auth/sign_up/presentation/views/sign_up_view.dart';
 import 'package:roome/src/features/home/presentation/views/home_view.dart';
 import 'package:roome/src/features/on_boarding/presentation/cubit/on_boarding_cubit.dart';
@@ -41,7 +42,12 @@ class AppRoutes {
         );
 
       case Routes.signUpViewRoute:
-        return MaterialPageRoute(builder: (context) => const SignUpView());
+        return MaterialPageRoute(
+          builder: (context) => BlocProvider(
+            create: (context) => serviceLocator.get<SignUpCubit>(),
+            child: const SignUpView(),
+          ),
+        );
 
       case Routes.homeViewRoute:
         return MaterialPageRoute(builder: (context) => const HomeView());

@@ -10,9 +10,13 @@ import '../../../../../core/utils/app_text_styles.dart';
 import '../../../../../core/widgets/my_circular_progress_indicator.dart';
 import '../../../../../core/widgets/reusable_pass_text_form_field.dart';
 import '../../../../../core/widgets/reusable_text_form_field.dart';
+import '../cubit/sign_up_cubit.dart';
 
 class SignUpForm extends StatefulWidget {
-  const SignUpForm({super.key});
+  const SignUpForm({super.key, required this.cubit, required this.state});
+
+  final SignUpCubit cubit;
+  final SignUpState state;
 
   @override
   State<SignUpForm> createState() => _SignUpFormState();
@@ -86,12 +90,10 @@ class _SignUpFormState extends State<SignUpForm> {
             thisFocusNode: passwordFocusNode,
             hint: 'Password',
             prefixIcon: Icons.lock,
-            visibilityIcon:
-                // widget.cubit.passVisibility
-                // ?
-                Icons.visibility_rounded,
-            // : Icons.visibility_off_rounded,
-            obscure: true, //widget.cubit.passVisibility,
+            visibilityIcon: widget.cubit.passVisibility
+                ? Icons.visibility_rounded
+                : Icons.visibility_off_rounded,
+            obscure: widget.cubit.passVisibility,
             validating: (String? value) {
               Helper.validatingPasswordField(
                 context: context,
@@ -99,9 +101,9 @@ class _SignUpFormState extends State<SignUpForm> {
               );
               return null;
             },
-            // onSubmit: (String value) => login(context),
-            // visibilityButtonOnPressed: () =>
-            //     widget.cubit.switchPassVisibility(),
+            onSubmit: (String value) => signUp(context),
+            visibilityButtonOnPressed: () =>
+                widget.cubit.switchPassVisibility(),
           ),
           SizedBox(height: SizeConfig.screenHeight! * 0.01),
           Align(
@@ -114,11 +116,11 @@ class _SignUpFormState extends State<SignUpForm> {
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 15.w),
             child: ConditionalBuilder(
-              condition: true, //widget.state is! SignInLoadingState,
+              condition: widget.state is! SignUpLoadingState,
               builder: (context) => MyCustomButton(
                 height: 47.h,
                 width: 305.w,
-                onPressed: () {},
+                onPressed: () => signUp(context),
                 hasPrefix: false,
                 backgroundColor: AppColors.primaryColor,
                 borderRadius: BorderRadius.all(Radius.circular(10.r)),
@@ -139,6 +141,18 @@ class _SignUpFormState extends State<SignUpForm> {
         ],
       ),
     );
+  }
+
+  void signUp(BuildContext context) {
+    if (_formKey.currentState!.validate()) {
+      CustomHelper.keyboardUnfocus(context);
+
+      widget.cubit.userSignUp(
+        email: emailController.text.trim(),
+        username: nameController.text.trim(),
+        password: passwordController.text,
+      );
+    }
   }
 
   void disposeControllers() {
