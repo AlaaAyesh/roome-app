@@ -29,17 +29,6 @@ class SignUpErrorState extends SignUpState {
   List<Object> get props => [error];
 }
 
-class CreateUserSuccessState extends SignUpState {}
-
-class CreateUserErrorState extends SignUpState {
-  final String error;
-
-  const CreateUserErrorState({required this.error});
-
-  @override
-  List<Object> get props => [error];
-}
-
 class SwitchPassVisibleState extends SignUpState {
   final bool passVisibility;
 
