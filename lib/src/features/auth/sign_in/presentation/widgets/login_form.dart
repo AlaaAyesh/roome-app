@@ -59,6 +59,7 @@ class _LoginFormState extends State<LoginForm> {
             prefixIcon: Icons.person,
             validating: (String? value) {
               Helper.validatingNameField(
+                textName: 'Username',
                 context: context,
                 value: value,
               );

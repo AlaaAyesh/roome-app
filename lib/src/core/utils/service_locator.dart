@@ -14,7 +14,7 @@ import 'package:roome/src/features/auth/sign_up/data/datasources/sign_up_datasou
 import 'package:roome/src/features/auth/sign_up/data/datasources/sign_up_datasource_impl.dart';
 import 'package:roome/src/features/auth/sign_up/data/repositories/sign_up_repo_impl.dart';
 import 'package:roome/src/features/auth/sign_up/domain/repositories/sign_up_repo.dart';
-import 'package:roome/src/features/auth/sign_up/domain/usecases/create_uer_usecase.dart';
+
 import 'package:roome/src/features/auth/sign_up/domain/usecases/sign_up_usecase.dart';
 import 'package:roome/src/features/auth/sign_up/domain/usecases/sign_up_with_google_usecase.dart';
 import 'package:roome/src/features/auth/sign_up/presentation/cubit/sign_up_cubit.dart';
@@ -101,7 +101,7 @@ void setUpForDataSources() {
   );
 
   serviceLocator.registerLazySingleton<SignUpDataSource>(
-    () => SignUpDataSourceImpl(),
+    () => SignUpDataSourceImpl(apiConsumer: serviceLocator.get<ApiConsumer>()),
   );
 }
 
@@ -134,17 +134,13 @@ void setUpForUseCases() {
     () => LoginWithGoogleUseCase(loginRepo: serviceLocator.get<LoginRepo>()),
   );
 
-  // serviceLocator.registerLazySingleton<SignUpUseCase>(
-  //   () => SignUpUseCase(signUpRepo: serviceLocator.get<SignUpRepo>()),
-  // );
+  serviceLocator.registerLazySingleton<SignUpUseCase>(
+    () => SignUpUseCase(signUpRepo: serviceLocator.get<SignUpRepo>()),
+  );
 
-  // serviceLocator.registerLazySingleton<CreateUserUseCase>(
-  //   () => CreateUserUseCase(signUpRepo: serviceLocator.get<SignUpRepo>()),
-  // );
-
-  // serviceLocator.registerLazySingleton<SignUpWithGoogleUseCase>(
-  //   () => SignUpWithGoogleUseCase(signUpRepo: serviceLocator.get<SignUpRepo>()),
-  // );
+  serviceLocator.registerLazySingleton<SignUpWithGoogleUseCase>(
+    () => SignUpWithGoogleUseCase(signUpRepo: serviceLocator.get<SignUpRepo>()),
+  );
 }
 
 void setUpForCubits() {
@@ -159,11 +155,10 @@ void setUpForCubits() {
     ),
   );
 
-  // serviceLocator.registerFactory<SignUpCubit>(
-  //   () => SignUpCubit(
-  //     // signUpUseCase: serviceLocator.get<SignUpUseCase>(),
-  //     // createUserUseCase: serviceLocator.get<CreateUserUseCase>(),
-  //     signUpWithGoogleUseCase: serviceLocator.get<SignUpWithGoogleUseCase>(),
-  //   ),
-  // );
+  serviceLocator.registerFactory<SignUpCubit>(
+    () => SignUpCubit(
+      signUpUseCase: serviceLocator.get<SignUpUseCase>(),
+      signUpWithGoogleUseCase: serviceLocator.get<SignUpWithGoogleUseCase>(),
+    ),
+  );
 }

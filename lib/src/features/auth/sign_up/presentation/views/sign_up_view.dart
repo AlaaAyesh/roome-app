@@ -26,25 +26,15 @@ class SignUpView extends StatelessWidget {
 
   void controlSignUpViewStates(SignUpState state, BuildContext context) {
     if (state is SignUpErrorState) {
-      if (state.error == 'weak-password') {
-        CustomSnackBar.show(
-          context: context,
-          message: 'Password is too weak',
-          title: "Warning",
-        );
-      } else if (state.error == 'email-already-in-use') {
-        CustomSnackBar.show(
-          context: context,
-          message: 'Account already exists',
-          title: "Warning",
-        );
-      }
+      CustomSnackBar.show(
+        context: context,
+        message: state.error,
+        title: "Warning",
+      );
     }
 
     if (state is SignUpSuccessState) {
       CacheHelper.saveData(key: 'uId', value: state.uId).then((value) {
-        Navigator.pushReplacementNamed(context, Routes.homeViewRoute);
-
         CustomSnackBar.show(
           context: context,
           title: "Success",
@@ -52,11 +42,9 @@ class SignUpView extends StatelessWidget {
           backgroundColor: Colors.green,
           icon: Icons.check_circle,
         );
-      });
-    }
 
-    if (state is CreateUserSuccessState) {
-      Navigator.pushReplacementNamed(context, Routes.homeViewRoute);
+        Navigator.pushReplacementNamed(context, Routes.homeViewRoute);
+      });
     }
 
     if (state is SignUpWithGoogleSuccessState) {
