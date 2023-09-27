@@ -56,13 +56,14 @@ class Helper {
 
   static void validatingNameField({
     required BuildContext context,
+    required textName,
     String? value,
   }) {
     if (value!.isEmpty) {
       CustomSnackBar.show(
         context: context,
         title: "Something went wrong",
-        message: "Username can't be blank!",
+        message: "$textName can't be blank!",
       );
     }
   }
