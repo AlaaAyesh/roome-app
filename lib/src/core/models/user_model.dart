@@ -1,35 +1,85 @@
-import 'package:roome/src/core/entities/user_entity.dart';
+import 'package:equatable/equatable.dart';
 
-class UserModel extends UserEntity {
+import 'favorite.dart';
+import 'reservation.dart';
+import 'role.dart';
+
+class UserModel extends Equatable {
+  final int? id;
+  final String? firstName;
+  final String? middleName;
+  final String? lastName;
+  final String? username;
+  final String? email;
+  final String? password;
+  final Role? role;
+  final String? profileImage;
+  final List<Reservation>? reservations;
+  final List<Favorite>? favorites;
+
   const UserModel({
-    String? name,
-    String? email,
-    String? uId,
-    String? password,
-    String? image,
-  }) : super(
-          email: email,
-          name: name,
-          password: password,
-          uId: uId,
-          image: image,
-        );
+    this.id,
+    this.firstName,
+    this.middleName,
+    this.lastName,
+    this.username,
+    this.email,
+    this.password,
+    this.role,
+    this.profileImage,
+    this.reservations,
+    this.favorites,
+  });
 
-  factory UserModel.fromJson(Map<String, dynamic> json) {
-    return UserModel(
-      name: json['name'],
-      email: json['email'],
-      uId: json['uId'],
-      image: json['image'],
-    );
-  }
+  factory UserModel.fromJson(Map<String, dynamic> json) => UserModel(
+        id: json["id"] as int?,
+        firstName: json["firstName"] as String?,
+        middleName: json["middleName"] as String?,
+        lastName: json["lastName"] as String?,
+        username: json["username"] as String?,
+        email: json["email"] as String?,
+        password: json["password"] as String?,
+        role: json['role'] == null
+            ? null
+            : Role.fromJson(json["role"] as Map<String, dynamic>),
+        profileImage: json["profileImage"] as String?,
+        reservations: json['reservations'] == null
+            ? null
+            : List<Reservation>.from(json["reservations"]
+                .map((x) => Reservation.fromJson(x as Map<String, dynamic>))),
+        favorites: json['favorites'] == null
+            ? null
+            : List<Favorite>.from(json["favorites"]
+                .map((x) => Favorite.fromJson(x as Map<String, dynamic>))),
+      );
 
-  Map<String, dynamic> toJson() {
-    return {
-      'name': name,
-      'email': email,
-      'uId': uId,
-      'image': image,
-    };
-  }
+  Map<String, dynamic> toJson() => {
+        "id": id,
+        "firstName": firstName,
+        "middleName": middleName,
+        "lastName": lastName,
+        "username": username,
+        "email": email,
+        "password": password,
+        "role": role?.toJson(),
+        "profileImage": profileImage,
+        "reservations":
+            List<dynamic>.from(reservations!.map((x) => x.toJson())),
+        "favorites": List<dynamic>.from(favorites!.map((x) => x.toJson())),
+      };
+
+  @override
+  List<Object?> get props => [
+        id,
+        firstName,
+        middleName,
+        lastName,
+        username,
+        email,
+        password,
+        role,
+        reservations,
+        profileImage,
+        favorites,
+      ];
 }
