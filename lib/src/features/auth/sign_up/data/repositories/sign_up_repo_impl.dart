@@ -1,12 +1,15 @@
 import 'package:dartz/dartz.dart';
+import 'package:dio/dio.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+
 import 'package:roome/src/core/errors/exceptions.dart';
 import 'package:roome/src/core/errors/failure.dart';
+import 'package:roome/src/core/models/user_model.dart';
 import 'package:roome/src/core/network/network_info.dart';
 import 'package:roome/src/features/auth/sign_up/data/datasources/sign_up_datasource.dart';
 import 'package:roome/src/features/auth/sign_up/domain/repositories/sign_up_repo.dart';
 
-import '../../../../../core/entities/user_entity.dart';
+import '../../../../../core/utils/app_strings.dart';
 
 class SignUpRepoImpl extends SignUpRepo {
   final NetworkInfo networkInfo;
@@ -15,36 +18,34 @@ class SignUpRepoImpl extends SignUpRepo {
   SignUpRepoImpl({required this.networkInfo, required this.signUpDataSource});
 
   @override
-  Future<Either<Failure, void>> firestoreCreateUSer({
-    required UserEntity user,
+  Future<Either<Failure, UserModel>> userSignUp({
+    required String firstName,
+    required String lastName,
+    required String username,
+    required String email,
+    required String password,
   }) async {
     if (await networkInfo.isConnected) {
       try {
-        final response = await signUpDataSource.firestoreCreateUSer(user: user);
+        final response = await signUpDataSource.userSignUp(
+          firstName: firstName,
+          lastName: lastName,
+          username: username,
+          email: email,
+          password: password,
+        );
 
-        return Right(response);
-      } on ServerException {
-        throw AuthFailure();
+        final UserModel user = UserModel.fromJson(response);
+        return Right(user);
+      } catch (e) {
+        if (e is DioException) {
+          return left(ServerFailure.fromDioException(e));
+        }
+
+        return left(ServerFailure(errorMessage: e.toString()));
       }
     } else {
-      throw ServerException();
-    }
-  }
-
-  @override
-  Future<Either<Failure, UserCredential>> userSignUp({
-    required UserEntity user,
-  }) async {
-    if (await networkInfo.isConnected) {
-      try {
-        final response = await signUpDataSource.userSignUp(user: user);
-
-        return Right(response);
-      } on ServerException {
-        throw AuthFailure();
-      }
-    } else {
-      throw ServerException();
+      throw const ServerException(exception: AppStrings.opps);
     }
   }
 
@@ -54,11 +55,11 @@ class SignUpRepoImpl extends SignUpRepo {
       try {
         final user = await signUpDataSource.signUpWithGoogle();
         return Right(user);
-      } on ServerException {
-        return Left(AuthFailure());
+      } catch (e) {
+        return Left(ServerFailure(errorMessage: e.toString()));
       }
     } else {
-      throw ServerException();
+      throw const ServerException(exception: AppStrings.opps);
     }
   }
 }

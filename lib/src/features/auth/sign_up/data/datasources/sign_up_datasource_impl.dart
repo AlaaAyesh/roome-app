@@ -1,28 +1,35 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
+import 'package:roome/src/core/api/api_consumer.dart';
+import 'package:roome/src/core/api/end_points.dart';
 import 'package:roome/src/features/auth/sign_up/data/datasources/sign_up_datasource.dart';
 
-import '../../../../../core/entities/user_entity.dart';
-import '../../../../../core/models/user_model.dart';
-
 class SignUpDataSourceImpl implements SignUpDataSource {
+  final ApiConsumer apiConsumer;
+
+  const SignUpDataSourceImpl({required this.apiConsumer});
+
   @override
-  Future<void> firestoreCreateUSer({
-    required UserEntity user,
+  Future<Map<String, dynamic>> userSignUp({
+    required String firstName,
+    required String lastName,
+    required String username,
+    required String email,
+    required String password,
   }) async {
-    UserModel userModel = UserModel(
-      name: user.name,
-      email: user.email,
-      uId: user.uId,
-      image:
-          'https://img.freepik.com/free-icon/user_318-159711.jpg?size=626&ext=jpg&ga=GA1.2.825316313.1674289475&semt=ais',
+    final response = await apiConsumer.post(
+      EndPoints.user,
+      body: {
+        'firstName': firstName,
+        'lastName': lastName,
+        'username': username,
+        'email': email,
+        'password': password,
+      },
     );
-    await FirebaseFirestore.instance
-        .collection('users')
-        .doc(user.uId)
-        .set(userModel.toJson());
+
+    return response;
   }
 
   @override
@@ -38,15 +45,5 @@ class SignUpDataSourceImpl implements SignUpDataSource {
     );
 
     return await FirebaseAuth.instance.signInWithCredential(credential);
-  }
-
-  @override
-  Future<UserCredential> userSignUp({
-    required UserEntity user,
-  }) async {
-    return await FirebaseAuth.instance.createUserWithEmailAndPassword(
-      email: user.email!,
-      password: user.password!,
-    );
   }
 }
