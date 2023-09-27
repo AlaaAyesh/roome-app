@@ -1,13 +1,12 @@
 import 'package:bloc/bloc.dart';
 
 import 'package:equatable/equatable.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:roome/src/core/entities/user_entity.dart';
+import 'package:roome/src/features/auth/sign_in/domain/entities/login_parameters.dart';
 
-import 'package:roome/src/features/auth/sign_in/domain/usecases/login_usecase.dart';
 import 'package:roome/src/features/auth/sign_in/domain/usecases/login_with_google_usecase.dart';
 
 import '../../../../../core/entities/no_params.dart';
+import '../../domain/usecases/login_usecase.dart';
 
 part 'login_state.dart';
 
@@ -23,26 +22,21 @@ class LoginCubit extends Cubit<LoginState> {
   bool passVisibility = true;
 
   void userSignIn({
-    required String email,
+    required String username,
     required String password,
   }) {
     emit(SignInLoadingState());
 
-    loginUseCase
-        .call(
-      UserEntity(
-        email: email,
-        password: password,
-      ),
-    )
-        .then((value) {
-      emit(SignInSuccessState(
-        uId: value.foldRight('login', (r, _) => r.user!.uid),
-      ));
-    }).catchError((error) {
-      if (error is FirebaseAuthException) {
-        emit(SignInErrorState(error: error.code.toString()));
-      }
+    loginUseCase(LoginParameters(
+      username: username,
+      password: password,
+    )).then((value) {
+      emit(
+        value.fold(
+          (l) => SignInErrorState(error: l.errorMessage.toString()),
+          (r) => SignInSuccessState(uId: r.id.toString()),
+        ),
+      );
     });
   }
 

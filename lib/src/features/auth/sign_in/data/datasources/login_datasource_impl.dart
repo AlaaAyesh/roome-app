@@ -1,14 +1,16 @@
 import 'package:firebase_auth/firebase_auth.dart';
+
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:roome/src/core/api/end_points.dart';
 
 import 'package:roome/src/features/auth/sign_in/data/datasources/login_datasource.dart';
 
-import '../../../../../core/entities/user_entity.dart';
+import '../../../../../core/api/api_consumer.dart';
 
 class LoginDataSourceImpl implements LoginDataSource {
-  final FirebaseAuth firebaseAuth;
+  final ApiConsumer apiConsumer;
 
-  const LoginDataSourceImpl({required this.firebaseAuth});
+  const LoginDataSourceImpl({required this.apiConsumer});
 
   @override
   Future<UserCredential> signInWithGoogle() async {
@@ -26,12 +28,18 @@ class LoginDataSourceImpl implements LoginDataSource {
   }
 
   @override
-  Future<UserCredential> userSignIn({
-    required UserEntity user,
+  Future<Map<String, dynamic>> userSignIn({
+    required String username,
+    required String password,
   }) async {
-    return await firebaseAuth.signInWithEmailAndPassword(
-      email: user.email!,
-      password: user.password!,
+    final response = await apiConsumer.post(
+      EndPoints.login,
+      body: {
+        'username': username,
+        'password': password,
+      },
     );
+
+    return response;
   }
 }

@@ -1,10 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 
-import '../../../../../core/entities/user_entity.dart';
-
 abstract class LoginDataSource {
-  Future<UserCredential> userSignIn({
-    required UserEntity user,
+  Future<Map<String, dynamic>> userSignIn({
+    required String username,
+    required String password,
   });
 
   Future<UserCredential> signInWithGoogle();
