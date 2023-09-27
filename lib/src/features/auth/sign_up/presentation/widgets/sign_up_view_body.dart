@@ -6,9 +6,9 @@ import 'package:roome/src/features/auth/sign_up/presentation/cubit/sign_up_cubit
 import 'package:roome/src/features/auth/sign_up/presentation/widgets/sign_up_form.dart';
 
 import '../../../../../core/utils/app_assets.dart';
-import '../../../../../core/utils/app_colors.dart';
-import '../../../../../core/utils/app_text_styles.dart';
+
 import '../../../../../core/widgets/auth_title.dart';
+import '../../../../../core/widgets/have_account_or_not.dart';
 import '../../../../../core/widgets/login_with_social_buttons.dart';
 import '../../../../../core/widgets/or_text.dart';
 
@@ -33,40 +33,24 @@ class SignUpViewBody extends StatelessWidget {
             AuthTitle(
               title: 'Sign up',
               margin: EdgeInsets.only(
-                top: 70.0.h,
-                bottom: 49.h,
+                top: SizeConfig.screenHeight! * 0.04,
+                bottom: SizeConfig.screenHeight! * 0.05,
               ),
             ),
             SignUpForm(cubit: cubit, state: state),
             const OrText(),
             SizedBox(height: SizeConfig.screenHeight! * 0.016),
             LoginWithSocialButtons(
-              googleOnTap: () => cubit.signUpWithGoogle(),
+              googleOnTap: () {},
               appleOnTap: () {
                 // TODO: Login with Apple
               },
             ),
-            SizedBox(height: SizeConfig.screenHeight! * 0.01),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Text(
-                  "Already have an account?",
-                  style: AppTextStyle.textStyle15.copyWith(fontSize: 14.sp),
-                ),
-                SizedBox(width: 5.w),
-                CustomTextButton(
-                  onTap: () => Navigator.pop(context),
-                  child: Text(
-                    'Log in',
-                    style: AppTextStyle.textStyle15.copyWith(
-                      fontSize: 14.sp,
-                      fontWeight: FontWeight.w600,
-                      color: AppColors.primaryColor,
-                    ),
-                  ),
-                ),
-              ],
+            SizedBox(height: SizeConfig.screenHeight! * 0.03),
+            HaveAccountOrNot(
+              onTap: () => Navigator.pop(context),
+              buttonText: 'Log in',
+              question: 'Already have an account?',
             ),
             SizedBox(height: SizeConfig.screenHeight! * 0.015),
           ],

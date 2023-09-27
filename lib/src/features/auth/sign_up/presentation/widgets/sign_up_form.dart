@@ -1,5 +1,6 @@
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
+
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:reusable_components/reusable_components.dart';
 import 'package:roome/src/core/widgets/forgot_password_text_button.dart';
@@ -11,6 +12,7 @@ import '../../../../../core/widgets/my_circular_progress_indicator.dart';
 import '../../../../../core/widgets/reusable_pass_text_form_field.dart';
 import '../../../../../core/widgets/reusable_text_form_field.dart';
 import '../cubit/sign_up_cubit.dart';
+import 'name_text_field.dart';
 
 class SignUpForm extends StatefulWidget {
   const SignUpForm({super.key, required this.cubit, required this.state});
@@ -25,11 +27,15 @@ class SignUpForm extends StatefulWidget {
 class _SignUpFormState extends State<SignUpForm> {
   final GlobalKey<FormState> _formKey = GlobalKey();
 
-  final TextEditingController nameController = TextEditingController();
+  final TextEditingController firstNameController = TextEditingController();
+  final TextEditingController lastNameController = TextEditingController();
+  final TextEditingController usernameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
-  final FocusNode nameFocusNode = FocusNode();
+  final FocusNode firstNameFocusNode = FocusNode();
+  final FocusNode lastNameFocusNode = FocusNode();
+  final FocusNode usernameFocusNode = FocusNode();
   final FocusNode emailFocusNode = FocusNode();
   final FocusNode passwordFocusNode = FocusNode();
 
@@ -47,6 +53,44 @@ class _SignUpFormState extends State<SignUpForm> {
       key: _formKey,
       child: Column(
         children: <Widget>[
+          Row(
+            children: <Widget>[
+              NameTextField(
+                controller: firstNameController,
+                thisFocusNode: firstNameFocusNode,
+                toFocusNode: lastNameFocusNode,
+                hint: 'First name',
+              ),
+              SizedBox(width: SizeConfig.screenWidth! * 0.05),
+              NameTextField(
+                controller: lastNameController,
+                thisFocusNode: lastNameFocusNode,
+                toFocusNode: usernameFocusNode,
+                hint: 'Last name',
+              ),
+            ],
+          ),
+          SizedBox(height: SizeConfig.screenHeight! * 0.02),
+          ReusableTextFormField(
+            controller: usernameController,
+            hint: 'Username',
+            thisFocusNode: usernameFocusNode,
+            prefixIcon: Icons.person,
+            keyboardType: TextInputType.text,
+            textCapitalization: TextCapitalization.none,
+            validating: (String? value) {
+              Helper.validatingNameField(
+                textName: 'Username',
+                context: context,
+                value: value,
+              );
+              return null;
+            },
+            onEditingComplete: () {
+              FocusScope.of(context).requestFocus(emailFocusNode);
+            },
+          ),
+          SizedBox(height: SizeConfig.screenHeight! * 0.02),
           ReusableTextFormField(
             hint: 'Email',
             controller: emailController,
@@ -62,29 +106,10 @@ class _SignUpFormState extends State<SignUpForm> {
               return null;
             },
             onEditingComplete: () {
-              FocusScope.of(context).requestFocus(nameFocusNode);
-            },
-          ),
-          SizedBox(height: SizeConfig.screenHeight! * 0.04),
-          ReusableTextFormField(
-            hint: 'Username',
-            controller: nameController,
-            thisFocusNode: nameFocusNode,
-            textCapitalization: TextCapitalization.words,
-            keyboardType: TextInputType.text,
-            prefixIcon: Icons.person,
-            validating: (String? value) {
-              Helper.validatingNameField(
-                context: context,
-                value: value,
-              );
-              return null;
-            },
-            onEditingComplete: () {
               FocusScope.of(context).requestFocus(passwordFocusNode);
             },
           ),
-          SizedBox(height: SizeConfig.screenHeight! * 0.04),
+          SizedBox(height: SizeConfig.screenHeight! * 0.02),
           ReusablePassTextField(
             controller: passwordController,
             thisFocusNode: passwordFocusNode,
@@ -148,21 +173,27 @@ class _SignUpFormState extends State<SignUpForm> {
       CustomHelper.keyboardUnfocus(context);
 
       widget.cubit.userSignUp(
+        firstName: firstNameController.text.trim(),
+        lastName: lastNameController.text.trim(),
+        username: usernameController.text.trim(),
         email: emailController.text.trim(),
-        username: nameController.text.trim(),
         password: passwordController.text,
       );
     }
   }
 
   void disposeControllers() {
-    nameController.dispose();
+    firstNameController.dispose();
+    lastNameController.dispose();
+    usernameController.dispose();
     emailController.dispose();
     passwordController.dispose();
   }
 
   void disposeFocusNodes() {
-    nameFocusNode.dispose();
+    firstNameFocusNode.dispose();
+    lastNameFocusNode.dispose();
+    usernameFocusNode.dispose();
     emailFocusNode.dispose();
     passwordFocusNode.dispose();
   }

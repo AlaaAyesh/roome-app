@@ -5,12 +5,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:reusable_components/reusable_components.dart';
 import 'package:roome/src/config/routes/app_routes.dart';
 
-import 'package:roome/src/core/utils/app_colors.dart';
-import 'package:roome/src/core/utils/app_text_styles.dart';
 import 'package:roome/src/features/auth/sign_in/presentation/cubit/login_cubit.dart';
 import 'package:roome/src/features/auth/sign_in/presentation/widgets/login_form.dart';
 
 import '../../../../../core/widgets/auth_title.dart';
+import '../../../../../core/widgets/have_account_or_not.dart';
 import '../../../../../core/widgets/or_text.dart';
 import '../../../../../core/widgets/login_with_social_buttons.dart';
 
@@ -42,27 +41,10 @@ class LoginViewBody extends StatelessWidget {
               },
             ),
             SizedBox(height: SizeConfig.screenHeight! * 0.036),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Text(
-                  "Don't have an account?",
-                  style: AppTextStyle.textStyle15.copyWith(fontSize: 14.sp),
-                ),
-                SizedBox(width: 5.w),
-                CustomTextButton(
-                  onTap: () =>
-                      Navigator.pushNamed(context, Routes.signUpViewRoute),
-                  child: Text(
-                    'Sign up',
-                    style: AppTextStyle.textStyle15.copyWith(
-                      fontSize: 14.sp,
-                      fontWeight: FontWeight.w600,
-                      color: AppColors.primaryColor,
-                    ),
-                  ),
-                ),
-              ],
+            HaveAccountOrNot(
+              onTap: () => Navigator.pushNamed(context, Routes.signUpViewRoute),
+              buttonText: 'Sign up',
+              question: "Don't have an account?",
             ),
             SizedBox(height: SizeConfig.screenHeight! * 0.015),
           ],
