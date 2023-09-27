@@ -29,10 +29,10 @@ class LoginForm extends StatefulWidget {
 class _LoginFormState extends State<LoginForm> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
-  final TextEditingController emailController = TextEditingController();
+  final TextEditingController nameController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
-  final FocusNode emailFocusNode = FocusNode();
+  final FocusNode nameFocusNode = FocusNode();
   final FocusNode passwordFocusNode = FocusNode();
 
   @override
@@ -51,14 +51,14 @@ class _LoginFormState extends State<LoginForm> {
       child: Column(
         children: <Widget>[
           ReusableTextFormField(
-            hint: 'Email',
-            controller: emailController,
-            thisFocusNode: emailFocusNode,
+            hint: 'Username',
+            controller: nameController,
+            thisFocusNode: nameFocusNode,
             textCapitalization: TextCapitalization.none,
-            keyboardType: TextInputType.emailAddress,
-            prefixIcon: Icons.email,
+            keyboardType: TextInputType.text,
+            prefixIcon: Icons.person,
             validating: (String? value) {
-              Helper.validatingEmailField(
+              Helper.validatingNameField(
                 context: context,
                 value: value,
               );
@@ -137,21 +137,22 @@ class _LoginFormState extends State<LoginForm> {
 
   void login(BuildContext context) {
     if (_formKey.currentState!.validate()) {
+      debugPrint('VALIDATED');
       CustomHelper.keyboardUnfocus(context);
       widget.cubit.userSignIn(
-        email: emailController.text.trim(),
+        username: nameController.text.trim(),
         password: passwordController.text,
       );
     }
   }
 
   void disposeFocusNodes() {
-    emailFocusNode.dispose();
+    nameFocusNode.dispose();
     passwordFocusNode.dispose();
   }
 
   void disposeControllers() {
-    emailController.dispose();
+    nameController.dispose();
     passwordController.dispose();
   }
 }

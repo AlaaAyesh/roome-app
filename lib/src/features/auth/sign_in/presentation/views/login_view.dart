@@ -27,11 +27,9 @@ class LoginView extends StatelessWidget {
 
   void controlSignInViewStates(LoginState state, BuildContext context) {
     if (state is SignInErrorState) {
-      debugPrint("ERROR::ERROR: ${state.error}");
-
       CustomSnackBar.show(
         context: context,
-        message: 'Something went wrong',
+        message: state.error,
         title: "Warning",
       );
     }
