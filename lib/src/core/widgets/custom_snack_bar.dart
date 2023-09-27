@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 import 'package:roome/src/core/utils/app_text_styles.dart';
 
 class CustomSnackBar {
@@ -18,19 +19,22 @@ class CustomSnackBar {
           children: <Widget>[
             Icon(icon, color: Colors.white, size: 40.w),
             SizedBox(width: 10.w),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Text(
-                  title,
-                  style: AppTextStyle.snackBarTitle,
-                ),
-                SizedBox(height: 5.h),
-                Text(
-                  message,
-                  style: AppTextStyle.textStyle15.copyWith(color: Colors.white),
-                ),
-              ],
+            Flexible(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Text(
+                    title,
+                    style: AppTextStyle.snackBarTitle,
+                  ),
+                  SizedBox(height: 5.h),
+                  Text(
+                    message,
+                    style: AppTextStyle.textStyle14Medium
+                        .copyWith(color: Colors.white),
+                  ),
+                ],
+              ),
             ),
           ],
         ),

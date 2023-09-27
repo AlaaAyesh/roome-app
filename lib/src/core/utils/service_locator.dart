@@ -1,6 +1,8 @@
+import 'package:dio/dio.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get_it/get_it.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
+import 'package:roome/src/core/api/api_consumer.dart';
 import 'package:roome/src/features/auth/sign_in/data/datasources/login_datasource.dart';
 import 'package:roome/src/features/auth/sign_in/data/datasources/login_datasource_impl.dart';
 import 'package:roome/src/features/auth/sign_in/data/repositories/login_repo_impl.dart';
@@ -22,6 +24,8 @@ import 'package:roome/src/features/on_boarding/domain/repositories/on_boarding_r
 import 'package:roome/src/features/on_boarding/presentation/cubit/on_boarding_cubit.dart';
 
 import '../../features/on_boarding/data/datasources/on_boarding_datasource_impl.dart';
+import '../api/app_interceptors.dart';
+import '../api/dio_consumer.dart';
 import '../network/network_info.dart';
 import '../network/network_info_impl.dart';
 
@@ -55,6 +59,22 @@ void setUpForExternal() {
 
   serviceLocator
       .registerLazySingleton<FirebaseAuth>(() => FirebaseAuth.instance);
+
+  serviceLocator.registerLazySingleton<AppInterceptors>(
+    () => AppInterceptors(),
+  );
+
+  serviceLocator.registerLazySingleton<LogInterceptor>(
+    () => LogInterceptor(
+      request: true,
+      requestBody: true,
+      requestHeader: true,
+      responseBody: true,
+      responseHeader: true,
+      error: true,
+    ),
+  );
+  serviceLocator.registerLazySingleton<Dio>(() => Dio());
 }
 
 void setUpForCore() {
@@ -62,6 +82,10 @@ void setUpForCore() {
     () => NetworkInfoImpl(
       connectionChecker: serviceLocator.get<InternetConnectionChecker>(),
     ),
+  );
+
+  serviceLocator.registerLazySingleton<ApiConsumer>(
+    () => DioConsumer(client: serviceLocator.get<Dio>()),
   );
 }
 
@@ -71,9 +95,9 @@ void setUpForDataSources() {
   );
 
   serviceLocator.registerLazySingleton<LoginDataSource>(
-    () => LoginDataSourceImpl(
-      firebaseAuth: serviceLocator.get<FirebaseAuth>(),
-    ),
+    () => LoginDataSourceImpl(apiConsumer: serviceLocator.get<ApiConsumer>()
+        // firebaseAuth: serviceLocator.get<FirebaseAuth>(),
+        ),
   );
 
   serviceLocator.registerLazySingleton<SignUpDataSource>(
@@ -110,17 +134,17 @@ void setUpForUseCases() {
     () => LoginWithGoogleUseCase(loginRepo: serviceLocator.get<LoginRepo>()),
   );
 
-  serviceLocator.registerLazySingleton<SignUpUseCase>(
-    () => SignUpUseCase(signUpRepo: serviceLocator.get<SignUpRepo>()),
-  );
+  // serviceLocator.registerLazySingleton<SignUpUseCase>(
+  //   () => SignUpUseCase(signUpRepo: serviceLocator.get<SignUpRepo>()),
+  // );
 
-  serviceLocator.registerLazySingleton<CreateUserUseCase>(
-    () => CreateUserUseCase(signUpRepo: serviceLocator.get<SignUpRepo>()),
-  );
+  // serviceLocator.registerLazySingleton<CreateUserUseCase>(
+  //   () => CreateUserUseCase(signUpRepo: serviceLocator.get<SignUpRepo>()),
+  // );
 
-  serviceLocator.registerLazySingleton<SignUpWithGoogleUseCase>(
-    () => SignUpWithGoogleUseCase(signUpRepo: serviceLocator.get<SignUpRepo>()),
-  );
+  // serviceLocator.registerLazySingleton<SignUpWithGoogleUseCase>(
+  //   () => SignUpWithGoogleUseCase(signUpRepo: serviceLocator.get<SignUpRepo>()),
+  // );
 }
 
 void setUpForCubits() {
@@ -135,11 +159,11 @@ void setUpForCubits() {
     ),
   );
 
-  serviceLocator.registerFactory<SignUpCubit>(
-    () => SignUpCubit(
-      signUpUseCase: serviceLocator.get<SignUpUseCase>(),
-      createUserUseCase: serviceLocator.get<CreateUserUseCase>(),
-      signUpWithGoogleUseCase: serviceLocator.get<SignUpWithGoogleUseCase>(),
-    ),
-  );
+  // serviceLocator.registerFactory<SignUpCubit>(
+  //   () => SignUpCubit(
+  //     // signUpUseCase: serviceLocator.get<SignUpUseCase>(),
+  //     // createUserUseCase: serviceLocator.get<CreateUserUseCase>(),
+  //     signUpWithGoogleUseCase: serviceLocator.get<SignUpWithGoogleUseCase>(),
+  //   ),
+  // );
 }
