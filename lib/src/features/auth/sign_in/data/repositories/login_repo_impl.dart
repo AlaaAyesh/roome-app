@@ -10,6 +10,8 @@ import 'package:roome/src/core/utils/app_strings.dart';
 import 'package:roome/src/features/auth/sign_in/data/datasources/login_datasource.dart';
 import 'package:roome/src/features/auth/sign_in/domain/repositories/login_repo.dart';
 
+import '../../../../../core/errors/server_failure.dart';
+
 class LoginRepoImpl extends LoginRepo {
   final NetworkInfo networkInfo;
   final LoginDataSource loginDataSource;

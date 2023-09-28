@@ -27,7 +27,7 @@ class SplashViewBody extends StatelessWidget {
           Image.asset(AppAssets.appIcon),
           Text(
             AppStrings.appTitle,
-            style: AppTextStyle.splashTextStyle,
+            style: AppTextStyles.splashTextStyle,
           ),
         ],
       ),

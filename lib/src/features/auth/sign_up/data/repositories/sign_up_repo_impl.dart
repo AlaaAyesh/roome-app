@@ -9,6 +9,7 @@ import 'package:roome/src/core/network/network_info.dart';
 import 'package:roome/src/features/auth/sign_up/data/datasources/sign_up_datasource.dart';
 import 'package:roome/src/features/auth/sign_up/domain/repositories/sign_up_repo.dart';
 
+import '../../../../../core/errors/server_failure.dart';
 import '../../../../../core/utils/app_strings.dart';
 
 class SignUpRepoImpl extends SignUpRepo {

@@ -3,8 +3,10 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:reusable_components/reusable_components.dart';
-import 'package:roome/src/config/routes/app_routes.dart';
+
 import 'package:roome/src/features/splash/presentation/widgets/splash_view_body.dart';
+
+import '../../../../config/routes/routes.dart';
 
 class SplashView extends StatefulWidget {
   const SplashView({super.key});
