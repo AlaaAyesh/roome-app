@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'app_colors.dart';
 
-class AppTextStyle {
+class AppTextStyles {
   static TextStyle splashTextStyle = TextStyle(
     fontSize: 64.sp,
     fontWeight: FontWeight.w900,
@@ -42,5 +42,10 @@ class AppTextStyle {
   static TextStyle textStyle14Medium = TextStyle(
     fontSize: 14.sp,
     fontWeight: FontWeight.w500,
+  );
+
+  static TextStyle bottomNavTextStyle = TextStyle(
+    fontSize: 10.sp,
+    fontWeight: FontWeight.w400,
   );
 }

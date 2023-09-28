@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:roome/src/core/widgets/custom_snack_bar.dart';
 
+import '../models/user_model.dart';
 import '../utils/app_colors.dart';
 
 class Helper {
   static String? uId;
+  static UserModel? userModel;
 
   static UnderlineInputBorder buildUnderlineInputBorder() {
     return UnderlineInputBorder(

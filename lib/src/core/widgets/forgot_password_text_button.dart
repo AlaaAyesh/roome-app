@@ -17,7 +17,7 @@ class ForgotPasswordTextButton extends StatelessWidget {
       onTap: onTap,
       child: Text(
         'Forgot Password?',
-        style: AppTextStyle.textStyle14Medium,
+        style: AppTextStyles.textStyle14Medium,
       ),
     );
   }
