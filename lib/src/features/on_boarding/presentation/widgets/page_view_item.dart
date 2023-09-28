@@ -28,7 +28,7 @@ class PageViewItem extends StatelessWidget {
           padding: EdgeInsets.symmetric(horizontal: 5.w),
           child: Text(
             pageInfo.heading,
-            style: AppTextStyle.onBoardingHeadingTextStyle,
+            style: AppTextStyles.onBoardingHeadingTextStyle,
             textAlign: TextAlign.center,
           ),
         ),
@@ -37,7 +37,7 @@ class PageViewItem extends StatelessWidget {
           padding: EdgeInsets.symmetric(horizontal: 10.w),
           child: Text(
             pageInfo.subHeading,
-            style: AppTextStyle.textStyle15,
+            style: AppTextStyles.textStyle15,
             textAlign: TextAlign.center,
           ),
         ),

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../config/routes/app_routes.dart';
+import '../../../../config/routes/routes.dart';
 import '../../../../core/helpers/helper.dart';
 import '../../../../core/utils/app_assets.dart';
 import '../../domain/entities/on_boarding_entity.dart';
@@ -48,7 +48,7 @@ class OnBoardingDataSourceImpl implements OnBoardingDataSource {
     if (Helper.uId == null) {
       Navigator.pushReplacementNamed(context, Routes.loginViewRoute);
     } else {
-      Navigator.pushReplacementNamed(context, Routes.homeViewRoute);
+      Navigator.pushReplacementNamed(context, Routes.roomViewRoute);
     }
   }
 

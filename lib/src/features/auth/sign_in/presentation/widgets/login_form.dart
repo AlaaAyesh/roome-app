@@ -97,7 +97,7 @@ class _LoginFormState extends State<LoginForm> {
               SizedBox(width: SizeConfig.screenHeight! * 0.008),
               Text(
                 'Remember Me',
-                style: AppTextStyle.textStyle14Medium,
+                style: AppTextStyles.textStyle14Medium,
               ),
               const Spacer(),
               ForgotPasswordTextButton(
@@ -120,7 +120,7 @@ class _LoginFormState extends State<LoginForm> {
                 child: Center(
                   child: Text(
                     'Log in',
-                    style: AppTextStyle.textStyle15.copyWith(
+                    style: AppTextStyles.textStyle15.copyWith(
                       color: Colors.white,
                       fontWeight: FontWeight.w600,
                     ),

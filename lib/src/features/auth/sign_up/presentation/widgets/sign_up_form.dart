@@ -152,7 +152,7 @@ class _SignUpFormState extends State<SignUpForm> {
                 child: Center(
                   child: Text(
                     'Sign up',
-                    style: AppTextStyle.textStyle15.copyWith(
+                    style: AppTextStyles.textStyle15.copyWith(
                       color: Colors.white,
                       fontWeight: FontWeight.w600,
                     ),

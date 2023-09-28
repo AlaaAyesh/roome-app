@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:reusable_components/reusable_components.dart';
-import 'package:roome/src/config/routes/app_routes.dart';
 
 import 'package:roome/src/features/auth/sign_in/presentation/cubit/login_cubit.dart';
 import 'package:roome/src/features/auth/sign_in/presentation/widgets/login_form.dart';
 
+import '../../../../../config/routes/routes.dart';
 import '../../../../../core/widgets/auth_title.dart';
 import '../../../../../core/widgets/have_account_or_not.dart';
 import '../../../../../core/widgets/or_text.dart';
