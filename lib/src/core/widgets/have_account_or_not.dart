@@ -24,14 +24,14 @@ class HaveAccountOrNot extends StatelessWidget {
       children: <Widget>[
         Text(
           question,
-          style: AppTextStyle.textStyle15.copyWith(fontSize: 14.sp),
+          style: AppTextStyles.textStyle15.copyWith(fontSize: 14.sp),
         ),
         SizedBox(width: 5.w),
         CustomTextButton(
           onTap: onTap,
           child: Text(
             buttonText,
-            style: AppTextStyle.textStyle15.copyWith(
+            style: AppTextStyles.textStyle15.copyWith(
               fontSize: 14.sp,
               fontWeight: FontWeight.w600,
               color: AppColors.primaryColor,

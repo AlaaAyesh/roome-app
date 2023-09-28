@@ -22,6 +22,15 @@ import 'package:roome/src/features/on_boarding/data/datasources/on_boarding_data
 import 'package:roome/src/features/on_boarding/data/repositories/on_boarding_repo_impl.dart';
 import 'package:roome/src/features/on_boarding/domain/repositories/on_boarding_repo.dart';
 import 'package:roome/src/features/on_boarding/presentation/cubit/on_boarding_cubit.dart';
+import 'package:roome/src/features/roome/data/datasources/room_datasource_impl.dart';
+import 'package:roome/src/features/roome/data/datasources/roome_datasource.dart';
+import 'package:roome/src/features/roome/data/repositories/room_repo_impl.dart';
+import 'package:roome/src/features/roome/domain/repositories/room_repo.dart';
+import 'package:roome/src/features/roome/domain/usecases/change_bottom_nav_usecase.dart';
+import 'package:roome/src/features/roome/domain/usecases/change_nav_to_home_usecase.dart';
+import 'package:roome/src/features/roome/domain/usecases/get_body_usecase.dart';
+import 'package:roome/src/features/roome/domain/usecases/get_bottom_nav_items_usecase.dart';
+import 'package:roome/src/features/roome/presentation/cubit/roome_cubit.dart';
 
 import '../../features/on_boarding/data/datasources/on_boarding_datasource_impl.dart';
 import '../api/app_interceptors.dart';
@@ -103,6 +112,10 @@ void setUpForDataSources() {
   serviceLocator.registerLazySingleton<SignUpDataSource>(
     () => SignUpDataSourceImpl(apiConsumer: serviceLocator.get<ApiConsumer>()),
   );
+
+  serviceLocator.registerLazySingleton<RoomeDataSource>(
+    () => RoomDataSourceImpl(),
+  );
 }
 
 void setUpForRepos() {
@@ -123,6 +136,10 @@ void setUpForRepos() {
       signUpDataSource: serviceLocator.get<SignUpDataSource>(),
     ),
   );
+
+  serviceLocator.registerLazySingleton<RoomRepo>(
+    () => RoomRepoImpl(roomeDataSource: serviceLocator.get<RoomeDataSource>()),
+  );
 }
 
 void setUpForUseCases() {
@@ -140,6 +157,22 @@ void setUpForUseCases() {
 
   serviceLocator.registerLazySingleton<SignUpWithGoogleUseCase>(
     () => SignUpWithGoogleUseCase(signUpRepo: serviceLocator.get<SignUpRepo>()),
+  );
+
+  serviceLocator.registerLazySingleton<ChangeBottomNavUseCase>(
+    () => ChangeBottomNavUseCase(roomRepo: serviceLocator.get<RoomRepo>()),
+  );
+
+  serviceLocator.registerLazySingleton<ChangeBottomNavToHomeUseCase>(
+    () => ChangeBottomNavToHomeUseCase(
+      roomRepo: serviceLocator.get<RoomRepo>(),
+    ),
+  );
+  serviceLocator.registerLazySingleton<GetBodyUseCse>(
+    () => GetBodyUseCse(roomRepo: serviceLocator.get<RoomRepo>()),
+  );
+  serviceLocator.registerLazySingleton<GetBottomNavItemsUseCase>(
+    () => GetBottomNavItemsUseCase(roomRepo: serviceLocator.get<RoomRepo>()),
   );
 }
 
@@ -159,6 +192,16 @@ void setUpForCubits() {
     () => SignUpCubit(
       signUpUseCase: serviceLocator.get<SignUpUseCase>(),
       signUpWithGoogleUseCase: serviceLocator.get<SignUpWithGoogleUseCase>(),
+    ),
+  );
+
+  serviceLocator.registerFactory<RoomeCubit>(
+    () => RoomeCubit(
+      changeBottomNavUseCase: serviceLocator.get<ChangeBottomNavUseCase>(),
+      changeBottomNavToHomeUseCase:
+          serviceLocator.get<ChangeBottomNavToHomeUseCase>(),
+      getBodyUseCse: serviceLocator.get<GetBodyUseCse>(),
+      getBottomNavItemsUseCase: serviceLocator.get<GetBottomNavItemsUseCase>(),
     ),
   );
 }

@@ -36,8 +36,8 @@ class ReusableTextFormField extends StatelessWidget {
     return CustomTextFormField(
       cursorColor: Colors.black,
       hint: hint,
-      hintStyle: AppTextStyle.hintStyle,
-      style: AppTextStyle.hintStyle.copyWith(
+      hintStyle: AppTextStyles.hintStyle,
+      style: AppTextStyles.hintStyle.copyWith(
         color: Colors.black,
       ),
       enabledBorder: Helper.buildUnderlineInputBorder(),

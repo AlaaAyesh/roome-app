@@ -14,7 +14,7 @@ class OrText extends StatelessWidget {
       alignment: Alignment.center,
       child: Text(
         'Or',
-        style: AppTextStyle.textStyle15.copyWith(fontSize: 14.sp),
+        style: AppTextStyles.textStyle15.copyWith(fontSize: 14.sp),
       ),
     );
   }

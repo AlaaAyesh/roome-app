@@ -19,7 +19,7 @@ class AuthTitle extends StatelessWidget {
       margin: margin,
       child: Text(
         title,
-        style: AppTextStyle.onBoardingButtonStyle.copyWith(
+        style: AppTextStyles.onBoardingButtonStyle.copyWith(
           color: AppColors.primaryColor,
         ),
       ),

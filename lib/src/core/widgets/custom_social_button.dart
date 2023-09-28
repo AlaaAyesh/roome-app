@@ -43,7 +43,7 @@ class CustomSocialButton extends StatelessWidget {
         SizedBox(height: SizeConfig.screenHeight! * 0.004),
         Text(
           title,
-          style: AppTextStyle.textStyle15.copyWith(fontSize: 14),
+          style: AppTextStyles.textStyle15.copyWith(fontSize: 14),
         ),
       ],
     );
