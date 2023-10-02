@@ -38,9 +38,16 @@ class DioConsumer implements ApiConsumer {
   }
 
   @override
-  Future get(String path, {Map<String, dynamic>? queryParameters}) async {
-    final response = await client.get(path, queryParameters: queryParameters);
-    return response.data;
+  Future<Map<String, dynamic>> get(
+    String path, {
+    Map<String, dynamic>? queryParameters,
+  }) async {
+    final response = await client.get(
+      path,
+      queryParameters: queryParameters,
+    );
+
+    return jsonDecode(response.data);
   }
 
   @override

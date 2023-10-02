@@ -48,11 +48,13 @@ class ServerFailure extends Failure {
   }
 
   factory ServerFailure.fromResponse(int statusCode, dynamic response) {
+    final parsedResponse = jsonDecode(response);
+
     if (statusCode == StatusCodes.badRequest ||
         statusCode == StatusCodes.unAuthorized ||
-        statusCode == StatusCodes.forbidden ||
-        statusCode == StatusCodes.internalServerError) {
-      final parsedResponse = jsonDecode(response);
+        statusCode == StatusCodes.forbidden) {
+      return ServerFailure(errorMessage: parsedResponse['message']);
+    } else if (statusCode == StatusCodes.internalServerError) {
       return ServerFailure(errorMessage: parsedResponse['error']);
     }
     return ServerFailure(
