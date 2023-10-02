@@ -7,6 +7,7 @@ import 'package:roome/src/features/auth/sign_up/presentation/widgets/sign_up_vie
 
 import '../../../../../config/routes/routes.dart';
 import '../../../../../core/helpers/cache_helper.dart';
+import '../../../../../core/helpers/helper.dart';
 import '../../../../../core/widgets/custom_snack_bar.dart';
 
 class SignUpView extends StatelessWidget {
@@ -36,21 +37,28 @@ class SignUpView extends StatelessWidget {
 
     if (state is SignUpSuccessState) {
       CacheHelper.saveData(key: 'uId', value: state.uId).then((value) {
-        CustomSnackBar.show(
-          context: context,
-          title: "Success",
-          message: "Account Created Successfully",
-          backgroundColor: Colors.green,
-          icon: Icons.check_circle,
-        );
+        if (value) {
+          Helper.uId = state.uId.toString();
 
-        Navigator.pushReplacementNamed(context, Routes.roomViewRoute);
+          CustomSnackBar.show(
+            context: context,
+            title: "Success",
+            message: "Account Created Successfully",
+            backgroundColor: Colors.green,
+            icon: Icons.check_circle,
+          );
+
+          Navigator.pushReplacementNamed(context, Routes.roomViewRoute);
+        }
       });
     }
 
     if (state is SignUpWithGoogleSuccessState) {
       CacheHelper.saveData(key: 'uId', value: state.uId).then((value) {
-        Navigator.pushReplacementNamed(context, Routes.roomViewRoute);
+        if (value) {
+          Helper.uId = state.uId;
+          Navigator.pushReplacementNamed(context, Routes.roomViewRoute);
+        }
       });
     }
   }

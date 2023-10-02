@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:roome/src/core/helpers/cache_helper.dart';
+
 import 'package:roome/src/core/widgets/custom_snack_bar.dart';
 import 'package:roome/src/features/auth/sign_in/presentation/cubit/login_cubit.dart';
 import 'package:roome/src/features/auth/sign_in/presentation/widgets/login_view_body.dart';
 
 import '../../../../../config/routes/routes.dart';
+import '../../../../../core/helpers/helper.dart';
 
 class LoginView extends StatelessWidget {
   const LoginView({super.key});
@@ -37,13 +39,19 @@ class LoginView extends StatelessWidget {
 
     if (state is SignInSuccessState) {
       CacheHelper.saveData(key: 'uId', value: state.uId).then((value) {
-        Navigator.pushReplacementNamed(context, Routes.roomViewRoute);
+        if (value) {
+          Helper.uId = state.uId.toString();
+          Navigator.pushReplacementNamed(context, Routes.roomViewRoute);
+        }
       });
     }
 
     if (state is SignInWithGoogleSuccessState) {
       CacheHelper.saveData(key: 'uId', value: state.uId).then((value) {
-        Navigator.pushReplacementNamed(context, Routes.roomViewRoute);
+        if (value) {
+          Helper.uId = state.uId;
+          Navigator.pushReplacementNamed(context, Routes.roomViewRoute);
+        }
       });
     }
   }
