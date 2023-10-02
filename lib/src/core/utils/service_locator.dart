@@ -30,6 +30,7 @@ import 'package:roome/src/features/roome/domain/usecases/change_bottom_nav_useca
 import 'package:roome/src/features/roome/domain/usecases/change_nav_to_home_usecase.dart';
 import 'package:roome/src/features/roome/domain/usecases/get_body_usecase.dart';
 import 'package:roome/src/features/roome/domain/usecases/get_bottom_nav_items_usecase.dart';
+import 'package:roome/src/features/roome/domain/usecases/get_user_data_usecase.dart';
 import 'package:roome/src/features/roome/presentation/cubit/roome_cubit.dart';
 
 import '../../features/on_boarding/data/datasources/on_boarding_datasource_impl.dart';
@@ -104,9 +105,7 @@ void setUpForDataSources() {
   );
 
   serviceLocator.registerLazySingleton<LoginDataSource>(
-    () => LoginDataSourceImpl(apiConsumer: serviceLocator.get<ApiConsumer>()
-        // firebaseAuth: serviceLocator.get<FirebaseAuth>(),
-        ),
+    () => LoginDataSourceImpl(apiConsumer: serviceLocator.get<ApiConsumer>()),
   );
 
   serviceLocator.registerLazySingleton<SignUpDataSource>(
@@ -114,7 +113,7 @@ void setUpForDataSources() {
   );
 
   serviceLocator.registerLazySingleton<RoomeDataSource>(
-    () => RoomDataSourceImpl(),
+    () => RoomDataSourceImpl(apiConsumer: serviceLocator.get<ApiConsumer>()),
   );
 }
 
@@ -138,7 +137,10 @@ void setUpForRepos() {
   );
 
   serviceLocator.registerLazySingleton<RoomRepo>(
-    () => RoomRepoImpl(roomeDataSource: serviceLocator.get<RoomeDataSource>()),
+    () => RoomRepoImpl(
+      roomeDataSource: serviceLocator.get<RoomeDataSource>(),
+      networkInfo: serviceLocator.get<NetworkInfo>(),
+    ),
   );
 }
 
@@ -168,11 +170,17 @@ void setUpForUseCases() {
       roomRepo: serviceLocator.get<RoomRepo>(),
     ),
   );
+
   serviceLocator.registerLazySingleton<GetBodyUseCse>(
     () => GetBodyUseCse(roomRepo: serviceLocator.get<RoomRepo>()),
   );
+
   serviceLocator.registerLazySingleton<GetBottomNavItemsUseCase>(
     () => GetBottomNavItemsUseCase(roomRepo: serviceLocator.get<RoomRepo>()),
+  );
+
+  serviceLocator.registerLazySingleton<GetUserDataUseCase>(
+    () => GetUserDataUseCase(roomRepo: serviceLocator.get<RoomRepo>()),
   );
 }
 
@@ -202,6 +210,7 @@ void setUpForCubits() {
           serviceLocator.get<ChangeBottomNavToHomeUseCase>(),
       getBodyUseCse: serviceLocator.get<GetBodyUseCse>(),
       getBottomNavItemsUseCase: serviceLocator.get<GetBottomNavItemsUseCase>(),
+      getUserDataUseCase: serviceLocator.get<GetUserDataUseCase>(),
     ),
   );
 }

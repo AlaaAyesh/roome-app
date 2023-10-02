@@ -9,4 +9,6 @@ class AppColors {
   static Color textFieldIconColor = Colors.black.withOpacity(0.5);
   static Color socialIconsBorderColor = HexColorHandler('386578');
   static Color grey = HexColorHandler('B8B8B9');
+  static Color lightGrey = HexColorHandler('303030');
+  static Color borderColor = HexColorHandler('E3E3E4');
 }
