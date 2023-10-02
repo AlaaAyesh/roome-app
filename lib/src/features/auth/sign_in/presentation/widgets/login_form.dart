@@ -137,8 +137,7 @@ class _LoginFormState extends State<LoginForm> {
   }
 
   void login(BuildContext context) {
-    if (_formKey.currentState!.validate()) {
-      debugPrint('VALIDATED');
+    if (_formKey.currentState!.validate() && nameController.text.trim() != '') {
       CustomHelper.keyboardUnfocus(context);
       widget.cubit.userSignIn(
         username: nameController.text.trim(),

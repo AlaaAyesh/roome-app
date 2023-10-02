@@ -12,7 +12,7 @@ class SignUpInitial extends SignUpState {}
 class SignUpLoadingState extends SignUpState {}
 
 class SignUpSuccessState extends SignUpState {
-  final String uId;
+  final int uId;
 
   const SignUpSuccessState({required this.uId});
 

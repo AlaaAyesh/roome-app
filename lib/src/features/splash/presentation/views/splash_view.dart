@@ -3,6 +3,8 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:reusable_components/reusable_components.dart';
+import 'package:roome/src/core/helpers/cache_helper.dart';
+import 'package:roome/src/core/helpers/helper.dart';
 
 import 'package:roome/src/features/splash/presentation/widgets/splash_view_body.dart';
 
@@ -35,8 +37,19 @@ class _SplashViewState extends State<SplashView> {
     _timer = Timer(const Duration(milliseconds: 1500), () => _goToNext());
   }
 
-  void _goToNext() =>
+  void _goToNext() {
+    bool? onBoarding = CacheHelper.getBoolData(key: 'onBoarding');
+
+    if (onBoarding != null) {
+      if (Helper.uId != null) {
+        Navigator.pushReplacementNamed(context, Routes.roomViewRoute);
+      } else {
+        Navigator.pushReplacementNamed(context, Routes.loginViewRoute);
+      }
+    } else {
       Navigator.pushReplacementNamed(context, Routes.onBoardingViewRoute);
+    }
+  }
 
   void setSystemUIOverlayStyle() {
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);

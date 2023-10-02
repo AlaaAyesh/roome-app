@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../config/routes/routes.dart';
-import '../../../../core/helpers/helper.dart';
+import '../../../../core/helpers/cache_helper.dart';
 import '../../../../core/utils/app_assets.dart';
 import '../../domain/entities/on_boarding_entity.dart';
 import '../models/on_boarding_model.dart';
@@ -45,11 +45,11 @@ class OnBoardingDataSourceImpl implements OnBoardingDataSource {
 
   @override
   void navigateToLoginOrHome({required BuildContext context}) {
-    if (Helper.uId == null) {
-      Navigator.pushReplacementNamed(context, Routes.loginViewRoute);
-    } else {
-      Navigator.pushReplacementNamed(context, Routes.roomViewRoute);
-    }
+    CacheHelper.saveData(key: 'onBoarding', value: true).then((value) {
+      if (value) {
+        Navigator.pushReplacementNamed(context, Routes.loginViewRoute);
+      }
+    });
   }
 
   @override

@@ -1,6 +1,8 @@
 import 'package:bloc/bloc.dart';
 
 import 'package:equatable/equatable.dart';
+
+import 'package:roome/src/core/models/user_model.dart';
 import 'package:roome/src/features/auth/sign_in/domain/entities/login_parameters.dart';
 
 import 'package:roome/src/features/auth/sign_in/domain/usecases/login_with_google_usecase.dart';
@@ -33,8 +35,13 @@ class LoginCubit extends Cubit<LoginState> {
     )).then((value) {
       emit(
         value.fold(
-          (l) => SignInErrorState(error: l.errorMessage.toString()),
-          (r) => SignInSuccessState(uId: r.id.toString()),
+          (failure) => SignInErrorState(error: failure.errorMessage.toString()),
+          (user) {
+            return SignInSuccessState(
+              uId: user.id!,
+              userModel: user,
+            );
+          },
         ),
       );
     });
@@ -44,11 +51,13 @@ class LoginCubit extends Cubit<LoginState> {
     emit(SignInWithGoogleLoadingState());
 
     loginWithGoogleUseCase(NoParams()).then((value) {
-      emit(SignInSuccessState(
-        uId: value.foldRight('loginWithGoogle', (r, previous) => r.user!.uid),
-      ));
-    }).catchError((error) {
-      emit(SignInWithGoogleErrorState(error: error.toString()));
+      emit(
+        value.fold(
+          (failure) => SignInWithGoogleErrorState(
+              error: failure.errorMessage.toString()),
+          (user) => SignInWithGoogleSuccessState(uId: user.user!.uid),
+        ),
+      );
     });
   }
 
