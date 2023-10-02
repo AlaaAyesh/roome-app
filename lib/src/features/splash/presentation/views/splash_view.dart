@@ -54,7 +54,9 @@ class _SplashViewState extends State<SplashView> {
   void setSystemUIOverlayStyle() {
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
     SystemChrome.setSystemUIOverlayStyle(
-      CustomHelper.setTheSystemUIOverlayStyle(),
+      CustomHelper.setTheSystemUIOverlayStyle(
+        statusBarIconBrightness: Brightness.dark,
+      ),
     );
   }
 

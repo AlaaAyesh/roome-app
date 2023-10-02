@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:roome/src/core/api/api_consumer.dart';
+import 'package:roome/src/core/api/end_points.dart';
 
 import 'package:roome/src/features/roome/data/datasources/roome_datasource.dart';
 import 'package:roome/src/features/roome/presentation/cubit/roome_cubit.dart';
@@ -9,6 +11,10 @@ import '../../presentation/widgets/home_body.dart';
 import '../../presentation/widgets/notifications_body.dart';
 
 class RoomDataSourceImpl implements RoomeDataSource {
+  final ApiConsumer apiConsumer;
+
+  const RoomDataSourceImpl({required this.apiConsumer});
+
   @override
   void changeBottomNavIndex({
     required BuildContext context,
@@ -58,4 +64,14 @@ class RoomDataSourceImpl implements RoomeDataSource {
           backgroundColor: Colors.white,
         ),
       ];
+
+  @override
+  Future<Map<String, dynamic>> getUserData({required int userId}) async {
+    final response = await apiConsumer.get(
+      "${EndPoints.user}/${userId.toString()}",
+      queryParameters: {'id': userId},
+    );
+
+    return response;
+  }
 }

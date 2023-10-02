@@ -19,3 +19,23 @@ class ChangeBottomNavState extends RoomeState {
 }
 
 class ChangeBottomNavToHome extends RoomeState {}
+
+class GetUserDataLoadingState extends RoomeState {}
+
+class GetUserDataSuccessState extends RoomeState {
+  final UserModel userModel;
+
+  const GetUserDataSuccessState({required this.userModel});
+
+  @override
+  List<Object> get props => [userModel];
+}
+
+class GetUserDataErrorState extends RoomeState {
+  final String error;
+
+  const GetUserDataErrorState({required this.error});
+
+  @override
+  List<Object> get props => [error];
+}
