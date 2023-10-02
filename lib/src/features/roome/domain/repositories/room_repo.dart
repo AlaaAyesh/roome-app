@@ -1,4 +1,8 @@
+import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
+
+import '../../../../core/errors/failure.dart';
+import '../../../../core/models/user_model.dart';
 
 abstract class RoomRepo {
   void changeBottomNavIndex({
@@ -11,4 +15,6 @@ abstract class RoomRepo {
   List<Widget> getBody();
 
   List<BottomNavigationBarItem> getBottomNavItems();
+
+  Future<Either<Failure, UserModel>> getUserData({required int userId});
 }

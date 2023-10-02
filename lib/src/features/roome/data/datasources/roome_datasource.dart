@@ -11,4 +11,6 @@ abstract class RoomeDataSource {
   List<Widget> getBody();
 
   List<BottomNavigationBarItem> getBottomNavItems();
+
+  Future<Map<String, dynamic>> getUserData({required int userId});
 }

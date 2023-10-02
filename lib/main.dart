@@ -7,6 +7,7 @@ import 'package:roome/src/core/utils/service_locator.dart';
 
 import 'app.dart';
 import 'src/core/helpers/cache_helper.dart';
+import 'src/core/helpers/helper.dart';
 import 'src/core/utils/bloc_observer.dart';
 
 Future<void> main() async {
@@ -21,6 +22,8 @@ Future<void> main() async {
   setUpServiceLocator();
 
   await CacheHelper.initSharedPref();
+
+  Helper.uId = CacheHelper.getIntData(key: 'uId').toString();
 
   runApp(const RoomeApp());
 }
