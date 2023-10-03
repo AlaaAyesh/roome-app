@@ -18,7 +18,7 @@ import 'routes.dart';
 class AppRoutes {
   static Route<dynamic>? onGenerateRoute(RouteSettings routeSettings) {
     switch (routeSettings.name) {
-      case Routes.roomViewRoute:
+      case Routes.initialRoute:
         return MaterialPageRoute(builder: (context) => const SplashView());
 
       case Routes.onBoardingViewRoute:
@@ -45,10 +45,11 @@ class AppRoutes {
           ),
         );
 
-      case Routes.initialRoute:
+      case Routes.roomViewRoute:
         return MaterialPageRoute(
           builder: (context) => BlocProvider(
-            create: (context) => serviceLocator.get<RoomeCubit>(),
+            create: (context) =>
+                serviceLocator.get<RoomeCubit>()..getUserData(),
             child: const RoomeView(),
           ),
         );
