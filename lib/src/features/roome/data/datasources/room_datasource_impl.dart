@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:roome/src/core/api/api_consumer.dart';
 import 'package:roome/src/core/api/end_points.dart';
+import 'package:roome/src/core/helpers/cache_helper.dart';
 
 import 'package:roome/src/features/roome/data/datasources/roome_datasource.dart';
 import 'package:roome/src/features/roome/presentation/cubit/roome_cubit.dart';
@@ -73,5 +74,10 @@ class RoomDataSourceImpl implements RoomeDataSource {
     );
 
     return response;
+  }
+
+  @override
+  Future<bool> signOut({required BuildContext context}) async {
+    return await CacheHelper.removeData(key: 'uId');
   }
 }

@@ -13,4 +13,5 @@ class AppColors {
   static Color darkGrey = HexColorHandler('C4C4C4');
   static Color borderColor = HexColorHandler('E3E3E4');
   static Color shadowColor = HexColorHandler('6B86B3').withOpacity(0.25);
+  static Color starColor = HexColorHandler('FCD061');
 }

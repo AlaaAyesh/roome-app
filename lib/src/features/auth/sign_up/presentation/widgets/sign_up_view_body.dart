@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+
 import 'package:reusable_components/reusable_components.dart';
+import 'package:roome/src/core/widgets/get_back_arrow.dart';
 import 'package:roome/src/features/auth/sign_up/presentation/cubit/sign_up_cubit.dart';
 import 'package:roome/src/features/auth/sign_up/presentation/widgets/sign_up_form.dart';
-
-import '../../../../../core/utils/app_assets.dart';
 
 import '../../../../../core/widgets/auth_title.dart';
 import '../../../../../core/widgets/have_account_or_not.dart';
@@ -26,10 +25,7 @@ class SignUpViewBody extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            GestureDetector(
-              onTap: () => Navigator.pop(context),
-              child: SvgPicture.asset(AppAssets.arrowLeftIcon),
-            ),
+            const GetBackArrow(),
             AuthTitle(
               title: 'Sign up',
               margin: EdgeInsets.only(

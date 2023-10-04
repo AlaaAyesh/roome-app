@@ -39,3 +39,18 @@ class GetUserDataErrorState extends RoomeState {
   @override
   List<Object> get props => [error];
 }
+
+class SignOutSuccessState extends RoomeState {
+  final int? uId;
+
+  const SignOutSuccessState({required this.uId});
+}
+
+class SignOutErrorState extends RoomeState {
+  final String error;
+
+  const SignOutErrorState({required this.error});
+
+  @override
+  List<Object> get props => [error];
+}

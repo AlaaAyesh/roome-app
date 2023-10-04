@@ -23,7 +23,7 @@ Future<void> main() async {
 
   await CacheHelper.initSharedPref();
 
-  Helper.uId = CacheHelper.getIntData(key: 'uId').toString();
+  Helper.uId = CacheHelper.getIntData(key: 'uId');
 
   runApp(const RoomeApp());
 }

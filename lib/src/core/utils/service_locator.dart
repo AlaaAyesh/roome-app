@@ -31,6 +31,7 @@ import 'package:roome/src/features/roome/domain/usecases/change_nav_to_home_usec
 import 'package:roome/src/features/roome/domain/usecases/get_body_usecase.dart';
 import 'package:roome/src/features/roome/domain/usecases/get_bottom_nav_items_usecase.dart';
 import 'package:roome/src/features/roome/domain/usecases/get_user_data_usecase.dart';
+import 'package:roome/src/features/roome/domain/usecases/sign_out_usecase.dart';
 import 'package:roome/src/features/roome/presentation/cubit/roome_cubit.dart';
 
 import '../../features/on_boarding/data/datasources/on_boarding_datasource_impl.dart';
@@ -182,6 +183,10 @@ void setUpForUseCases() {
   serviceLocator.registerLazySingleton<GetUserDataUseCase>(
     () => GetUserDataUseCase(roomRepo: serviceLocator.get<RoomRepo>()),
   );
+
+  serviceLocator.registerLazySingleton<SignOutUseCase>(
+    () => SignOutUseCase(roomRepo: serviceLocator.get<RoomRepo>()),
+  );
 }
 
 void setUpForCubits() {
@@ -211,6 +216,7 @@ void setUpForCubits() {
       getBodyUseCse: serviceLocator.get<GetBodyUseCse>(),
       getBottomNavItemsUseCase: serviceLocator.get<GetBottomNavItemsUseCase>(),
       getUserDataUseCase: serviceLocator.get<GetUserDataUseCase>(),
+      signOutUseCase: serviceLocator.get<SignOutUseCase>(),
     ),
   );
 }

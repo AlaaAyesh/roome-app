@@ -59,4 +59,15 @@ class RoomRepoImpl extends RoomRepo {
       throw const ServerException(exception: AppStrings.opps);
     }
   }
+
+  @override
+  Future<Either<Failure, bool>> signOut({required BuildContext context}) async {
+    final result = await roomeDataSource.signOut(context: context);
+
+    try {
+      return Right(result);
+    } catch (e) {
+      return Left(ServerFailure(errorMessage: e.toString()));
+    }
+  }
 }
