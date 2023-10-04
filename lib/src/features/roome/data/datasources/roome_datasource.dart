@@ -13,4 +13,6 @@ abstract class RoomeDataSource {
   List<BottomNavigationBarItem> getBottomNavItems();
 
   Future<Map<String, dynamic>> getUserData({required int userId});
+
+  Future<bool> signOut({required BuildContext context});
 }

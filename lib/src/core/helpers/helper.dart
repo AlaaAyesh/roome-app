@@ -6,7 +6,7 @@ import '../models/user_model.dart';
 import '../utils/app_colors.dart';
 
 class Helper {
-  static String? uId;
+  static int? uId;
   static UserModel? userModel;
 
   static UnderlineInputBorder buildUnderlineInputBorder() {
@@ -68,5 +68,14 @@ class Helper {
         message: "$textName can't be blank!",
       );
     }
+  }
+
+  static Future<Object?> pushNamedAndRemoveUntil(BuildContext context,
+      {required String newRoute}) {
+    return Navigator.pushNamedAndRemoveUntil(
+      context,
+      newRoute,
+      (Route<dynamic> route) => false, // remove all previous routes
+    );
   }
 }

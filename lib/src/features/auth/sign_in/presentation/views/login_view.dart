@@ -40,7 +40,7 @@ class LoginView extends StatelessWidget {
     if (state is SignInSuccessState) {
       CacheHelper.saveData(key: 'uId', value: state.uId).then((value) {
         if (value) {
-          Helper.uId = state.uId.toString();
+          Helper.uId = state.uId;
           Navigator.pushReplacementNamed(context, Routes.roomViewRoute);
         }
       });
@@ -49,7 +49,7 @@ class LoginView extends StatelessWidget {
     if (state is SignInWithGoogleSuccessState) {
       CacheHelper.saveData(key: 'uId', value: state.uId).then((value) {
         if (value) {
-          Helper.uId = state.uId;
+          Helper.uId = int.parse(state.uId);
           Navigator.pushReplacementNamed(context, Routes.roomViewRoute);
         }
       });

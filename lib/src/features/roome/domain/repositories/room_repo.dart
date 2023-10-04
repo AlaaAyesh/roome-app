@@ -17,4 +17,6 @@ abstract class RoomRepo {
   List<BottomNavigationBarItem> getBottomNavItems();
 
   Future<Either<Failure, UserModel>> getUserData({required int userId});
+
+  Future<Either<Failure, bool>> signOut({required BuildContext context});
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-
-import '../../../../core/utils/app_text_styles.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:reusable_components/reusable_components.dart';
+import 'package:roome/src/features/roome/presentation/cubit/roome_cubit.dart';
 
 class NotificationsBody extends StatelessWidget {
   const NotificationsBody({super.key});
@@ -10,9 +11,11 @@ class NotificationsBody extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
-        Text(
-          'Notifications',
-          style: AppTextStyles.snackBarTitle.copyWith(color: Colors.black),
+        CustomTextButton(
+          onTap: () {
+            BlocProvider.of<RoomeCubit>(context).signOut(context);
+          },
+          child: const Text('Sign Out'),
         ),
       ],
     );

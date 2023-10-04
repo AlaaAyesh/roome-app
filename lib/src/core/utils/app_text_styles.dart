@@ -24,6 +24,12 @@ class AppTextStyles {
     color: Colors.white,
   );
 
+  static TextStyle appBarTextStyle = TextStyle(
+    fontSize: 20.sp,
+    fontWeight: FontWeight.w600,
+    color: Colors.black.withOpacity(0.89),
+  );
+
   static TextStyle snackBarTitle = TextStyle(
     fontSize: 18.sp,
     fontWeight: FontWeight.w500,

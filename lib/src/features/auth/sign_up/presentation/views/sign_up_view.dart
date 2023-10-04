@@ -38,7 +38,7 @@ class SignUpView extends StatelessWidget {
     if (state is SignUpSuccessState) {
       CacheHelper.saveData(key: 'uId', value: state.uId).then((value) {
         if (value) {
-          Helper.uId = state.uId.toString();
+          Helper.uId = state.uId;
 
           CustomSnackBar.show(
             context: context,
@@ -56,7 +56,7 @@ class SignUpView extends StatelessWidget {
     if (state is SignUpWithGoogleSuccessState) {
       CacheHelper.saveData(key: 'uId', value: state.uId).then((value) {
         if (value) {
-          Helper.uId = state.uId;
+          Helper.uId = int.parse(state.uId);
           Navigator.pushReplacementNamed(context, Routes.roomViewRoute);
         }
       });

@@ -2,10 +2,13 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:reusable_components/reusable_components.dart';
+import 'package:roome/src/core/widgets/star_icon.dart';
 
 import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/app_text_styles.dart';
 import '../../../../core/widgets/custom_error_widget.dart';
+import '../../../../core/widgets/price_per_night_text.dart';
+
 import 'location_text_button.dart';
 
 class HotelCard extends StatelessWidget {
@@ -71,11 +74,7 @@ class HotelCard extends StatelessWidget {
                   ),
                 ),
                 const Spacer(),
-                Icon(
-                  Icons.star,
-                  color: HexColorHandler('FCD061'),
-                  size: 16.w,
-                ),
+                const StarIcon(),
                 SizedBox(width: 3.w),
                 Text(
                   '4.5',
@@ -96,25 +95,7 @@ class HotelCard extends StatelessWidget {
           ),
           Padding(
             padding: EdgeInsets.only(right: 10.w, top: 7.h),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: <Widget>[
-                Text(
-                  '6.834/',
-                  style: AppTextStyles.bottomNavTextStyle.copyWith(
-                    fontWeight: FontWeight.w900,
-                    color: Colors.black.withOpacity(0.6),
-                  ),
-                ),
-                Text(
-                  'night',
-                  style: AppTextStyles.bottomNavTextStyle.copyWith(
-                    fontWeight: FontWeight.w900,
-                    color: HexColorHandler('4E4C4C').withOpacity(0.53),
-                  ),
-                ),
-              ],
-            ),
+            child: const PricePerNightText(),
           ),
         ],
       ),

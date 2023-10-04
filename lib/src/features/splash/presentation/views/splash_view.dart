@@ -42,12 +42,18 @@ class _SplashViewState extends State<SplashView> {
 
     if (onBoarding != null) {
       if (Helper.uId != null) {
-        Navigator.pushReplacementNamed(context, Routes.roomViewRoute);
+        Helper.pushNamedAndRemoveUntil(context, newRoute: Routes.roomViewRoute);
       } else {
-        Navigator.pushReplacementNamed(context, Routes.loginViewRoute);
+        Helper.pushNamedAndRemoveUntil(
+          context,
+          newRoute: Routes.loginViewRoute,
+        );
       }
     } else {
-      Navigator.pushReplacementNamed(context, Routes.onBoardingViewRoute);
+      Helper.pushNamedAndRemoveUntil(
+        context,
+        newRoute: Routes.onBoardingViewRoute,
+      );
     }
   }
 
