@@ -31,8 +31,14 @@ import 'package:roome/src/features/roome/domain/usecases/change_nav_to_home_usec
 import 'package:roome/src/features/roome/domain/usecases/get_body_usecase.dart';
 import 'package:roome/src/features/roome/domain/usecases/get_bottom_nav_items_usecase.dart';
 import 'package:roome/src/features/roome/domain/usecases/get_user_data_usecase.dart';
+import 'package:roome/src/features/search/data/datasources/search_datasource.dart';
+import 'package:roome/src/features/search/data/datasources/search_datasource_impl.dart';
+import 'package:roome/src/features/search/data/repositories/search_repo_impl.dart';
+import 'package:roome/src/features/search/domain/repositories/search_repo.dart';
+import 'package:roome/src/features/search/domain/usecases/search_hotels_usecase.dart';
 import 'package:roome/src/features/roome/domain/usecases/sign_out_usecase.dart';
 import 'package:roome/src/features/roome/presentation/cubit/roome_cubit.dart';
+import 'package:roome/src/features/search/presentation/cubit/search_cubit.dart';
 
 import '../../features/on_boarding/data/datasources/on_boarding_datasource_impl.dart';
 import '../api/app_interceptors.dart';
@@ -116,6 +122,11 @@ void setUpForDataSources() {
   serviceLocator.registerLazySingleton<RoomeDataSource>(
     () => RoomDataSourceImpl(apiConsumer: serviceLocator.get<ApiConsumer>()),
   );
+
+  serviceLocator
+      .registerLazySingleton<SearchDatasource>(() => SearchDatasourceImpl(
+            apiConsumer: serviceLocator.get<ApiConsumer>(),
+          ));
 }
 
 void setUpForRepos() {
@@ -143,6 +154,11 @@ void setUpForRepos() {
       networkInfo: serviceLocator.get<NetworkInfo>(),
     ),
   );
+
+  serviceLocator.registerLazySingleton<SearchRepo>(() => SearchRepoImpl(
+        networkInfo: serviceLocator.get<NetworkInfo>(),
+        searchDatasource: serviceLocator.get<SearchDatasource>(),
+      ));
 }
 
 void setUpForUseCases() {
@@ -187,6 +203,12 @@ void setUpForUseCases() {
   serviceLocator.registerLazySingleton<SignOutUseCase>(
     () => SignOutUseCase(roomRepo: serviceLocator.get<RoomRepo>()),
   );
+
+  serviceLocator.registerLazySingleton<SearchHotelsUseCase>(
+    () => SearchHotelsUseCase(
+      searchRepo: serviceLocator.get<SearchRepo>(),
+    ),
+  );
 }
 
 void setUpForCubits() {
@@ -219,4 +241,8 @@ void setUpForCubits() {
       signOutUseCase: serviceLocator.get<SignOutUseCase>(),
     ),
   );
+
+  serviceLocator.registerFactory<SearchCubit>(() => SearchCubit(
+        searchHotelsUseCase: serviceLocator.get<SearchHotelsUseCase>(),
+      ));
 }

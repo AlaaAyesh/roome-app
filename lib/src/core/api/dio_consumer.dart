@@ -38,7 +38,7 @@ class DioConsumer implements ApiConsumer {
   }
 
   @override
-  Future<Map<String, dynamic>> get(
+  Future<dynamic> get(
     String path, {
     Map<String, dynamic>? queryParameters,
   }) async {
@@ -51,7 +51,7 @@ class DioConsumer implements ApiConsumer {
   }
 
   @override
-  Future<Map<String, dynamic>> post(
+  Future<dynamic> post(
     String path, {
     Map<String, dynamic>? queryParameters,
     bool formDataIsEnabled = false,
@@ -67,7 +67,7 @@ class DioConsumer implements ApiConsumer {
   }
 
   @override
-  Future put(
+  Future<dynamic> put(
     String path, {
     Map<String, dynamic>? queryParameters,
     Map<String, dynamic>? body,

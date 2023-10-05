@@ -34,6 +34,8 @@ class LocationTextButton extends StatelessWidget {
               fontSize: 13.sp,
               color: AppColors.lightGrey.withOpacity(0.24),
             ),
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
           ),
         ],
       ),

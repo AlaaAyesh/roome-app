@@ -7,7 +7,7 @@ import '../utils/app_colors.dart';
 
 class Helper {
   static int? uId;
-  static UserModel? userModel;
+  static UserModel? currentUser;
 
   static UnderlineInputBorder buildUnderlineInputBorder() {
     return UnderlineInputBorder(

@@ -13,11 +13,11 @@ class SignInLoadingState extends LoginState {}
 
 class SignInSuccessState extends LoginState {
   final int uId;
-  final UserModel? userModel;
-  const SignInSuccessState({this.userModel, required this.uId});
+  final UserModel userModel;
+  const SignInSuccessState({required this.userModel, required this.uId});
 
   @override
-  List<Object> get props => [uId];
+  List<Object> get props => [uId, userModel];
 }
 
 class SignInErrorState extends LoginState {

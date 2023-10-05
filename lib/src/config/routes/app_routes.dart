@@ -11,6 +11,8 @@ import 'package:roome/src/features/on_boarding/presentation/cubit/on_boarding_cu
 import 'package:roome/src/features/on_boarding/presentation/views/on_boarding_view.dart';
 import 'package:roome/src/features/roome/presentation/cubit/roome_cubit.dart';
 import 'package:roome/src/features/roome/presentation/views/roome_view.dart';
+import 'package:roome/src/features/search/presentation/cubit/search_cubit.dart';
+import 'package:roome/src/features/search/presentation/views/search_view.dart';
 import 'package:roome/src/features/splash/presentation/views/splash_view.dart';
 
 import 'routes.dart';
@@ -51,6 +53,14 @@ class AppRoutes {
             create: (context) =>
                 serviceLocator.get<RoomeCubit>()..getUserData(),
             child: const RoomeView(),
+          ),
+        );
+
+      case Routes.searchViewRoute:
+        return MaterialPageRoute(
+          builder: (context) => BlocProvider(
+            create: (context) => serviceLocator.get<SearchCubit>(),
+            child: const SearchView(),
           ),
         );
 

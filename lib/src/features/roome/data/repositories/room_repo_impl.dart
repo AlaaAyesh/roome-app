@@ -1,12 +1,15 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:roome/src/core/errors/failure.dart';
+
 import 'package:roome/src/core/models/user_model.dart';
 
 import 'package:roome/src/features/roome/data/datasources/roome_datasource.dart';
 import 'package:roome/src/features/roome/domain/repositories/room_repo.dart';
+import 'package:roome/src/features/roome/presentation/cubit/roome_cubit.dart';
 
 import '../../../../core/errors/exceptions.dart';
+import '../../../../core/errors/bug.dart';
 import '../../../../core/errors/server_failure.dart';
 import '../../../../core/network/network_info.dart';
 import '../../../../core/utils/app_strings.dart';
@@ -37,7 +40,15 @@ class RoomRepoImpl extends RoomRepo {
   }
 
   @override
-  List<Widget> getBody() => roomeDataSource.getBody();
+  List<Widget> getBody({
+    required RoomeState roomeState,
+    required RoomeCubit roomeCubit,
+  }) {
+    return roomeDataSource.getBody(
+      roomeState: roomeState,
+      roomeCubit: roomeCubit,
+    );
+  }
 
   @override
   List<BottomNavigationBarItem> getBottomNavItems() =>
@@ -67,7 +78,7 @@ class RoomRepoImpl extends RoomRepo {
     try {
       return Right(result);
     } catch (e) {
-      return Left(ServerFailure(errorMessage: e.toString()));
+      return Left(Bug(errorMessage: e.toString()));
     }
   }
 }

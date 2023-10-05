@@ -12,7 +12,7 @@ class GetUserDataUseCase implements BaseUseCases<UserModel, UserEntity> {
   const GetUserDataUseCase({required this.roomRepo});
 
   @override
-  Future<Either<Failure, UserModel>> call(UserEntity params) {
-    return roomRepo.getUserData(userId: params.id!);
+  Future<Either<Failure, UserModel>> call(UserEntity params) async {
+    return await roomRepo.getUserData(userId: params.id!);
   }
 }

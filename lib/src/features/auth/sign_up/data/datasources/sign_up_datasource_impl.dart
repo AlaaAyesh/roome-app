@@ -19,7 +19,7 @@ class SignUpDataSourceImpl implements SignUpDataSource {
     required String password,
   }) async {
     final response = await apiConsumer.post(
-      EndPoints.user,
+      EndPoints.register,
       body: {
         'firstName': firstName,
         'lastName': lastName,

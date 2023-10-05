@@ -2,9 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:roome/src/features/roome/presentation/cubit/roome_cubit.dart';
 
 class RoomViewBody extends StatelessWidget {
-  const RoomViewBody({super.key, required this.cubit});
+  const RoomViewBody({
+    super.key,
+    required this.cubit,
+    required this.state,
+  });
 
   final RoomeCubit cubit;
+  final RoomeState state;
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +21,10 @@ class RoomViewBody extends StatelessWidget {
         }
         return Future.value(true);
       },
-      child: cubit.getBody()[cubit.currentIndex],
+      child: cubit.getBody(
+        roomeState: state,
+        roomeCubit: cubit,
+      )[cubit.currentIndex],
     );
   }
 }

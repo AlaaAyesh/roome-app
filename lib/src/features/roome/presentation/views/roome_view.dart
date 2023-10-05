@@ -14,7 +14,7 @@ class RoomeView extends StatelessWidget {
         RoomeCubit cubit = BlocProvider.of<RoomeCubit>(context);
 
         return Scaffold(
-          body: SafeArea(child: RoomViewBody(cubit: cubit)),
+          body: SafeArea(child: RoomViewBody(cubit: cubit, state: state)),
           bottomNavigationBar: BottomNavBar(cubit: cubit),
         );
       },
