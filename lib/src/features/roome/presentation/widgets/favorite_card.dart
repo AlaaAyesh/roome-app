@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:reusable_components/reusable_components.dart';
+import 'package:roome/src/core/widgets/custom_bottom_sheet.dart';
 
 import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/app_text_styles.dart';
@@ -64,12 +65,8 @@ class FavoriteCard extends StatelessWidget {
                         ),
                       ),
                       GestureDetector(
-                        onTap: () {
-                          /*
-                          TODO: use Future.delayed to change the color of favorite icon from primaryColor to grey
-                          TODO: after that perform slide animation from left to right
-                           */
-                        },
+                        onTap: () =>
+                            RemoveFromFavBottomSheet.show(context: context),
                         child: Icon(
                           Icons.favorite,
                           color: AppColors.primaryColor,

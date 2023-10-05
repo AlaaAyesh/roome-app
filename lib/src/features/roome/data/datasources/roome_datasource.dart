@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:roome/src/features/roome/presentation/cubit/roome_cubit.dart';
 
 abstract class RoomeDataSource {
   void changeBottomNavIndex({
@@ -8,7 +9,10 @@ abstract class RoomeDataSource {
 
   void changeBottomNavToHome({required BuildContext context});
 
-  List<Widget> getBody();
+  List<Widget> getBody({
+    required RoomeState roomeState,
+    required RoomeCubit roomeCubit,
+  });
 
   List<BottomNavigationBarItem> getBottomNavItems();
 

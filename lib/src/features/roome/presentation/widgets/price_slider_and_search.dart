@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:reusable_components/reusable_components.dart';
+import 'package:roome/src/features/roome/presentation/widgets/disabled_search_field.dart';
 
 import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/app_text_styles.dart';
 import 'price_slider.dart';
-import 'search_text_field.dart';
 
 class PriceSliderAndSearch extends StatelessWidget {
   const PriceSliderAndSearch({
@@ -42,7 +42,7 @@ class PriceSliderAndSearch extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
-                const SearchTextField(),
+                const DisabledSearchField(),
                 Container(
                   height: 38.w,
                   width: 38.w,

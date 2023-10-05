@@ -32,12 +32,15 @@ class RoomDataSourceImpl implements RoomeDataSource {
   }
 
   @override
-  List<Widget> getBody() {
-    return const <Widget>[
-      HomeBody(),
-      BookingBody(),
-      NotificationsBody(),
-      FavoriteBody(),
+  List<Widget> getBody({
+    required RoomeState roomeState,
+    required RoomeCubit roomeCubit,
+  }) {
+    return <Widget>[
+      HomeBody(state: roomeState),
+      const BookingBody(),
+      const NotificationsBody(),
+      const FavoriteBody(),
     ];
   }
 

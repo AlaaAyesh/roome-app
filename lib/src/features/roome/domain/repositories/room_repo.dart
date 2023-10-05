@@ -1,7 +1,9 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
+import 'package:roome/src/features/roome/presentation/cubit/roome_cubit.dart';
 
 import '../../../../core/errors/failure.dart';
+
 import '../../../../core/models/user_model.dart';
 
 abstract class RoomRepo {
@@ -12,7 +14,10 @@ abstract class RoomRepo {
 
   void changeBottomNavToHome({required BuildContext context});
 
-  List<Widget> getBody();
+  List<Widget> getBody({
+    required RoomeState roomeState,
+    required RoomeCubit roomeCubit,
+  });
 
   List<BottomNavigationBarItem> getBottomNavItems();
 
