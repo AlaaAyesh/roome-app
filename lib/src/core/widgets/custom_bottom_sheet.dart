@@ -3,15 +3,23 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:reusable_components/reusable_components.dart';
 import 'package:roome/src/core/utils/app_colors.dart';
+import 'package:roome/src/core/utils/app_navigator.dart';
 import 'package:roome/src/core/utils/app_text_styles.dart';
+import 'package:roome/src/features/roome/presentation/cubit/roome_cubit.dart';
 import 'package:roome/src/features/roome/presentation/widgets/favorite_card.dart';
 
+import '../models/hotel.dart';
+
 class RemoveFromFavBottomSheet {
-  static void show({required BuildContext context}) {
+  static void show({
+    required BuildContext context,
+    required Hotel hotel,
+    required RoomeCubit cubit,
+  }) {
     showModalBottomSheet(
       context: context,
       backgroundColor: Colors.transparent,
-      builder: (context) => const MyCustomBottomSheet(),
+      builder: (context) => MyCustomBottomSheet(hotel: hotel, cubit: cubit),
     );
   }
 }
@@ -19,7 +27,12 @@ class RemoveFromFavBottomSheet {
 class MyCustomBottomSheet extends StatefulWidget {
   const MyCustomBottomSheet({
     super.key,
+    required this.hotel,
+    required this.cubit,
   });
+
+  final Hotel hotel;
+  final RoomeCubit cubit;
 
   @override
   State<MyCustomBottomSheet> createState() => _MyCustomBottomSheetState();
@@ -66,9 +79,7 @@ class _MyCustomBottomSheetState extends State<MyCustomBottomSheet>
       backgroundColor: Colors.white,
       dragHandleColor: AppColors.darkGrey.withOpacity(0.49),
       dragHandleSize: Size(50.w, 3.h),
-      onClosing: () {
-        Navigator.pop(context);
-      },
+      onClosing: () => context.getBack(),
       builder: (context) => ListView(
         shrinkWrap: true,
         padding: EdgeInsets.only(
@@ -85,7 +96,10 @@ class _MyCustomBottomSheetState extends State<MyCustomBottomSheet>
             textAlign: TextAlign.center,
           ),
           SizedBox(height: SizeConfig.screenHeight! * 0.046),
-          const FavoriteCard(),
+          FavoriteCard(
+            cubit: widget.cubit,
+            hotel: widget.hotel,
+          ),
           SizedBox(height: SizeConfig.screenHeight! * 0.033),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -95,7 +109,7 @@ class _MyCustomBottomSheetState extends State<MyCustomBottomSheet>
                 width: 148.w,
                 borderRadius: BorderRadius.all(Radius.circular(12.r)),
                 backgroundColor: AppColors.primaryColor.withOpacity(0.24),
-                onPressed: () => Navigator.pop(context),
+                onPressed: () => context.getBack(),
                 hasPrefix: false,
                 child: Center(
                   child: Text(
@@ -108,6 +122,12 @@ class _MyCustomBottomSheetState extends State<MyCustomBottomSheet>
                 ),
               ),
               MyCustomButton(
+                onPressed: () {
+                  widget.cubit.removeFromFav(
+                    hotelId: widget.hotel.id!,
+                  );
+                  context.getBack();
+                },
                 height: 50.h,
                 width: 148.w,
                 borderRadius: BorderRadius.all(Radius.circular(12.r)),
@@ -119,7 +139,6 @@ class _MyCustomBottomSheetState extends State<MyCustomBottomSheet>
                     color: AppColors.primaryColor.withOpacity(0.56),
                   ),
                 ],
-                onPressed: () {}, // TODO:
                 hasPrefix: false,
                 child: Center(
                   child: Text(

@@ -9,16 +9,19 @@ class CustomAppBar extends StatelessWidget {
     super.key,
     required this.spaceBetween,
     required this.title,
+    required this.arrowOnTap,
   });
 
   final double spaceBetween;
+  final VoidCallback arrowOnTap;
+
   final String title;
 
   @override
   Widget build(BuildContext context) {
     return Row(
       children: <Widget>[
-        const GetBackArrow(),
+        GetBackArrow(onTap: arrowOnTap),
         SizedBox(width: spaceBetween.w),
         Text(
           title,
