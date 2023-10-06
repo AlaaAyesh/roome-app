@@ -1,6 +1,5 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
-import 'package:roome/src/features/roome/presentation/cubit/roome_cubit.dart';
 
 import '../../../../core/errors/failure.dart';
 
@@ -14,14 +13,20 @@ abstract class RoomRepo {
 
   void changeBottomNavToHome({required BuildContext context});
 
-  List<Widget> getBody({
-    required RoomeState roomeState,
-    required RoomeCubit roomeCubit,
-  });
+  List<Widget> getBody();
 
   List<BottomNavigationBarItem> getBottomNavItems();
 
   Future<Either<Failure, UserModel>> getUserData({required int userId});
+
+  Future<Either<Failure, dynamic>> getFavorites({
+    required int userId,
+  });
+
+  Future<Either<Failure, dynamic>> removeFromFav({
+    required int uId,
+    required int hotelId,
+  });
 
   Future<Either<Failure, bool>> signOut({required BuildContext context});
 }

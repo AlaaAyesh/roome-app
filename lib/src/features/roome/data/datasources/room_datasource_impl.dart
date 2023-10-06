@@ -32,37 +32,34 @@ class RoomDataSourceImpl implements RoomeDataSource {
   }
 
   @override
-  List<Widget> getBody({
-    required RoomeState roomeState,
-    required RoomeCubit roomeCubit,
-  }) {
-    return <Widget>[
-      HomeBody(state: roomeState),
-      const BookingBody(),
-      const NotificationsBody(),
-      const FavoriteBody(),
+  List<Widget> getBody() {
+    return const <Widget>[
+      HomeBody(),
+      BookingBody(),
+      NotificationsBody(),
+      FavoriteBody(),
     ];
   }
 
   @override
   List<BottomNavigationBarItem> getBottomNavItems() =>
-      <BottomNavigationBarItem>[
-        const BottomNavigationBarItem(
+      const <BottomNavigationBarItem>[
+        BottomNavigationBarItem(
           label: 'Home',
           icon: Icon(Icons.home),
           backgroundColor: Colors.white,
         ),
-        const BottomNavigationBarItem(
+        BottomNavigationBarItem(
           label: 'Booking',
           icon: Icon(Icons.view_list),
           backgroundColor: Colors.white,
         ),
-        const BottomNavigationBarItem(
+        BottomNavigationBarItem(
           label: 'Notification',
           icon: Icon(Icons.notifications),
           backgroundColor: Colors.white,
         ),
-        const BottomNavigationBarItem(
+        BottomNavigationBarItem(
           label: 'Favorite',
           icon: Icon(Icons.favorite),
           backgroundColor: Colors.white,
@@ -82,5 +79,33 @@ class RoomDataSourceImpl implements RoomeDataSource {
   @override
   Future<bool> signOut({required BuildContext context}) async {
     return await CacheHelper.removeData(key: 'uId');
+  }
+
+  @override
+  Future<dynamic> getFavorites({required int userId}) async {
+    final response = await apiConsumer.get(
+      '${EndPoints.favorite}$userId',
+      queryParameters: {
+        'id': userId,
+      },
+    );
+
+    return response;
+  }
+
+  @override
+  Future<dynamic> removeFromFav({
+    required int uId,
+    required int hotelId,
+  }) async {
+    final response = apiConsumer.post(
+      '${EndPoints.user}/remove-from-fav/$uId/hotel/$hotelId',
+      queryParameters: {
+        'userId': uId,
+        'hotelId': hotelId,
+      },
+    );
+
+    return response;
   }
 }
