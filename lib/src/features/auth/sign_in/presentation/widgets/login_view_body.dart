@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:reusable_components/reusable_components.dart';
+import 'package:roome/src/core/utils/app_navigator.dart';
 
 import 'package:roome/src/features/auth/sign_in/presentation/cubit/login_cubit.dart';
 import 'package:roome/src/features/auth/sign_in/presentation/widgets/login_form.dart';
@@ -42,7 +43,9 @@ class LoginViewBody extends StatelessWidget {
             ),
             SizedBox(height: SizeConfig.screenHeight! * 0.036),
             HaveAccountOrNot(
-              onTap: () => Navigator.pushNamed(context, Routes.signUpViewRoute),
+              onTap: () {
+                context.navigateTo(routeName: Routes.signUpViewRoute);
+              },
               buttonText: 'Sign up',
               question: "Don't have an account?",
             ),

@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:reusable_components/reusable_components.dart';
@@ -7,15 +8,13 @@ import 'package:roome/src/features/search/presentation/widgets/location_text.dar
 
 import '../../../../core/models/hotel.dart';
 import '../../../../core/utils/app_colors.dart';
+
 import '../../../../core/utils/app_text_styles.dart';
-import '../../../../core/widgets/custom_error_widget.dart';
+import '../../../../core/widgets/custom_error_icon.dart';
 import '../../../../core/widgets/price_per_night_text.dart';
 
 class SearchHotelCard extends StatelessWidget {
-  const SearchHotelCard({
-    super.key,
-    required this.hotel,
-  });
+  const SearchHotelCard({super.key, required this.hotel});
 
   final Hotel hotel;
 
@@ -46,13 +45,15 @@ class SearchHotelCard extends StatelessWidget {
                 child: ClipRRect(
                   borderRadius: BorderRadius.all(Radius.circular(18.r)),
                   child: CachedNetworkImage(
+                    // imageUrl: AppStrings.imagesSource,
+                    //  hotel.images![0].path!,
                     imageUrl:
                         'https://www.usatoday.com/gcdn/-mm-/05b227ad5b8ad4e9dcb53af4f31d7fbdb7fa901b/c=0-64-2119-1259/local/-/media/USATODAY/USATODAY/2014/08/13/1407953244000-177513283.jpg?width=660&height=373&fit=crop&format=pjpg&auto=webp',
                     height: 89.h,
                     width: double.infinity,
                     fit: BoxFit.cover,
                     errorWidget: (context, url, error) =>
-                        const CustomErrorWidget(),
+                        const CustomErrorIcon(),
                   ),
                 ),
               ),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:roome/src/core/helpers/cache_helper.dart';
+import 'package:roome/src/core/utils/app_navigator.dart';
 
 import 'package:roome/src/core/widgets/custom_snack_bar.dart';
 import 'package:roome/src/features/auth/sign_in/presentation/cubit/login_cubit.dart';
@@ -41,7 +42,7 @@ class LoginView extends StatelessWidget {
       CacheHelper.saveData(key: 'uId', value: state.uId).then((value) {
         if (value) {
           Helper.uId = state.uId;
-          Navigator.pushReplacementNamed(context, Routes.roomViewRoute);
+          context.navigateAndReplacement(newRoute: Routes.roomViewRoute);
         }
       });
     }
@@ -50,7 +51,7 @@ class LoginView extends StatelessWidget {
       CacheHelper.saveData(key: 'uId', value: state.uId).then((value) {
         if (value) {
           Helper.uId = int.parse(state.uId);
-          Navigator.pushReplacementNamed(context, Routes.roomViewRoute);
+          context.navigateAndReplacement(newRoute: Routes.roomViewRoute);
         }
       });
     }

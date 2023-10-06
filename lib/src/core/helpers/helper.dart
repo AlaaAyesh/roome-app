@@ -69,13 +69,4 @@ class Helper {
       );
     }
   }
-
-  static Future<Object?> pushNamedAndRemoveUntil(BuildContext context,
-      {required String newRoute}) {
-    return Navigator.pushNamedAndRemoveUntil(
-      context,
-      newRoute,
-      (Route<dynamic> route) => false, // remove all previous routes
-    );
-  }
 }

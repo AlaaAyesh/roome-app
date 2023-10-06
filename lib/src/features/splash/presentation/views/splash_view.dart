@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:reusable_components/reusable_components.dart';
 import 'package:roome/src/core/helpers/cache_helper.dart';
 import 'package:roome/src/core/helpers/helper.dart';
+import 'package:roome/src/core/utils/app_navigator.dart';
 
 import 'package:roome/src/features/splash/presentation/widgets/splash_view_body.dart';
 
@@ -42,18 +43,12 @@ class _SplashViewState extends State<SplashView> {
 
     if (onBoarding != null) {
       if (Helper.uId != null) {
-        Helper.pushNamedAndRemoveUntil(context, newRoute: Routes.roomViewRoute);
+        context.navigateAndRemoveUntil(newRoute: Routes.roomViewRoute);
       } else {
-        Helper.pushNamedAndRemoveUntil(
-          context,
-          newRoute: Routes.loginViewRoute,
-        );
+        context.navigateAndRemoveUntil(newRoute: Routes.loginViewRoute);
       }
     } else {
-      Helper.pushNamedAndRemoveUntil(
-        context,
-        newRoute: Routes.onBoardingViewRoute,
-      );
+      context.navigateAndRemoveUntil(newRoute: Routes.onBoardingViewRoute);
     }
   }
 

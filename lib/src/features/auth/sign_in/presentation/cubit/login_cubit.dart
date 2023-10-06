@@ -50,7 +50,7 @@ class LoginCubit extends Cubit<LoginState> {
   void signInWithGoogle() {
     emit(SignInWithGoogleLoadingState());
 
-    loginWithGoogleUseCase(NoParams()).then((value) {
+    loginWithGoogleUseCase(const NoParams()).then((value) {
       emit(
         value.fold(
           (failure) => SignInWithGoogleErrorState(

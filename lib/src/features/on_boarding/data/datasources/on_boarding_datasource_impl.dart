@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:roome/src/core/utils/app_navigator.dart';
 
 import '../../../../config/routes/routes.dart';
 import '../../../../core/helpers/cache_helper.dart';
@@ -47,7 +48,7 @@ class OnBoardingDataSourceImpl implements OnBoardingDataSource {
   void navigateToLoginOrHome({required BuildContext context}) {
     CacheHelper.saveData(key: 'onBoarding', value: true).then((value) {
       if (value) {
-        Navigator.pushReplacementNamed(context, Routes.loginViewRoute);
+        context.navigateAndReplacement(newRoute: Routes.loginViewRoute);
       }
     });
   }

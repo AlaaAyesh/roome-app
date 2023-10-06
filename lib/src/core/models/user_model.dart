@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 
-import 'favorite.dart';
+import 'hotel.dart';
 import 'reservation.dart';
 import 'role.dart';
 
@@ -15,7 +15,7 @@ class UserModel extends Equatable {
   final Role? role;
   final String? profileImage;
   final List<Reservation>? reservations;
-  final List<Favorite>? favorites;
+  final List<Hotel>? favorites;
 
   const UserModel({
     this.id,
@@ -49,8 +49,8 @@ class UserModel extends Equatable {
                 .map((x) => Reservation.fromJson(x as Map<String, dynamic>))),
         favorites: json['favorites'] == null
             ? null
-            : List<Favorite>.from(json["favorites"]
-                .map((x) => Favorite.fromJson(x as Map<String, dynamic>))),
+            : List<Hotel>.from(json["favorites"]
+                .map((x) => Hotel.fromJson(x as Map<String, dynamic>))),
       );
 
   Map<String, dynamic> toJson() => {

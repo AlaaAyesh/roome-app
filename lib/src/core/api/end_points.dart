@@ -5,4 +5,5 @@ class EndPoints {
   static const String register = '${baseUrl}auth/register';
   static const String role = '${baseUrl}role';
   static const String hotelSearch = '${baseUrl}hotel/search/';
+  static const String favorite = '$user/fav/';
 }
