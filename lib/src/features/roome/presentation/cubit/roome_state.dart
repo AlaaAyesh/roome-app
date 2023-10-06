@@ -40,6 +40,46 @@ class GetUserDataErrorState extends RoomeState {
   List<Object> get props => [error];
 }
 
+class GetFavoritesLoadingState extends RoomeState {}
+
+class GetFavoritesSuccessState extends RoomeState {
+  final List<Hotel> favorites;
+
+  const GetFavoritesSuccessState({required this.favorites});
+
+  @override
+  List<Object> get props => [favorites];
+}
+
+class GetFavoritesErrorState extends RoomeState {
+  final String error;
+
+  const GetFavoritesErrorState({required this.error});
+
+  @override
+  List<Object> get props => [error];
+}
+
+class RemoveFromFavLoadingState extends RoomeState {}
+
+class RemoveFromFavSuccessState extends RoomeState {
+  final String message;
+
+  const RemoveFromFavSuccessState({required this.message});
+
+  @override
+  List<Object> get props => [message];
+}
+
+class RemoveFromFavErrorState extends RoomeState {
+  final String error;
+
+  const RemoveFromFavErrorState({required this.error});
+
+  @override
+  List<Object> get props => [error];
+}
+
 class SignOutSuccessState extends RoomeState {
   final int? uId;
 

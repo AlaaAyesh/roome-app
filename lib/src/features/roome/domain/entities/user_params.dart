@@ -1,9 +1,9 @@
 import 'package:equatable/equatable.dart';
 
-class UserEntity extends Equatable {
+class UserParams extends Equatable {
   final int? id;
 
-  const UserEntity({this.id});
+  const UserParams({this.id});
 
   @override
   List<Object?> get props => [id];

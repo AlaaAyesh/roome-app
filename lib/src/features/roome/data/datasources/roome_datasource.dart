@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:roome/src/features/roome/presentation/cubit/roome_cubit.dart';
 
 abstract class RoomeDataSource {
   void changeBottomNavIndex({
@@ -9,14 +8,18 @@ abstract class RoomeDataSource {
 
   void changeBottomNavToHome({required BuildContext context});
 
-  List<Widget> getBody({
-    required RoomeState roomeState,
-    required RoomeCubit roomeCubit,
-  });
+  List<Widget> getBody();
 
   List<BottomNavigationBarItem> getBottomNavItems();
 
   Future<Map<String, dynamic>> getUserData({required int userId});
+
+  Future<dynamic> getFavorites({required int userId});
+
+  Future<dynamic> removeFromFav({
+    required int uId,
+    required int hotelId,
+  });
 
   Future<bool> signOut({required BuildContext context});
 }
