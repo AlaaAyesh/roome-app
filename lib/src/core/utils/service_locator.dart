@@ -51,24 +51,17 @@ import '../network/network_info_impl.dart';
 final GetIt serviceLocator = GetIt.instance;
 
 void setUpServiceLocator() {
-  // ==================== Cubits ====================
-  setUpForCubits();
+  setUpForExternal();
 
-  // ==================== UseCases ====================
-  setUpForUseCases();
-
-  // ==================== Repos ====================
-  setUpForRepos();
-
-  // ==================== DataSources ====================
-  setUpForDataSources();
-
-  // ==================== Core ====================
   setUpForCore();
 
-  // ==================== External ====================
+  setUpForDataSources();
 
-  setUpForExternal();
+  setUpForRepos();
+
+  setUpForUseCases();
+
+  setUpForCubits();
 }
 
 void setUpForExternal() {

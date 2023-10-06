@@ -21,7 +21,10 @@ class HotelsList extends StatelessWidget {
         padding: EdgeInsets.symmetric(
           vertical: SizeConfig.screenHeight! * 0.01,
         ),
-        itemBuilder: (context, index) => const HotelCard(),
+        itemBuilder: (context, index) => HotelCard(
+          cardHeight: SizeConfig.screenHeight! * 0.24,
+          cardWidth: SizeConfig.screenWidth! * 0.55,
+        ),
         separatorBuilder: (context, index) => const SeparatorWidget(),
         itemCount: 5,
       ),
