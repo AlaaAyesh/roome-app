@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:roome/src/core/utils/app_navigator.dart';
 
 import 'package:roome/src/features/auth/sign_up/presentation/cubit/sign_up_cubit.dart';
 
@@ -48,7 +49,7 @@ class SignUpView extends StatelessWidget {
             icon: Icons.check_circle,
           );
 
-          Navigator.pushReplacementNamed(context, Routes.roomViewRoute);
+          context.navigateAndReplacement(newRoute: Routes.roomViewRoute);
         }
       });
     }
@@ -57,7 +58,7 @@ class SignUpView extends StatelessWidget {
       CacheHelper.saveData(key: 'uId', value: state.uId).then((value) {
         if (value) {
           Helper.uId = int.parse(state.uId);
-          Navigator.pushReplacementNamed(context, Routes.roomViewRoute);
+          context.navigateAndReplacement(newRoute: Routes.roomViewRoute);
         }
       });
     }

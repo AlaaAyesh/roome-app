@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:reusable_components/reusable_components.dart';
+import 'package:roome/src/core/utils/app_navigator.dart';
 import 'package:roome/src/core/widgets/get_back_arrow.dart';
 import 'package:roome/src/features/auth/sign_up/presentation/cubit/sign_up_cubit.dart';
 import 'package:roome/src/features/auth/sign_up/presentation/widgets/sign_up_form.dart';
@@ -25,7 +26,7 @@ class SignUpViewBody extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            const GetBackArrow(),
+            GetBackArrow(onTap: () => context.getBack()),
             AuthTitle(
               title: 'Sign up',
               margin: EdgeInsets.only(
@@ -44,7 +45,7 @@ class SignUpViewBody extends StatelessWidget {
             ),
             SizedBox(height: SizeConfig.screenHeight! * 0.03),
             HaveAccountOrNot(
-              onTap: () => Navigator.pop(context),
+              onTap: () => context.getBack(),
               buttonText: 'Log in',
               question: 'Already have an account?',
             ),

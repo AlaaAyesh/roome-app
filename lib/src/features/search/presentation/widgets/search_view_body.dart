@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:roome/src/core/utils/app_navigator.dart';
 import 'package:roome/src/core/widgets/get_back_arrow.dart';
 
 import 'package:roome/src/features/search/presentation/widgets/search_result_list_view.dart';
@@ -27,7 +28,7 @@ class SearchViewBody extends StatelessWidget {
               children: <Widget>[
                 Row(
                   children: <Widget>[
-                    const GetBackArrow(),
+                    GetBackArrow(onTap: () => context.getBack()),
                     SizedBox(width: 8.w),
                     const Expanded(child: SearchTextField()),
                   ],

@@ -11,6 +11,7 @@ class Hotel extends Equatable {
   final double? price;
   final String? admin;
   final int? numberRooms;
+  final List<HotelImage>? images;
   final List<Facility>? facilities;
 
   const Hotel({
@@ -23,6 +24,7 @@ class Hotel extends Equatable {
     this.admin,
     this.numberRooms,
     this.facilities,
+    this.images,
   });
 
   factory Hotel.fromJson(Map<String, dynamic> json) => Hotel(
@@ -36,8 +38,10 @@ class Hotel extends Equatable {
         numberRooms: json["numberRooms"] as int?,
         facilities: json['facilities'] == null
             ? null
-            : List<Facility>.from(json["facilities"]
-                .map((x) => Facility.fromJson(x) as Map<String, dynamic>)),
+            : List<Facility>.from(
+                json["facilities"].map((x) => Facility.fromJson(x))),
+        images: List<HotelImage>.from(
+            json["images"].map((x) => HotelImage.fromJson(x))),
       );
 
   Map<String, dynamic> toJson() => {
@@ -64,4 +68,31 @@ class Hotel extends Equatable {
         numberRooms,
         facilities
       ];
+}
+
+class HotelImage extends Equatable {
+  final int? id;
+  final String? name;
+  final String? path;
+
+  const HotelImage({
+    this.id,
+    this.name,
+    this.path,
+  });
+
+  factory HotelImage.fromJson(Map<String, dynamic> json) => HotelImage(
+        id: json["id"] as int?,
+        name: json["name"] as String?,
+        path: json["path"] as String?,
+      );
+
+  Map<String, dynamic> toJson() => {
+        "id": id,
+        "name": name,
+        "path": path,
+      };
+
+  @override
+  List<Object?> get props => [id, name, path];
 }

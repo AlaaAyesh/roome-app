@@ -1,28 +1,24 @@
 import 'package:equatable/equatable.dart';
 
-import 'role.dart';
-
 class Facility extends Equatable {
   final int? id;
-  final Role? facility;
+  final String? name;
 
   const Facility({
     this.id,
-    this.facility,
+    this.name,
   });
 
   factory Facility.fromJson(Map<String, dynamic> json) => Facility(
         id: json["id"] as int?,
-        facility: json['facility'] == null
-            ? null
-            : Role.fromJson(json["facility"] as Map<String, dynamic>),
+        name: json["name"] as String?,
       );
 
   Map<String, dynamic> toJson() => {
         "id": id,
-        "facility": facility?.toJson(),
+        "name": name,
       };
 
   @override
-  List<Object?> get props => [id, facility];
+  List<Object?> get props => [id, name];
 }

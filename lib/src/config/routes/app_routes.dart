@@ -50,8 +50,9 @@ class AppRoutes {
       case Routes.roomViewRoute:
         return MaterialPageRoute(
           builder: (context) => BlocProvider(
-            create: (context) =>
-                serviceLocator.get<RoomeCubit>()..getUserData(),
+            create: (context) => serviceLocator.get<RoomeCubit>()
+              ..getFavorites()
+              ..getUserData(),
             child: const RoomeView(),
           ),
         );

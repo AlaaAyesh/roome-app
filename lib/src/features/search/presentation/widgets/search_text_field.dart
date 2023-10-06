@@ -31,6 +31,7 @@ class _SearchTextFieldState extends State<SearchTextField> {
   @override
   Widget build(BuildContext context) {
     return CustomSearchTextField(
+      autofocus: true,
       height: 36.h,
       backgroundColor: AppColors.darkGrey.withOpacity(0.65),
       contentPadding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 6.h),
