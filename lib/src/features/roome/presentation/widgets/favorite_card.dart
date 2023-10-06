@@ -3,17 +3,24 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:reusable_components/reusable_components.dart';
 import 'package:roome/src/core/widgets/custom_bottom_sheet.dart';
+import 'package:roome/src/features/roome/presentation/cubit/roome_cubit.dart';
 
+import '../../../../core/models/hotel.dart';
 import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/app_text_styles.dart';
-import '../../../../core/widgets/custom_error_widget.dart';
+import '../../../../core/widgets/custom_error_icon.dart';
 import '../../../../core/widgets/price_per_night_text.dart';
 import '../../../../core/widgets/star_icon.dart';
 
 class FavoriteCard extends StatelessWidget {
   const FavoriteCard({
     super.key,
+    required this.hotel,
+    required this.cubit,
   });
+
+  final RoomeCubit cubit;
+  final Hotel hotel;
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +52,7 @@ class FavoriteCard extends StatelessWidget {
                 height: 98.h,
                 width: 155.w,
                 fit: BoxFit.cover,
-                errorWidget: (context, url, error) => const CustomErrorWidget(),
+                errorWidget: (context, url, error) => const CustomErrorIcon(),
               ),
             ),
           ),
@@ -58,15 +65,24 @@ class FavoriteCard extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
-                      Text(
-                        'Jaz Dahabeya',
-                        style: AppTextStyles.textStyle15.copyWith(
-                          fontWeight: FontWeight.w500,
+                      Flexible(
+                        child: Text(
+                          hotel.name!,
+                          style: AppTextStyles.textStyle15.copyWith(
+                            fontWeight: FontWeight.w500,
+                          ),
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
                         ),
                       ),
                       GestureDetector(
-                        onTap: () =>
-                            RemoveFromFavBottomSheet.show(context: context),
+                        onTap: () {
+                          RemoveFromFavBottomSheet.show(
+                            cubit: cubit,
+                            context: context,
+                            hotel: hotel,
+                          );
+                        },
                         child: Icon(
                           Icons.favorite,
                           color: AppColors.primaryColor,
@@ -76,10 +92,14 @@ class FavoriteCard extends StatelessWidget {
                     ],
                   ),
                   SizedBox(height: SizeConfig.screenHeight! * 0.012),
-                  Text(
-                    'Dahab',
-                    style: AppTextStyles.textStyle14Medium.copyWith(
-                      color: AppColors.lightGrey.withOpacity(0.49),
+                  Flexible(
+                    child: Text(
+                      hotel.location!,
+                      style: AppTextStyles.textStyle14Medium.copyWith(
+                        color: AppColors.lightGrey.withOpacity(0.49),
+                      ),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
                     ),
                   ),
                   SizedBox(height: SizeConfig.screenHeight! * 0.012),
@@ -93,7 +113,7 @@ class FavoriteCard extends StatelessWidget {
                       const StarIcon(),
                       SizedBox(width: 7.w),
                       Text(
-                        '4.8',
+                        hotel.rate!.toString(),
                         style: AppTextStyles.appBarTextStyle.copyWith(
                           color: Colors.black.withOpacity(0.53),
                           fontSize: 17.sp,

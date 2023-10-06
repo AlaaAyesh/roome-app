@@ -5,7 +5,7 @@ import 'package:reusable_components/reusable_components.dart';
 import 'package:roome/src/features/roome/data/models/offer_model.dart';
 
 import '../../../../core/utils/app_text_styles.dart';
-import '../../../../core/widgets/custom_error_widget.dart';
+import '../../../../core/widgets/custom_error_icon.dart';
 
 class OfferCard extends StatelessWidget {
   const OfferCard({
@@ -30,7 +30,7 @@ class OfferCard extends StatelessWidget {
               fit: BoxFit.cover,
               height: SizeConfig.screenHeight! * 0.12,
               width: SizeConfig.screenWidth! * 0.85,
-              errorWidget: (context, url, error) => const CustomErrorWidget(),
+              errorWidget: (context, url, error) => const CustomErrorIcon(),
             ),
           ),
           Positioned(
