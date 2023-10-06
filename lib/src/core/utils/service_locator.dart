@@ -30,7 +30,9 @@ import 'package:roome/src/features/roome/domain/usecases/change_bottom_nav_useca
 import 'package:roome/src/features/roome/domain/usecases/change_nav_to_home_usecase.dart';
 import 'package:roome/src/features/roome/domain/usecases/get_body_usecase.dart';
 import 'package:roome/src/features/roome/domain/usecases/get_bottom_nav_items_usecase.dart';
+import 'package:roome/src/features/roome/domain/usecases/get_favorites_usecase.dart';
 import 'package:roome/src/features/roome/domain/usecases/get_user_data_usecase.dart';
+import 'package:roome/src/features/roome/domain/usecases/remove_from_fav_usecase.dart';
 import 'package:roome/src/features/search/data/datasources/search_datasource.dart';
 import 'package:roome/src/features/search/data/datasources/search_datasource_impl.dart';
 import 'package:roome/src/features/search/data/repositories/search_repo_impl.dart';
@@ -127,6 +129,10 @@ void setUpForDataSources() {
       .registerLazySingleton<SearchDatasource>(() => SearchDatasourceImpl(
             apiConsumer: serviceLocator.get<ApiConsumer>(),
           ));
+
+  serviceLocator.registerLazySingleton<GetFavoritesUseCase>(
+    () => GetFavoritesUseCase(roomRepo: serviceLocator.get<RoomRepo>()),
+  );
 }
 
 void setUpForRepos() {
@@ -209,6 +215,10 @@ void setUpForUseCases() {
       searchRepo: serviceLocator.get<SearchRepo>(),
     ),
   );
+
+  serviceLocator.registerLazySingleton<RemoveFromFavUseCase>(
+    () => RemoveFromFavUseCase(roomRepo: serviceLocator.get<RoomRepo>()),
+  );
 }
 
 void setUpForCubits() {
@@ -238,6 +248,8 @@ void setUpForCubits() {
       getBodyUseCse: serviceLocator.get<GetBodyUseCse>(),
       getBottomNavItemsUseCase: serviceLocator.get<GetBottomNavItemsUseCase>(),
       getUserDataUseCase: serviceLocator.get<GetUserDataUseCase>(),
+      getFavoritesUseCase: serviceLocator.get<GetFavoritesUseCase>(),
+      removeFromFavUseCase: serviceLocator.get<RemoveFromFavUseCase>(),
       signOutUseCase: serviceLocator.get<SignOutUseCase>(),
     ),
   );
