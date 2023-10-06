@@ -342,6 +342,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "5.9.0"
+  flutter_spinkit:
+    dependency: "direct main"
+    description:
+      name: flutter_spinkit
+      sha256: b39c753e909d4796906c5696a14daf33639a76e017136c8d82bf3e620ce5bb8e
+      url: "https://pub.dev"
+    source: hosted
+    version: "5.2.0"
   flutter_svg:
     dependency: "direct main"
     description:
@@ -749,7 +757,7 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: da3f3d429c1a3fb7269552d8a768b75db6e806d1
+      resolved-ref: "220c9d3d5d166d35454be10af8eb7d7ce7bee9be"
       url: "https://github.com/ahmedghaly15/Reusable-Components-Package"
     source: git
     version: "0.0.1"

@@ -5,7 +5,7 @@ import 'package:reusable_components/reusable_components.dart';
 
 import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/app_text_styles.dart';
-import '../../../../core/widgets/custom_error_widget.dart';
+import '../../../../core/widgets/custom_error_icon.dart';
 
 class ExploreCard extends StatelessWidget {
   const ExploreCard({
@@ -41,7 +41,7 @@ class ExploreCard extends StatelessWidget {
                 height: SizeConfig.screenHeight! * 0.14,
                 width: SizeConfig.screenWidth! * 0.15,
                 fit: BoxFit.cover,
-                errorWidget: (context, url, error) => const CustomErrorWidget(),
+                errorWidget: (context, url, error) => const CustomErrorIcon(),
               ),
             ),
           ),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:reusable_components/reusable_components.dart';
+import 'package:roome/src/core/utils/app_navigator.dart';
 
 import '../../../../config/routes/routes.dart';
 import '../../../../core/utils/app_colors.dart';
@@ -19,7 +20,7 @@ class DisabledSearchField extends StatelessWidget {
         TextEditingController();
 
     return GestureDetector(
-      onTap: () => Navigator.pushNamed(context, Routes.searchViewRoute),
+      onTap: () => context.navigateTo(routeName: Routes.searchViewRoute),
       child: CustomSearchTextField(
         enabled: false,
         height: 36.h,

@@ -6,7 +6,7 @@ import 'package:roome/src/core/widgets/star_icon.dart';
 
 import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/app_text_styles.dart';
-import '../../../../core/widgets/custom_error_widget.dart';
+import '../../../../core/widgets/custom_error_icon.dart';
 import '../../../../core/widgets/price_per_night_text.dart';
 
 import 'location_text_button.dart';
@@ -49,7 +49,7 @@ class HotelCard extends StatelessWidget {
                     width: double.infinity,
                     fit: BoxFit.cover,
                     errorWidget: (context, url, error) =>
-                        const CustomErrorWidget(),
+                        const CustomErrorIcon(),
                   ),
                 ),
               ),
