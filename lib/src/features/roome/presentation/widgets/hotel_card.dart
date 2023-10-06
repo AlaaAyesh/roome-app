@@ -1,7 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:reusable_components/reusable_components.dart';
+
 import 'package:roome/src/core/widgets/star_icon.dart';
 
 import '../../../../core/utils/app_colors.dart';
@@ -14,13 +14,18 @@ import 'location_text_button.dart';
 class HotelCard extends StatelessWidget {
   const HotelCard({
     super.key,
+    required this.cardHeight,
+    required this.cardWidth,
   });
+
+  final double cardHeight;
+  final double cardWidth;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: SizeConfig.screenHeight! * 0.24,
-      width: SizeConfig.screenWidth! * 0.55,
+      height: cardHeight,
+      width: cardWidth,
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.all(Radius.circular(13.r)),
@@ -67,10 +72,14 @@ class HotelCard extends StatelessWidget {
             padding: EdgeInsets.only(top: 1.h, right: 10.w, left: 10.w),
             child: Row(
               children: <Widget>[
-                Text(
-                  'Jaz Dahabeya',
-                  style: AppTextStyles.textStyle15.copyWith(
-                    fontWeight: FontWeight.w500,
+                Flexible(
+                  child: Text(
+                    'Jaz Dahabeya',
+                    style: AppTextStyles.textStyle15.copyWith(
+                      fontWeight: FontWeight.w500,
+                    ),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
                   ),
                 ),
                 const Spacer(),
