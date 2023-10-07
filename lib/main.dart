@@ -12,8 +12,6 @@ import 'src/core/utils/bloc_observer.dart';
 
 Future<void> main() async {
   // TODO: in explore and near me: display 4 or 5 hotels and display all of them in another screen which we navigate to using See All TextButton
-  // TODO: don't forget to do shimmer for search
-  //TODO: add animation animate_to (up) for the description of hotel in details screen
 
   WidgetsFlutterBinding.ensureInitialized();
 

@@ -17,6 +17,7 @@ class RoomViewBody extends StatelessWidget {
           onWillPop: () {
             if (cubit.currentIndex != 0) {
               cubit.changeBottomNavToHome(context);
+              cubit.getUserData();
               return Future.value(false);
             }
             return Future.value(true);
