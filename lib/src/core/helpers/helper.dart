@@ -4,6 +4,7 @@ import 'package:roome/src/core/widgets/custom_snack_bar.dart';
 
 import '../models/user_model.dart';
 import '../utils/app_colors.dart';
+import '../utils/app_constants.dart';
 
 class Helper {
   static int? uId;
@@ -68,5 +69,14 @@ class Helper {
         message: "$textName can't be blank!",
       );
     }
+  }
+
+  static BoxDecoration buildShimmerDecoration() {
+    return BoxDecoration(
+      color: AppColors.shimmerContainerColor,
+      borderRadius: BorderRadius.all(
+        Radius.circular(AppConstants.shimmerRadius.r),
+      ),
+    );
   }
 }
