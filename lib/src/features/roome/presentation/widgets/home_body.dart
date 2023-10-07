@@ -6,9 +6,9 @@ import 'package:reusable_components/reusable_components.dart';
 
 import 'package:roome/src/core/widgets/custom_error_widget.dart';
 
-import 'package:roome/src/features/roome/presentation/cubit/roome_cubit.dart';
+import 'package:roome/src/features/roome/presentation/cubit/roome/roome_cubit.dart';
+import 'package:roome/src/features/roome/presentation/widgets/shimmers/shimmer_home_body.dart';
 
-import '../../../../core/widgets/spinkit_loading.dart';
 import 'custom_tabs.dart';
 
 import 'hello_row.dart';
@@ -23,7 +23,7 @@ class HomeBody extends StatelessWidget {
     return BlocBuilder<RoomeCubit, RoomeState>(
       builder: (context, state) {
         if (state is GetUserDataLoadingState) {
-          return const SpinkitLoading();
+          return const ShimmerHomeBody();
         } else if (state is GetUserDataSuccessState) {
           return SingleChildScrollView(
             child: Padding(
@@ -47,7 +47,7 @@ class HomeBody extends StatelessWidget {
             onPressed: () => RoomeCubit.getObject(context).getUserData(),
           );
         } else {
-          return const SpinkitLoading();
+          return const ShimmerHomeBody();
         }
       },
     );

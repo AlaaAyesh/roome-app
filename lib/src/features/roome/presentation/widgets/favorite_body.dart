@@ -8,12 +8,12 @@ import 'package:roome/src/core/widgets/custom_app_bar.dart';
 import 'package:roome/src/core/widgets/custom_error_widget.dart';
 
 import 'package:roome/src/core/widgets/separator_widget.dart';
-import 'package:roome/src/features/roome/presentation/cubit/roome_cubit.dart';
+import 'package:roome/src/features/roome/presentation/cubit/roome/roome_cubit.dart';
 
 import '../../../../core/utils/app_text_styles.dart';
 
 import '../../../../core/widgets/custom_snack_bar.dart';
-import '../../../../core/widgets/spinkit_loading.dart';
+import '../../../../core/widgets/spinkit_fading.dart';
 import 'favorite_card.dart';
 
 class FavoriteBody extends StatelessWidget {
@@ -28,7 +28,7 @@ class FavoriteBody extends StatelessWidget {
         RoomeCubit cubit = RoomeCubit.getObject(context);
 
         if (state is GetFavoritesLoadingState) {
-          return const SpinkitLoading();
+          return const SpinkitFading();
         } else if (state is GetFavoritesSuccessState) {
           return SingleChildScrollView(
             physics: const BouncingScrollPhysics(),
@@ -80,7 +80,7 @@ class FavoriteBody extends StatelessWidget {
             onPressed: () => cubit.getFavorites(),
           );
         } else {
-          return const SpinkitLoading();
+          return const SpinkitFading();
         }
       },
     );

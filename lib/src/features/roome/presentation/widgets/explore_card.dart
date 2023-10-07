@@ -3,14 +3,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:reusable_components/reusable_components.dart';
 
+import '../../../../core/models/hotel.dart';
 import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/app_text_styles.dart';
 import '../../../../core/widgets/custom_error_icon.dart';
+import '../../../../core/widgets/star_icon.dart';
 
 class ExploreCard extends StatelessWidget {
-  const ExploreCard({
-    super.key,
-  });
+  const ExploreCard({super.key, required this.hotel});
+
+  final Hotel hotel;
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +31,7 @@ class ExploreCard extends StatelessWidget {
         ],
       ),
       child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
           Padding(
             padding: EdgeInsets.symmetric(vertical: 3.h, horizontal: 5.w),
@@ -45,33 +47,36 @@ class ExploreCard extends StatelessWidget {
               ),
             ),
           ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Text(
-                '430 Hotels',
-                style: AppTextStyles.textStyle14Medium.copyWith(
-                  fontSize: 13.sp,
-                  color: AppColors.lightGrey..withOpacity(0.55),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: <Widget>[
+                Flexible(
+                  child: Text(
+                    hotel.name!,
+                    style: AppTextStyles.bottomNavTextStyle.copyWith(
+                      fontSize: 12.sp,
+                    ),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
                 ),
-              ),
-              SizedBox(height: SizeConfig.screenHeight! * 0.01),
-              Text(
-                'In',
-                style: AppTextStyles.textStyle14Medium.copyWith(
-                  fontSize: 12.sp,
-                  color: AppColors.lightGrey..withOpacity(0.55),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    const StarIcon(),
+                    SizedBox(width: 3.w),
+                    Text(
+                      hotel.rate!.toString(),
+                      style: AppTextStyles.bottomNavTextStyle.copyWith(
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                  ],
                 ),
-              ),
-              SizedBox(height: SizeConfig.screenHeight! * 0.017),
-              Text(
-                'Cairo',
-                style: AppTextStyles.bottomNavTextStyle.copyWith(
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
-            ],
+              ],
+            ),
           ),
         ],
       ),
