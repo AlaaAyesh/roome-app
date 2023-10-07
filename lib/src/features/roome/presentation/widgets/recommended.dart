@@ -6,9 +6,11 @@ import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:reusable_components/reusable_components.dart';
 
 import 'package:roome/src/core/widgets/try_again_button.dart';
-import 'package:roome/src/features/roome/presentation/cubit/recommended_cubit/recommended_cubit.dart';
+
 import 'package:roome/src/features/roome/presentation/widgets/hotel_card.dart';
 import 'package:roome/src/features/roome/presentation/widgets/shimmers/shimmer_recommended.dart';
+
+import '../cubits/recommended/recommended_cubit.dart';
 
 class Recommended extends StatelessWidget {
   const Recommended({super.key});

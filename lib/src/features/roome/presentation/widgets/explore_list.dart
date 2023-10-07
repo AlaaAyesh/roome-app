@@ -3,10 +3,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:reusable_components/reusable_components.dart';
 
 import 'package:roome/src/core/widgets/try_again_button.dart';
-import 'package:roome/src/features/roome/presentation/cubit/hotels_cubit/hotels_cubit.dart';
+
 import 'package:roome/src/features/roome/presentation/widgets/shimmers/shimmer_explore_list.dart';
 
 import '../../../../core/widgets/separator_widget.dart';
+import '../cubits/hotels/hotels_cubit.dart';
 import 'explore_card.dart';
 
 class ExploreList extends StatelessWidget {

@@ -5,11 +5,10 @@ import 'package:reusable_components/reusable_components.dart';
 
 import 'package:roome/src/core/widgets/try_again_button.dart';
 
-import 'package:roome/src/features/roome/presentation/cubit/near_me_cubit/near_me_cubit.dart';
-
 import 'package:roome/src/features/roome/presentation/widgets/shimmers/shimmer_near_me_hotels.dart';
 
 import '../../../../core/widgets/separator_widget.dart';
+import '../cubits/near_me/near_me_cubit.dart';
 import 'hotel_card.dart';
 
 class NearMeHotels extends StatelessWidget {

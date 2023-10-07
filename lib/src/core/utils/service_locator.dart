@@ -22,6 +22,8 @@ import 'package:roome/src/features/on_boarding/data/datasources/on_boarding_data
 import 'package:roome/src/features/on_boarding/data/repositories/on_boarding_repo_impl.dart';
 import 'package:roome/src/features/on_boarding/domain/repositories/on_boarding_repo.dart';
 import 'package:roome/src/features/on_boarding/presentation/cubit/on_boarding_cubit.dart';
+import 'package:roome/src/features/roome/data/datasources/favorite/favorite_datasource.dart';
+import 'package:roome/src/features/roome/data/datasources/favorite/favorite_datasource_impl.dart';
 import 'package:roome/src/features/roome/data/datasources/hotels/hotels_datasource.dart';
 import 'package:roome/src/features/roome/data/datasources/hotels/hotels_datasource_impl.dart';
 import 'package:roome/src/features/roome/data/datasources/near_me/near_me_datasource.dart';
@@ -30,37 +32,43 @@ import 'package:roome/src/features/roome/data/datasources/recommended/recommende
 import 'package:roome/src/features/roome/data/datasources/recommended/recommended_datasource_impl.dart';
 import 'package:roome/src/features/roome/data/datasources/roome/room_datasource_impl.dart';
 import 'package:roome/src/features/roome/data/datasources/roome/roome_datasource.dart';
+import 'package:roome/src/features/roome/data/repositories/favorite_repo_impl.dart';
 import 'package:roome/src/features/roome/data/repositories/hotels_repo_impl.dart';
 import 'package:roome/src/features/roome/data/repositories/near_me_repo_impl.dart';
 import 'package:roome/src/features/roome/data/repositories/recommended_repo_impl.dart';
 import 'package:roome/src/features/roome/data/repositories/room_repo_impl.dart';
+import 'package:roome/src/features/roome/domain/repositories/favorite_repo.dart';
 import 'package:roome/src/features/roome/domain/repositories/hotels_repo.dart';
 import 'package:roome/src/features/roome/domain/repositories/near_me_repo.dart';
 import 'package:roome/src/features/roome/domain/repositories/recommended_repo.dart';
 import 'package:roome/src/features/roome/domain/repositories/room_repo.dart';
+import 'package:roome/src/features/roome/domain/usecases/favorite/add_to_fav_usecase.dart';
 import 'package:roome/src/features/roome/domain/usecases/roome/change_bottom_nav_usecase.dart';
 import 'package:roome/src/features/roome/domain/usecases/roome/change_nav_to_home_usecase.dart';
 import 'package:roome/src/features/roome/domain/usecases/roome/get_body_usecase.dart';
 import 'package:roome/src/features/roome/domain/usecases/roome/get_bottom_nav_items_usecase.dart';
-import 'package:roome/src/features/roome/domain/usecases/get_favorites_usecase.dart';
+import 'package:roome/src/features/roome/domain/usecases/favorite/get_favorites_usecase.dart';
 import 'package:roome/src/features/roome/domain/usecases/hotels/get_hotels_usecase.dart';
 import 'package:roome/src/features/roome/domain/usecases/near_me/get_near_me_hotels_usecase.dart';
 import 'package:roome/src/features/roome/domain/usecases/recommended/get_recommended_hotels_usecase.dart';
 import 'package:roome/src/features/roome/domain/usecases/roome/get_user_data_usecase.dart';
-import 'package:roome/src/features/roome/domain/usecases/remove_from_fav_usecase.dart';
-import 'package:roome/src/features/roome/presentation/cubit/hotels_cubit/hotels_cubit.dart';
-import 'package:roome/src/features/roome/presentation/cubit/near_me_cubit/near_me_cubit.dart';
-import 'package:roome/src/features/roome/presentation/cubit/recommended_cubit/recommended_cubit.dart';
+import 'package:roome/src/features/roome/domain/usecases/favorite/remove_from_fav_usecase.dart';
+import 'package:roome/src/features/roome/presentation/cubits/favorite/favorite_cubit.dart';
+
 import 'package:roome/src/features/search/data/datasources/search_datasource.dart';
 import 'package:roome/src/features/search/data/datasources/search_datasource_impl.dart';
 import 'package:roome/src/features/search/data/repositories/search_repo_impl.dart';
 import 'package:roome/src/features/search/domain/repositories/search_repo.dart';
 import 'package:roome/src/features/search/domain/usecases/search_hotels_usecase.dart';
 import 'package:roome/src/features/roome/domain/usecases/roome/sign_out_usecase.dart';
-import 'package:roome/src/features/roome/presentation/cubit/roome/roome_cubit.dart';
+
 import 'package:roome/src/features/search/presentation/cubit/search_cubit.dart';
 
 import '../../features/on_boarding/data/datasources/on_boarding_datasource_impl.dart';
+import '../../features/roome/presentation/cubits/hotels/hotels_cubit.dart';
+import '../../features/roome/presentation/cubits/near_me/near_me_cubit.dart';
+import '../../features/roome/presentation/cubits/recommended/recommended_cubit.dart';
+import '../../features/roome/presentation/cubits/roome/roome_cubit.dart';
 import '../api/app_interceptors.dart';
 import '../api/dio_consumer.dart';
 import '../network/network_info.dart';
@@ -153,6 +161,12 @@ void setUpForDataSources() {
     () => RecommendedDataSourceImpl(
         apiConsumer: serviceLocator.get<ApiConsumer>()),
   );
+
+  serviceLocator.registerLazySingleton<FavoriteDataSource>(
+    () => FavoriteDataSourceImpl(
+      apiConsumer: serviceLocator.get<ApiConsumer>(),
+    ),
+  );
 }
 
 void setUpForRepos() {
@@ -202,6 +216,13 @@ void setUpForRepos() {
         networkInfo: serviceLocator.get<NetworkInfo>(),
         recommendedDataSource: serviceLocator.get<RecommendedDataSource>()),
   );
+
+  serviceLocator.registerLazySingleton<FavoriteRepo>(
+    () => FavoriteRepoImpl(
+      networkInfo: serviceLocator.get<NetworkInfo>(),
+      favoriteDataSource: serviceLocator.get<FavoriteDataSource>(),
+    ),
+  );
 }
 
 void setUpForUseCases() {
@@ -248,7 +269,7 @@ void setUpForUseCases() {
   );
 
   serviceLocator.registerLazySingleton<GetFavoritesUseCase>(
-    () => GetFavoritesUseCase(roomRepo: serviceLocator.get<RoomRepo>()),
+    () => GetFavoritesUseCase(favoriteRepo: serviceLocator.get<FavoriteRepo>()),
   );
 
   serviceLocator.registerLazySingleton<SearchHotelsUseCase>(
@@ -257,8 +278,13 @@ void setUpForUseCases() {
     ),
   );
 
+  serviceLocator.registerLazySingleton<AddToFavUseCase>(
+    () => AddToFavUseCase(favoriteRepo: serviceLocator.get<FavoriteRepo>()),
+  );
+
   serviceLocator.registerLazySingleton<RemoveFromFavUseCase>(
-    () => RemoveFromFavUseCase(roomRepo: serviceLocator.get<RoomRepo>()),
+    () =>
+        RemoveFromFavUseCase(favoriteRepo: serviceLocator.get<FavoriteRepo>()),
   );
 
   serviceLocator.registerLazySingleton<GetHotelsUseCase>(
@@ -303,8 +329,6 @@ void setUpForCubits() {
       getBodyUseCse: serviceLocator.get<GetBodyUseCse>(),
       getBottomNavItemsUseCase: serviceLocator.get<GetBottomNavItemsUseCase>(),
       getUserDataUseCase: serviceLocator.get<GetUserDataUseCase>(),
-      getFavoritesUseCase: serviceLocator.get<GetFavoritesUseCase>(),
-      removeFromFavUseCase: serviceLocator.get<RemoveFromFavUseCase>(),
       signOutUseCase: serviceLocator.get<SignOutUseCase>(),
     ),
   );
@@ -326,6 +350,14 @@ void setUpForCubits() {
     () => RecommendedCubit(
       getRecommendedHotelsUseCase:
           serviceLocator.get<GetRecommendedHotelsUseCase>(),
+    ),
+  );
+
+  serviceLocator.registerFactory<FavoriteCubit>(
+    () => FavoriteCubit(
+      getFavoritesUseCase: serviceLocator.get<GetFavoritesUseCase>(),
+      addToFavUseCase: serviceLocator.get<AddToFavUseCase>(),
+      removeFromFavUseCase: serviceLocator.get<RemoveFromFavUseCase>(),
     ),
   );
 }
