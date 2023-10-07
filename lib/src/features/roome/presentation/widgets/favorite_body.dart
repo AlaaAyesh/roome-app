@@ -48,9 +48,9 @@ class FavoriteBody extends StatelessWidget {
                     spaceBetween: 40,
                     title: 'Favorite',
                     arrowOnTap: () {
-                      BlocProvider.of<RoomeCubit>(context).getUserData();
                       BlocProvider.of<RoomeCubit>(context)
                           .changeBottomNavToHome(context);
+                      BlocProvider.of<RoomeCubit>(context).getUserData();
                     },
                   ),
                   SizedBox(height: SizeConfig.screenHeight! * 0.047),

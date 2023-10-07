@@ -1,3 +1,4 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:reusable_components/reusable_components.dart';
@@ -39,48 +40,52 @@ class DetailsViewBody extends StatelessWidget {
             SizedBox(height: SizeConfig.screenHeight! * 0.031),
             Padding(
               padding: EdgeInsets.only(left: 9.w),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Text(
-                    hotel.name!,
-                    style: AppTextStyles.appBarTextStyle.copyWith(
-                      fontWeight: FontWeight.w500,
-                      color: Colors.black,
-                    ),
-                  ),
-                  SizedBox(height: SizeConfig.screenHeight! * 0.014),
-                  LocationText(location: hotel.location!),
-                  SizedBox(height: SizeConfig.screenHeight! * 0.014),
-                  const DetailsSectionTitle(title: 'Description'),
-                  SizedBox(height: SizeConfig.screenHeight! * 0.014),
-                  Text(
-                    hotel.description!,
-                    style: AppTextStyles.textStyle14Medium.copyWith(
-                      fontSize: 13.sp,
-                      color: AppColors.lightGrey.withOpacity(0.49),
-                    ),
-                  ),
-                  SizedBox(height: SizeConfig.screenHeight! * 0.02),
-                  const DetailsSectionTitle(title: 'Facilities'),
-                  SizedBox(height: SizeConfig.screenHeight! * 0.02),
-                  Facilities(hotel: hotel),
-                  SizedBox(height: SizeConfig.screenHeight! * 0.053),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: <Widget>[
-                      PricePerNightText(
-                        price: hotel.price,
-                        fontSize: 20.sp,
-                        mainAxisAlignment: MainAxisAlignment.start,
+              child: FadeInUp(
+                from: 20.h,
+                duration: const Duration(milliseconds: 500),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Text(
+                      hotel.name!,
+                      style: AppTextStyles.appBarTextStyle.copyWith(
+                        fontWeight: FontWeight.w500,
+                        color: Colors.black,
                       ),
-                      GlowingCustomButton(
-                        onPressed: () {},
-                        buttonText: 'Book Now',
+                    ),
+                    SizedBox(height: SizeConfig.screenHeight! * 0.014),
+                    LocationText(location: hotel.location!),
+                    SizedBox(height: SizeConfig.screenHeight! * 0.014),
+                    const DetailsSectionTitle(title: 'Description'),
+                    SizedBox(height: SizeConfig.screenHeight! * 0.014),
+                    Text(
+                      hotel.description!,
+                      style: AppTextStyles.textStyle14Medium.copyWith(
+                        fontSize: 13.sp,
+                        color: AppColors.lightGrey.withOpacity(0.49),
                       ),
-                    ],
-                  ),
-                ],
+                    ),
+                    SizedBox(height: SizeConfig.screenHeight! * 0.02),
+                    const DetailsSectionTitle(title: 'Facilities'),
+                    SizedBox(height: SizeConfig.screenHeight! * 0.02),
+                    Facilities(hotel: hotel),
+                    SizedBox(height: SizeConfig.screenHeight! * 0.053),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        PricePerNightText(
+                          price: hotel.price,
+                          fontSize: 20.sp,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                        ),
+                        GlowingCustomButton(
+                          onPressed: () {},
+                          buttonText: 'Book Now',
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
               ),
             ),
           ],

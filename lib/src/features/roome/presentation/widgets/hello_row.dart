@@ -19,11 +19,6 @@ class HelloRow extends StatelessWidget {
       padding: EdgeInsets.only(right: 26.w),
       child: Row(
         children: <Widget>[
-          GestureDetector(
-            onTap: () {}, // TODO: open Drawer
-            child: Icon(Icons.menu, size: 23.w),
-          ),
-          SizedBox(width: SizeConfig.screenWidth! * 0.016),
           CircleAvatar(
             radius: 19.r,
             backgroundColor: AppColors.primaryColor,
