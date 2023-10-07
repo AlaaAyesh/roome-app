@@ -33,7 +33,7 @@ class ExploreList extends StatelessWidget {
                 hotel: state.hotels[index],
               ),
               separatorBuilder: (context, index) => const SeparatorWidget(),
-              itemCount: state.hotels.length,
+              itemCount: 3,
             ),
           );
         } else if (state is GetHotelsErrorState) {

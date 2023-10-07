@@ -10,6 +10,7 @@ import 'package:roome/src/features/roome/presentation/cubits/favorite/favorite_c
 import 'package:roome/src/features/roome/presentation/widgets/favorite_card.dart';
 
 import '../models/hotel.dart';
+import 'glowing_custom_button.dart';
 
 class RemoveFromFavBottomSheet {
   static void show({
@@ -122,34 +123,14 @@ class _MyCustomBottomSheetState extends State<MyCustomBottomSheet>
                   ),
                 ),
               ),
-              MyCustomButton(
+              GlowingCustomButton(
                 onPressed: () {
                   widget.cubit.removeFromFav(
                     hotelId: widget.hotel.id!,
                   );
                   context.getBack();
                 },
-                height: 50.h,
-                width: 148.w,
-                borderRadius: BorderRadius.all(Radius.circular(12.r)),
-                backgroundColor: AppColors.primaryColor,
-                boxShadow: [
-                  BoxShadow(
-                    offset: Offset(0, 4.93.w),
-                    blurRadius: 18.49.w,
-                    color: AppColors.primaryColor.withOpacity(0.56),
-                  ),
-                ],
-                hasPrefix: false,
-                child: Center(
-                  child: Text(
-                    'Yes, remove',
-                    style: AppTextStyles.textStyle15.copyWith(
-                      color: Colors.white,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                ),
+                buttonText: 'Yes, remove',
               ),
             ],
           ),
