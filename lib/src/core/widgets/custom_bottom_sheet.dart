@@ -5,7 +5,7 @@ import 'package:reusable_components/reusable_components.dart';
 import 'package:roome/src/core/utils/app_colors.dart';
 import 'package:roome/src/core/utils/app_navigator.dart';
 import 'package:roome/src/core/utils/app_text_styles.dart';
-import 'package:roome/src/features/roome/presentation/cubit/roome_cubit.dart';
+import 'package:roome/src/features/roome/presentation/cubit/roome/roome_cubit.dart';
 import 'package:roome/src/features/roome/presentation/widgets/favorite_card.dart';
 
 import '../models/hotel.dart';

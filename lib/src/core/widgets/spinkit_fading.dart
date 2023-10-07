@@ -3,8 +3,8 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 import '../utils/app_colors.dart';
 
-class SpinkitLoading extends StatelessWidget {
-  const SpinkitLoading({
+class SpinkitFading extends StatelessWidget {
+  const SpinkitFading({
     super.key,
   });
 

@@ -4,7 +4,7 @@ import 'package:roome/src/core/usecases/base_usecase.dart';
 import 'package:roome/src/features/roome/domain/entities/user_params.dart';
 import 'package:roome/src/features/roome/domain/repositories/room_repo.dart';
 
-import '../../../../core/models/user_model.dart';
+import '../../../../../core/models/user_model.dart';
 
 class GetUserDataUseCase implements BaseUseCases<UserModel, UserParams> {
   final RoomRepo roomRepo;

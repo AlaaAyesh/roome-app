@@ -8,8 +8,10 @@ class PricePerNightText extends StatelessWidget {
     super.key,
     this.fontSize,
     this.mainAxisAlignment,
+    this.price,
   });
 
+  final double? price;
   final double? fontSize;
   final MainAxisAlignment? mainAxisAlignment;
 
@@ -19,7 +21,7 @@ class PricePerNightText extends StatelessWidget {
       mainAxisAlignment: mainAxisAlignment ?? MainAxisAlignment.end,
       children: <Widget>[
         Text(
-          '6.834',
+          price.toString(),
           style: AppTextStyles.bottomNavTextStyle.copyWith(
             fontSize: fontSize,
             fontWeight: FontWeight.w900,
