@@ -10,7 +10,7 @@ import 'package:roome/src/features/roome/domain/repositories/room_repo.dart';
 import '../../../../core/errors/exceptions.dart';
 import '../../../../core/errors/bug.dart';
 import '../../../../core/errors/server_failure.dart';
-import '../../../../core/models/hotel.dart';
+
 import '../../../../core/network/network_info.dart';
 import '../../../../core/utils/app_strings.dart';
 
@@ -73,51 +73,6 @@ class RoomRepoImpl extends RoomRepo {
       return Right(result);
     } catch (e) {
       return Left(Bug(errorMessage: e.toString()));
-    }
-  }
-
-  @override
-  Future<Either<Failure, dynamic>> getFavorites({
-    required int userId,
-  }) async {
-    if (await networkInfo.isConnected) {
-      try {
-        final response = await roomeDataSource.getFavorites(userId: userId);
-        List<Hotel> favorites = <Hotel>[];
-
-        for (var fav in response) {
-          favorites.add(Hotel.fromJson(fav));
-        }
-
-        return Right(favorites);
-      } catch (e) {
-        return Left(ServerFailure(errorMessage: e.toString()));
-      }
-    } else {
-      throw const ServerException(exception: AppStrings.opps);
-    }
-  }
-
-  @override
-  Future<Either<Failure, dynamic>> removeFromFav({
-    required int uId,
-    required int hotelId,
-  }) async {
-    if (await networkInfo.isConnected) {
-      try {
-        final response = await roomeDataSource.removeFromFav(
-          uId: uId,
-          hotelId: hotelId,
-        );
-
-        final message = response['message'];
-
-        return Right(message);
-      } catch (e) {
-        return Left(ServerFailure(errorMessage: e.toString()));
-      }
-    } else {
-      throw const ServerException(exception: AppStrings.opps);
     }
   }
 }

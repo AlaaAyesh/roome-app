@@ -4,8 +4,8 @@ import 'package:roome/src/core/api/end_points.dart';
 import 'package:roome/src/core/helpers/cache_helper.dart';
 
 import 'package:roome/src/features/roome/data/datasources/roome/roome_datasource.dart';
-import 'package:roome/src/features/roome/presentation/cubit/roome/roome_cubit.dart';
 
+import '../../../presentation/cubits/roome/roome_cubit.dart';
 import '../../../presentation/widgets/booking_body.dart';
 import '../../../presentation/widgets/favorite_body.dart';
 import '../../../presentation/widgets/home_body.dart';
@@ -79,33 +79,5 @@ class RoomDataSourceImpl implements RoomeDataSource {
   @override
   Future<bool> signOut({required BuildContext context}) async {
     return await CacheHelper.removeData(key: 'uId');
-  }
-
-  @override
-  Future<dynamic> getFavorites({required int userId}) async {
-    final response = await apiConsumer.get(
-      '${EndPoints.favorite}$userId',
-      queryParameters: {
-        'id': userId,
-      },
-    );
-
-    return response;
-  }
-
-  @override
-  Future<dynamic> removeFromFav({
-    required int uId,
-    required int hotelId,
-  }) async {
-    final response = apiConsumer.post(
-      '${EndPoints.user}/remove-from-fav/$uId/hotel/$hotelId',
-      queryParameters: {
-        'userId': uId,
-        'hotelId': hotelId,
-      },
-    );
-
-    return response;
   }
 }

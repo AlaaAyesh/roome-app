@@ -7,12 +7,14 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:roome/src/config/routes/app_routes.dart';
 import 'package:roome/src/config/themes/app_theme.dart';
 import 'package:roome/src/core/utils/app_strings.dart';
+import 'package:roome/src/features/roome/presentation/cubits/favorite/favorite_cubit.dart';
 
 import 'src/core/utils/service_locator.dart';
-import 'src/features/roome/presentation/cubit/hotels_cubit/hotels_cubit.dart';
-import 'src/features/roome/presentation/cubit/near_me_cubit/near_me_cubit.dart';
-import 'src/features/roome/presentation/cubit/recommended_cubit/recommended_cubit.dart';
-import 'src/features/roome/presentation/cubit/roome/roome_cubit.dart';
+
+import 'src/features/roome/presentation/cubits/hotels/hotels_cubit.dart';
+import 'src/features/roome/presentation/cubits/near_me/near_me_cubit.dart';
+import 'src/features/roome/presentation/cubits/recommended/recommended_cubit.dart';
+import 'src/features/roome/presentation/cubits/roome/roome_cubit.dart';
 
 class RoomeApp extends StatelessWidget {
   const RoomeApp({super.key});
@@ -40,6 +42,10 @@ class RoomeApp extends StatelessWidget {
           BlocProvider(
             create: (context) =>
                 serviceLocator.get<RecommendedCubit>()..getRecommendedHotels(),
+          ),
+          BlocProvider(
+            create: (context) =>
+                serviceLocator.get<FavoriteCubit>()..getFavorites(),
           ),
         ],
         child: MaterialApp(

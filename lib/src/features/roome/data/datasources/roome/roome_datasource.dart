@@ -14,12 +14,5 @@ abstract class RoomeDataSource {
 
   Future<Map<String, dynamic>> getUserData({required int userId});
 
-  Future<dynamic> getFavorites({required int userId});
-
-  Future<dynamic> removeFromFav({
-    required int uId,
-    required int hotelId,
-  });
-
   Future<bool> signOut({required BuildContext context});
 }

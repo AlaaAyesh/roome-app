@@ -19,14 +19,5 @@ abstract class RoomRepo {
 
   Future<Either<Failure, UserModel>> getUserData({required int userId});
 
-  Future<Either<Failure, dynamic>> getFavorites({
-    required int userId,
-  });
-
-  Future<Either<Failure, dynamic>> removeFromFav({
-    required int uId,
-    required int hotelId,
-  });
-
   Future<Either<Failure, bool>> signOut({required BuildContext context});
 }

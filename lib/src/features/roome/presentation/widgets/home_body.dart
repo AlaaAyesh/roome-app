@@ -6,9 +6,9 @@ import 'package:reusable_components/reusable_components.dart';
 
 import 'package:roome/src/core/widgets/custom_error_widget.dart';
 
-import 'package:roome/src/features/roome/presentation/cubit/roome/roome_cubit.dart';
 import 'package:roome/src/features/roome/presentation/widgets/shimmers/shimmer_home_body.dart';
 
+import '../cubits/roome/roome_cubit.dart';
 import 'custom_tabs.dart';
 
 import 'hello_row.dart';
@@ -20,7 +20,7 @@ class HomeBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<RoomeCubit, RoomeState>(
+    return BlocBuilder<RoomeCubit, FavoriteState>(
       builder: (context, state) {
         if (state is GetUserDataLoadingState) {
           return const ShimmerHomeBody();

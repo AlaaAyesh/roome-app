@@ -1,13 +1,16 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:roome/src/core/widgets/star_icon.dart';
+import 'package:roome/src/features/roome/presentation/cubits/favorite/favorite_cubit.dart';
 
 import '../../../../core/models/hotel.dart';
 import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/app_text_styles.dart';
 import '../../../../core/widgets/custom_error_icon.dart';
+
 import '../../../../core/widgets/price_per_night_text.dart';
 
 import 'location_text_button.dart';
@@ -61,13 +64,25 @@ class HotelCard extends StatelessWidget {
                   ),
                 ),
               ),
-              IconButton(
-                onPressed: () {},
-                icon: Icon(
-                  Icons.favorite,
-                  color: Colors.white,
-                  size: 18.w,
-                ),
+              BlocBuilder<FavoriteCubit, FavoriteStates>(
+                builder: (context, state) {
+                  FavoriteCubit cubit = BlocProvider.of<FavoriteCubit>(context);
+                  return IconButton(
+                    onPressed: () {
+                      // if it's in favorite, remove : else add
+                      cubit.favoriteHotels.contains(hotel)
+                          ? cubit.removeFromFav(hotelId: hotel.id!)
+                          : cubit.addToFav(hotelId: hotel.id!);
+                    },
+                    icon: Icon(
+                      Icons.favorite,
+                      color: cubit.favoriteHotels.contains(hotel)
+                          ? Colors.red
+                          : Colors.white,
+                      size: 18.w,
+                    ),
+                  );
+                },
               ),
             ],
           ),

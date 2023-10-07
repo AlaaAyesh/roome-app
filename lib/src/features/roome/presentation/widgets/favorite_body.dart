@@ -8,12 +8,14 @@ import 'package:roome/src/core/widgets/custom_app_bar.dart';
 import 'package:roome/src/core/widgets/custom_error_widget.dart';
 
 import 'package:roome/src/core/widgets/separator_widget.dart';
-import 'package:roome/src/features/roome/presentation/cubit/roome/roome_cubit.dart';
+import 'package:roome/src/features/roome/presentation/widgets/shimmers/shimmer_favorite_body.dart';
 
 import '../../../../core/utils/app_text_styles.dart';
 
 import '../../../../core/widgets/custom_snack_bar.dart';
-import '../../../../core/widgets/spinkit_fading.dart';
+
+import '../cubits/favorite/favorite_cubit.dart';
+import '../cubits/roome/roome_cubit.dart';
 import 'favorite_card.dart';
 
 class FavoriteBody extends StatelessWidget {
@@ -21,14 +23,14 @@ class FavoriteBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<RoomeCubit, RoomeState>(
-      listener: (BuildContext context, RoomeState state) =>
+    return BlocConsumer<FavoriteCubit, FavoriteStates>(
+      listener: (BuildContext context, FavoriteStates state) =>
           controlFavoriteStates(state, context),
       builder: (context, state) {
-        RoomeCubit cubit = RoomeCubit.getObject(context);
+        FavoriteCubit cubit = BlocProvider.of<FavoriteCubit>(context);
 
         if (state is GetFavoritesLoadingState) {
-          return const SpinkitFading();
+          return const ShimmerFavoriteBody();
         } else if (state is GetFavoritesSuccessState) {
           return SingleChildScrollView(
             physics: const BouncingScrollPhysics(),
@@ -45,7 +47,11 @@ class FavoriteBody extends StatelessWidget {
                   CustomAppBar(
                     spaceBetween: 40,
                     title: 'Favorite',
-                    arrowOnTap: () => cubit.changeBottomNavToHome(context),
+                    arrowOnTap: () {
+                      BlocProvider.of<RoomeCubit>(context).getUserData();
+                      BlocProvider.of<RoomeCubit>(context)
+                          .changeBottomNavToHome(context);
+                    },
                   ),
                   SizedBox(height: SizeConfig.screenHeight! * 0.047),
                   state.favorites.isNotEmpty
@@ -80,13 +86,13 @@ class FavoriteBody extends StatelessWidget {
             onPressed: () => cubit.getFavorites(),
           );
         } else {
-          return const SpinkitFading();
+          return const ShimmerFavoriteBody();
         }
       },
     );
   }
 
-  void controlFavoriteStates(RoomeState state, BuildContext context) {
+  void controlFavoriteStates(FavoriteStates state, BuildContext context) {
     if (state is RemoveFromFavSuccessState) {
       CustomSnackBar.show(
         backgroundColor: Colors.green,

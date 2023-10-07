@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:reusable_components/reusable_components.dart';
-import 'package:roome/src/features/roome/presentation/cubit/roome/roome_cubit.dart';
+
+import '../cubits/roome/roome_cubit.dart';
 
 class NotificationsBody extends StatelessWidget {
   const NotificationsBody({super.key});
