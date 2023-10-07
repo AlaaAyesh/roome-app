@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:roome/src/core/utils/app_colors.dart';
+import 'package:reusable_components/reusable_components.dart';
+
+import 'package:roome/src/features/roome/presentation/widgets/hotel_card.dart';
+import 'package:roome/src/features/roome/presentation/widgets/shimmers/shimmer_search_result.dart';
 
 import '../../../../core/widgets/separator_widget.dart';
 import '../cubit/search_cubit.dart';
-import 'search_hotel_card.dart';
 
 class SearchResultListView extends StatelessWidget {
   const SearchResultListView({super.key});
@@ -22,9 +24,9 @@ class SearchResultListView extends StatelessWidget {
             shrinkWrap: true,
             // TODO: Delete SearchHotelCard from the whole project and use HotelCard instead
             itemBuilder: (context, index) {
-              debugPrint("DATA: ${state.hotels[index].toString()}");
-
-              return SearchHotelCard(
+              return HotelCard(
+                cardHeight: SizeConfig.screenHeight! * 0.24,
+                cardWidth: SizeConfig.screenWidth! * 0.55,
                 hotel: state.hotels[index],
               );
             },
@@ -32,10 +34,9 @@ class SearchResultListView extends StatelessWidget {
             itemCount: state.hotels.length,
           );
         } else if (state is SearchLoadingState) {
-          return LinearProgressIndicator(
-            color: AppColors.primaryColor,
-            backgroundColor: Colors.white,
-          );
+          return const ShimmerSearchResult();
+        } else if (state is SearchErrorState) {
+          return const ShimmerSearchResult();
         } else {
           return Container();
         }

@@ -6,9 +6,11 @@ import 'package:roome/src/features/auth/sign_in/presentation/cubit/login_cubit.d
 import 'package:roome/src/features/auth/sign_in/presentation/views/login_view.dart';
 import 'package:roome/src/features/auth/sign_up/presentation/cubit/sign_up_cubit.dart';
 import 'package:roome/src/features/auth/sign_up/presentation/views/sign_up_view.dart';
+import 'package:roome/src/features/details/presentation/views/details_view.dart';
 
 import 'package:roome/src/features/on_boarding/presentation/cubit/on_boarding_cubit.dart';
 import 'package:roome/src/features/on_boarding/presentation/views/on_boarding_view.dart';
+import 'package:roome/src/features/roome/data/models/using_hero_model.dart';
 import 'package:roome/src/features/roome/presentation/views/roome_view.dart';
 import 'package:roome/src/features/search/presentation/cubit/search_cubit.dart';
 import 'package:roome/src/features/search/presentation/views/search_view.dart';
@@ -56,6 +58,15 @@ class AppRoutes {
           builder: (context) => BlocProvider(
             create: (context) => serviceLocator.get<SearchCubit>(),
             child: const SearchView(),
+          ),
+        );
+
+      case Routes.detailsViewRoute:
+        final args = routeSettings.arguments as UsingHeroModel;
+        return MaterialPageRoute(
+          builder: (context) => DetailsView(
+            hotel: args.hotel,
+            usingHero: args.usingHero,
           ),
         );
 

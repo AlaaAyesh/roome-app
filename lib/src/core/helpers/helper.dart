@@ -79,4 +79,12 @@ class Helper {
       ),
     );
   }
+
+  static BoxShadow glowingShadow() {
+    return BoxShadow(
+      offset: Offset(0, 4.93.w),
+      blurRadius: 18.49.w,
+      color: AppColors.primaryColor.withOpacity(0.56),
+    );
+  }
 }
