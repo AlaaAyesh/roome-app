@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:roome/src/core/widgets/star_icon.dart';
 
+import '../../../../core/models/hotel.dart';
 import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/app_text_styles.dart';
 import '../../../../core/widgets/custom_error_icon.dart';
@@ -16,8 +17,10 @@ class HotelCard extends StatelessWidget {
     super.key,
     required this.cardHeight,
     required this.cardWidth,
+    required this.hotel,
   });
 
+  final Hotel hotel;
   final double cardHeight;
   final double cardWidth;
 
@@ -74,7 +77,7 @@ class HotelCard extends StatelessWidget {
               children: <Widget>[
                 Flexible(
                   child: Text(
-                    'Jaz Dahabeya',
+                    hotel.name!,
                     style: AppTextStyles.textStyle15.copyWith(
                       fontWeight: FontWeight.w500,
                     ),
@@ -86,7 +89,7 @@ class HotelCard extends StatelessWidget {
                 const StarIcon(),
                 SizedBox(width: 3.w),
                 Text(
-                  '4.5',
+                  hotel.rate!.toString(),
                   style: AppTextStyles.bottomNavTextStyle.copyWith(
                     fontWeight: FontWeight.w600,
                   ),
@@ -99,12 +102,13 @@ class HotelCard extends StatelessWidget {
             child: LocationTextButton(
               onPressed: () {},
               iconSize: 16.w,
-              title: 'Dahab',
+              useFlexible: true,
+              title: hotel.location!,
             ),
           ),
           Padding(
             padding: EdgeInsets.only(right: 10.w, top: 7.h),
-            child: const PricePerNightText(),
+            child: PricePerNightText(price: hotel.price!),
           ),
         ],
       ),

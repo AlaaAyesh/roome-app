@@ -10,10 +10,12 @@ class LocationTextButton extends StatelessWidget {
     this.onPressed,
     required this.iconSize,
     required this.title,
+    required this.useFlexible,
   });
 
   final VoidCallback? onPressed;
   final double iconSize;
+  final bool useFlexible;
   final String title;
 
   @override
@@ -28,15 +30,27 @@ class LocationTextButton extends StatelessWidget {
             size: iconSize,
           ),
           SizedBox(width: 5.w),
-          Text(
-            title,
-            style: AppTextStyles.textStyle14Medium.copyWith(
-              fontSize: 13.sp,
-              color: AppColors.lightGrey.withOpacity(0.24),
-            ),
-            maxLines: 1,
-            overflow: TextOverflow.ellipsis,
-          ),
+          useFlexible
+              ? Flexible(
+                  child: Text(
+                    title,
+                    style: AppTextStyles.textStyle14Medium.copyWith(
+                      fontSize: 13.sp,
+                      color: AppColors.lightGrey.withOpacity(0.24),
+                    ),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                )
+              : Text(
+                  title,
+                  style: AppTextStyles.textStyle14Medium.copyWith(
+                    fontSize: 13.sp,
+                    color: AppColors.lightGrey.withOpacity(0.24),
+                  ),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                ),
         ],
       ),
     );

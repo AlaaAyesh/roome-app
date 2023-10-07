@@ -43,6 +43,7 @@ class HelloRow extends StatelessWidget {
           const Spacer(),
           LocationTextButton(
             onPressed: () {},
+            useFlexible: false,
             iconSize: 19.w,
             title: 'Location',
           ),

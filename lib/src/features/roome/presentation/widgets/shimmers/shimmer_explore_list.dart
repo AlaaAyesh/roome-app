@@ -1,19 +1,16 @@
 import 'package:flutter/material.dart';
-
 import 'package:reusable_components/reusable_components.dart';
 
-import '../../../../core/widgets/separator_widget.dart';
-import 'hotel_card.dart';
+import '../../../../../core/widgets/separator_widget.dart';
+import 'shimmer_explore_card.dart';
 
-class HotelsList extends StatelessWidget {
-  const HotelsList({
-    super.key,
-  });
+class ShimmerExploreList extends StatelessWidget {
+  const ShimmerExploreList({super.key});
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: SizeConfig.screenHeight! * 0.26,
+      height: SizeConfig.screenHeight! * 0.15,
       width: SizeConfig.screenWidth,
       child: ListView.separated(
         physics: const BouncingScrollPhysics(),
@@ -21,12 +18,9 @@ class HotelsList extends StatelessWidget {
         padding: EdgeInsets.symmetric(
           vertical: SizeConfig.screenHeight! * 0.01,
         ),
-        itemBuilder: (context, index) => HotelCard(
-          cardHeight: SizeConfig.screenHeight! * 0.24,
-          cardWidth: SizeConfig.screenWidth! * 0.55,
-        ),
+        itemBuilder: (context, index) => const ShimmerExploreCard(),
         separatorBuilder: (context, index) => const SeparatorWidget(),
-        itemCount: 5,
+        itemCount: 8,
       ),
     );
   }
