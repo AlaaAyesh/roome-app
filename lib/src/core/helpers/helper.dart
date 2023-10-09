@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:roome/src/core/widgets/custom_snack_bar.dart';
 
+import '../models/hotel.dart';
 import '../models/user_model.dart';
 import '../utils/app_colors.dart';
 import '../utils/app_constants.dart';
@@ -86,5 +87,9 @@ class Helper {
       blurRadius: 18.49.w,
       color: AppColors.primaryColor.withOpacity(0.56),
     );
+  }
+
+  static int getLength(List<HotelImage> hotelImages) {
+    return hotelImages.length >= 4 ? 3 : hotelImages.length;
   }
 }

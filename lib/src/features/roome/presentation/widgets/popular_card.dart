@@ -1,10 +1,9 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:reusable_components/reusable_components.dart';
 import 'package:roome/src/core/utils/app_navigator.dart';
-import 'package:roome/src/core/widgets/custom_bottom_sheet.dart';
-import 'package:roome/src/features/roome/presentation/cubits/favorite/favorite_cubit.dart';
 
 import '../../../../config/routes/routes.dart';
 import '../../../../core/api/end_points.dart';
@@ -12,18 +11,17 @@ import '../../../../core/models/hotel.dart';
 import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/app_text_styles.dart';
 import '../../../../core/widgets/custom_error_icon.dart';
+import '../../../../core/widgets/love_border_icon.dart';
 import '../../../../core/widgets/price_per_night_text.dart';
 import '../../../../core/widgets/star_icon.dart';
 import '../../../../core/models/using_hero_model.dart';
 
-class FavoriteCard extends StatelessWidget {
-  const FavoriteCard({
+class PopularCard extends StatelessWidget {
+  const PopularCard({
     super.key,
     required this.hotel,
-    required this.cubit,
   });
 
-  final FavoriteCubit cubit;
   final Hotel hotel;
 
   @override
@@ -34,7 +32,7 @@ class FavoriteCard extends StatelessWidget {
         arguments: UsingHeroModel(hotel: hotel, usingHero: true),
       ),
       child: Container(
-        height: SizeConfig.screenHeight! * 0.15,
+        height: SizeConfig.screenHeight! * 0.16,
         width: SizeConfig.screenWidth! * 0.9,
         decoration: BoxDecoration(
           color: Colors.white,
@@ -88,23 +86,13 @@ class FavoriteCard extends StatelessWidget {
                             overflow: TextOverflow.ellipsis,
                           ),
                         ),
-                        GestureDetector(
-                          onTap: () {
-                            RemoveFromFavBottomSheet.show(
-                              cubit: cubit,
-                              context: context,
-                              hotel: hotel,
-                            );
-                          },
-                          child: Icon(
-                            Icons.favorite,
-                            color: AppColors.primaryColor,
-                            size: 17.w,
-                          ),
+                        LoveBorderIcon(
+                          hotel: hotel,
+                          iconSize: 18,
+                          borderColor: Colors.black,
                         ),
                       ],
                     ),
-                    SizedBox(height: SizeConfig.screenHeight! * 0.012),
                     Flexible(
                       child: Text(
                         hotel.location!,

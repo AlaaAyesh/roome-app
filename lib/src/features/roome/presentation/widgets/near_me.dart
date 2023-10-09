@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:reusable_components/reusable_components.dart';
+import 'package:roome/src/core/utils/app_navigator.dart';
 
+import '../../../../config/routes/routes.dart';
 import '/src/core/utils/app_text_styles.dart';
 import 'explore_list.dart';
 import 'near_me_hotels.dart';
@@ -37,7 +39,9 @@ class NearMe extends StatelessWidget {
                 ),
               ),
               SeeAllTextButton(
-                onTap: () {},
+                onTap: () => context.navigateTo(
+                  routeName: Routes.exploreSeeAllViewRoute,
+                ),
               )
             ],
           ),

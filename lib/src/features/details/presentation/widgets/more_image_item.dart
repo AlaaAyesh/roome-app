@@ -5,10 +5,13 @@ import 'package:reusable_components/reusable_components.dart';
 
 import '../../../../core/widgets/custom_error_icon.dart';
 
-class MoreDetailsImage extends StatelessWidget {
-  const MoreDetailsImage({
+class MoreImageItem extends StatelessWidget {
+  const MoreImageItem({
     super.key,
+    required this.image,
   });
+
+  final String image;
 
   @override
   Widget build(BuildContext context) {
@@ -17,8 +20,7 @@ class MoreDetailsImage extends StatelessWidget {
       child: ClipRRect(
         borderRadius: BorderRadius.all(Radius.circular(10.r)),
         child: CachedNetworkImage(
-          imageUrl:
-              'https://www.usatoday.com/gcdn/-mm-/05b227ad5b8ad4e9dcb53af4f31d7fbdb7fa901b/c=0-64-2119-1259/local/-/media/USATODAY/USATODAY/2014/08/13/1407953244000-177513283.jpg?width=660&height=373&fit=crop&format=pjpg&auto=webp',
+          imageUrl: image,
           height: SizeConfig.screenHeight! * 0.049,
           width: 64.w,
           fit: BoxFit.cover,

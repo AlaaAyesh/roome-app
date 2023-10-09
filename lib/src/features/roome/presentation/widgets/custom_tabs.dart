@@ -47,7 +47,7 @@ class _CustomTabsState extends State<CustomTabs> {
         return 100.w;
 
       case 2:
-        return 50.w;
+        return 45.w;
 
       default:
         return 0.w;

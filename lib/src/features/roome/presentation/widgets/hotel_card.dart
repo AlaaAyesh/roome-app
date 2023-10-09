@@ -3,12 +3,13 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:roome/src/config/routes/routes.dart';
+import 'package:roome/src/core/api/end_points.dart';
 import 'package:roome/src/core/utils/app_navigator.dart';
 import 'package:roome/src/core/widgets/love_icon.dart';
 
 import 'package:roome/src/core/widgets/star_icon.dart';
 import 'package:roome/src/core/widgets/location_text.dart';
-import 'package:roome/src/features/roome/data/models/using_hero_model.dart';
+import 'package:roome/src/core/models/using_hero_model.dart';
 
 import '../../../../core/models/hotel.dart';
 import '../../../../core/utils/app_colors.dart';
@@ -64,7 +65,7 @@ class HotelCard extends StatelessWidget {
                       tag: hotel.id!,
                       child: CachedNetworkImage(
                         imageUrl:
-                            'https://www.usatoday.com/gcdn/-mm-/05b227ad5b8ad4e9dcb53af4f31d7fbdb7fa901b/c=0-64-2119-1259/local/-/media/USATODAY/USATODAY/2014/08/13/1407953244000-177513283.jpg?width=660&height=373&fit=crop&format=pjpg&auto=webp',
+                            '${EndPoints.imageBaseUrl}${hotel.images![0].path}',
                         height: 89.h,
                         width: double.infinity,
                         fit: BoxFit.cover,

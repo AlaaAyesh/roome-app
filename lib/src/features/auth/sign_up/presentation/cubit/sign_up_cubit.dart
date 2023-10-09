@@ -41,15 +41,16 @@ class SignUpCubit extends Cubit<SignUpState> {
       password: password,
     )).then(
       (value) {
-        emit(value.fold(
-          (failure) => SignUpErrorState(error: failure.errorMessage.toString()),
-          (user) {
-            return SignUpSuccessState(
+        value.fold(
+          (failure) =>
+              emit(SignUpErrorState(error: failure.errorMessage.toString())),
+          (user) => emit(
+            SignUpSuccessState(
               uId: user.id!,
               userModel: user,
-            );
-          },
-        ));
+            ),
+          ),
+        );
       },
     );
   }
@@ -58,12 +59,13 @@ class SignUpCubit extends Cubit<SignUpState> {
     emit(SignUpWithGoogleLoadingState());
 
     signUpWithGoogleUseCase(const NoParams()).then((value) {
-      emit(
-        value.fold(
-          (failure) => SignUpWithGoogleErrorState(
-              error: failure.errorMessage.toString()),
-          (user) => SignUpWithGoogleSuccessState(uId: user.user!.uid),
+      value.fold(
+        (failure) => emit(
+          SignUpWithGoogleErrorState(
+            error: failure.errorMessage.toString(),
+          ),
         ),
+        (user) => emit(SignUpWithGoogleSuccessState(uId: user.user!.uid)),
       );
     });
   }

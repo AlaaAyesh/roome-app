@@ -3,11 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:reusable_components/reusable_components.dart';
 import 'package:roome/src/core/utils/app_navigator.dart';
+import 'package:roome/src/core/widgets/love_border_icon.dart';
 
+import '../../../../core/api/end_points.dart';
+import '../../../../core/helpers/helper.dart';
 import '../../../../core/models/hotel.dart';
 import '../../../../core/widgets/custom_error_icon.dart';
-import '../../../../core/widgets/love_icon.dart';
-import 'more_details_image.dart';
+
+import 'more_details_images.dart';
 
 class DetailsImage extends StatelessWidget {
   const DetailsImage({
@@ -24,8 +27,7 @@ class DetailsImage extends StatelessWidget {
         ClipRRect(
           borderRadius: BorderRadius.all(Radius.circular(20.r)),
           child: CachedNetworkImage(
-            imageUrl:
-                'https://www.usatoday.com/gcdn/-mm-/05b227ad5b8ad4e9dcb53af4f31d7fbdb7fa901b/c=0-64-2119-1259/local/-/media/USATODAY/USATODAY/2014/08/13/1407953244000-177513283.jpg?width=660&height=373&fit=crop&format=pjpg&auto=webp',
+            imageUrl: '${EndPoints.imageBaseUrl}${hotel.images![0].path}',
             height: SizeConfig.screenHeight! * 0.45,
             width: double.infinity,
             fit: BoxFit.cover,
@@ -55,19 +57,28 @@ class DetailsImage extends StatelessWidget {
                   ),
                 ),
               ),
-              LoveIcon(hotel: hotel, favoriteBorder: true),
+              LoveBorderIcon(
+                hotel: hotel,
+                iconSize: 24,
+                borderColor: Colors.white,
+              ),
             ],
           ),
         ),
         Positioned(
           bottom: 19.h,
           right: 19.w,
-          child: const Column(
-            children: <Widget>[
-              MoreDetailsImage(),
-              MoreDetailsImage(),
-              MoreDetailsImage(),
-            ],
+          child: Column(
+            children: List.generate(
+              Helper.getLength(hotel.images!),
+              (index) => MoreDetailsImages(
+                index: index,
+                lastIndex: Helper.getLength(hotel.images!) - 1,
+                imagesNumber: Helper.getLength(hotel.images!),
+                hotel: hotel,
+                image: '${EndPoints.imageBaseUrl}${hotel.images![index].path!}',
+              ),
+            ),
           ),
         ),
       ],
