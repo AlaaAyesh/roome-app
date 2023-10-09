@@ -24,7 +24,9 @@ class NearMe extends StatelessWidget {
           Align(
             alignment: AlignmentDirectional.centerEnd,
             child: SeeAllTextButton(
-              onTap: () {},
+              onTap: () => context.navigateTo(
+                routeName: Routes.nearMeSeeAllViewRoute,
+              ),
             ),
           ),
           SizedBox(height: SizeConfig.screenHeight! * 0.01),

@@ -15,6 +15,8 @@ class NearMeCubit extends Cubit<NearMeState> {
     required this.getNearMeHotelsUseCase,
   }) : super(NearMeInitial());
 
+  List<Hotel> resultNearMe = <Hotel>[];
+
   void getNearMeHotels() {
     emit(GetNearMeHotelsLoadingState());
 
@@ -25,6 +27,7 @@ class NearMeCubit extends Cubit<NearMeState> {
               error: failure.errorMessage.toString()));
         },
         (nearMeHotels) {
+          resultNearMe = nearMeHotels;
           emit(GetNearMeHotelsSuccessState(nearMeHotels: nearMeHotels));
         },
       );

@@ -7,4 +7,5 @@ class Routes {
   static const String searchViewRoute = '/searchView';
   static const String detailsViewRoute = '/detailsView';
   static const String exploreSeeAllViewRoute = '/exploreSeeAllView';
+  static const String nearMeSeeAllViewRoute = '/nearMeSeeAllView';
 }
