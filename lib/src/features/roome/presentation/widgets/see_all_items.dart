@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
-import 'package:roome/src/features/roome/presentation/cubits/hotels/hotels_cubit.dart';
 
 import 'package:roome/src/features/roome/presentation/widgets/popular_card.dart';
 
+import '../../../../core/models/hotel.dart';
 import '../../../../core/widgets/separator_widget.dart';
 
-class ExploreSeeAllItems extends StatelessWidget {
-  const ExploreSeeAllItems({super.key});
+class SeeAllItems extends StatelessWidget {
+  const SeeAllItems({super.key, required this.hotels});
+
+  final List<Hotel> hotels;
 
   @override
   Widget build(BuildContext context) {
@@ -26,13 +27,13 @@ class ExploreSeeAllItems extends StatelessWidget {
           curve: Curves.fastLinearToSlowEaseIn,
           child: FadeInAnimation(
             child: PopularCard(
-              hotel: BlocProvider.of<HotelsCubit>(context).resultHotels[index],
+              hotel: hotels[index],
             ),
           ),
         ),
       ),
       separatorBuilder: (context, index) => const SeparatorWidget(height: 33),
-      itemCount: BlocProvider.of<HotelsCubit>(context).resultHotels.length,
+      itemCount: hotels.length,
     );
   }
 }
