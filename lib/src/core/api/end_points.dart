@@ -1,5 +1,6 @@
 class EndPoints {
   static const String baseUrl = 'http://192.168.1.9:7070/api/';
+  static const String imageBaseUrl = 'http://192.168.1.9:7070/api/images/';
   static const String user = '${baseUrl}user';
   static const String login = '${baseUrl}auth/login';
   static const String register = '${baseUrl}auth/register';

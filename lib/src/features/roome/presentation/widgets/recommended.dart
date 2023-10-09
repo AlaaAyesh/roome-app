@@ -31,7 +31,7 @@ class Recommended extends StatelessWidget {
               itemBuilder: (context, index) =>
                   AnimationConfiguration.staggeredGrid(
                 position: index,
-                duration: const Duration(milliseconds: 600),
+                duration: const Duration(milliseconds: 475),
                 columnCount: state.recommendedHotels.length,
                 child: ScaleAnimation(
                   child: FadeInAnimation(

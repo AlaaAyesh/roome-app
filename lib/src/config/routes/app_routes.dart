@@ -10,7 +10,8 @@ import 'package:roome/src/features/details/presentation/views/details_view.dart'
 
 import 'package:roome/src/features/on_boarding/presentation/cubit/on_boarding_cubit.dart';
 import 'package:roome/src/features/on_boarding/presentation/views/on_boarding_view.dart';
-import 'package:roome/src/features/roome/data/models/using_hero_model.dart';
+import 'package:roome/src/core/models/using_hero_model.dart';
+import 'package:roome/src/features/roome/presentation/views/explore_see_all_view.dart';
 import 'package:roome/src/features/roome/presentation/views/roome_view.dart';
 import 'package:roome/src/features/search/presentation/cubit/search_cubit.dart';
 import 'package:roome/src/features/search/presentation/views/search_view.dart';
@@ -68,6 +69,11 @@ class AppRoutes {
             hotel: args.hotel,
             usingHero: args.usingHero,
           ),
+        );
+
+      case Routes.exploreSeeAllViewRoute:
+        return MaterialPageRoute(
+          builder: (context) => const ExploreSeeAllView(),
         );
 
       default:

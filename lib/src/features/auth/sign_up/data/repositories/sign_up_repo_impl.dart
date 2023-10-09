@@ -1,5 +1,5 @@
 import 'package:dartz/dartz.dart';
-import 'package:dio/dio.dart';
+
 import 'package:firebase_auth/firebase_auth.dart';
 
 import 'package:roome/src/core/errors/exceptions.dart';
@@ -27,23 +27,20 @@ class SignUpRepoImpl extends SignUpRepo {
     required String password,
   }) async {
     if (await networkInfo.isConnected) {
-      try {
-        final response = await signUpDataSource.userSignUp(
-          firstName: firstName,
-          lastName: lastName,
-          username: username,
-          email: email,
-          password: password,
-        );
+      final response = await signUpDataSource.userSignUp(
+        firstName: firstName,
+        lastName: lastName,
+        username: username,
+        email: email,
+        password: password,
+      );
 
+      if (response.containsKey('message')) {
+        return Left(ServerFailure(errorMessage: response['message']));
+      } else {
         final UserModel user = UserModel.fromJson(response);
-        return Right(user);
-      } catch (e) {
-        if (e is DioException) {
-          return left(ServerFailure.fromDioException(e));
-        }
 
-        return left(ServerFailure(errorMessage: e.toString()));
+        return Right(user);
       }
     } else {
       throw const ServerException(exception: AppStrings.opps);

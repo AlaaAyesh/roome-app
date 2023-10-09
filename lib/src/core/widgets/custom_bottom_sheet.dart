@@ -6,7 +6,6 @@ import 'package:roome/src/core/utils/app_colors.dart';
 import 'package:roome/src/core/utils/app_navigator.dart';
 import 'package:roome/src/core/utils/app_text_styles.dart';
 import 'package:roome/src/features/roome/presentation/cubits/favorite/favorite_cubit.dart';
-
 import 'package:roome/src/features/roome/presentation/widgets/favorite_card.dart';
 
 import '../models/hotel.dart';

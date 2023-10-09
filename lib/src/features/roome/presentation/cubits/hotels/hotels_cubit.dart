@@ -12,6 +12,8 @@ class HotelsCubit extends Cubit<HotelsState> {
 
   HotelsCubit({required this.getHotelsUseCase}) : super(HotelsInitial());
 
+  List<Hotel> resultHotels = <Hotel>[];
+
   Future<void> getHotels() async {
     emit(GetHotelsLoadingState());
 
@@ -21,6 +23,7 @@ class HotelsCubit extends Cubit<HotelsState> {
           emit(GetHotelsErrorState(error: failure.errorMessage.toString()));
         },
         (hotels) {
+          resultHotels = hotels;
           emit(GetHotelsSuccessState(hotels: hotels));
         },
       );

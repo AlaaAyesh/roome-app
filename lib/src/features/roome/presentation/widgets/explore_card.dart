@@ -5,12 +5,13 @@ import 'package:reusable_components/reusable_components.dart';
 import 'package:roome/src/config/routes/routes.dart';
 import 'package:roome/src/core/utils/app_navigator.dart';
 
+import '../../../../core/api/end_points.dart';
 import '../../../../core/models/hotel.dart';
 import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/app_text_styles.dart';
 import '../../../../core/widgets/custom_error_icon.dart';
 import '../../../../core/widgets/star_icon.dart';
-import '../../data/models/using_hero_model.dart';
+import '../../../../core/models/using_hero_model.dart';
 
 class ExploreCard extends StatelessWidget {
   const ExploreCard({super.key, required this.hotel});
@@ -46,8 +47,7 @@ class ExploreCard extends StatelessWidget {
               child: ClipRRect(
                 borderRadius: BorderRadius.all(Radius.circular(10.r)),
                 child: CachedNetworkImage(
-                  imageUrl:
-                      'https://www.savills.co.uk/_images/adobestock-539646437-2500.jpg',
+                  imageUrl: '${EndPoints.imageBaseUrl}${hotel.images![0].path}',
                   height: SizeConfig.screenHeight! * 0.14,
                   width: SizeConfig.screenWidth! * 0.15,
                   fit: BoxFit.cover,

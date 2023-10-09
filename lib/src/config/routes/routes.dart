@@ -5,5 +5,6 @@ class Routes {
   static const String signUpViewRoute = '/signUpView';
   static const String roomViewRoute = '/roomeView';
   static const String searchViewRoute = '/searchView';
-  static const String detailsViewRoute = 'detailsView';
+  static const String detailsViewRoute = '/detailsView';
+  static const String exploreSeeAllViewRoute = '/exploreSeeAllView';
 }
