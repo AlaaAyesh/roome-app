@@ -51,7 +51,7 @@ class RoomeApp extends StatelessWidget {
         child: MaterialApp(
           title: AppStrings.appTitle,
           debugShowCheckedModeBanner: false,
-          theme: lightTheme(),
+          theme: lightTheme(context),
           onGenerateRoute: AppRoutes.onGenerateRoute,
         ),
       ),
