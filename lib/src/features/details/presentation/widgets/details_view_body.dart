@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:reusable_components/reusable_components.dart';
 import 'package:roome/src/core/models/hotel.dart';
 import 'package:roome/src/core/utils/app_colors.dart';
+import 'package:roome/src/core/utils/app_navigator.dart';
 
 import 'package:roome/src/core/utils/app_text_styles.dart';
 import 'package:roome/src/core/widgets/glowing_custom_button.dart';
@@ -12,6 +13,7 @@ import 'package:roome/src/core/widgets/price_per_night_text.dart';
 import 'package:roome/src/features/details/presentation/widgets/details_image_with_hero.dart';
 import 'package:roome/src/features/details/presentation/widgets/facilities.dart';
 
+import '../../../../config/routes/routes.dart';
 import 'details_image.dart';
 import 'details_section_title.dart';
 
@@ -79,7 +81,10 @@ class DetailsViewBody extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.start,
                         ),
                         GlowingCustomButton(
-                          onPressed: () {},
+                          onPressed: () => context.navigateTo(
+                            routeName: Routes.bookingOneViewRoute,
+                            arguments: hotel.price,
+                          ),
                           buttonText: 'Book Now',
                         ),
                       ],

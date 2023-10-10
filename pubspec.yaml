@@ -31,12 +31,14 @@ dependencies:
   google_sign_in: ^6.1.4
   image_picker: ^1.0.4
   internet_connection_checker: ^1.0.0+1
+  intl: ^0.18.1
   reusable_components:
     git:
       url: https://github.com/ahmedghaly15/Reusable-Components-Package
   shared_preferences: ^2.2.0
   shimmer: ^3.0.0
   smooth_page_indicator: ^1.1.0
+  syncfusion_flutter_datepicker: ^23.1.40
   syncfusion_flutter_sliders: ^23.1.38
 
 dev_dependencies:

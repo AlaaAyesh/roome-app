@@ -8,4 +8,6 @@ class Routes {
   static const String detailsViewRoute = '/detailsView';
   static const String exploreSeeAllViewRoute = '/exploreSeeAllView';
   static const String nearMeSeeAllViewRoute = '/nearMeSeeAllView';
+  static const String bookingOneViewRoute = '/bookingOneView';
+  static const String bookingTwoViewRoute = '/bookingTwoView';
 }

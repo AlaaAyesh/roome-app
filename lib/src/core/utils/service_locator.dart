@@ -18,6 +18,8 @@ import 'package:roome/src/features/auth/sign_up/domain/repositories/sign_up_repo
 import 'package:roome/src/features/auth/sign_up/domain/usecases/sign_up_usecase.dart';
 import 'package:roome/src/features/auth/sign_up/domain/usecases/sign_up_with_google_usecase.dart';
 import 'package:roome/src/features/auth/sign_up/presentation/cubit/sign_up_cubit.dart';
+import 'package:roome/src/features/booking/presentation/cubit/booking_one/booking_one_cubit.dart';
+
 import 'package:roome/src/features/on_boarding/data/datasources/on_boarding_datasource.dart';
 import 'package:roome/src/features/on_boarding/data/repositories/on_boarding_repo_impl.dart';
 import 'package:roome/src/features/on_boarding/domain/repositories/on_boarding_repo.dart';
@@ -360,4 +362,6 @@ void setUpForCubits() {
       removeFromFavUseCase: serviceLocator.get<RemoveFromFavUseCase>(),
     ),
   );
+
+  serviceLocator.registerFactory<BookingOneCubit>(() => BookingOneCubit());
 }
