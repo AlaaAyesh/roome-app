@@ -5,14 +5,20 @@ import 'package:roome/src/config/routes/routes.dart';
 import 'package:roome/src/core/utils/app_colors.dart';
 import 'package:roome/src/core/utils/app_navigator.dart';
 import 'package:roome/src/core/utils/app_text_styles.dart';
-import 'package:roome/src/features/booking/presentation/widgets/custom_action_button.dart';
+import 'package:roome/src/core/widgets/custom_action_button.dart';
+import 'package:roome/src/features/booking/data/models/booking_info.dart';
 
 import 'package:roome/src/features/booking/presentation/widgets/section_title.dart';
 
 import 'booking_two_text_field.dart';
 
 class BookingTwoForm extends StatefulWidget {
-  const BookingTwoForm({super.key});
+  const BookingTwoForm({
+    super.key,
+    required this.bookingInfo,
+  });
+
+  final BookingInfo bookingInfo;
 
   @override
   State<BookingTwoForm> createState() => _BookingTwoFormState();
@@ -118,7 +124,7 @@ class _BookingTwoFormState extends State<BookingTwoForm> {
             ),
             controller: _idController,
             textCapitalization: TextCapitalization.none,
-            keyboardType: TextInputType.none,
+            keyboardType: TextInputType.text,
             border: Border.all(color: AppColors.primaryColor),
             width: SizeConfig.screenWidth,
             backgroundColor: Colors.white,
@@ -165,7 +171,20 @@ class _BookingTwoFormState extends State<BookingTwoForm> {
 
   void continueToPayment() {
     if (_formKey.currentState!.validate()) {
-      context.navigateTo(routeName: Routes.paymentViewRoute);
+      context.navigateTo(
+        routeName: Routes.paymentViewRoute,
+        arguments: widget.bookingInfo,
+      );
+      clearTextFields();
     }
+  }
+
+  void clearTextFields() {
+    _emailController.clear();
+    _firstNameController.clear();
+    _surnameController.clear();
+    _phoneController.clear();
+    _idController.clear();
+    _ninCodeNameController.clear();
   }
 }

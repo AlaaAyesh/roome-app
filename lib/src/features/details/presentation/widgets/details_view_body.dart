@@ -10,6 +10,7 @@ import 'package:roome/src/core/utils/app_text_styles.dart';
 import 'package:roome/src/core/widgets/glowing_custom_button.dart';
 import 'package:roome/src/core/widgets/location_text.dart';
 import 'package:roome/src/core/widgets/price_per_night_text.dart';
+import 'package:roome/src/features/booking/data/models/booked_hotel_info.dart';
 import 'package:roome/src/features/details/presentation/widgets/details_image_with_hero.dart';
 import 'package:roome/src/features/details/presentation/widgets/facilities.dart';
 
@@ -83,7 +84,10 @@ class DetailsViewBody extends StatelessWidget {
                         GlowingCustomButton(
                           onPressed: () => context.navigateTo(
                             routeName: Routes.bookingOneViewRoute,
-                            arguments: hotel.price,
+                            arguments: BookedHotelInfo(
+                              hotelName: hotel.name,
+                              price: hotel.price,
+                            ),
                           ),
                           buttonText: 'Book Now',
                         ),

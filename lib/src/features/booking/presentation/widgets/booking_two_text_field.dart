@@ -5,7 +5,7 @@ import 'package:reusable_components/reusable_components.dart';
 import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/app_text_styles.dart';
 
-class BookingTwoTextField extends StatelessWidget {
+class BookingTwoTextField extends StatefulWidget {
   const BookingTwoTextField({
     super.key,
     required this.controller,
@@ -32,32 +32,53 @@ class BookingTwoTextField extends StatelessWidget {
   final String? Function(String?)? validating;
 
   @override
+  State<BookingTwoTextField> createState() => _BookingTwoTextFieldState();
+}
+
+class _BookingTwoTextFieldState extends State<BookingTwoTextField> {
+  bool isValidating = false;
+
+  @override
   Widget build(BuildContext context) {
     return CustomTextFormField(
-      hint: hint ?? '',
-      controller: controller,
-      hintStyle: hintStyle,
-      textCapitalization: textCapitalization,
-      keyboardType: keyboardType,
+      hint: widget.hint ?? '',
+      controller: widget.controller,
+      hintStyle: widget.hintStyle,
+      textCapitalization: widget.textCapitalization,
+      keyboardType: widget.keyboardType,
       backgroundColor:
-          backgroundColor ?? AppColors.primaryColor.withOpacity(0.03),
+          widget.backgroundColor ?? AppColors.primaryColor.withOpacity(0.03),
       borderRadius: BorderRadius.all(Radius.circular(10.r)),
-      height: 40.h,
-      width: width?.w,
-      border: border ??
+      height: isValidating ? 50.h : 40.h,
+      width: widget.width?.w,
+      textFieldBorder: InputBorder.none,
+      border: widget.border ??
           Border.all(
             color: AppColors.darkGrey.withOpacity(0.63),
           ),
-      focusedBorder: InputBorder.none,
-      enabledBorder: InputBorder.none,
       cursorColor: Colors.black,
       style: AppTextStyles.textStyle15.copyWith(
         fontWeight: FontWeight.w500,
       ),
-      prefixIcon: prefixIcon,
-      validating: validating,
-      contentPadding: EdgeInsets.symmetric(vertical: 8.h, horizontal: 16.w),
+      prefixIcon: widget.prefixIcon,
+      validating: (String? val) {
+        setState(() {
+          isValidating = true;
+        });
+
+        if (val!.isEmpty) {
+          return "Can't be blank";
+        }
+        return null;
+      },
+      contentPadding: EdgeInsets.only(
+        left: 16.w,
+        right: 16.w,
+        top: isValidating ? 20.h : 8.h,
+      ),
       errorBorder: InputBorder.none,
+      enabledBorder: InputBorder.none,
+      focusedBorderColor: AppColors.primaryColor,
     );
   }
 }

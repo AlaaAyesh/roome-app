@@ -9,12 +9,14 @@ class CustomActionButton extends StatelessWidget {
     required this.onPressed,
     required this.textStyle,
     required this.backgroundColor,
+    this.boxShadow,
   });
 
   final String buttonText;
   final VoidCallback onPressed;
   final TextStyle textStyle;
   final Color backgroundColor;
+  final List<BoxShadow>? boxShadow;
 
   @override
   Widget build(BuildContext context) {
@@ -27,6 +29,7 @@ class CustomActionButton extends StatelessWidget {
         backgroundColor: backgroundColor,
         onPressed: onPressed,
         hasPrefix: false,
+        boxShadow: boxShadow,
         child: Center(
           child: Text(
             buttonText,

@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:roome/src/features/booking/data/models/booking_info.dart';
 import 'package:roome/src/features/booking/presentation/widgets/booking_two_view_body.dart';
 
 class BookingTwoView extends StatelessWidget {
-  const BookingTwoView({super.key});
+  final BookingInfo bookingInfo;
+  const BookingTwoView({super.key, required this.bookingInfo});
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       body: SafeArea(
-        child: BookingTwoViewBody(),
+        child: BookingTwoViewBody(bookingInfo: bookingInfo),
       ),
     );
   }

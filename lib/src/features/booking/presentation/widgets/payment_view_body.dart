@@ -8,6 +8,7 @@ import 'package:roome/src/core/utils/app_navigator.dart';
 import 'package:roome/src/core/utils/app_text_styles.dart';
 import 'package:roome/src/core/widgets/custom_app_bar.dart';
 import 'package:roome/src/core/widgets/custom_action_button.dart';
+import 'package:roome/src/features/booking/data/models/booking_info.dart';
 
 import 'package:roome/src/features/booking/presentation/widgets/section_title.dart';
 
@@ -15,7 +16,9 @@ import '../../../../core/widgets/custom_dialog.dart';
 import 'other_payment_method.dart';
 
 class PaymentViewBody extends StatelessWidget {
-  const PaymentViewBody({super.key});
+  final BookingInfo bookingInfo;
+
+  const PaymentViewBody({super.key, required this.bookingInfo});
 
   @override
   Widget build(BuildContext context) {
@@ -78,7 +81,7 @@ class PaymentViewBody extends StatelessWidget {
               onPressed: () {
                 showAdaptiveDialog(
                   context: context,
-                  builder: (context) => const CustomDialog(firstName: 'Ahmed'),
+                  builder: (context) => CustomDialog(bookingInfo: bookingInfo),
                 );
               },
               textStyle: AppTextStyles.textStyle15.copyWith(

@@ -11,4 +11,5 @@ class Routes {
   static const String bookingOneViewRoute = '/bookingOneView';
   static const String bookingTwoViewRoute = '/bookingTwoView';
   static const String paymentViewRoute = '/paymentView';
+  static const String ticketViewRoute = '/ticketView';
 }

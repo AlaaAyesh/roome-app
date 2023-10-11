@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
+
 import 'package:roome/src/core/utils/app_text_styles.dart';
+import 'package:roome/src/features/booking/data/models/booked_hotel_info.dart';
 import 'package:roome/src/features/booking/presentation/widgets/date_form.dart';
 import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 
@@ -9,9 +11,9 @@ import 'package:reusable_components/reusable_components.dart';
 import 'package:roome/src/core/utils/app_colors.dart';
 
 class BookingOneBodyContent extends StatefulWidget {
-  const BookingOneBodyContent({super.key, required this.price});
+  const BookingOneBodyContent({super.key, required this.bookedHotelInfo});
 
-  final double price;
+  final BookedHotelInfo bookedHotelInfo;
 
   @override
   State<BookingOneBodyContent> createState() => _BookingOneBodyContentState();
@@ -89,7 +91,7 @@ class _BookingOneBodyContentState extends State<BookingOneBodyContent> {
         ),
         SizedBox(height: SizeConfig.screenHeight! * 0.023),
         DateForm(
-          price: widget.price,
+          bookedHotelInfo: widget.bookedHotelInfo,
           checkInDate: _checkInDate,
           checkOutDate: _checkOutDate,
         ),
