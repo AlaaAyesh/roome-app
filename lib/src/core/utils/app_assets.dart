@@ -1,6 +1,9 @@
 class AppAssets {
   AppAssets._();
 
+  static const String newCreditIcon = 'assets/icon/newCredit.png';
+  static const String paypalIcon = 'assets/icon/paypal.png';
+
   /// Assets for AppIcon
   /// assets/appIcon.svg
   static const String appIcon = "assets/appIcon.png";
@@ -46,6 +49,8 @@ class AppAssets {
   /// assets/image/lightBlueCircles.svg
   static const String imageLightBlueCircles =
       "assets/image/lightBlueCircles.svg";
+
+  static const String greyCircles = 'assets/image/greyCircles.svg';
 
   /// Assets for imageOnBoarding1
   /// assets/image/onBoarding1.svg

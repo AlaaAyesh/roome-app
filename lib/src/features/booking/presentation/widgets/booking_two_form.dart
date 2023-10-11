@@ -5,6 +5,7 @@ import 'package:roome/src/config/routes/routes.dart';
 import 'package:roome/src/core/utils/app_colors.dart';
 import 'package:roome/src/core/utils/app_navigator.dart';
 import 'package:roome/src/core/utils/app_text_styles.dart';
+import 'package:roome/src/features/booking/presentation/widgets/custom_action_button.dart';
 
 import 'package:roome/src/features/booking/presentation/widgets/section_title.dart';
 
@@ -148,25 +149,14 @@ class _BookingTwoFormState extends State<BookingTwoForm> {
             width: SizeConfig.screenWidth,
           ),
           SizedBox(height: SizeConfig.screenHeight! * 0.035),
-          Align(
-            alignment: Alignment.center,
-            child: MyCustomButton(
-              height: 40.h,
-              width: 200.w,
-              borderRadius: BorderRadius.all(Radius.circular(12.r)),
-              backgroundColor: AppColors.primaryColor,
-              onPressed: () => continueToPayment(),
-              hasPrefix: false,
-              child: Center(
-                child: Text(
-                  'Continue',
-                  style: AppTextStyles.textStyle15.copyWith(
-                    color: Colors.white,
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-              ),
+          CustomActionButton(
+            buttonText: 'Continue',
+            onPressed: () => continueToPayment(),
+            textStyle: AppTextStyles.textStyle15.copyWith(
+              color: Colors.white,
+              fontWeight: FontWeight.w600,
             ),
+            backgroundColor: AppColors.primaryColor,
           ),
         ],
       ),
