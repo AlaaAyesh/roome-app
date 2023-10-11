@@ -7,7 +7,9 @@ import '../../../../core/utils/app_colors.dart';
 import 'form_number.dart';
 
 class BookingOneFormNumbers extends StatelessWidget {
-  const BookingOneFormNumbers({super.key});
+  const BookingOneFormNumbers({super.key, required this.isBookingOne});
+
+  final bool isBookingOne;
 
   @override
   Widget build(BuildContext context) {
@@ -18,12 +20,16 @@ class BookingOneFormNumbers extends StatelessWidget {
         children: <Widget>[
           FormNumber(
             number: 1,
-            backgroundColor: AppColors.primaryColor.withOpacity(0.47),
+            backgroundColor: isBookingOne
+                ? AppColors.primaryColor.withOpacity(0.47)
+                : HexColorHandler('CFC4C4'),
           ),
           SizedBox(width: SizeConfig.screenWidth! * 0.15),
           FormNumber(
             number: 2,
-            backgroundColor: HexColorHandler('CFC4C4'),
+            backgroundColor: isBookingOne
+                ? HexColorHandler('CFC4C4')
+                : AppColors.primaryColor.withOpacity(0.47),
           ),
         ],
       ),

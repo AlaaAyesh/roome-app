@@ -9,6 +9,7 @@ import 'package:roome/src/features/auth/sign_up/presentation/views/sign_up_view.
 import 'package:roome/src/features/booking/presentation/cubit/booking_one/booking_one_cubit.dart';
 import 'package:roome/src/features/booking/presentation/views/booking_one_view.dart';
 import 'package:roome/src/features/booking/presentation/views/booking_two_view.dart';
+import 'package:roome/src/features/booking/presentation/views/payment_view.dart';
 import 'package:roome/src/features/details/presentation/views/details_view.dart';
 
 import 'package:roome/src/features/on_boarding/presentation/cubit/on_boarding_cubit.dart';
@@ -93,9 +94,15 @@ class AppRoutes {
             child: BookingOneView(price: args),
           ),
         );
+
       case Routes.bookingTwoViewRoute:
         return MaterialPageRoute(
           builder: (context) => const BookingTwoView(),
+        );
+
+      case Routes.paymentViewRoute:
+        return MaterialPageRoute(
+          builder: (context) => const PaymentView(),
         );
 
       default:

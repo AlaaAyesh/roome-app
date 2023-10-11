@@ -781,7 +781,7 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: "220c9d3d5d166d35454be10af8eb7d7ce7bee9be"
+      resolved-ref: aa842179d83858345ca55eb7ce3b332deca8e374
       url: "https://github.com/ahmedghaly15/Reusable-Components-Package"
     source: git
     version: "0.0.1"
