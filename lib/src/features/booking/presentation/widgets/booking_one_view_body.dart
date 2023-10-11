@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:reusable_components/reusable_components.dart';
+import 'package:roome/src/features/booking/data/models/booked_hotel_info.dart';
 
 import 'package:roome/src/features/booking/presentation/widgets/booking_one_form_numbers.dart';
 
@@ -10,9 +11,9 @@ import 'booking_one_body_content.dart';
 import 'section_title.dart';
 
 class BookingOneViewBody extends StatelessWidget {
-  const BookingOneViewBody({super.key, required this.price});
+  const BookingOneViewBody({super.key, required this.bookedHotelInfo});
 
-  final double price;
+  final BookedHotelInfo bookedHotelInfo;
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +34,7 @@ class BookingOneViewBody extends StatelessWidget {
             SizedBox(height: SizeConfig.screenHeight! * 0.023),
             const SectionTitle(title: 'Select Date'),
             SizedBox(height: SizeConfig.screenHeight! * 0.012),
-            BookingOneBodyContent(price: price),
+            BookingOneBodyContent(bookedHotelInfo: bookedHotelInfo),
           ],
         ),
       ),

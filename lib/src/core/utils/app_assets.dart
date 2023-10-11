@@ -66,7 +66,7 @@ class AppAssets {
 
   /// Assets for imageQrCode
   /// assets/image/qrCode.svg
-  static const String imageQrCode = "assets/image/qrCode.svg";
+  static const String imageQrCode = "assets/image/qrCode.png";
 
   /// Assets for imageRedCircles
   /// assets/image/redCircles.svg

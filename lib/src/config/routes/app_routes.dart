@@ -6,10 +6,13 @@ import 'package:roome/src/features/auth/sign_in/presentation/cubit/login_cubit.d
 import 'package:roome/src/features/auth/sign_in/presentation/views/login_view.dart';
 import 'package:roome/src/features/auth/sign_up/presentation/cubit/sign_up_cubit.dart';
 import 'package:roome/src/features/auth/sign_up/presentation/views/sign_up_view.dart';
+import 'package:roome/src/features/booking/data/models/booked_hotel_info.dart';
+import 'package:roome/src/features/booking/data/models/booking_info.dart';
 import 'package:roome/src/features/booking/presentation/cubit/booking_one/booking_one_cubit.dart';
 import 'package:roome/src/features/booking/presentation/views/booking_one_view.dart';
 import 'package:roome/src/features/booking/presentation/views/booking_two_view.dart';
 import 'package:roome/src/features/booking/presentation/views/payment_view.dart';
+import 'package:roome/src/features/booking/presentation/views/ticket_view.dart';
 import 'package:roome/src/features/details/presentation/views/details_view.dart';
 
 import 'package:roome/src/features/on_boarding/presentation/cubit/on_boarding_cubit.dart';
@@ -87,22 +90,30 @@ class AppRoutes {
         );
 
       case Routes.bookingOneViewRoute:
-        final args = routeSettings.arguments as double;
+        final args = routeSettings.arguments as BookedHotelInfo;
         return MaterialPageRoute(
           builder: (context) => BlocProvider(
             create: (context) => serviceLocator.get<BookingOneCubit>(),
-            child: BookingOneView(price: args),
+            child: BookingOneView(bookedHotelInfo: args),
           ),
         );
 
       case Routes.bookingTwoViewRoute:
+        final args = routeSettings.arguments as BookingInfo;
         return MaterialPageRoute(
-          builder: (context) => const BookingTwoView(),
+          builder: (context) => BookingTwoView(bookingInfo: args),
         );
 
       case Routes.paymentViewRoute:
+        final args = routeSettings.arguments as BookingInfo;
         return MaterialPageRoute(
-          builder: (context) => const PaymentView(),
+          builder: (context) => PaymentView(bookingInfo: args),
+        );
+
+      case Routes.ticketViewRoute:
+        final args = routeSettings.arguments as BookingInfo;
+        return MaterialPageRoute(
+          builder: (context) => TicketView(bookingInfo: args),
         );
 
       default:

@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:reusable_components/reusable_components.dart';
+import 'package:roome/src/features/booking/data/models/booking_info.dart';
 import 'package:roome/src/features/booking/presentation/widgets/booking_app_bar.dart';
 
 import 'booking_one_form_numbers.dart';
 import 'booking_two_form.dart';
 
 class BookingTwoViewBody extends StatelessWidget {
-  const BookingTwoViewBody({super.key});
+  final BookingInfo bookingInfo;
+
+  const BookingTwoViewBody({super.key, required this.bookingInfo});
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +29,7 @@ class BookingTwoViewBody extends StatelessWidget {
             SizedBox(height: SizeConfig.screenHeight! * 0.02),
             const BookingOneFormNumbers(isBookingOne: false),
             SizedBox(height: SizeConfig.screenHeight! * 0.046),
-            const BookingTwoForm(),
+            BookingTwoForm(bookingInfo: bookingInfo),
           ],
         ),
       ),

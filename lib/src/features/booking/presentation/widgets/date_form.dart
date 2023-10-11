@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:reusable_components/reusable_components.dart';
 import 'package:roome/src/config/routes/routes.dart';
@@ -8,45 +9,46 @@ import 'package:roome/src/core/utils/app_navigator.dart';
 import 'package:roome/src/core/utils/app_text_styles.dart';
 import 'package:roome/src/core/widgets/custom_snack_bar.dart';
 import 'package:roome/src/core/widgets/glowing_custom_button.dart';
+import 'package:roome/src/features/booking/data/models/booked_hotel_info.dart';
+import 'package:roome/src/features/booking/data/models/booking_info.dart';
 import 'package:roome/src/features/booking/presentation/cubit/booking_one/booking_one_cubit.dart';
-import 'package:roome/src/features/booking/presentation/widgets/check_container.dart';
 
-import 'package:roome/src/features/booking/presentation/widgets/custom_drop_down_button.dart';
+import 'package:roome/src/features/booking/presentation/widgets/check_in_and_out.dart';
+
 import 'package:roome/src/features/booking/presentation/widgets/number_of.dart';
 
+import '../../../../core/utils/app_colors.dart';
+import 'custom_bordered_container.dart';
 import 'section_title.dart';
 
-class DateForm extends StatelessWidget {
+class DateForm extends StatefulWidget {
   const DateForm({
     super.key,
     required this.checkInDate,
     required this.checkOutDate,
-    required this.price,
+    required this.bookedHotelInfo,
   });
 
-  final double price;
+  final BookedHotelInfo bookedHotelInfo;
   final String checkInDate;
   final String checkOutDate;
+
+  @override
+  State<DateForm> createState() => _DateFormState();
+}
+
+class _DateFormState extends State<DateForm> {
+  String _selectedRoomType = 'Double';
+
+  final List<String> _roomTypes = <String>['Double', 'Single'];
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
-        Row(
-          children: <Widget>[
-            const SectionTitle(title: 'Check In'),
-            SizedBox(width: SizeConfig.screenWidth! * 0.33),
-            const SectionTitle(title: 'Check Out'),
-          ],
-        ),
-        SizedBox(height: SizeConfig.screenHeight! * 0.016),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: <Widget>[
-            CheckContainer(hint: checkInDate),
-            const Icon(Icons.arrow_forward),
-            CheckContainer(hint: checkOutDate),
-          ],
+        CheckInAndOut(
+          checkInDate: widget.checkInDate,
+          checkOutDate: widget.checkOutDate,
         ),
         SizedBox(height: SizeConfig.screenHeight! * 0.029),
         const Row(
@@ -60,7 +62,50 @@ class DateForm extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
-            const CustomDropDownButton(),
+            CustomBorderedContainer(
+              padding: EdgeInsets.only(left: 18.w),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Text(
+                    _selectedRoomType,
+                    style: AppTextStyles.textStyle14Medium.copyWith(
+                      fontWeight: FontWeight.bold,
+                      color: AppColors.primaryColor.withOpacity(0.94),
+                    ),
+                  ),
+                  DropdownButton(
+                    // dropdownColor: AppColors.primaryColor.withOpacity(0.04),
+
+                    borderRadius: BorderRadius.circular(10.r),
+                    items:
+                        _roomTypes.map<DropdownMenuItem<String>>((String type) {
+                      return DropdownMenuItem<String>(
+                        value: type,
+                        child: Text(
+                          type,
+                          style: AppTextStyles.textStyle14Medium.copyWith(
+                            fontWeight: FontWeight.bold,
+                            color: AppColors.primaryColor.withOpacity(0.94),
+                          ),
+                        ),
+                      );
+                    }).toList(),
+                    onChanged: (String? newVal) {
+                      setState(() {
+                        _selectedRoomType = newVal!;
+                      });
+                    },
+                    icon: Icon(
+                      Icons.keyboard_arrow_down,
+                      color: Colors.black.withOpacity(0.62),
+                    ),
+                    elevation: 4.w.toInt(),
+                    underline: Container(height: 0),
+                  ),
+                ],
+              ),
+            ),
             BlocBuilder<BookingOneCubit, BookingOneState>(
               builder: (BuildContext context, BookingOneState state) {
                 BookingOneCubit cubit =
@@ -108,7 +153,7 @@ class DateForm extends StatelessWidget {
                 }
 
                 return Text(
-                  'Total: ${computePrice(price)}/night',
+                  'Total: ${computePrice(widget.bookedHotelInfo.price!)}/night',
                   style: AppTextStyles.textStyle14Medium.copyWith(
                     fontWeight: FontWeight.bold,
                   ),
@@ -127,8 +172,18 @@ class DateForm extends StatelessWidget {
   }
 
   void continueToBookingTwo(BuildContext context) {
-    if (checkInDate != '' && checkOutDate != '') {
-      context.navigateTo(routeName: Routes.bookingTwoViewRoute);
+    if (widget.checkInDate != '' && widget.checkOutDate != '' ) {
+      context.navigateTo(
+        routeName: Routes.bookingTwoViewRoute,
+        arguments: BookingInfo(
+          hotelName: widget.bookedHotelInfo.hotelName,
+          checkInDate: widget.checkInDate,
+          checkOutDate: widget.checkOutDate,
+          roomNumber: BlocProvider.of<BookingOneCubit>(context).roomNumber,
+          guestNumber: BlocProvider.of<BookingOneCubit>(context).guestNumber,
+          roomType: _selectedRoomType,
+        ),
+      );
     } else {
       CustomSnackBar.show(
         context: context,

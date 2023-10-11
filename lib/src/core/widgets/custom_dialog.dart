@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:reusable_components/reusable_components.dart';
+import 'package:roome/src/config/routes/routes.dart';
 import 'package:roome/src/core/utils/app_navigator.dart';
+import 'package:roome/src/features/booking/data/models/booking_info.dart';
 
+import '../helpers/helper.dart';
 import '../utils/app_assets.dart';
 import '../utils/app_colors.dart';
 import '../utils/app_text_styles.dart';
@@ -12,10 +15,10 @@ import 'custom_action_button.dart';
 class CustomDialog extends StatelessWidget {
   const CustomDialog({
     super.key,
-    required this.firstName,
+    required this.bookingInfo,
   });
 
-  final String firstName;
+  final BookingInfo bookingInfo;
 
   @override
   Widget build(BuildContext context) {
@@ -73,7 +76,7 @@ class CustomDialog extends StatelessWidget {
             ),
             SizedBox(height: SizeConfig.screenHeight! * 0.014),
             Text(
-              'Hi $firstName, Your booking was successful',
+              'Hi ${Helper.currentUser!.firstName}, Your booking was successful',
               style: AppTextStyles.textStyle15.copyWith(
                 color: AppColors.lightGrey.withOpacity(0.62),
                 fontWeight: FontWeight.w600,
@@ -83,7 +86,12 @@ class CustomDialog extends StatelessWidget {
             SizedBox(height: SizeConfig.screenHeight! * 0.031),
             CustomActionButton(
               buttonText: 'View Booking Ticket',
-              onPressed: () {},
+              onPressed: () {
+                context.navigateTo(
+                  routeName: Routes.ticketViewRoute,
+                  arguments: bookingInfo,
+                );
+              },
               textStyle: AppTextStyles.textStyle15.copyWith(
                 color: Colors.white,
                 fontWeight: FontWeight.w600,

@@ -50,6 +50,10 @@ class AppTextStyles {
     fontWeight: FontWeight.w500,
   );
 
+  static TextStyle textStyle12 = TextStyle(
+    fontSize: 12.sp,
+  );
+
   static TextStyle bottomNavTextStyle = TextStyle(
     fontSize: 10.sp,
     fontWeight: FontWeight.w400,
