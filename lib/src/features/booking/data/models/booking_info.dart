@@ -1,6 +1,10 @@
 import 'package:equatable/equatable.dart';
 
 class BookingInfo extends Equatable {
+  final String? firstName;
+  final String? surname;
+  final String? phoneNumber;
+  final String? email;
   final String? hotelName;
   final String? checkInDate;
   final String? checkOutDate;
@@ -15,7 +19,24 @@ class BookingInfo extends Equatable {
     this.roomType,
     this.guestNumber,
     this.roomNumber,
+    this.firstName,
+    this.surname,
+    this.phoneNumber,
+    this.email,
   });
+
+  Map<String, dynamic> toJson() => {
+        'hotelName': hotelName,
+        'checkInData': checkInDate,
+        'checkOutDate': checkOutDate,
+        'roomType': roomType,
+        'roomNumber': roomNumber,
+        'guestNumber': guestNumber,
+        'firstName': firstName,
+        'surname': surname,
+        'phoneNumber': phoneNumber,
+        'email': email,
+      };
 
   @override
   List<Object?> get props => [
@@ -25,5 +46,9 @@ class BookingInfo extends Equatable {
         roomNumber,
         roomType,
         guestNumber,
+        firstName,
+        surname,
+        phoneNumber,
+        email,
       ];
 }

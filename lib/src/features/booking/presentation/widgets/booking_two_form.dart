@@ -173,7 +173,18 @@ class _BookingTwoFormState extends State<BookingTwoForm> {
     if (_formKey.currentState!.validate()) {
       context.navigateTo(
         routeName: Routes.paymentViewRoute,
-        arguments: widget.bookingInfo,
+        arguments: BookingInfo(
+          firstName: _firstNameController.text.trim(),
+          surname: _surnameController.text.trim(),
+          email: _emailController.text,
+          phoneNumber: _phoneController.text,
+          checkInDate: widget.bookingInfo.checkInDate,
+          checkOutDate: widget.bookingInfo.checkOutDate,
+          roomType: widget.bookingInfo.roomType,
+          roomNumber: widget.bookingInfo.roomNumber,
+          guestNumber: widget.bookingInfo.guestNumber,
+          hotelName: widget.bookingInfo.hotelName,
+        ),
       );
       clearTextFields();
     }

@@ -3,21 +3,11 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get_it/get_it.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:roome/src/core/api/api_consumer.dart';
-import 'package:roome/src/features/auth/sign_in/data/datasources/login_datasource.dart';
-import 'package:roome/src/features/auth/sign_in/data/datasources/login_datasource_impl.dart';
-import 'package:roome/src/features/auth/sign_in/data/repositories/login_repo_impl.dart';
-import 'package:roome/src/features/auth/sign_in/domain/repositories/login_repo.dart';
-import 'package:roome/src/features/auth/sign_in/domain/usecases/login_usecase.dart';
-import 'package:roome/src/features/auth/sign_in/domain/usecases/login_with_google_usecase.dart';
-import 'package:roome/src/features/auth/sign_in/presentation/cubit/login_cubit.dart';
-import 'package:roome/src/features/auth/sign_up/data/datasources/sign_up_datasource.dart';
-import 'package:roome/src/features/auth/sign_up/data/datasources/sign_up_datasource_impl.dart';
-import 'package:roome/src/features/auth/sign_up/data/repositories/sign_up_repo_impl.dart';
-import 'package:roome/src/features/auth/sign_up/domain/repositories/sign_up_repo.dart';
 
-import 'package:roome/src/features/auth/sign_up/domain/usecases/sign_up_usecase.dart';
+import 'package:roome/src/features/auth/sign_in/presentation/cubit/login_cubit.dart';
+
 import 'package:roome/src/features/auth/sign_up/domain/usecases/sign_up_with_google_usecase.dart';
-import 'package:roome/src/features/auth/sign_up/presentation/cubit/sign_up_cubit.dart';
+
 import 'package:roome/src/features/booking/presentation/cubit/booking_one/booking_one_cubit.dart';
 
 import 'package:roome/src/features/on_boarding/data/datasources/on_boarding_datasource.dart';
@@ -66,6 +56,18 @@ import 'package:roome/src/features/roome/domain/usecases/roome/sign_out_usecase.
 
 import 'package:roome/src/features/search/presentation/cubit/search_cubit.dart';
 
+import '../../features/auth/sign_in/data/datasources/login_datasource.dart';
+import '../../features/auth/sign_in/data/datasources/login_datasource_impl.dart';
+import '../../features/auth/sign_in/data/repositories/login_repo_impl.dart';
+import '../../features/auth/sign_in/domain/repositories/login_repo.dart';
+import '../../features/auth/sign_in/domain/usecases/login_usecase.dart';
+import '../../features/auth/sign_in/domain/usecases/login_with_google_usecase.dart';
+import '../../features/auth/sign_up/data/datasources/sign_up_datasource.dart';
+import '../../features/auth/sign_up/data/datasources/sign_up_datasource_impl.dart';
+import '../../features/auth/sign_up/data/repositories/sign_up_repo_impl.dart';
+import '../../features/auth/sign_up/domain/repositories/sign_up_repo.dart';
+import '../../features/auth/sign_up/domain/usecases/sign_up_usecase.dart';
+import '../../features/auth/sign_up/presentation/cubit/sign_up_cubit.dart';
 import '../../features/on_boarding/data/datasources/on_boarding_datasource_impl.dart';
 import '../../features/roome/presentation/cubits/hotels/hotels_cubit.dart';
 import '../../features/roome/presentation/cubits/near_me/near_me_cubit.dart';

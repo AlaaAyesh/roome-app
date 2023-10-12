@@ -8,8 +8,8 @@ import 'package:roome/src/core/utils/app_text_styles.dart';
 import 'package:roome/src/features/roome/presentation/cubits/favorite/favorite_cubit.dart';
 import 'package:roome/src/features/roome/presentation/widgets/favorite_card.dart';
 
-import '../models/hotel.dart';
-import 'glowing_custom_button.dart';
+import '../../../../core/models/hotel.dart';
+import '../../../../core/widgets/glowing_custom_button.dart';
 
 class RemoveFromFavBottomSheet {
   static void show({
@@ -20,13 +20,13 @@ class RemoveFromFavBottomSheet {
     showModalBottomSheet(
       context: context,
       backgroundColor: Colors.transparent,
-      builder: (context) => MyCustomBottomSheet(hotel: hotel, cubit: cubit),
+      builder: (context) => FavRemoveBottomSheet(hotel: hotel, cubit: cubit),
     );
   }
 }
 
-class MyCustomBottomSheet extends StatefulWidget {
-  const MyCustomBottomSheet({
+class FavRemoveBottomSheet extends StatefulWidget {
+  const FavRemoveBottomSheet({
     super.key,
     required this.hotel,
     required this.cubit,
@@ -36,10 +36,10 @@ class MyCustomBottomSheet extends StatefulWidget {
   final FavoriteCubit cubit;
 
   @override
-  State<MyCustomBottomSheet> createState() => _MyCustomBottomSheetState();
+  State<FavRemoveBottomSheet> createState() => _FavRemoveBottomSheetState();
 }
 
-class _MyCustomBottomSheetState extends State<MyCustomBottomSheet>
+class _FavRemoveBottomSheetState extends State<FavRemoveBottomSheet>
     with SingleTickerProviderStateMixin {
   late AnimationController _animationController;
 
@@ -72,7 +72,6 @@ class _MyCustomBottomSheetState extends State<MyCustomBottomSheet>
         _animationController.forward();
       },
       shape: RoundedRectangleBorder(
-        // <-- SEE HERE
         borderRadius: BorderRadius.vertical(
           top: Radius.circular(50.0.r),
         ),

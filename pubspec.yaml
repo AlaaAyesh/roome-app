@@ -32,6 +32,7 @@ dependencies:
   image_picker: ^1.0.4
   internet_connection_checker: ^1.0.0+1
   intl: ^0.18.1
+  pretty_qr_code: ^3.0.0
   reusable_components:
     git:
       url: https://github.com/ahmedghaly15/Reusable-Components-Package

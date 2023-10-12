@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:reusable_components/reusable_components.dart';
 import 'package:roome/src/core/utils/app_navigator.dart';
-import 'package:roome/src/core/widgets/custom_bottom_sheet.dart';
+import 'package:roome/src/features/roome/presentation/widgets/remove_from_fav_bottom_sheet.dart';
 import 'package:roome/src/features/roome/presentation/cubits/favorite/favorite_cubit.dart';
 
 import '../../../../config/routes/routes.dart';

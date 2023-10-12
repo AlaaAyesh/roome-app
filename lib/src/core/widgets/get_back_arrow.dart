@@ -12,7 +12,7 @@ class GetBackArrow extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onTap,
-      child: SvgPicture.asset(AppAssets.arrowLeftIcon),
+      child: SvgPicture.asset(AppAssets.iconArrowLeft),
     );
   }
 }

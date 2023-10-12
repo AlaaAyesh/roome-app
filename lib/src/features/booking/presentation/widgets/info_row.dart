@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:reusable_components/reusable_components.dart';
 
 import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/app_text_styles.dart';
@@ -19,7 +18,7 @@ class InfoRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.start,
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: <Widget>[
         Text(
           '$title:',
@@ -28,7 +27,6 @@ class InfoRow extends StatelessWidget {
             color: Colors.black.withOpacity(0.6),
           ),
         ),
-        SizedBox(width: SizeConfig.screenWidth! * 0.2),
         Text(
           info,
           style: isRoomType

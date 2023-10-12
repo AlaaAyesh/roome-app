@@ -67,12 +67,12 @@ class PaymentViewBody extends StatelessWidget {
             const SectionTitle(title: 'Other Payment Method'),
             SizedBox(height: SizeConfig.screenHeight! * 0.036),
             const OtherPaymentMethod(
-              icon: AppAssets.newCreditIcon,
+              icon: AppAssets.iconNewCredit,
               text: 'New credit/Debit Card',
             ),
             SizedBox(height: SizeConfig.screenHeight! * 0.035),
             const OtherPaymentMethod(
-              icon: AppAssets.paypalIcon,
+              icon: AppAssets.iconPaypal,
               text: 'Paypal',
             ),
             SizedBox(height: SizeConfig.screenHeight! * 0.1),
