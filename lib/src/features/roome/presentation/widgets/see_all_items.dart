@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
-
 import 'package:roome/src/features/roome/presentation/widgets/popular_card.dart';
 
 import '../../../../core/models/hotel.dart';
@@ -21,7 +19,7 @@ class SeeAllItems extends StatelessWidget {
       shrinkWrap: true,
       itemBuilder: (context, index) => AnimationConfiguration.staggeredList(
         position: index,
-        duration: const Duration(milliseconds: 475),
+        duration: const Duration(milliseconds: 700),
         child: SlideAnimation(
           horizontalOffset: -150.w,
           curve: Curves.fastLinearToSlowEaseIn,

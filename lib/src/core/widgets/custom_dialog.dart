@@ -44,7 +44,7 @@ class CustomDialog extends StatelessWidget {
               alignment: Alignment.center,
               children: <Widget>[
                 SvgPicture.asset(
-                  AppAssets.greyCircles,
+                  AppAssets.imageGreyCircles,
                   fit: BoxFit.contain,
                 ),
                 Container(
