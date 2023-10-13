@@ -12,7 +12,7 @@ import 'package:roome/src/features/booking/data/models/booking_info.dart';
 
 import 'package:roome/src/features/booking/presentation/widgets/section_title.dart';
 
-import '../../../../core/widgets/custom_dialog.dart';
+import 'payment_dialog.dart';
 import 'other_payment_method.dart';
 
 class PaymentViewBody extends StatelessWidget {
@@ -81,7 +81,7 @@ class PaymentViewBody extends StatelessWidget {
               onPressed: () {
                 showAdaptiveDialog(
                   context: context,
-                  builder: (context) => CustomDialog(bookingInfo: bookingInfo),
+                  builder: (context) => PaymentDialog(bookingInfo: bookingInfo),
                 );
               },
               textStyle: AppTextStyles.textStyle15.copyWith(

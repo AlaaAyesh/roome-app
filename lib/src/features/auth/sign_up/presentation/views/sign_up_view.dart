@@ -9,7 +9,9 @@ import 'package:roome/src/features/auth/sign_up/presentation/widgets/sign_up_vie
 import '../../../../../config/routes/routes.dart';
 import '../../../../../core/helpers/cache_helper.dart';
 import '../../../../../core/helpers/helper.dart';
+import '../../../../../core/widgets/auth_loading_dialog.dart';
 import '../../../../../core/widgets/custom_snack_bar.dart';
+import '../../../../roome/presentation/cubits/roome/roome_cubit.dart';
 
 class SignUpView extends StatelessWidget {
   const SignUpView({super.key});
@@ -28,6 +30,13 @@ class SignUpView extends StatelessWidget {
   }
 
   void controlSignUpViewStates(SignUpState state, BuildContext context) {
+    if (state is SignUpLoadingState || state is SignUpWithGoogleLoadingState) {
+      showAdaptiveDialog<Widget>(
+        context: context,
+        builder: (context) => const AuthLoadingDialog(),
+      );
+    }
+
     if (state is SignUpErrorState) {
       CustomSnackBar.show(
         context: context,
@@ -40,7 +49,7 @@ class SignUpView extends StatelessWidget {
       CacheHelper.saveData(key: 'uId', value: state.uId).then((value) {
         if (value) {
           Helper.uId = state.uId;
-
+          BlocProvider.of<RoomeCubit>(context).getUserData();
           CustomSnackBar.show(
             context: context,
             title: "Success",
@@ -48,7 +57,6 @@ class SignUpView extends StatelessWidget {
             backgroundColor: Colors.green,
             icon: Icons.check_circle,
           );
-
           context.navigateAndReplacement(newRoute: Routes.roomViewRoute);
         }
       });
@@ -58,6 +66,14 @@ class SignUpView extends StatelessWidget {
       CacheHelper.saveData(key: 'uId', value: state.uId).then((value) {
         if (value) {
           Helper.uId = int.parse(state.uId);
+          BlocProvider.of<RoomeCubit>(context).getUserData();
+          CustomSnackBar.show(
+            context: context,
+            title: "Success",
+            message: "Account Created Successfully",
+            backgroundColor: Colors.green,
+            icon: Icons.check_circle,
+          );
           context.navigateAndReplacement(newRoute: Routes.roomViewRoute);
         }
       });

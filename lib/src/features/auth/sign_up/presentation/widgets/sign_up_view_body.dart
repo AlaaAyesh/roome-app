@@ -43,7 +43,7 @@ class SignUpViewBody extends StatelessWidget {
                 // TODO: Login with Apple
               },
             ),
-            SizedBox(height: SizeConfig.screenHeight! * 0.03),
+            SizedBox(height: SizeConfig.screenHeight! * 0.075),
             HaveAccountOrNot(
               onTap: () => context.getBack(),
               buttonText: 'Log in',

@@ -46,16 +46,6 @@ class SignInWithGoogleErrorState extends LoginState {
   List<Object> get props => [error];
 }
 
-class FirestoreSaveUserSuccessState extends LoginState {}
-
-class FirestoreSaveUserErrorState extends LoginState {
-  final String error;
-  const FirestoreSaveUserErrorState({required this.error});
-
-  @override
-  List<Object> get props => [error];
-}
-
 class SwitchPassVisibleState extends LoginState {
   final bool passVisibility;
 

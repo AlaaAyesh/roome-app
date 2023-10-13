@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 
 import 'package:reusable_components/reusable_components.dart';
 import 'package:roome/src/core/utils/app_colors.dart';
@@ -13,7 +12,7 @@ import 'package:roome/src/features/auth/sign_in/presentation/cubit/login_cubit.d
 
 import '../../../../../core/helpers/helper.dart';
 import '../../../../../core/widgets/forgot_password_text_button.dart';
-import '../../../../../core/widgets/my_circular_progress_indicator.dart';
+
 import 'remember_me_checkbox.dart';
 
 class LoginForm extends StatefulWidget {
@@ -108,26 +107,22 @@ class _LoginFormState extends State<LoginForm> {
           SizedBox(height: SizeConfig.screenHeight! * 0.04),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 15.w),
-            child: ConditionalBuilder(
-              condition: widget.state is! SignInLoadingState,
-              builder: (context) => MyCustomButton(
-                height: 47.h,
-                width: 305.w,
-                onPressed: () => login(context),
-                hasPrefix: false,
-                backgroundColor: AppColors.primaryColor,
-                borderRadius: BorderRadius.all(Radius.circular(10.r)),
-                child: Center(
-                  child: Text(
-                    'Log in',
-                    style: AppTextStyles.textStyle15.copyWith(
-                      color: Colors.white,
-                      fontWeight: FontWeight.w600,
-                    ),
+            child: MyCustomButton(
+              height: 47.h,
+              width: 305.w,
+              onPressed: () => login(context),
+              hasPrefix: false,
+              backgroundColor: AppColors.primaryColor,
+              borderRadius: BorderRadius.all(Radius.circular(10.r)),
+              child: Center(
+                child: Text(
+                  'Log in',
+                  style: AppTextStyles.textStyle15.copyWith(
+                    color: Colors.white,
+                    fontWeight: FontWeight.w600,
                   ),
                 ),
               ),
-              fallback: (context) => const MyCircularProgressIndicator(),
             ),
           ),
           SizedBox(height: SizeConfig.screenHeight! * 0.04),

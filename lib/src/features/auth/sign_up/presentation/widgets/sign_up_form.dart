@@ -1,6 +1,4 @@
-import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
-
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:reusable_components/reusable_components.dart';
 import 'package:roome/src/core/widgets/forgot_password_text_button.dart';
@@ -8,7 +6,6 @@ import 'package:roome/src/core/widgets/forgot_password_text_button.dart';
 import '../../../../../core/helpers/helper.dart';
 import '../../../../../core/utils/app_colors.dart';
 import '../../../../../core/utils/app_text_styles.dart';
-import '../../../../../core/widgets/my_circular_progress_indicator.dart';
 import '../../../../../core/widgets/reusable_pass_text_form_field.dart';
 import '../../../../../core/widgets/reusable_text_form_field.dart';
 import '../cubit/sign_up_cubit.dart';
@@ -140,26 +137,22 @@ class _SignUpFormState extends State<SignUpForm> {
           SizedBox(height: SizeConfig.screenHeight! * 0.03),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 15.w),
-            child: ConditionalBuilder(
-              condition: widget.state is! SignUpLoadingState,
-              builder: (context) => MyCustomButton(
-                height: 47.h,
-                width: 305.w,
-                onPressed: () => signUp(context),
-                hasPrefix: false,
-                backgroundColor: AppColors.primaryColor,
-                borderRadius: BorderRadius.all(Radius.circular(10.r)),
-                child: Center(
-                  child: Text(
-                    'Sign up',
-                    style: AppTextStyles.textStyle15.copyWith(
-                      color: Colors.white,
-                      fontWeight: FontWeight.w600,
-                    ),
+            child: MyCustomButton(
+              height: 47.h,
+              width: 305.w,
+              onPressed: () => signUp(context),
+              hasPrefix: false,
+              backgroundColor: AppColors.primaryColor,
+              borderRadius: BorderRadius.all(Radius.circular(10.r)),
+              child: Center(
+                child: Text(
+                  'Sign up',
+                  style: AppTextStyles.textStyle15.copyWith(
+                    color: Colors.white,
+                    fontWeight: FontWeight.w600,
                   ),
                 ),
               ),
-              fallback: (context) => const MyCircularProgressIndicator(),
             ),
           ),
           SizedBox(height: SizeConfig.screenHeight! * 0.03),
