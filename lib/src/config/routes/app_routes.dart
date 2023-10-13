@@ -18,9 +18,9 @@ import 'package:roome/src/features/details/presentation/views/details_view.dart'
 import 'package:roome/src/features/on_boarding/presentation/cubit/on_boarding_cubit.dart';
 import 'package:roome/src/features/on_boarding/presentation/views/on_boarding_view.dart';
 import 'package:roome/src/core/models/using_hero_model.dart';
-import 'package:roome/src/features/profile/presentation/views/profile_view.dart';
-import 'package:roome/src/features/roome/presentation/views/explore_see_all_view.dart';
-import 'package:roome/src/features/roome/presentation/views/near_me_see_all_view.dart';
+
+import 'package:roome/src/features/home/presentation/views/explore_see_all_view.dart';
+import 'package:roome/src/features/home/presentation/views/near_me_see_all_view.dart';
 import 'package:roome/src/features/roome/presentation/views/roome_view.dart';
 import 'package:roome/src/features/search/presentation/cubit/search_cubit.dart';
 import 'package:roome/src/features/search/presentation/views/search_view.dart';
@@ -116,9 +116,6 @@ class AppRoutes {
         return MaterialPageRoute(
           builder: (context) => TicketView(bookingInfo: args),
         );
-
-      case Routes.profileViewRoute:
-        return MaterialPageRoute(builder: (context) => const ProfileView());
 
       default:
         return unFoundRoute();

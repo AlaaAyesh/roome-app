@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../features/roome/presentation/cubits/favorite/favorite_cubit.dart';
+import '../../features/favorite/presentation/cubit/favorite_cubit.dart';
 import '../models/hotel.dart';
 
 class LoveBorderIcon extends StatelessWidget {
@@ -19,8 +19,7 @@ class LoveBorderIcon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<FavoriteCubit, FavoriteStates>(
-        builder: (context, index) {
+    return BlocBuilder<FavoriteCubit, FavoriteState>(builder: (context, index) {
       FavoriteCubit cubit = BlocProvider.of<FavoriteCubit>(context);
       return IconButton(
         onPressed: () {
