@@ -1,13 +1,12 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:roome/src/features/auth/sign_up/domain/entities/sign_up_parameters.dart';
 
 import 'package:roome/src/features/auth/sign_up/domain/usecases/sign_up_usecase.dart';
 import 'package:roome/src/features/auth/sign_up/domain/usecases/sign_up_with_google_usecase.dart';
 
 import '../../../../../core/entities/no_params.dart';
-
 import '../../../../../core/models/user_model.dart';
 
 part 'sign_up_state.dart';
@@ -44,12 +43,14 @@ class SignUpCubit extends Cubit<SignUpState> {
         value.fold(
           (failure) =>
               emit(SignUpErrorState(error: failure.errorMessage.toString())),
-          (user) => emit(
-            SignUpSuccessState(
-              uId: user.id!,
-              userModel: user,
-            ),
-          ),
+          (user) {
+            emit(
+              SignUpSuccessState(
+                uId: user.id!,
+                userModel: user,
+              ),
+            );
+          },
         );
       },
     );

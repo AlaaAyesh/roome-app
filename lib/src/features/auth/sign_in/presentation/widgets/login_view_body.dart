@@ -41,7 +41,7 @@ class LoginViewBody extends StatelessWidget {
                 // TODO: Login with Apple
               },
             ),
-            SizedBox(height: SizeConfig.screenHeight! * 0.036),
+            SizedBox(height: SizeConfig.screenHeight! * 0.075),
             HaveAccountOrNot(
               onTap: () {
                 context.navigateTo(routeName: Routes.signUpViewRoute);

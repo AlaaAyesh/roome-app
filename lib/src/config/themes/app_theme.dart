@@ -10,6 +10,7 @@ ThemeData lightTheme(context) => ThemeData(
         primary: AppColors.primaryColor,
         onPrimary: Colors.white,
       ),
+      useMaterial3: true,
       scaffoldBackgroundColor: AppColors.scaffoldBackgroundColor,
       fontFamily: AppStrings.fontFamily,
     );

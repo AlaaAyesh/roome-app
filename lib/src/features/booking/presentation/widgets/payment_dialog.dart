@@ -6,14 +6,14 @@ import 'package:roome/src/config/routes/routes.dart';
 import 'package:roome/src/core/utils/app_navigator.dart';
 import 'package:roome/src/features/booking/data/models/booking_info.dart';
 
-import '../helpers/helper.dart';
-import '../utils/app_assets.dart';
-import '../utils/app_colors.dart';
-import '../utils/app_text_styles.dart';
-import 'custom_action_button.dart';
+import '../../../../core/helpers/helper.dart';
+import '../../../../core/utils/app_assets.dart';
+import '../../../../core/utils/app_colors.dart';
+import '../../../../core/utils/app_text_styles.dart';
+import '../../../../core/widgets/custom_action_button.dart';
 
-class CustomDialog extends StatelessWidget {
-  const CustomDialog({
+class PaymentDialog extends StatelessWidget {
+  const PaymentDialog({
     super.key,
     required this.bookingInfo,
   });

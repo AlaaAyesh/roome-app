@@ -63,9 +63,8 @@ class _DateFormState extends State<DateForm> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
             CustomBorderedContainer(
-              padding: EdgeInsets.only(left: 18.w),
+              padding: EdgeInsets.only(left: 8.w),
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
                   Text(
                     _selectedRoomType,
@@ -75,8 +74,6 @@ class _DateFormState extends State<DateForm> {
                     ),
                   ),
                   DropdownButton(
-                    // dropdownColor: AppColors.primaryColor.withOpacity(0.04),
-
                     borderRadius: BorderRadius.circular(10.r),
                     items:
                         _roomTypes.map<DropdownMenuItem<String>>((String type) {
@@ -172,7 +169,7 @@ class _DateFormState extends State<DateForm> {
   }
 
   void continueToBookingTwo(BuildContext context) {
-    if (widget.checkInDate != '' && widget.checkOutDate != '' ) {
+    if (widget.checkInDate != '' && widget.checkOutDate != '') {
       context.navigateTo(
         routeName: Routes.bookingTwoViewRoute,
         arguments: BookingInfo(

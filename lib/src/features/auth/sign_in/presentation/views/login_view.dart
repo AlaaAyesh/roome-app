@@ -7,9 +7,11 @@ import 'package:roome/src/core/utils/app_navigator.dart';
 import 'package:roome/src/core/widgets/custom_snack_bar.dart';
 import 'package:roome/src/features/auth/sign_in/presentation/cubit/login_cubit.dart';
 import 'package:roome/src/features/auth/sign_in/presentation/widgets/login_view_body.dart';
+import 'package:roome/src/features/roome/presentation/cubits/roome/roome_cubit.dart';
 
 import '../../../../../config/routes/routes.dart';
 import '../../../../../core/helpers/helper.dart';
+import '../../../../../core/widgets/auth_loading_dialog.dart';
 
 class LoginView extends StatelessWidget {
   const LoginView({super.key});
@@ -30,6 +32,13 @@ class LoginView extends StatelessWidget {
   }
 
   void controlSignInViewStates(LoginState state, BuildContext context) {
+    if (state is SignInLoadingState || state is SignInWithGoogleLoadingState) {
+      showAdaptiveDialog<Widget>(
+        context: context,
+        builder: (context) => const AuthLoadingDialog(),
+      );
+    }
+
     if (state is SignInErrorState) {
       CustomSnackBar.show(
         context: context,
@@ -42,6 +51,7 @@ class LoginView extends StatelessWidget {
       CacheHelper.saveData(key: 'uId', value: state.uId).then((value) {
         if (value) {
           Helper.uId = state.uId;
+          BlocProvider.of<RoomeCubit>(context).getUserData();
           context.navigateAndReplacement(newRoute: Routes.roomViewRoute);
         }
       });
@@ -51,6 +61,7 @@ class LoginView extends StatelessWidget {
       CacheHelper.saveData(key: 'uId', value: state.uId).then((value) {
         if (value) {
           Helper.uId = int.parse(state.uId);
+          BlocProvider.of<RoomeCubit>(context).getUserData();
           context.navigateAndReplacement(newRoute: Routes.roomViewRoute);
         }
       });

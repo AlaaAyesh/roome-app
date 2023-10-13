@@ -34,8 +34,7 @@ class Facilities extends StatelessWidget {
             ),
             SizedBox(height: SizeConfig.screenHeight! * 0.009),
             Text(
-              // To get the first two
-              hotel.facilities![index].name!.split(' ').take(2).join(' '),
+              hotel.facilities![index].name!,
               style: AppTextStyles.textStyle14Medium.copyWith(
                 fontSize: 13.sp,
                 color: AppColors.lightGrey.withOpacity(0.49),
