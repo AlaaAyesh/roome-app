@@ -1,16 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../cubits/roome/roome_cubit.dart';
+import '../cubit/roome_cubit.dart';
 
 class RoomViewBody extends StatelessWidget {
-  const RoomViewBody({
-    super.key,
-  });
+  const RoomViewBody({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<RoomeCubit, FavoriteState>(
+    return BlocBuilder<RoomeCubit, RoomeState>(
       builder: (context, state) {
         RoomeCubit cubit = RoomeCubit.getObject(context);
         return WillPopScope(
