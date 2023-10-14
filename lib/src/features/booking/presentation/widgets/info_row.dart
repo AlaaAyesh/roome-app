@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:roome/src/config/themes/cubit/themes_cubit.dart';
 
 import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/app_text_styles.dart';
@@ -20,12 +22,18 @@ class InfoRow extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: <Widget>[
-        Text(
-          '$title:',
-          style: AppTextStyles.textStyle12.copyWith(
-            fontWeight: FontWeight.w600,
-            color: Colors.black.withOpacity(0.6),
-          ),
+        BlocBuilder<ThemesCubit, ThemeData>(
+          builder: (context, state) {
+            return Text(
+              '$title:',
+              style: AppTextStyles.textStyle12.copyWith(
+                fontWeight: FontWeight.w600,
+                color: state.brightness == Brightness.light
+                    ? Colors.black.withOpacity(0.6)
+                    : AppColors.white60,
+              ),
+            );
+          },
         ),
         Text(
           info,

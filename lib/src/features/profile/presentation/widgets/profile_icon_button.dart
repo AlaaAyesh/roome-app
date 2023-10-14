@@ -28,7 +28,10 @@ class ProfileIconButton extends StatelessWidget {
           color: AppColors.primaryColor.withOpacity(0.24),
           borderRadius: BorderRadius.all(Radius.circular(5.r)),
         ),
-        child: SvgPicture.asset(icon),
+        child: SvgPicture.asset(
+          icon,
+          color: AppColors.primaryColor,
+        ),
       ),
     );
   }

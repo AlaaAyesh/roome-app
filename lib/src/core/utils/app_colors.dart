@@ -15,6 +15,14 @@ class AppColors {
   static Color shadowColor = HexColorHandler('6B86B3').withOpacity(0.25);
   static Color starColor = HexColorHandler('FCD061');
   static Color shimmerBaseColor = Colors.grey.shade300;
+  static Color darkShimmerBaseColor = Colors.grey.shade700.withOpacity(0.6);
   static Color shimmerHighlightColor = Colors.grey.shade100;
+  static Color darkShimmerHighlightColor =
+      Colors.grey.shade800.withOpacity(0.3);
   static const Color shimmerContainerColor = Colors.grey;
+  static Color darkShimmerContainerColor = Colors.grey.shade700;
+  static const Color darkGreyColor = Color(0xFF121212);
+  static const Color darkHeaderClr = Color(0xFF424242);
+  static Color white60 = Colors.white60;
+  static Color white38 = Colors.white38;
 }

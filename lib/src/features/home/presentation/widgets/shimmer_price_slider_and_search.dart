@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:roome/src/config/themes/cubit/themes_cubit.dart';
 
 import 'package:shimmer/shimmer.dart';
 
@@ -10,23 +12,31 @@ class ShimmerPriceSliderAndSearch extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Shimmer.fromColors(
-      baseColor: AppColors.shimmerBaseColor,
-      highlightColor: AppColors.shimmerHighlightColor,
-      enabled: true,
-      child: Container(
-        height: 153.h,
-        width: 384.w,
-        padding: EdgeInsets.only(top: 11.h, left: 13.w),
-        margin: EdgeInsets.only(right: 26.w),
-        decoration: BoxDecoration(
-          color: AppColors.shimmerContainerColor,
-          borderRadius: BorderRadius.all(Radius.circular(20.r)),
-          border: Border.all(
-            color: AppColors.borderColor,
+    return BlocBuilder<ThemesCubit, ThemeData>(
+      builder: (context, state) {
+        return Shimmer.fromColors(
+          baseColor: state.brightness == Brightness.light
+              ? AppColors.shimmerBaseColor
+              : AppColors.darkShimmerBaseColor,
+          highlightColor: state.brightness == Brightness.light
+              ? AppColors.shimmerHighlightColor
+              : AppColors.darkShimmerHighlightColor,
+          enabled: true,
+          child: Container(
+            height: 153.h,
+            width: 384.w,
+            padding: EdgeInsets.only(top: 11.h, left: 13.w),
+            margin: EdgeInsets.only(right: 26.w),
+            decoration: BoxDecoration(
+              color: AppColors.shimmerContainerColor,
+              borderRadius: BorderRadius.all(Radius.circular(20.r)),
+              border: Border.all(
+                color: AppColors.borderColor,
+              ),
+            ),
           ),
-        ),
-      ),
+        );
+      },
     );
   }
 }

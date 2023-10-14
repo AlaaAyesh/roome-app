@@ -1,4 +1,3 @@
-import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:roome/src/features/auth/sign_up/domain/entities/sign_up_parameters.dart';

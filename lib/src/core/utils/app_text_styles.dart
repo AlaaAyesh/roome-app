@@ -11,6 +11,7 @@ class AppTextStyles {
     decorationColor: AppColors.primaryColor,
     decorationStyle: TextDecorationStyle.solid,
     decorationThickness: 2.w,
+    color: Colors.black,
   );
 
   static TextStyle onBoardingHeadingTextStyle = TextStyle(

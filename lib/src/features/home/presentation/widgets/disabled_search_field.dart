@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:reusable_components/reusable_components.dart';
 import 'package:roome/src/core/utils/app_navigator.dart';
@@ -10,7 +9,9 @@ import '../../../../core/utils/app_strings.dart';
 import '../../../../core/utils/app_text_styles.dart';
 
 class DisabledSearchField extends StatelessWidget {
-  const DisabledSearchField({super.key});
+  const DisabledSearchField({super.key, required this.state});
+
+  final ThemeData state;
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +24,9 @@ class DisabledSearchField extends StatelessWidget {
         enabled: false,
         height: 36.h,
         width: 230.w,
-        backgroundColor: AppColors.darkGrey.withOpacity(0.65),
+        backgroundColor: state.brightness == Brightness.light
+            ? AppColors.darkGrey.withOpacity(0.65)
+            : Colors.white54,
         contentPadding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 6.h),
         borderRadius: BorderRadius.all(Radius.circular(10.r)),
         searchTextFieldController: searchTextFieldController,

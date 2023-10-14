@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:roome/src/config/themes/cubit/themes_cubit.dart';
 
 import 'package:roome/src/core/utils/app_text_styles.dart';
 
@@ -27,12 +29,18 @@ class NumberOfContainer extends StatelessWidget {
             icon: Icons.remove,
             onTap: reduceOnTap,
           ),
-          Text(
-            number.toString(),
-            style: AppTextStyles.bottomNavTextStyle.copyWith(
-              fontWeight: FontWeight.w900,
-              color: Colors.black.withOpacity(0.62),
-            ),
+          BlocBuilder<ThemesCubit, ThemeData>(
+            builder: (context, state) {
+              return Text(
+                number.toString(),
+                style: AppTextStyles.bottomNavTextStyle.copyWith(
+                  fontWeight: FontWeight.w900,
+                  color: state.brightness == Brightness.light
+                      ? Colors.black.withOpacity(0.62)
+                      : Colors.white,
+                ),
+              );
+            },
           ),
           NumberController(
             icon: Icons.add,

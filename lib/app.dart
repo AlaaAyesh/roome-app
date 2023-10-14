@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:reusable_components/reusable_components.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:roome/src/config/routes/app_routes.dart';
-import 'package:roome/src/config/themes/app_theme.dart';
+import 'package:roome/src/config/themes/cubit/themes_cubit.dart';
 import 'package:roome/src/core/utils/app_strings.dart';
 
 import 'src/core/utils/service_locator.dart';
@@ -12,7 +12,6 @@ import 'src/features/home/presentation/cubits/hotels/hotels_cubit.dart';
 import 'src/features/home/presentation/cubits/near_me/near_me_cubit.dart';
 import 'src/features/home/presentation/cubits/recommended/recommended_cubit.dart';
 import 'src/features/roome/presentation/cubit/roome_cubit.dart';
-
 
 class RoomeApp extends StatelessWidget {
   const RoomeApp({super.key});
@@ -45,12 +44,17 @@ class RoomeApp extends StatelessWidget {
             create: (context) =>
                 serviceLocator.get<FavoriteCubit>()..getFavorites(),
           ),
+          BlocProvider(create: (context) => serviceLocator.get<ThemesCubit>()),
         ],
-        child: MaterialApp(
-          title: AppStrings.appTitle,
-          debugShowCheckedModeBanner: false,
-          theme: lightTheme(context),
-          onGenerateRoute: AppRoutes.onGenerateRoute,
+        child: BlocBuilder<ThemesCubit, ThemeData>(
+          builder: (context, themeState) {
+            return MaterialApp(
+              title: AppStrings.appTitle,
+              debugShowCheckedModeBanner: false,
+              theme: themeState,
+              onGenerateRoute: AppRoutes.onGenerateRoute,
+            );
+          },
         ),
       ),
     );

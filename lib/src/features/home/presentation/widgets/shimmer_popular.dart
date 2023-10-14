@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:reusable_components/reusable_components.dart';
+import 'package:roome/src/config/themes/cubit/themes_cubit.dart';
 import 'package:shimmer/shimmer.dart';
 
 import '../../../../core/utils/app_colors.dart';
@@ -11,29 +13,38 @@ class ShimmerPopular extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Shimmer.fromColors(
-      baseColor: AppColors.shimmerBaseColor,
-      highlightColor: AppColors.shimmerHighlightColor,
-      enabled: true,
-      child: ListView.separated(
-        shrinkWrap: true,
-        padding: EdgeInsets.zero,
-        physics: const NeverScrollableScrollPhysics(),
-        itemBuilder: (context, index) => Container(
-          height: SizeConfig.screenHeight! * 0.15,
-          width: SizeConfig.screenWidth! * 0.9,
-          decoration: BoxDecoration(
-            color: AppColors.shimmerContainerColor,
-            borderRadius: BorderRadius.all(Radius.circular(10.r)),
-            border: Border.all(
-              color: AppColors.borderColor,
-              width: 1.w,
+    return BlocBuilder<ThemesCubit, ThemeData>(
+      builder: (context, state) {
+        return Shimmer.fromColors(
+          baseColor: state.brightness == Brightness.light
+              ? AppColors.shimmerBaseColor
+              : AppColors.darkShimmerBaseColor,
+          highlightColor: state.brightness == Brightness.light
+              ? AppColors.shimmerHighlightColor
+              : AppColors.darkShimmerHighlightColor,
+          enabled: true,
+          child: ListView.separated(
+            shrinkWrap: true,
+            padding: EdgeInsets.zero,
+            physics: const NeverScrollableScrollPhysics(),
+            itemBuilder: (context, index) => Container(
+              height: SizeConfig.screenHeight! * 0.15,
+              width: SizeConfig.screenWidth! * 0.9,
+              decoration: BoxDecoration(
+                color: AppColors.shimmerContainerColor,
+                borderRadius: BorderRadius.all(Radius.circular(10.r)),
+                border: Border.all(
+                  color: AppColors.borderColor,
+                  width: 1.w,
+                ),
+              ),
             ),
+            separatorBuilder: (context, index) =>
+                const SeparatorWidget(height: 33),
+            itemCount: 8,
           ),
-        ),
-        separatorBuilder: (context, index) => const SeparatorWidget(height: 33),
-        itemCount: 8,
-      ),
+        );
+      },
     );
   }
 }

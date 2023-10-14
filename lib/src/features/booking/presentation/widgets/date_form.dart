@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:reusable_components/reusable_components.dart';
 import 'package:roome/src/config/routes/routes.dart';
+import 'package:roome/src/config/themes/cubit/themes_cubit.dart';
 import 'package:roome/src/core/utils/app_navigator.dart';
 
 import 'package:roome/src/core/utils/app_text_styles.dart';
@@ -93,9 +94,15 @@ class _DateFormState extends State<DateForm> {
                         _selectedRoomType = newVal!;
                       });
                     },
-                    icon: Icon(
-                      Icons.keyboard_arrow_down,
-                      color: Colors.black.withOpacity(0.62),
+                    icon: BlocBuilder<ThemesCubit, ThemeData>(
+                      builder: (context, state) {
+                        return Icon(
+                          Icons.keyboard_arrow_down,
+                          color: state.brightness == Brightness.light
+                              ? Colors.black.withOpacity(0.62)
+                              : Colors.white70,
+                        );
+                      },
                     ),
                     elevation: 4.w.toInt(),
                     underline: Container(height: 0),

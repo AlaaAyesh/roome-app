@@ -1,7 +1,6 @@
-import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
-
 import 'package:equatable/equatable.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:roome/src/features/search/domain/usecases/search_hotels_usecase.dart';
 

@@ -8,11 +8,13 @@ class ProfileSectionTitle extends StatelessWidget {
     required this.title,
     this.animation,
     this.hasAnimation = true,
+    required this.themeState,
   });
 
   final Animation<Offset>? animation;
   final String title;
   final bool hasAnimation;
+  final ThemeData themeState;
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +27,9 @@ class ProfileSectionTitle extends StatelessWidget {
                 title,
                 style: AppTextStyles.appBarTextStyle.copyWith(
                   fontWeight: FontWeight.normal,
-                  color: Colors.black,
+                  color: themeState.brightness == Brightness.light
+                      ? Colors.black
+                      : Colors.white,
                 ),
               ),
             ),
@@ -34,7 +38,9 @@ class ProfileSectionTitle extends StatelessWidget {
             title,
             style: AppTextStyles.appBarTextStyle.copyWith(
               fontWeight: FontWeight.normal,
-              color: Colors.black,
+              color: themeState.brightness == Brightness.light
+                  ? Colors.black
+                  : Colors.white,
             ),
           );
   }

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:reusable_components/reusable_components.dart';
+import 'package:roome/src/config/themes/cubit/themes_cubit.dart';
 import 'package:roome/src/core/utils/app_navigator.dart';
 
 import '../../../../config/routes/routes.dart';
@@ -33,12 +35,18 @@ class NearMe extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
-              Text(
-                'Explore',
-                style: AppTextStyles.hintStyle.copyWith(
-                  fontWeight: FontWeight.w600,
-                  color: Colors.black,
-                ),
+              BlocBuilder<ThemesCubit, ThemeData>(
+                builder: (context, state) {
+                  return Text(
+                    'Explore',
+                    style: AppTextStyles.hintStyle.copyWith(
+                      fontWeight: FontWeight.w600,
+                      color: state.brightness == Brightness.light
+                          ? Colors.black
+                          : Colors.white,
+                    ),
+                  );
+                },
               ),
               SeeAllTextButton(
                 onTap: () => context.navigateTo(
