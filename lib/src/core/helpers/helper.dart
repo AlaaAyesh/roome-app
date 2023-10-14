@@ -11,10 +11,10 @@ class Helper {
   static int? uId;
   static UserModel? currentUser;
 
-  static UnderlineInputBorder buildUnderlineInputBorder() {
+  static UnderlineInputBorder buildUnderlineInputBorder({Color? color}) {
     return UnderlineInputBorder(
       borderSide: BorderSide(
-        color: AppColors.primaryColor,
+        color: color ?? AppColors.primaryColor,
         width: 0.75.w,
       ),
     );

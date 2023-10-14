@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:reusable_components/reusable_components.dart';
 import 'package:roome/src/core/utils/app_assets.dart';
+import 'package:roome/src/core/utils/app_colors.dart';
+import 'package:roome/src/core/utils/app_text_styles.dart';
+
+import 'image_circle_button.dart';
 
 class EditProfileImageBottomSheet {
   static void buildBottomSheet({
@@ -36,7 +40,7 @@ class ProfileImageEditBottomSheet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BottomSheet(
-      backgroundColor: Colors.white,
+      backgroundColor: AppColors.primaryColor,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(
           top: Radius.circular(50.0.r),
@@ -55,45 +59,22 @@ class ProfileImageEditBottomSheet extends StatelessWidget {
           ),
           children: <Widget>[
             SizedBox(height: SizeConfig.screenHeight! * 0.008),
-            const Text(
+            Text(
               "Pick a profile picture",
-              style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.w500,
-                color: Colors.black,
-                letterSpacing: 0.5,
-              ),
+              style: AppTextStyles.snackBarTitle,
               textAlign: TextAlign.center,
             ),
             SizedBox(height: SizeConfig.screenHeight! * 0.01),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
-                ElevatedButton(
+                ImageCircleButton(
                   onPressed: onPressedGallery,
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.white,
-                    shape: const CircleBorder(),
-                    fixedSize: Size(150.w, 130.h),
-                  ),
-                  child: Image.asset(
-                    AppAssets.addImage,
-                    width: 180.w,
-                    height: 100.h,
-                  ),
+                  icon: AppAssets.addImage,
                 ),
-                ElevatedButton(
+                ImageCircleButton(
                   onPressed: onPressedCamera,
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.white,
-                    shape: const CircleBorder(),
-                    fixedSize: Size(150.w, 130.h),
-                  ),
-                  child: Image.asset(
-                    AppAssets.camera,
-                    width: 180.w,
-                    height: 100.h,
-                  ),
+                  icon: AppAssets.camera,
                 ),
               ],
             ),

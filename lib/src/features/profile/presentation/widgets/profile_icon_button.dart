@@ -9,12 +9,12 @@ class ProfileIconButton extends StatelessWidget {
     super.key,
     required this.icon,
     this.onTap,
-    this.isNotification = false,
+    this.isNotBackIcon = false,
   });
 
   final String icon;
   final VoidCallback? onTap;
-  final bool isNotification;
+  final bool isNotBackIcon;
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +23,7 @@ class ProfileIconButton extends StatelessWidget {
       child: Container(
         height: 32.w,
         width: 32.w,
-        padding: EdgeInsets.symmetric(horizontal: isNotification ? 4.w : 10.w),
+        padding: EdgeInsets.symmetric(horizontal: isNotBackIcon ? 2.w : 10.w),
         decoration: BoxDecoration(
           color: AppColors.primaryColor.withOpacity(0.24),
           borderRadius: BorderRadius.all(Radius.circular(5.r)),
