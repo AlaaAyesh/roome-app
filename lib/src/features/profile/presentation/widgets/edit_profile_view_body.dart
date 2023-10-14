@@ -11,6 +11,7 @@ import 'package:roome/src/features/profile/presentation/widgets/profile_image.da
 
 import '../../../../core/helpers/helper.dart';
 import '../../../../core/utils/app_assets.dart';
+import '../../../../core/utils/app_constants.dart';
 import '../../../../core/utils/app_text_styles.dart';
 import 'profile_section_title.dart';
 
@@ -53,7 +54,7 @@ class _EditProfileViewBodyState extends State<EditProfileViewBody>
             Row(
               children: <Widget>[
                 FadeInLeft(
-                  from: _fadeInValue,
+                  from: AppConstants.fadeInHorizontalValue,
                   child: ProfileIconButton(
                     icon: AppAssets.iconBackIos,
                     onTap: () => context.getBack(),
@@ -61,7 +62,7 @@ class _EditProfileViewBodyState extends State<EditProfileViewBody>
                 ),
                 SizedBox(width: SizeConfig.screenWidth! * 0.2),
                 FadeInRight(
-                  from: _fadeInValue,
+                  from: AppConstants.fadeInHorizontalValue,
                   child: Text(
                     'Edit Profile',
                     style: AppTextStyles.appBarTextStyle,
@@ -71,12 +72,12 @@ class _EditProfileViewBodyState extends State<EditProfileViewBody>
             ),
             SizedBox(height: SizeConfig.screenHeight! * 0.049),
             FadeInLeft(
-              from: _fadeInValue,
+              from: AppConstants.fadeInHorizontalValue,
               child: const ProfileImage(),
             ),
             SizedBox(height: SizeConfig.screenHeight! * 0.029),
             FadeInRight(
-              from: _fadeInValue,
+              from: AppConstants.fadeInHorizontalValue,
               child: const ProfileSectionTitle(
                 hasAnimation: false,
                 title: 'Personal Info',
@@ -84,7 +85,7 @@ class _EditProfileViewBodyState extends State<EditProfileViewBody>
             ),
             SizedBox(height: SizeConfig.screenHeight! * 0.01),
             FadeInRight(
-              from: _fadeInValue,
+              from: AppConstants.fadeInHorizontalValue,
               child: InfoContainer(
                 height: 300,
                 child: Column(
@@ -118,7 +119,7 @@ class _EditProfileViewBodyState extends State<EditProfileViewBody>
             ),
             SizedBox(height: SizeConfig.screenHeight! * 0.025),
             FadeInRight(
-              from: _fadeInValue,
+              from: AppConstants.fadeInHorizontalValue,
               child: const ProfileSectionTitle(
                 hasAnimation: false,
                 title: 'Contact Info',
@@ -126,7 +127,7 @@ class _EditProfileViewBodyState extends State<EditProfileViewBody>
             ),
             SizedBox(height: SizeConfig.screenHeight! * 0.01),
             FadeInRight(
-              from: _fadeInValue,
+              from: AppConstants.fadeInHorizontalValue,
               child: InfoContainer(
                 height: 150,
                 child: Column(
@@ -149,7 +150,7 @@ class _EditProfileViewBodyState extends State<EditProfileViewBody>
             ),
             SizedBox(height: SizeConfig.screenHeight! * 0.044),
             FadeInLeft(
-              from: _fadeInValue,
+              from: AppConstants.fadeInHorizontalValue,
               child: MyCustomButton(
                 height: 50.h,
                 width: SizeConfig.screenWidth,
@@ -172,8 +173,6 @@ class _EditProfileViewBodyState extends State<EditProfileViewBody>
       ),
     );
   }
-
-  double get _fadeInValue => 200.w;
 
   void _disposeControllers() {
     _nameController.dispose();

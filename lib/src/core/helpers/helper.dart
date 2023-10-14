@@ -76,7 +76,7 @@ class Helper {
     return BoxDecoration(
       color: AppColors.shimmerContainerColor,
       borderRadius: BorderRadius.all(
-        Radius.circular(AppConstants.shimmerRadius.r),
+        Radius.circular(AppConstants.shimmerRadius),
       ),
     );
   }

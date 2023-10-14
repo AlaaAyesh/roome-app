@@ -31,7 +31,10 @@ class PaymentDialog extends StatelessWidget {
         top: SizeConfig.screenHeight! * 0.25,
         bottom: 50.h,
       ),
-      padding: EdgeInsets.symmetric(vertical: 42.h),
+      padding: EdgeInsets.symmetric(
+        vertical: 42.h,
+        horizontal: 10.w,
+      ),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.all(Radius.circular(20.r)),

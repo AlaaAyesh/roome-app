@@ -10,8 +10,9 @@ class BookingOneView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body:
-          SafeArea(child: BookingOneViewBody(bookedHotelInfo: bookedHotelInfo)),
+      body: SafeArea(
+        child: BookingOneViewBody(bookedHotelInfo: bookedHotelInfo),
+      ),
     );
   }
 }
