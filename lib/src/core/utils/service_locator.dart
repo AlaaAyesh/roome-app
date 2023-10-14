@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get_it/get_it.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
+import 'package:roome/src/config/themes/cubit/themes_cubit.dart';
 import 'package:roome/src/core/api/api_consumer.dart';
 
 import 'package:roome/src/features/auth/sign_in/presentation/cubit/login_cubit.dart';
@@ -364,4 +365,6 @@ void setUpForCubits() {
   );
 
   serviceLocator.registerFactory<BookingOneCubit>(() => BookingOneCubit());
+
+  serviceLocator.registerFactory<ThemesCubit>(() => ThemesCubit());
 }

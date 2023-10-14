@@ -1,7 +1,9 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:reusable_components/reusable_components.dart';
+import 'package:roome/src/config/themes/cubit/themes_cubit.dart';
 
 import '../../../../core/models/hotel.dart';
 import '../../../../core/utils/app_colors.dart';
@@ -33,12 +35,18 @@ class Facilities extends StatelessWidget {
               errorWidget: (context, url, error) => const CustomErrorIcon(),
             ),
             SizedBox(height: SizeConfig.screenHeight! * 0.009),
-            Text(
-              hotel.facilities![index].name!,
-              style: AppTextStyles.textStyle14Medium.copyWith(
-                fontSize: 13.sp,
-                color: AppColors.lightGrey.withOpacity(0.49),
-              ),
+            BlocBuilder<ThemesCubit, ThemeData>(
+              builder: (context, state) {
+                return Text(
+                  hotel.facilities![index].name!,
+                  style: AppTextStyles.textStyle14Medium.copyWith(
+                    fontSize: 13.sp,
+                    color: state.brightness == Brightness.light
+                        ? AppColors.lightGrey.withOpacity(0.49)
+                        : AppColors.white60,
+                  ),
+                );
+              },
             ),
           ],
         ),

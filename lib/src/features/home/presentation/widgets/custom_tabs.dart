@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:reusable_components/reusable_components.dart';
+import 'package:roome/src/config/themes/cubit/themes_cubit.dart';
 
 import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/app_text_styles.dart';
@@ -85,14 +87,22 @@ class _CustomTabsState extends State<CustomTabs> {
                             left: index == 0 ? 10.w : 22.w,
                             top: 7.w,
                           ),
-                          child: Text(
-                            tabsTitles[index],
-                            style: AppTextStyles.hintStyle.copyWith(
-                              fontWeight: FontWeight.w500,
-                              color: current == index
-                                  ? Colors.black
-                                  : Colors.black.withOpacity(0.34),
-                            ),
+                          child: BlocBuilder<ThemesCubit, ThemeData>(
+                            builder: (context, state) {
+                              return Text(
+                                tabsTitles[index],
+                                style: AppTextStyles.hintStyle.copyWith(
+                                  fontWeight: FontWeight.w500,
+                                  color: state.brightness == Brightness.light
+                                      ? current == index
+                                          ? Colors.black
+                                          : Colors.black.withOpacity(0.34)
+                                      : current == index
+                                          ? Colors.white
+                                          : Colors.white38,
+                                ),
+                              );
+                            },
                           ),
                         ),
                       );

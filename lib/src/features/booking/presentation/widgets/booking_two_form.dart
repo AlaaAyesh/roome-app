@@ -1,8 +1,10 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:reusable_components/reusable_components.dart';
 import 'package:roome/src/config/routes/routes.dart';
+import 'package:roome/src/config/themes/cubit/themes_cubit.dart';
 import 'package:roome/src/core/utils/app_colors.dart';
 import 'package:roome/src/core/utils/app_constants.dart';
 import 'package:roome/src/core/utils/app_navigator.dart';
@@ -122,22 +124,28 @@ class _BookingTwoFormState extends State<BookingTwoForm> {
             ],
           ),
           SizedBox(height: SizeConfig.screenHeight! * 0.013),
-          BookingTwoTextField(
-            hint: 'Click Here to Upload',
-            hintStyle: AppTextStyles.textStyle14Medium.copyWith(
-              color: AppColors.primaryColor,
-            ),
-            controller: _idController,
-            textCapitalization: TextCapitalization.none,
-            keyboardType: TextInputType.text,
-            border: Border.all(color: AppColors.primaryColor),
-            width: SizeConfig.screenWidth,
-            backgroundColor: Colors.white,
-            prefixIcon: Icon(
-              Icons.cloud_upload,
-              color: AppColors.primaryColor,
-              size: 24.w,
-            ),
+          BlocBuilder<ThemesCubit, ThemeData>(
+            builder: (context, state) {
+              return BookingTwoTextField(
+                hint: 'Click Here to Upload',
+                hintStyle: AppTextStyles.textStyle14Medium.copyWith(
+                  color: AppColors.primaryColor,
+                ),
+                controller: _idController,
+                textCapitalization: TextCapitalization.none,
+                keyboardType: TextInputType.text,
+                border: Border.all(color: AppColors.primaryColor),
+                width: SizeConfig.screenWidth,
+                backgroundColor: state.brightness == Brightness.light
+                    ? Colors.white
+                    : Colors.black,
+                prefixIcon: Icon(
+                  Icons.cloud_upload,
+                  color: AppColors.primaryColor,
+                  size: 24.w,
+                ),
+              );
+            },
           ),
           SizedBox(height: SizeConfig.screenHeight! * 0.019),
           FadeInRight(

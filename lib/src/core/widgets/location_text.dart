@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:roome/src/config/themes/cubit/themes_cubit.dart';
 
 import '../utils/app_colors.dart';
 import '../utils/app_text_styles.dart';
@@ -22,16 +24,22 @@ class LocationText extends StatelessWidget {
           size: 16.w,
         ),
         SizedBox(width: 5.w),
-        Flexible(
-          child: Text(
-            location,
-            style: AppTextStyles.textStyle14Medium.copyWith(
-              fontSize: 13.sp,
-              color: AppColors.lightGrey.withOpacity(0.24),
-            ),
-            maxLines: 1,
-            overflow: TextOverflow.ellipsis,
-          ),
+        BlocBuilder<ThemesCubit, ThemeData>(
+          builder: (context, state) {
+            return Flexible(
+              child: Text(
+                location,
+                style: AppTextStyles.textStyle14Medium.copyWith(
+                  fontSize: 13.sp,
+                  color: state.brightness == Brightness.light
+                      ? AppColors.lightGrey.withOpacity(0.24)
+                      : AppColors.white60,
+                ),
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+              ),
+            );
+          },
         ),
       ],
     );

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:reusable_components/reusable_components.dart';
+import 'package:roome/src/config/themes/cubit/themes_cubit.dart';
 import 'package:roome/src/core/widgets/separator_widget.dart';
 import 'package:shimmer/shimmer.dart';
 
@@ -12,52 +14,60 @@ class ShimmerFavoriteBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Shimmer.fromColors(
-      baseColor: AppColors.shimmerBaseColor,
-      highlightColor: AppColors.shimmerHighlightColor,
-      enabled: true,
-      child: SingleChildScrollView(
-        physics: const BouncingScrollPhysics(),
-        child: Padding(
-          padding: EdgeInsets.only(
-            top: 40.h,
-            bottom: 16.h,
-            right: 27.w,
-            left: 14.w,
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Container(
-                height: 15.h,
-                width: 110.w,
-                decoration: Helper.buildShimmerDecoration(),
+    return BlocBuilder<ThemesCubit, ThemeData>(
+      builder: (context, state) {
+        return Shimmer.fromColors(
+          baseColor: state.brightness == Brightness.light
+              ? AppColors.shimmerBaseColor
+              : AppColors.darkShimmerBaseColor,
+          highlightColor: state.brightness == Brightness.light
+              ? AppColors.shimmerHighlightColor
+              : AppColors.darkShimmerHighlightColor,
+          enabled: true,
+          child: SingleChildScrollView(
+            physics: const BouncingScrollPhysics(),
+            child: Padding(
+              padding: EdgeInsets.only(
+                top: 40.h,
+                bottom: 16.h,
+                right: 27.w,
+                left: 14.w,
               ),
-              SizedBox(height: SizeConfig.screenHeight! * 0.047),
-              ListView.separated(
-                shrinkWrap: true,
-                padding: EdgeInsets.zero,
-                physics: const NeverScrollableScrollPhysics(),
-                itemBuilder: (context, index) => Container(
-                  height: SizeConfig.screenHeight! * 0.15,
-                  width: SizeConfig.screenWidth! * 0.9,
-                  decoration: BoxDecoration(
-                    color: AppColors.shimmerContainerColor,
-                    borderRadius: BorderRadius.all(Radius.circular(10.r)),
-                    border: Border.all(
-                      color: AppColors.borderColor,
-                      width: 1.w,
-                    ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Container(
+                    height: 15.h,
+                    width: 110.w,
+                    decoration: Helper.buildShimmerDecoration(state),
                   ),
-                ),
-                separatorBuilder: (context, index) =>
-                    const SeparatorWidget(height: 33),
-                itemCount: 8,
+                  SizedBox(height: SizeConfig.screenHeight! * 0.047),
+                  ListView.separated(
+                    shrinkWrap: true,
+                    padding: EdgeInsets.zero,
+                    physics: const NeverScrollableScrollPhysics(),
+                    itemBuilder: (context, index) => Container(
+                      height: SizeConfig.screenHeight! * 0.15,
+                      width: SizeConfig.screenWidth! * 0.9,
+                      decoration: BoxDecoration(
+                        color: AppColors.shimmerContainerColor,
+                        borderRadius: BorderRadius.all(Radius.circular(10.r)),
+                        border: Border.all(
+                          color: AppColors.borderColor,
+                          width: 1.w,
+                        ),
+                      ),
+                    ),
+                    separatorBuilder: (context, index) =>
+                        const SeparatorWidget(height: 33),
+                    itemCount: 8,
+                  ),
+                ],
               ),
-            ],
+            ),
           ),
-        ),
-      ),
+        );
+      },
     );
   }
 }

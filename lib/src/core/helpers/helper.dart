@@ -72,9 +72,11 @@ class Helper {
     }
   }
 
-  static BoxDecoration buildShimmerDecoration() {
+  static BoxDecoration buildShimmerDecoration(ThemeData state) {
     return BoxDecoration(
-      color: AppColors.shimmerContainerColor,
+      color: state.brightness == Brightness.light
+          ? AppColors.shimmerContainerColor
+          : AppColors.darkShimmerContainerColor,
       borderRadius: BorderRadius.all(
         Radius.circular(AppConstants.shimmerRadius),
       ),

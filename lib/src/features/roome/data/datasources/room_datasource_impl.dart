@@ -10,8 +10,6 @@ import '../../../notifications/presentation/widgets/notifications_body.dart';
 import '../../presentation/cubit/roome_cubit.dart';
 import 'roome_datasource.dart';
 
-
-
 class RoomDataSourceImpl implements RoomeDataSource {
   final ApiConsumer apiConsumer;
 
@@ -48,22 +46,18 @@ class RoomDataSourceImpl implements RoomeDataSource {
         BottomNavigationBarItem(
           label: 'Home',
           icon: Icon(Icons.home),
-          backgroundColor: Colors.white,
         ),
         BottomNavigationBarItem(
           label: 'Notification',
           icon: Icon(Icons.notifications),
-          backgroundColor: Colors.white,
         ),
         BottomNavigationBarItem(
           label: 'Favorite',
           icon: Icon(Icons.favorite),
-          backgroundColor: Colors.white,
         ),
         BottomNavigationBarItem(
           label: 'Profile',
           icon: Icon(Icons.person),
-          backgroundColor: Colors.white,
         ),
       ];
 
