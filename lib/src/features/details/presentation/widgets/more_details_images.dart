@@ -1,8 +1,10 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gallery_image_viewer/gallery_image_viewer.dart';
 import 'package:reusable_components/reusable_components.dart';
 import 'package:roome/src/core/api/end_points.dart';
+import 'package:roome/src/core/utils/app_constants.dart';
 
 import 'package:roome/src/core/utils/app_text_styles.dart';
 
@@ -31,28 +33,34 @@ class MoreDetailsImages extends StatelessWidget {
     return GestureDetector(
       onTap: () => showHotelImages(context),
       child: index == lastIndex && imagesNumber >= 3
-          ? Stack(
-              children: <Widget>[
-                MoreImageItem(image: image),
-                Container(
-                  height: SizeConfig.screenHeight! * 0.049,
-                  width: 64.w,
-                  decoration: BoxDecoration(
-                    color: Colors.black26,
-                    borderRadius: BorderRadius.all(Radius.circular(10.r)),
-                  ),
-                  child: Center(
-                    child: Text(
-                      '${hotel.images!.length - imagesNumber}+',
-                      style: AppTextStyles.snackBarTitle.copyWith(
-                        fontWeight: FontWeight.bold,
+          ? FadeInRight(
+              from: AppConstants.fadeInHorizontalValue,
+              child: Stack(
+                children: <Widget>[
+                  MoreImageItem(image: image),
+                  Container(
+                    height: SizeConfig.screenHeight! * 0.049,
+                    width: 64.w,
+                    decoration: BoxDecoration(
+                      color: Colors.black26,
+                      borderRadius: BorderRadius.all(Radius.circular(10.r)),
+                    ),
+                    child: Center(
+                      child: Text(
+                        '${hotel.images!.length - imagesNumber}+',
+                        style: AppTextStyles.snackBarTitle.copyWith(
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             )
-          : MoreImageItem(image: image),
+          : FadeInRight(
+              from: AppConstants.fadeInHorizontalValue,
+              child: MoreImageItem(image: image),
+            ),
     );
   }
 

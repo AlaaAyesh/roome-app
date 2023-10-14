@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:reusable_components/reusable_components.dart';
+import 'package:roome/src/core/utils/app_constants.dart';
 import 'package:roome/src/core/widgets/custom_error_widget.dart';
 import 'package:roome/src/features/home/presentation/widgets/shimmer_home_body.dart';
 
@@ -23,7 +24,7 @@ class HomeBody extends StatelessWidget {
         } else if (state is GetUserDataSuccessState) {
           return SingleChildScrollView(
             child: FadeInUp(
-              from: 20.h,
+              from: AppConstants.fadeInUpValue,
               child: Padding(
                 padding: EdgeInsets.only(
                   bottom: 16.h,

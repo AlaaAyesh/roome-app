@@ -1,6 +1,8 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:reusable_components/reusable_components.dart';
+import 'package:roome/src/core/utils/app_constants.dart';
 
 import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/app_text_styles.dart';
@@ -40,45 +42,48 @@ class _BookingTwoTextFieldState extends State<BookingTwoTextField> {
 
   @override
   Widget build(BuildContext context) {
-    return CustomTextFormField(
-      hint: widget.hint ?? '',
-      controller: widget.controller,
-      hintStyle: widget.hintStyle,
-      textCapitalization: widget.textCapitalization,
-      keyboardType: widget.keyboardType,
-      backgroundColor:
-          widget.backgroundColor ?? AppColors.primaryColor.withOpacity(0.03),
-      borderRadius: BorderRadius.all(Radius.circular(10.r)),
-      height: isValidating ? 50.h : 40.h,
-      width: widget.width?.w,
-      textFieldBorder: InputBorder.none,
-      border: widget.border ??
-          Border.all(
-            color: AppColors.darkGrey.withOpacity(0.63),
-          ),
-      cursorColor: Colors.black,
-      style: AppTextStyles.textStyle15.copyWith(
-        fontWeight: FontWeight.w500,
-      ),
-      prefixIcon: widget.prefixIcon,
-      validating: (String? val) {
-        setState(() {
-          isValidating = true;
-        });
+    return FadeInRight(
+      from: AppConstants.fadeInHorizontalValue,
+      child: CustomTextFormField(
+        hint: widget.hint ?? '',
+        controller: widget.controller,
+        hintStyle: widget.hintStyle,
+        textCapitalization: widget.textCapitalization,
+        keyboardType: widget.keyboardType,
+        backgroundColor:
+            widget.backgroundColor ?? AppColors.primaryColor.withOpacity(0.03),
+        borderRadius: BorderRadius.all(Radius.circular(10.r)),
+        height: isValidating ? 50.h : 40.h,
+        width: widget.width?.w,
+        textFieldBorder: InputBorder.none,
+        border: widget.border ??
+            Border.all(
+              color: AppColors.darkGrey.withOpacity(0.63),
+            ),
+        cursorColor: Colors.black,
+        style: AppTextStyles.textStyle15.copyWith(
+          fontWeight: FontWeight.w500,
+        ),
+        prefixIcon: widget.prefixIcon,
+        validating: (String? val) {
+          setState(() {
+            isValidating = true;
+          });
 
-        if (val!.isEmpty) {
-          return "Can't be blank";
-        }
-        return null;
-      },
-      contentPadding: EdgeInsets.only(
-        left: 16.w,
-        right: 16.w,
-        top: isValidating ? 20.h : 8.h,
+          if (val!.isEmpty) {
+            return "Can't be blank";
+          }
+          return null;
+        },
+        contentPadding: EdgeInsets.only(
+          left: 16.w,
+          right: 16.w,
+          top: isValidating ? 20.h : 8.h,
+        ),
+        errorBorder: InputBorder.none,
+        enabledBorder: InputBorder.none,
+        focusedBorderColor: AppColors.primaryColor,
       ),
-      errorBorder: InputBorder.none,
-      enabledBorder: InputBorder.none,
-      focusedBorderColor: AppColors.primaryColor,
     );
   }
 }

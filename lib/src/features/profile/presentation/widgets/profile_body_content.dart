@@ -63,27 +63,45 @@ class _ProfileBodyContentState extends State<ProfileBodyContent>
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
-                ProfileIconButton(
-                  icon: AppAssets.iconBackIos,
-                  onTap: () {
-                    BlocProvider.of<RoomeCubit>(context)
-                        .changeBottomNavToHome(context);
-                    BlocProvider.of<RoomeCubit>(context).getUserData();
-                  },
+                AnimatedBuilder(
+                  animation: _leftAnimationController,
+                  builder: (context, _) => SlideTransition(
+                    position: _leftSlideAnimation,
+                    child: ProfileIconButton(
+                      icon: AppAssets.iconBackIos,
+                      onTap: () {
+                        BlocProvider.of<RoomeCubit>(context)
+                            .changeBottomNavToHome(context);
+                        BlocProvider.of<RoomeCubit>(context).getUserData();
+                      },
+                    ),
+                  ),
                 ),
-                const ProfileIconButton(
-                  icon: AppAssets.iconNotification,
-                  isNotification: true,
+                AnimatedBuilder(
+                  animation: _rightSlideAnimation,
+                  builder: (context, _) => SlideTransition(
+                    position: _rightSlideAnimation,
+                    child: const ProfileIconButton(
+                      icon: AppAssets.moonIcon,
+                      isNotBackIcon: true,
+                    ),
+                  ),
                 ),
               ],
             ),
             SizedBox(height: SizeConfig.screenHeight! * 0.019),
-            Align(
-              alignment: Alignment.center,
-              child: Text(
-                'Profile',
-                style: AppTextStyles.onBoardingHeadingTextStyle.copyWith(
-                  fontSize: 30.sp,
+            AnimatedBuilder(
+              animation: _leftAnimationController,
+              builder: (context, _) => SlideTransition(
+                position: _leftSlideAnimation,
+                child: Align(
+                  alignment: Alignment.center,
+                  child: Text(
+                    'Profile',
+                    style: AppTextStyles.onBoardingHeadingTextStyle.copyWith(
+                      fontSize: 30.sp,
+                    ),
+                  ),
                 ),
               ),
             ),
@@ -123,9 +141,9 @@ class _ProfileBodyContentState extends State<ProfileBodyContent>
               builder: (context, _) => SlideTransition(
                 position: _rightSlideAnimation,
                 child: InfoContainer(
-                  height: 170.h,
+                  height: 170,
                   child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
                       UserInfo(
                         title: 'Your name',
@@ -162,9 +180,9 @@ class _ProfileBodyContentState extends State<ProfileBodyContent>
               builder: (context, _) => SlideTransition(
                 position: _rightSlideAnimation,
                 child: InfoContainer(
-                  height: 85.h,
+                  height: 85,
                   child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
                       const UserInfo(
                         title: 'Phone number',
@@ -265,16 +283,16 @@ class _ProfileBodyContentState extends State<ProfileBodyContent>
   void _initLeftSlideAnimation() {
     _leftAnimationController = AnimationController(
       vsync: this,
-      duration: const Duration(seconds: 3),
+      duration: _animationDuration(),
     );
 
     _leftSlideAnimation = Tween<Offset>(
       begin: Offset.zero,
-      end: Offset(-120.w, 0),
+      end: Offset(-200.w, 0),
     ).animate(
       CurvedAnimation(
         parent: _leftAnimationController,
-        curve: Curves.easeIn,
+        curve: _animationCurve,
       ),
     );
   }
@@ -282,17 +300,20 @@ class _ProfileBodyContentState extends State<ProfileBodyContent>
   void _initRightSlideAnimation() {
     _rightAnimationController = AnimationController(
       vsync: this,
-      duration: const Duration(seconds: 3),
+      duration: _animationDuration(),
     );
 
     _rightSlideAnimation = Tween<Offset>(
       begin: Offset.zero,
-      end: Offset(120.w, 0),
+      end: Offset(200.w, 0),
     ).animate(
       CurvedAnimation(
         parent: _rightAnimationController,
-        curve: Curves.easeIn,
+        curve: _animationCurve,
       ),
     );
   }
+
+  Duration _animationDuration() => const Duration(seconds: 3);
+  Cubic get _animationCurve => Curves.easeIn;
 }

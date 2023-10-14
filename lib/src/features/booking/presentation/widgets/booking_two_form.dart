@@ -1,8 +1,10 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:reusable_components/reusable_components.dart';
 import 'package:roome/src/config/routes/routes.dart';
 import 'package:roome/src/core/utils/app_colors.dart';
+import 'package:roome/src/core/utils/app_constants.dart';
 import 'package:roome/src/core/utils/app_navigator.dart';
 import 'package:roome/src/core/utils/app_text_styles.dart';
 import 'package:roome/src/core/widgets/custom_action_button.dart';
@@ -57,9 +59,9 @@ class _BookingTwoFormState extends State<BookingTwoForm> {
         children: <Widget>[
           Row(
             children: <Widget>[
-              const SectionTitle(title: 'First Name'),
+              _buildFadeInSectionTitle(title: 'FirstName'),
               SizedBox(width: SizeConfig.screenWidth! * 0.3),
-              const SectionTitle(title: 'Surname'),
+              _buildFadeInSectionTitle(title: 'Surname'),
             ],
           ),
           SizedBox(height: SizeConfig.screenHeight! * 0.014),
@@ -79,7 +81,7 @@ class _BookingTwoFormState extends State<BookingTwoForm> {
             ],
           ),
           SizedBox(height: SizeConfig.screenHeight! * 0.026),
-          const SectionTitle(title: 'Email'),
+          _buildFadeInSectionTitle(title: 'Email'),
           SizedBox(height: SizeConfig.screenHeight! * 0.014),
           BookingTwoTextField(
             controller: _emailController,
@@ -88,7 +90,7 @@ class _BookingTwoFormState extends State<BookingTwoForm> {
             width: SizeConfig.screenWidth,
           ),
           SizedBox(height: SizeConfig.screenHeight! * 0.026),
-          const SectionTitle(title: 'Phone'),
+          _buildFadeInSectionTitle(title: 'Phone'),
           SizedBox(height: SizeConfig.screenHeight! * 0.014),
           BookingTwoTextField(
             controller: _phoneController,
@@ -97,15 +99,18 @@ class _BookingTwoFormState extends State<BookingTwoForm> {
             width: SizeConfig.screenWidth,
           ),
           SizedBox(height: SizeConfig.screenHeight! * 0.021),
-          const SectionTitle(title: 'Kindly upload any valid ID '),
+          _buildFadeInSectionTitle(title: 'Kindly upload any valid ID'),
           SizedBox(height: SizeConfig.screenHeight! * 0.017),
           Row(
             children: <Widget>[
-              Text(
-                'Add Attachment',
-                style: AppTextStyles.textStyle14Medium.copyWith(
-                  fontWeight: FontWeight.normal,
-                  color: AppColors.darkGrey,
+              FadeInRight(
+                from: AppConstants.fadeInHorizontalValue,
+                child: Text(
+                  'Add Attachment',
+                  style: AppTextStyles.textStyle14Medium.copyWith(
+                    fontWeight: FontWeight.normal,
+                    color: AppColors.darkGrey,
+                  ),
                 ),
               ),
               SizedBox(width: SizeConfig.screenWidth! * 0.012),
@@ -135,18 +140,21 @@ class _BookingTwoFormState extends State<BookingTwoForm> {
             ),
           ),
           SizedBox(height: SizeConfig.screenHeight! * 0.019),
-          Align(
-            alignment: Alignment.center,
-            child: Text(
-              'Or',
-              style: AppTextStyles.textStyle14Medium.copyWith(
-                fontWeight: FontWeight.w600,
-                color: Colors.black.withOpacity(0.5),
+          FadeInRight(
+            from: AppConstants.fadeInHorizontalValue,
+            child: Align(
+              alignment: Alignment.center,
+              child: Text(
+                'Or',
+                style: AppTextStyles.textStyle14Medium.copyWith(
+                  fontWeight: FontWeight.w600,
+                  color: Colors.black.withOpacity(0.5),
+                ),
               ),
             ),
           ),
           SizedBox(height: SizeConfig.screenHeight! * 0.008),
-          const SectionTitle(title: 'Input your NIN Code'),
+          _buildFadeInSectionTitle(title: 'Input your NIN Code'),
           SizedBox(height: SizeConfig.screenHeight! * 0.014),
           BookingTwoTextField(
             controller: _ninCodeNameController,
@@ -155,17 +163,27 @@ class _BookingTwoFormState extends State<BookingTwoForm> {
             width: SizeConfig.screenWidth,
           ),
           SizedBox(height: SizeConfig.screenHeight! * 0.035),
-          CustomActionButton(
-            buttonText: 'Continue',
-            onPressed: () => continueToPayment(),
-            textStyle: AppTextStyles.textStyle15.copyWith(
-              color: Colors.white,
-              fontWeight: FontWeight.w600,
+          FadeInUp(
+            from: AppConstants.fadeInUpValue,
+            child: CustomActionButton(
+              buttonText: 'Continue',
+              onPressed: () => continueToPayment(),
+              textStyle: AppTextStyles.textStyle15.copyWith(
+                color: Colors.white,
+                fontWeight: FontWeight.w600,
+              ),
+              backgroundColor: AppColors.primaryColor,
             ),
-            backgroundColor: AppColors.primaryColor,
           ),
         ],
       ),
+    );
+  }
+
+  FadeInLeft _buildFadeInSectionTitle({required String title}) {
+    return FadeInLeft(
+      from: AppConstants.fadeInHorizontalValue,
+      child: SectionTitle(title: title),
     );
   }
 

@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:reusable_components/reusable_components.dart';
 import 'package:roome/src/core/models/hotel.dart';
 import 'package:roome/src/core/utils/app_colors.dart';
+import 'package:roome/src/core/utils/app_constants.dart';
 import 'package:roome/src/core/utils/app_navigator.dart';
 
 import 'package:roome/src/core/utils/app_text_styles.dart';
@@ -44,7 +45,7 @@ class DetailsViewBody extends StatelessWidget {
             Padding(
               padding: EdgeInsets.only(left: 9.w),
               child: FadeInUp(
-                from: 20.h,
+                from: AppConstants.fadeInUpValue,
                 duration: const Duration(milliseconds: 500),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,

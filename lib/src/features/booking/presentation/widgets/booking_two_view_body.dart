@@ -1,6 +1,8 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:reusable_components/reusable_components.dart';
+import 'package:roome/src/core/utils/app_constants.dart';
 import 'package:roome/src/features/booking/data/models/booking_info.dart';
 import 'package:roome/src/features/booking/presentation/widgets/booking_app_bar.dart';
 
@@ -15,6 +17,7 @@ class BookingTwoViewBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
+      physics: const BouncingScrollPhysics(),
       child: Padding(
         padding: EdgeInsets.only(
           top: 42.h,
@@ -25,9 +28,15 @@ class BookingTwoViewBody extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            const BookingAppBar(),
+            FadeInRight(
+              from: AppConstants.fadeInHorizontalValue,
+              child: const BookingAppBar(),
+            ),
             SizedBox(height: SizeConfig.screenHeight! * 0.02),
-            const BookingOneFormNumbers(isBookingOne: false),
+            FadeInRight(
+              from: AppConstants.fadeInHorizontalValue,
+              child: const BookingOneFormNumbers(isBookingOne: false),
+            ),
             SizedBox(height: SizeConfig.screenHeight! * 0.046),
             BookingTwoForm(bookingInfo: bookingInfo),
           ],

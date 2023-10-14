@@ -99,6 +99,9 @@ class AppAssets {
   static const String fontsPoppinsPoppinsThinItalic =
       "assets/fonts/Poppins/Poppins-ThinItalic.ttf";
 
+  static const String moonIcon = 'assets/icon/moonIcon.svg';
+  static const String sunIcon = 'assets/icon/sunIcon.svg';
+
   /// Assets for iconAppleIcon
   /// assets/icon/appleIcon.svg
   static const String iconAppleIcon = "assets/icon/appleIcon.svg";

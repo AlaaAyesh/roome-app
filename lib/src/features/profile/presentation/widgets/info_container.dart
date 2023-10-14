@@ -15,7 +15,7 @@ class InfoContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: height,
+      height: height.h,
       width: SizeConfig.screenWidth,
       padding: EdgeInsets.only(
         top: 20.h,
