@@ -4,12 +4,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../roome/presentation/cubit/roome_cubit.dart';
 
-
-
 class SignOutFloatingButton extends StatelessWidget {
-  const SignOutFloatingButton({
-    Key? key,
-  }) : super(key: key);
+  const SignOutFloatingButton({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

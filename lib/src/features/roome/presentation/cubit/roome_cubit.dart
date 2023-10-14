@@ -3,13 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:roome/src/config/routes/routes.dart';
 import 'package:roome/src/core/entities/no_params.dart';
-
 import 'package:roome/src/core/models/user_model.dart';
 import 'package:roome/src/core/utils/app_navigator.dart';
-
 import 'package:roome/src/features/roome/domain/entities/change_index_params.dart';
-
-import 'package:roome/src/features/home/domain/entities/sign_out_params.dart';
+import 'package:roome/src/features/roome/domain/entities/sign_out_params.dart';
 import 'package:roome/src/features/favorite/domain/entities/user_params.dart';
 
 import '../../../../core/helpers/helper.dart';
