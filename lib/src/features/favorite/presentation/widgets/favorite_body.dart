@@ -1,3 +1,4 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -29,49 +30,52 @@ class FavoriteBody extends StatelessWidget {
         } else if (state is GetFavoritesSuccessState) {
           return SingleChildScrollView(
             physics: const BouncingScrollPhysics(),
-            child: Padding(
-              padding: EdgeInsets.only(
-                top: 40.h,
-                bottom: 16.h,
-                right: 27.w,
-                left: 14.w,
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  CustomAppBar(
-                    spaceBetween: 40,
-                    title: 'Favorite',
-                    arrowOnTap: () {
-                      BlocProvider.of<RoomeCubit>(context)
-                          .changeBottomNavToHome(context);
-                      BlocProvider.of<RoomeCubit>(context).getUserData();
-                    },
-                  ),
-                  SizedBox(height: SizeConfig.screenHeight! * 0.047),
-                  state.favorites.isNotEmpty
-                      ? ListView.separated(
-                          shrinkWrap: true,
-                          padding: EdgeInsets.zero,
-                          physics: const NeverScrollableScrollPhysics(),
-                          itemCount: state.favorites.length,
-                          itemBuilder: (context, index) => FavoriteCard(
-                            cubit: cubit,
-                            hotel: state.favorites[index],
-                          ),
-                          separatorBuilder: (context, index) =>
-                              const SeparatorWidget(height: 33),
-                        )
-                      : Center(
-                          child: Text(
-                            'You have no favorite yet.\nGo ahead add some',
-                            style: AppTextStyles.snackBarTitle.copyWith(
-                              color: Colors.black,
+            child: FadeInUp(
+              from: 20.h,
+              child: Padding(
+                padding: EdgeInsets.only(
+                  top: 40.h,
+                  bottom: 16.h,
+                  right: 27.w,
+                  left: 14.w,
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    CustomAppBar(
+                      spaceBetween: 40,
+                      title: 'Favorite',
+                      arrowOnTap: () {
+                        BlocProvider.of<RoomeCubit>(context)
+                            .changeBottomNavToHome(context);
+                        BlocProvider.of<RoomeCubit>(context).getUserData();
+                      },
+                    ),
+                    SizedBox(height: SizeConfig.screenHeight! * 0.047),
+                    state.favorites.isNotEmpty
+                        ? ListView.separated(
+                            shrinkWrap: true,
+                            padding: EdgeInsets.zero,
+                            physics: const NeverScrollableScrollPhysics(),
+                            itemCount: state.favorites.length,
+                            itemBuilder: (context, index) => FavoriteCard(
+                              cubit: cubit,
+                              hotel: state.favorites[index],
                             ),
-                            textAlign: TextAlign.center,
+                            separatorBuilder: (context, index) =>
+                                const SeparatorWidget(height: 33),
+                          )
+                        : Center(
+                            child: Text(
+                              'You have no favorite yet.\nGo ahead add some',
+                              style: AppTextStyles.snackBarTitle.copyWith(
+                                color: Colors.black,
+                              ),
+                              textAlign: TextAlign.center,
+                            ),
                           ),
-                        ),
-                ],
+                  ],
+                ),
               ),
             ),
           );

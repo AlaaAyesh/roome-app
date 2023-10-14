@@ -1,3 +1,4 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -21,18 +22,21 @@ class HomeBody extends StatelessWidget {
           return const ShimmerHomeBody();
         } else if (state is GetUserDataSuccessState) {
           return SingleChildScrollView(
-            child: Padding(
-              padding: EdgeInsets.only(
-                bottom: 16.h,
-                left: 21.w,
-              ),
-              child: Column(
-                children: <Widget>[
-                  const HelloRow(),
-                  SizedBox(height: SizeConfig.screenHeight! * 0.023),
-                  const PriceSliderAndSearch(),
-                  const CustomTabs(),
-                ],
+            child: FadeInUp(
+              from: 20.h,
+              child: Padding(
+                padding: EdgeInsets.only(
+                  bottom: 16.h,
+                  left: 21.w,
+                ),
+                child: Column(
+                  children: <Widget>[
+                    const HelloRow(),
+                    SizedBox(height: SizeConfig.screenHeight! * 0.023),
+                    const PriceSliderAndSearch(),
+                    const CustomTabs(),
+                  ],
+                ),
               ),
             ),
           );

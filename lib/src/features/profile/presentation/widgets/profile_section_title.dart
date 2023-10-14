@@ -6,17 +6,25 @@ class ProfileSectionTitle extends StatelessWidget {
   const ProfileSectionTitle({
     super.key,
     required this.title,
+    required this.animation,
   });
 
+  final Animation<Offset> animation;
   final String title;
 
   @override
   Widget build(BuildContext context) {
-    return Text(
-      title,
-      style: AppTextStyles.appBarTextStyle.copyWith(
-        fontWeight: FontWeight.normal,
-        color: Colors.black,
+    return AnimatedBuilder(
+      animation: animation,
+      builder: (context, _) => SlideTransition(
+        position: animation,
+        child: Text(
+          title,
+          style: AppTextStyles.appBarTextStyle.copyWith(
+            fontWeight: FontWeight.normal,
+            color: Colors.black,
+          ),
+        ),
       ),
     );
   }
