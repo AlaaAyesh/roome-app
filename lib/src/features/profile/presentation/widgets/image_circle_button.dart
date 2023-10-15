@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:roome/src/config/themes/cubit/themes_cubit.dart';
+import 'package:roome/src/core/utils/app_colors.dart';
 
 class ImageCircleButton extends StatelessWidget {
   const ImageCircleButton({
@@ -13,18 +16,22 @@ class ImageCircleButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
-      onPressed: onPressed,
-      style: ElevatedButton.styleFrom(
-        elevation: 8.w,
-        backgroundColor: Colors.white,
-        shape: const CircleBorder(),
-        fixedSize: Size(150.w, 130.h),
-      ),
-      child: Image.asset(
-        icon,
-        width: 180.w,
-        height: 100.h,
+    return BlocBuilder<ThemesCubit, ThemeData>(
+      builder: (context, state) => ElevatedButton(
+        onPressed: onPressed,
+        style: ElevatedButton.styleFrom(
+          elevation: 16.w,
+          backgroundColor: state.brightness == Brightness.light
+              ? Colors.white
+              : AppColors.darkGreyColor,
+          shape: const CircleBorder(),
+          fixedSize: Size(150.w, 130.h),
+        ),
+        child: Image.asset(
+          icon,
+          width: 180.w,
+          height: 100.h,
+        ),
       ),
     );
   }

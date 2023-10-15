@@ -11,7 +11,6 @@ import 'package:roome/src/features/profile/presentation/widgets/info_container.d
 import 'package:roome/src/features/profile/presentation/widgets/profile_icon_button.dart';
 import 'package:roome/src/features/profile/presentation/widgets/profile_image.dart';
 
-import '../../../../config/themes/app_theme.dart';
 import '../../../../core/helpers/helper.dart';
 import '../../../../core/utils/app_assets.dart';
 import '../../../../core/utils/app_constants.dart';
@@ -70,7 +69,7 @@ class _EditProfileViewBodyState extends State<EditProfileViewBody>
                       from: AppConstants.fadeInHorizontalValue,
                       child: Text(
                         'Edit Profile',
-                        style: state == AppTheme.lightTheme
+                        style: state.brightness == Brightness.light
                             ? AppTextStyles.appBarTextStyle
                             : AppTextStyles.appBarTextStyle
                                 .copyWith(color: Colors.white),

@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:reusable_components/reusable_components.dart';
-import 'package:roome/src/config/themes/app_theme.dart';
 import 'package:roome/src/config/themes/cubit/themes_cubit.dart';
 import 'package:roome/src/core/utils/app_navigator.dart';
 
@@ -86,7 +85,7 @@ class _ProfileBodyContentState extends State<ProfileBodyContent>
                       builder: (context, _) => SlideTransition(
                         position: _rightSlideAnimation,
                         child: ProfileIconButton(
-                          icon: state == AppTheme.lightTheme
+                          icon: state.brightness == Brightness.light
                               ? AppAssets.moonIcon
                               : AppAssets.sunIcon,
                           isNotBackIcon: true,
@@ -217,7 +216,7 @@ class _ProfileBodyContentState extends State<ProfileBodyContent>
                     child: Center(
                       child: ActionSlider.standard(
                         backgroundColor: AppColors.primaryColor,
-                        toggleColor: state == AppTheme.lightTheme
+                        toggleColor: state.brightness == Brightness.light
                             ? Colors.white
                             : Colors.black,
                         backgroundBorderRadius:

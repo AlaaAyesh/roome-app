@@ -22,6 +22,7 @@ import 'package:roome/src/core/models/using_hero_model.dart';
 import 'package:roome/src/features/home/presentation/views/explore_see_all_view.dart';
 import 'package:roome/src/features/home/presentation/views/near_me_see_all_view.dart';
 import 'package:roome/src/features/profile/presentation/views/edit_profile_view.dart';
+import 'package:roome/src/features/profile/presentation/views/profile_view.dart';
 import 'package:roome/src/features/roome/presentation/views/roome_view.dart';
 import 'package:roome/src/features/search/presentation/cubit/search_cubit.dart';
 import 'package:roome/src/features/search/presentation/views/search_view.dart';
@@ -117,6 +118,9 @@ class AppRoutes {
         return MaterialPageRoute(
           builder: (context) => TicketView(bookingInfo: args),
         );
+
+      case Routes.profileViewRoute:
+        return MaterialPageRoute(builder: (context) => const ProfileView());
 
       case Routes.editProfileViewRoute:
         return MaterialPageRoute(builder: (context) => const EditProfileView());

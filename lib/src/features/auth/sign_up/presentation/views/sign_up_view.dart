@@ -4,13 +4,14 @@ import 'package:roome/src/core/utils/app_navigator.dart';
 import 'package:roome/src/features/auth/sign_up/presentation/cubit/sign_up_cubit.dart';
 import 'package:roome/src/features/auth/sign_up/presentation/widgets/sign_up_view_body.dart';
 
+import '../../../../../config/notifications/notification_service.dart';
 import '../../../../../config/routes/routes.dart';
 import '../../../../../core/helpers/cache_helper.dart';
 import '../../../../../core/helpers/helper.dart';
+import '../../../../../core/utils/app_strings.dart';
 import '../../../../../core/widgets/auth_loading_dialog.dart';
 import '../../../../../core/widgets/custom_snack_bar.dart';
 import '../../../../roome/presentation/cubit/roome_cubit.dart';
-
 
 class SignUpView extends StatelessWidget {
   const SignUpView({super.key});
@@ -34,6 +35,8 @@ class SignUpView extends StatelessWidget {
         context: context,
         builder: (context) => const AuthLoadingDialog(),
       );
+    } else {
+      context.getBack();
     }
 
     if (state is SignUpErrorState) {
@@ -56,7 +59,14 @@ class SignUpView extends StatelessWidget {
             backgroundColor: Colors.green,
             icon: Icons.check_circle,
           );
+
           context.navigateAndReplacement(newRoute: Routes.roomViewRoute);
+
+          NotificationService.triggerNotification(
+            title: AppStrings.helloFromRoome,
+            body:
+                'Hello from Roome, ${Helper.currentUser!.firstName} ${AppStrings.waveEmoji}',
+          );
         }
       });
     }
@@ -73,7 +83,14 @@ class SignUpView extends StatelessWidget {
             backgroundColor: Colors.green,
             icon: Icons.check_circle,
           );
+
           context.navigateAndReplacement(newRoute: Routes.roomViewRoute);
+
+          NotificationService.triggerNotification(
+            title: AppStrings.helloFromRoome,
+            body:
+                'Hello from Roome, ${Helper.currentUser!.firstName} ${AppStrings.waveEmoji}',
+          );
         }
       });
     }

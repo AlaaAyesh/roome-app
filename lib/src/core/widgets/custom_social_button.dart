@@ -5,7 +5,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:reusable_components/reusable_components.dart';
 import 'package:roome/src/config/themes/cubit/themes_cubit.dart';
 
-import '../../config/themes/app_theme.dart';
 import '../utils/app_colors.dart';
 import '../utils/app_text_styles.dart';
 
@@ -33,7 +32,7 @@ class CustomSocialButton extends StatelessWidget {
                 height: 48.w,
                 width: 48.w,
                 decoration: BoxDecoration(
-                  color: state == AppTheme.lightTheme
+                  color: state.brightness == Brightness.light
                       ? Colors.white
                       : AppColors.darkHeaderClr,
                   borderRadius: BorderRadius.circular(10.r),

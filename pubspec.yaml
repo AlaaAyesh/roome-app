@@ -39,6 +39,7 @@ dependencies:
   syncfusion_flutter_datepicker: ^23.1.40
   syncfusion_flutter_sliders: ^23.1.38
   action_slider: ^0.7.0
+  awesome_notifications: ^0.8.2
 
 dev_dependencies:
   flutter_lints: ^2.0.0

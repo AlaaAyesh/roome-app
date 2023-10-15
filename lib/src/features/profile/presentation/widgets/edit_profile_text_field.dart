@@ -4,7 +4,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:reusable_components/reusable_components.dart';
 import 'package:roome/src/config/themes/cubit/themes_cubit.dart';
 
-import '../../../../config/themes/app_theme.dart';
 import '../../../../core/helpers/helper.dart';
 import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/app_text_styles.dart';
@@ -32,7 +31,7 @@ class EditProfileTextField extends StatelessWidget {
               title,
               style: AppTextStyles.textStyle12.copyWith(
                 fontWeight: FontWeight.normal,
-                color: state == AppTheme.lightTheme
+                color: state.brightness == Brightness.light
                     ? Colors.black.withOpacity(0.8)
                     : AppColors.white38,
               ),
@@ -62,8 +61,9 @@ class EditProfileTextField extends StatelessWidget {
   TextStyle _buildTextStyle(ThemeData themeState) {
     return AppTextStyles.hintStyle.copyWith(
       fontWeight: FontWeight.normal,
-      color:
-          themeState == AppTheme.lightTheme ? Colors.black : AppColors.white60,
+      color: themeState.brightness == Brightness.light
+          ? Colors.black
+          : AppColors.white60,
     );
   }
 }
