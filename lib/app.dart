@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:roome/src/config/routes/app_routes.dart';
 import 'package:roome/src/config/themes/cubit/themes_cubit.dart';
 import 'package:roome/src/core/utils/app_strings.dart';
+import 'package:roome/src/features/notifications/presentation/cubit/notifications_cubit.dart';
 
 import 'src/core/utils/service_locator.dart';
 import 'src/features/favorite/presentation/cubit/favorite_cubit.dart';
@@ -45,6 +46,9 @@ class RoomeApp extends StatelessWidget {
                 serviceLocator.get<FavoriteCubit>()..getFavorites(),
           ),
           BlocProvider(create: (context) => serviceLocator.get<ThemesCubit>()),
+          BlocProvider(
+            create: (context) => serviceLocator.get<NotificationsCubit>(),
+          ),
         ],
         child: BlocBuilder<ThemesCubit, ThemeData>(
           builder: (context, themeState) {

@@ -1,5 +1,6 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:reusable_components/reusable_components.dart';
@@ -12,8 +13,8 @@ import 'package:roome/src/core/utils/app_text_styles.dart';
 import 'package:roome/src/core/widgets/custom_app_bar.dart';
 import 'package:roome/src/core/widgets/custom_action_button.dart';
 import 'package:roome/src/features/booking/data/models/booking_info.dart';
-
 import 'package:roome/src/features/booking/presentation/widgets/section_title.dart';
+import 'package:roome/src/features/notifications/presentation/cubit/notifications_cubit.dart';
 
 import '../../../../config/notifications/notification_service.dart';
 import 'payment_dialog.dart';
@@ -43,13 +44,7 @@ class PaymentViewBody extends StatelessWidget {
               CustomAppBar(
                 spaceBetween: 100,
                 title: 'Payment',
-                arrowOnTap: () {
-                  NotificationService.triggerNotification(
-                    title: AppStrings.hotelBookingCanceled,
-                    body: 'You have canceled ${bookingInfo.hotelName} booking',
-                  );
-                  context.getBack();
-                },
+                arrowOnTap: () => context.getBack(),
               ),
               SizedBox(height: SizeConfig.screenHeight! * 0.031),
               Row(
@@ -92,10 +87,8 @@ class PaymentViewBody extends StatelessWidget {
               CustomActionButton(
                 buttonText: 'Continue',
                 onPressed: () {
-                  NotificationService.triggerNotification(
-                    title: AppStrings.paymentSuccessful,
-                    body: '${bookingInfo.hotelName} was booking successfully',
-                  );
+                  _handleSuccessNotifications(context);
+
                   showAdaptiveDialog(
                     context: context,
                     builder: (context) =>
@@ -108,10 +101,56 @@ class PaymentViewBody extends StatelessWidget {
                 ),
                 backgroundColor: AppColors.primaryColor,
               ),
+              SizedBox(height: SizeConfig.screenHeight! * 0.015),
+              CustomActionButton(
+                buttonText: 'Cancel Booking',
+                onPressed: () {
+                  _handleCancelNotifications(context);
+
+                  context.getBack();
+                },
+                textStyle: AppTextStyles.textStyle15.copyWith(
+                  color: Colors.white,
+                  fontWeight: FontWeight.w600,
+                ),
+                backgroundColor: Colors.red,
+              ),
             ],
           ),
         ),
       ),
+    );
+  }
+
+  void _handleCancelNotifications(BuildContext context) {
+    NotificationService.triggerNotification(
+      title: AppStrings.hotelBookingCanceled,
+      body: 'You have canceled ${bookingInfo.hotelName} booking',
+    );
+
+    BlocProvider.of<NotificationsCubit>(context).addToNotifications(
+      context: context,
+      circles: AppAssets.imageRedCircles,
+      icon: AppAssets.iconHotelBookingCanceledIcon,
+      color: Colors.red,
+      title: AppStrings.hotelBookingCanceled,
+      body: 'You have canceled ${bookingInfo.hotelName} booking',
+    );
+  }
+
+  void _handleSuccessNotifications(BuildContext context) {
+    NotificationService.triggerNotification(
+      title: AppStrings.paymentSuccessful,
+      body: '${bookingInfo.hotelName} was booking successfully',
+    );
+
+    BlocProvider.of<NotificationsCubit>(context).addToNotifications(
+      context: context,
+      circles: AppAssets.imageGreenCircles,
+      icon: AppAssets.iconPaymentSuccessfulIcon,
+      color: Colors.green,
+      title: AppStrings.paymentSuccessful,
+      body: '${bookingInfo.hotelName} was booking successfully',
     );
   }
 }
