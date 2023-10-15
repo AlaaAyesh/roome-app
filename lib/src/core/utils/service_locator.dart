@@ -10,6 +10,13 @@ import 'package:roome/src/features/auth/sign_in/presentation/cubit/login_cubit.d
 import 'package:roome/src/features/auth/sign_up/domain/usecases/sign_up_with_google_usecase.dart';
 
 import 'package:roome/src/features/booking/presentation/cubit/booking_one/booking_one_cubit.dart';
+import 'package:roome/src/features/notifications/data/datasources/notifications_datasource.dart';
+import 'package:roome/src/features/notifications/data/datasources/notifications_datasource_impl.dart';
+import 'package:roome/src/features/notifications/data/repositories/notifications_repo_impl.dart';
+import 'package:roome/src/features/notifications/domain/repositories/notifications_repo.dart';
+import 'package:roome/src/features/notifications/domain/usecases/add_to_notifications_usecase.dart';
+import 'package:roome/src/features/notifications/domain/usecases/remove_from_notifications_usecase.dart';
+import 'package:roome/src/features/notifications/presentation/cubit/notifications_cubit.dart';
 
 import 'package:roome/src/features/on_boarding/data/datasources/on_boarding_datasource.dart';
 import 'package:roome/src/features/on_boarding/data/repositories/on_boarding_repo_impl.dart';
@@ -171,6 +178,10 @@ void setUpForDataSources() {
       apiConsumer: serviceLocator.get<ApiConsumer>(),
     ),
   );
+
+  serviceLocator.registerLazySingleton<NotificationsDataSource>(
+    () => NotificationsDataSourceImpl(),
+  );
 }
 
 void setUpForRepos() {
@@ -226,6 +237,11 @@ void setUpForRepos() {
       networkInfo: serviceLocator.get<NetworkInfo>(),
       favoriteDataSource: serviceLocator.get<FavoriteDataSource>(),
     ),
+  );
+
+  serviceLocator.registerLazySingleton<NotificationsRepo>(
+    () => NotificationsRepoImpl(
+        notificationsDataSource: serviceLocator.get<NotificationsDataSource>()),
   );
 }
 
@@ -304,6 +320,15 @@ void setUpForUseCases() {
       recommendedRepo: serviceLocator.get<RecommendedRepo>(),
     ),
   );
+
+  serviceLocator.registerLazySingleton<AddToNotificationsUseCase>(
+    () => AddToNotificationsUseCase(
+        notificationsRepo: serviceLocator.get<NotificationsRepo>()),
+  );
+  serviceLocator.registerLazySingleton<RemoveFromNotificationsUseCase>(
+    () => RemoveFromNotificationsUseCase(
+        notificationsRepo: serviceLocator.get<NotificationsRepo>()),
+  );
 }
 
 void setUpForCubits() {
@@ -368,4 +393,13 @@ void setUpForCubits() {
   serviceLocator.registerFactory<BookingOneCubit>(() => BookingOneCubit());
 
   serviceLocator.registerFactory<ThemesCubit>(() => ThemesCubit());
+
+  serviceLocator.registerFactory<NotificationsCubit>(
+    () => NotificationsCubit(
+      addToNotificationsUseCase:
+          serviceLocator.get<AddToNotificationsUseCase>(),
+      removeFromNotificationsUseCase:
+          serviceLocator.get<RemoveFromNotificationsUseCase>(),
+    ),
+  );
 }
