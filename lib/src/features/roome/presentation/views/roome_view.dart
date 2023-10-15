@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:roome/src/config/notifications/notification_service.dart';
+import 'package:roome/src/config/services/notification_service.dart';
 
 import 'package:roome/src/features/roome/presentation/widgets/bottom_nav_bar.dart';
 import 'package:roome/src/features/roome/presentation/widgets/room_view_body.dart';

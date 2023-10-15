@@ -4,7 +4,7 @@ import 'package:roome/src/core/utils/app_navigator.dart';
 import 'package:roome/src/features/auth/sign_up/presentation/cubit/sign_up_cubit.dart';
 import 'package:roome/src/features/auth/sign_up/presentation/widgets/sign_up_view_body.dart';
 
-import '../../../../../config/notifications/notification_service.dart';
+import '../../../../../config/services/notification_service.dart';
 import '../../../../../config/routes/routes.dart';
 import '../../../../../core/helpers/cache_helper.dart';
 import '../../../../../core/helpers/helper.dart';

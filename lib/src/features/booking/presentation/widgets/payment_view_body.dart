@@ -16,7 +16,7 @@ import 'package:roome/src/features/booking/data/models/booking_info.dart';
 import 'package:roome/src/features/booking/presentation/widgets/section_title.dart';
 import 'package:roome/src/features/notifications/presentation/cubit/notifications_cubit.dart';
 
-import '../../../../config/notifications/notification_service.dart';
+import '../../../../config/services/notification_service.dart';
 import 'payment_dialog.dart';
 import 'other_payment_method.dart';
 
