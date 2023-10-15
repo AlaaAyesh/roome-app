@@ -6,7 +6,7 @@ import 'package:roome/src/core/widgets/custom_snack_bar.dart';
 import 'package:roome/src/features/auth/sign_in/presentation/cubit/login_cubit.dart';
 import 'package:roome/src/features/auth/sign_in/presentation/widgets/login_view_body.dart';
 
-import '../../../../../config/notifications/notification_service.dart';
+import '../../../../../config/services/notification_service.dart';
 import '../../../../../config/routes/routes.dart';
 import '../../../../../core/helpers/helper.dart';
 import '../../../../../core/utils/app_strings.dart';
