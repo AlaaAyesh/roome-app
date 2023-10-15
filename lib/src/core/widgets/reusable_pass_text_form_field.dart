@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import 'package:reusable_components/reusable_components.dart';
 import 'package:roome/src/config/themes/cubit/themes_cubit.dart';
 import 'package:roome/src/core/utils/app_colors.dart';
 
-import '../../config/themes/app_theme.dart';
 import '../helpers/helper.dart';
 import '../utils/app_text_styles.dart';
 import 'visibility_icon_button.dart';
@@ -42,18 +40,21 @@ class ReusablePassTextField extends StatelessWidget {
     return BlocBuilder<ThemesCubit, ThemeData>(
       builder: (context, state) {
         return CustomTextFormField(
-          cursorColor:
-              state == AppTheme.lightTheme ? Colors.black : Colors.white,
+          cursorColor: state.brightness == Brightness.light
+              ? Colors.black
+              : Colors.white,
           hint: hint,
           hintStyle: AppTextStyles.hintStyle,
           style: AppTextStyles.hintStyle.copyWith(
-            color: state == AppTheme.lightTheme ? Colors.black : Colors.white,
+            color: state.brightness == Brightness.light
+                ? Colors.black
+                : Colors.white,
           ),
           enabledBorder: Helper.buildUnderlineInputBorder(),
           focusedBorder: Helper.buildUnderlineInputBorder(),
           prefixIcon: Icon(
             prefixIcon,
-            color: state == AppTheme.lightTheme
+            color: state.brightness == Brightness.light
                 ? AppColors.textFieldIconColor
                 : AppColors.white60,
             size: 23.w,

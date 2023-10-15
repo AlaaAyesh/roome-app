@@ -5,8 +5,6 @@ import 'package:reusable_components/reusable_components.dart';
 import 'package:roome/src/config/themes/cubit/themes_cubit.dart';
 import 'package:roome/src/core/utils/app_colors.dart';
 
-import '../../../../config/themes/app_theme.dart';
-
 class InfoContainer extends StatelessWidget {
   const InfoContainer({
     super.key,
@@ -31,7 +29,7 @@ class InfoContainer extends StatelessWidget {
             right: 9.w,
           ),
           decoration: BoxDecoration(
-            color: state == AppTheme.lightTheme
+            color: state.brightness == Brightness.light
                 ? Colors.white
                 : AppColors.darkGreyColor,
             borderRadius: BorderRadius.all(Radius.circular(20.r)),

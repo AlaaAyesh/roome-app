@@ -115,6 +115,7 @@ void setUpForExternal() {
       error: true,
     ),
   );
+
   serviceLocator.registerLazySingleton<Dio>(() => Dio());
 }
 

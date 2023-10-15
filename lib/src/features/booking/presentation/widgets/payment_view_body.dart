@@ -7,6 +7,7 @@ import 'package:roome/src/core/utils/app_assets.dart';
 import 'package:roome/src/core/utils/app_colors.dart';
 import 'package:roome/src/core/utils/app_constants.dart';
 import 'package:roome/src/core/utils/app_navigator.dart';
+import 'package:roome/src/core/utils/app_strings.dart';
 import 'package:roome/src/core/utils/app_text_styles.dart';
 import 'package:roome/src/core/widgets/custom_app_bar.dart';
 import 'package:roome/src/core/widgets/custom_action_button.dart';
@@ -14,6 +15,7 @@ import 'package:roome/src/features/booking/data/models/booking_info.dart';
 
 import 'package:roome/src/features/booking/presentation/widgets/section_title.dart';
 
+import '../../../../config/notifications/notification_service.dart';
 import 'payment_dialog.dart';
 import 'other_payment_method.dart';
 
@@ -41,7 +43,13 @@ class PaymentViewBody extends StatelessWidget {
               CustomAppBar(
                 spaceBetween: 100,
                 title: 'Payment',
-                arrowOnTap: () => context.getBack(),
+                arrowOnTap: () {
+                  NotificationService.triggerNotification(
+                    title: AppStrings.hotelBookingCanceled,
+                    body: 'You have canceled ${bookingInfo.hotelName} booking',
+                  );
+                  context.getBack();
+                },
               ),
               SizedBox(height: SizeConfig.screenHeight! * 0.031),
               Row(
@@ -84,6 +92,10 @@ class PaymentViewBody extends StatelessWidget {
               CustomActionButton(
                 buttonText: 'Continue',
                 onPressed: () {
+                  NotificationService.triggerNotification(
+                    title: AppStrings.paymentSuccessful,
+                    body: '${bookingInfo.hotelName} was booking successfully',
+                  );
                   showAdaptiveDialog(
                     context: context,
                     builder: (context) =>

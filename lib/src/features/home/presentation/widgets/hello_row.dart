@@ -2,7 +2,9 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:reusable_components/reusable_components.dart';
+import 'package:roome/src/config/routes/routes.dart';
 import 'package:roome/src/core/utils/app_colors.dart';
+import 'package:roome/src/core/utils/app_navigator.dart';
 
 import '../../../../core/helpers/helper.dart';
 import '../../../../core/utils/app_strings.dart';
@@ -22,15 +24,20 @@ class HelloRow extends StatelessWidget {
             imageUrl:
                 Helper.currentUser!.profileImage ?? AppStrings.defaultImgUrl,
             imageBuilder: (_, image) {
-              return CircleAvatar(
-                backgroundImage: image,
-                radius: 19.r,
-                backgroundColor: AppColors.primaryColor,
+              return GestureDetector(
+                onTap: () => context.navigateTo(
+                  routeName: Routes.profileViewRoute,
+                ),
+                child: CircleAvatar(
+                  backgroundImage: image,
+                  radius: 19.r,
+                  backgroundColor: AppColors.primaryColor,
+                ),
               );
             },
           ),
           SizedBox(width: SizeConfig.screenWidth! * 0.016),
-          const Text('\u{1F44B}'),
+          const Text(AppStrings.waveEmoji),
           SizedBox(width: SizeConfig.screenWidth! * 0.016),
           Text(
             'Hello, ${Helper.currentUser!.firstName}',

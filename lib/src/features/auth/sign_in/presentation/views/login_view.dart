@@ -6,9 +6,10 @@ import 'package:roome/src/core/widgets/custom_snack_bar.dart';
 import 'package:roome/src/features/auth/sign_in/presentation/cubit/login_cubit.dart';
 import 'package:roome/src/features/auth/sign_in/presentation/widgets/login_view_body.dart';
 
-
+import '../../../../../config/notifications/notification_service.dart';
 import '../../../../../config/routes/routes.dart';
 import '../../../../../core/helpers/helper.dart';
+import '../../../../../core/utils/app_strings.dart';
 import '../../../../../core/widgets/auth_loading_dialog.dart';
 import '../../../../roome/presentation/cubit/roome_cubit.dart';
 
@@ -36,6 +37,8 @@ class LoginView extends StatelessWidget {
         context: context,
         builder: (context) => const AuthLoadingDialog(),
       );
+    } else {
+      context.getBack();
     }
 
     if (state is SignInErrorState) {
@@ -52,6 +55,12 @@ class LoginView extends StatelessWidget {
           Helper.uId = state.uId;
           BlocProvider.of<RoomeCubit>(context).getUserData();
           context.navigateAndReplacement(newRoute: Routes.roomViewRoute);
+
+          NotificationService.triggerNotification(
+            title: AppStrings.welcomeBack,
+            body:
+                'We missed you, ${Helper.currentUser!.firstName} ${AppStrings.smilingFaceEmoji}',
+          );
         }
       });
     }

@@ -25,13 +25,16 @@ class CustomSnackBar {
                 children: <Widget>[
                   Text(
                     title,
-                    style: AppTextStyles.snackBarTitle,
+                    style: AppTextStyles.textStyle15.copyWith(
+                      color: Colors.white,
+                      fontWeight: FontWeight.w500,
+                    ),
                   ),
                   SizedBox(height: 5.h),
                   Text(
                     message,
-                    style: AppTextStyles.textStyle14Medium
-                        .copyWith(color: Colors.white),
+                    style:
+                        AppTextStyles.textStyle12.copyWith(color: Colors.white),
                   ),
                 ],
               ),

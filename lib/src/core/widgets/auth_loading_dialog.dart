@@ -4,7 +4,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:reusable_components/reusable_components.dart';
 import 'package:roome/src/config/themes/cubit/themes_cubit.dart';
 
-import '../../config/themes/app_theme.dart';
 import '../utils/app_colors.dart';
 
 class AuthLoadingDialog extends StatelessWidget {
@@ -19,7 +18,7 @@ class AuthLoadingDialog extends StatelessWidget {
             height: 70.w,
             width: 70.w,
             decoration: BoxDecoration(
-              color: state == AppTheme.lightTheme
+              color: state.brightness == Brightness.light
                   ? Colors.white
                   : AppColors.darkGreyColor,
               borderRadius: BorderRadius.all(Radius.circular(16.r)),
@@ -27,7 +26,9 @@ class AuthLoadingDialog extends StatelessWidget {
             child: Center(
               child: CustomCircularProgressIndicator(
                 color: AppColors.primaryColor,
-                backgroundColor: AppColors.darkGreyColor,
+                backgroundColor: state.brightness == Brightness.light
+                    ? Colors.white
+                    : AppColors.darkGreyColor,
               ),
             ),
           );

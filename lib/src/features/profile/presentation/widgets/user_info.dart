@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:roome/src/config/themes/cubit/themes_cubit.dart';
 
-import '../../../../config/themes/app_theme.dart';
 import '../../../../core/utils/app_text_styles.dart';
 
 class UserInfo extends StatelessWidget {
@@ -29,7 +28,7 @@ class UserInfo extends StatelessWidget {
                 style: info == null
                     ? AppTextStyles.textStyle15.copyWith(
                         fontWeight: FontWeight.w500,
-                        color: state == AppTheme.lightTheme
+                        color: state.brightness == Brightness.light
                             ? Colors.black.withOpacity(0.46)
                             : Colors.white,
                       )

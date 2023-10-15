@@ -5,7 +5,7 @@ import 'package:roome/src/core/helpers/cache_helper.dart';
 import '../app_theme.dart';
 
 class ThemesCubit extends Cubit<ThemeData> {
-  ThemesCubit() : super(AppTheme.darkTheme) {
+  ThemesCubit() : super(AppTheme.lightTheme) {
     _getThemeFromPrefs();
   }
 
