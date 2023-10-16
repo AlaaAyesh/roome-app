@@ -5,15 +5,15 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:reusable_components/reusable_components.dart';
 import 'package:roome/src/config/themes/cubit/themes_cubit.dart';
 
-import '../../../../core/models/hotel.dart';
+import '../../../../core/models/facility.dart';
 import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/app_text_styles.dart';
 import '../../../../core/widgets/custom_error_icon.dart';
 
 class Facilities extends StatelessWidget {
-  const Facilities({super.key, required this.hotel});
+  const Facilities({super.key, required this.facilities});
 
-  final Hotel hotel;
+  final List<Facility> facilities;
 
   @override
   Widget build(BuildContext context) {
@@ -22,13 +22,12 @@ class Facilities extends StatelessWidget {
       verticalDirection: VerticalDirection.down,
       direction: Axis.horizontal,
       children: List.generate(
-        hotel.facilities!.length,
+        facilities.length,
         (index) => Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             CachedNetworkImage(
-              imageUrl:
-                  'https://www.usatoday.com/gcdn/-mm-/05b227ad5b8ad4e9dcb53af4f31d7fbdb7fa901b/c=0-64-2119-1259/local/-/media/USATODAY/USATODAY/2014/08/13/1407953244000-177513283.jpg?width=660&height=373&fit=crop&format=pjpg&auto=webp',
+              imageUrl: facilities[index].icon!,
               height: SizeConfig.screenHeight! * 0.04,
               width: SizeConfig.screenHeight! * 0.04,
               fit: BoxFit.cover,
@@ -38,7 +37,7 @@ class Facilities extends StatelessWidget {
             BlocBuilder<ThemesCubit, ThemeData>(
               builder: (context, state) {
                 return Text(
-                  hotel.facilities![index].name!,
+                  facilities[index].name!,
                   style: AppTextStyles.textStyle14Medium.copyWith(
                     fontSize: 13.sp,
                     color: state.brightness == Brightness.light

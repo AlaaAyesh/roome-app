@@ -54,13 +54,12 @@ class LoginView extends StatelessWidget {
         if (value) {
           Helper.uId = state.uId;
           BlocProvider.of<RoomeCubit>(context).getUserData();
-          context.navigateAndReplacement(newRoute: Routes.roomViewRoute);
-
           NotificationService.triggerNotification(
             title: AppStrings.welcomeBack,
             body:
-                'We missed you, ${Helper.currentUser!.firstName} ${AppStrings.smilingFaceEmoji}',
+                'We missed you, ${state.userModel.firstName} ${AppStrings.smilingFaceEmoji}',
           );
+          context.navigateAndReplacement(newRoute: Routes.roomViewRoute);
         }
       });
     }
