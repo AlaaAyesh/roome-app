@@ -75,11 +75,11 @@ class ProfileImageEditBottomSheet extends StatelessWidget {
                 children: <Widget>[
                   ImageCircleButton(
                     onPressed: onPressedGallery,
-                    icon: AppAssets.addImage,
+                    icon: AppAssets.imageAddImage,
                   ),
                   ImageCircleButton(
                     onPressed: onPressedCamera,
-                    icon: AppAssets.camera,
+                    icon: AppAssets.imageCamera,
                   ),
                 ],
               ),

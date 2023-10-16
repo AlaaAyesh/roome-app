@@ -10,6 +10,7 @@ import 'package:roome/src/features/roome/domain/entities/sign_out_params.dart';
 import 'package:roome/src/features/favorite/domain/entities/user_params.dart';
 
 import '../../../../core/helpers/helper.dart';
+import '../../../favorite/presentation/cubit/favorite_cubit.dart';
 import '../../domain/usecases/change_bottom_nav_usecase.dart';
 import '../../domain/usecases/change_nav_to_home_usecase.dart';
 import '../../domain/usecases/get_body_usecase.dart';
@@ -59,9 +60,9 @@ class RoomeCubit extends Cubit<RoomeState> {
       getUserData();
     }
 
-    // if (currentIndex == 2) {
-    //   BlocProvider.of<FavoriteCubit>(context).getFavorites();
-    // }
+    if (currentIndex == 2) {
+      BlocProvider.of<FavoriteCubit>(context).getFavorites();
+    }
 
     emit(ChangeBottomNavState(index: index));
   }
@@ -94,6 +95,8 @@ class RoomeCubit extends Cubit<RoomeState> {
         (failure) => SignOutErrorState(error: failure.errorMessage.toString()),
         (success) {
           Helper.uId = null;
+          // So when the user login again, he navigates to Home not profile
+          currentIndex = 0;
           context.navigateAndRemoveUntil(newRoute: Routes.loginViewRoute);
           return SignOutSuccessState(uId: Helper.uId);
         },

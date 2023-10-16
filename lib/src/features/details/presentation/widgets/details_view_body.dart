@@ -80,7 +80,7 @@ class DetailsViewBody extends StatelessWidget {
                         SizedBox(height: SizeConfig.screenHeight! * 0.02),
                         const DetailsSectionTitle(title: 'Facilities'),
                         SizedBox(height: SizeConfig.screenHeight! * 0.02),
-                        Facilities(hotel: hotel),
+                        Facilities(facilities: hotel.facilities!),
                         SizedBox(height: SizeConfig.screenHeight! * 0.053),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,

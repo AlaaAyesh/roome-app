@@ -86,8 +86,8 @@ class _ProfileBodyContentState extends State<ProfileBodyContent>
                         position: _rightSlideAnimation,
                         child: ProfileIconButton(
                           icon: state.brightness == Brightness.light
-                              ? AppAssets.moonIcon
-                              : AppAssets.sunIcon,
+                              ? AppAssets.iconMoonIcon
+                              : AppAssets.iconSunIcon,
                           isNotBackIcon: true,
                           onTap: () {
                             BlocProvider.of<ThemesCubit>(context).toggleTheme();

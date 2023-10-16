@@ -99,9 +99,6 @@ class AppAssets {
   static const String fontsPoppinsPoppinsThinItalic =
       "assets/fonts/Poppins/Poppins-ThinItalic.ttf";
 
-  static const String moonIcon = 'assets/icon/moonIcon.svg';
-  static const String sunIcon = 'assets/icon/sunIcon.svg';
-
   /// Assets for iconAppleIcon
   /// assets/icon/appleIcon.svg
   static const String iconAppleIcon = "assets/icon/appleIcon.svg";
@@ -122,6 +119,10 @@ class AppAssets {
   /// assets/icon/hotelBookingCanceledIcon.svg
   static const String iconHotelBookingCanceledIcon =
       "assets/icon/hotelBookingCanceledIcon.svg";
+
+  /// Assets for iconMoonIcon
+  /// assets/icon/moonIcon.svg
+  static const String iconMoonIcon = "assets/icon/moonIcon.svg";
 
   /// Assets for iconNewCredit
   /// assets/icon/newCredit.png
@@ -145,9 +146,21 @@ class AppAssets {
   /// assets/icon/paypal.png
   static const String iconPaypal = "assets/icon/paypal.png";
 
+  /// Assets for iconSunIcon
+  /// assets/icon/sunIcon.svg
+  static const String iconSunIcon = "assets/icon/sunIcon.svg";
+
+  /// Assets for imageAddImage
+  /// assets/image/add_image.png
+  static const String imageAddImage = "assets/image/add_image.png";
+
   /// Assets for imageBlueCircles
   /// assets/image/blueCircles.svg
   static const String imageBlueCircles = "assets/image/blueCircles.svg";
+
+  /// Assets for imageCamera
+  /// assets/image/camera.png
+  static const String imageCamera = "assets/image/camera.png";
 
   /// Assets for imageCreditCard
   /// assets/image/creditCard.svg
@@ -165,6 +178,14 @@ class AppAssets {
   /// assets/image/lightBlueCircles.svg
   static const String imageLightBlueCircles =
       "assets/image/lightBlueCircles.svg";
+
+  /// Assets for imageNoFavorite
+  /// assets/image/noFavorite.svg
+  static const String imageNoFavorite = "assets/image/noFavorite.svg";
+
+  /// Assets for imageNoNotifications
+  /// assets/image/noNotifications.svg
+  static const String imageNoNotifications = "assets/image/noNotifications.svg";
 
   /// Assets for imageOnBoarding1
   /// assets/image/onBoarding1.png
@@ -189,7 +210,4 @@ class AppAssets {
   /// Assets for imageSplashCover
   /// assets/image/splashCover.png
   static const String imageSplashCover = "assets/image/splashCover.png";
-
-  static const String addImage = "assets/image/add_image.png";
-  static const String camera = "assets/image/camera.png";
 }
