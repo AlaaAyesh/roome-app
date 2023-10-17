@@ -40,6 +40,30 @@ class GetUserDataErrorState extends RoomeState {
   List<Object> get props => [error];
 }
 
+class UpdateUserLoadingState extends RoomeState {}
+
+class UpdateUserSuccessState extends RoomeState {
+  final UserModel user;
+
+  const UpdateUserSuccessState({required this.user});
+
+  @override
+  List<Object> get props => [user];
+}
+
+class UpdateUserErrorState extends RoomeState {
+  final String error;
+
+  const UpdateUserErrorState({required this.error});
+
+  @override
+  List<Object> get props => [error];
+}
+
+class ProfileImagePickedSuccessState extends RoomeState {}
+
+class ProfileImagePickedErrorState extends RoomeState {}
+
 class SignOutSuccessState extends RoomeState {
   final int? uId;
 
@@ -53,4 +77,13 @@ class SignOutErrorState extends RoomeState {
 
   @override
   List<Object> get props => [error];
+}
+
+class SwitchEditPassVisibleState extends RoomeState {
+  final bool passVisibility;
+
+  const SwitchEditPassVisibleState({required this.passVisibility});
+
+  @override
+  List<Object> get props => [passVisibility];
 }

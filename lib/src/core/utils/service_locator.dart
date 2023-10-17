@@ -32,15 +32,17 @@ import 'package:roome/src/features/favorite/data/repositories/favorite_repo_impl
 import 'package:roome/src/features/home/data/repositories/hotels_repo_impl.dart';
 import 'package:roome/src/features/home/data/repositories/near_me_repo_impl.dart';
 import 'package:roome/src/features/home/data/repositories/recommended_repo_impl.dart';
-import 'package:roome/src/features/roome/data/repositories/room_repo_impl.dart';
+import 'package:roome/src/features/roome/data/repositories/roome_repo_impl.dart';
 import 'package:roome/src/features/favorite/domain/repositories/favorite_repo.dart';
 import 'package:roome/src/features/home/domain/repositories/hotels_repo.dart';
 import 'package:roome/src/features/home/domain/repositories/near_me_repo.dart';
 import 'package:roome/src/features/home/domain/repositories/recommended_repo.dart';
-import 'package:roome/src/features/roome/domain/repositories/room_repo.dart';
+import 'package:roome/src/features/roome/domain/repositories/roome_repo.dart';
 import 'package:roome/src/features/home/domain/usecases/hotels/get_hotels_usecase.dart';
 import 'package:roome/src/features/home/domain/usecases/near_me/get_near_me_hotels_usecase.dart';
 import 'package:roome/src/features/home/domain/usecases/recommended/get_recommended_hotels_usecase.dart';
+import 'package:roome/src/features/roome/domain/usecases/get_profile_image_usecase.dart';
+import 'package:roome/src/features/roome/domain/usecases/update_user_usecase.dart';
 import 'package:roome/src/features/search/data/datasources/search_datasource.dart';
 import 'package:roome/src/features/search/data/datasources/search_datasource_impl.dart';
 import 'package:roome/src/features/search/data/repositories/search_repo_impl.dart';
@@ -70,7 +72,7 @@ import '../../features/home/presentation/cubits/near_me/near_me_cubit.dart';
 import '../../features/home/presentation/cubits/recommended/recommended_cubit.dart';
 import '../../features/on_boarding/data/datasources/on_boarding_datasource_impl.dart';
 import '../../features/home/presentation/cubits/hotels/hotels_cubit.dart';
-import '../../features/roome/data/datasources/room_datasource_impl.dart';
+import '../../features/roome/data/datasources/roome_datasource_impl.dart';
 import '../../features/roome/data/datasources/roome_datasource.dart';
 import '../../features/roome/domain/usecases/change_bottom_nav_usecase.dart';
 import '../../features/roome/domain/usecases/change_nav_to_home_usecase.dart';
@@ -152,7 +154,7 @@ void setUpForDataSources() {
   );
 
   serviceLocator.registerLazySingleton<RoomeDataSource>(
-    () => RoomDataSourceImpl(apiConsumer: serviceLocator.get<ApiConsumer>()),
+    () => RoomeDataSourceImpl(apiConsumer: serviceLocator.get<ApiConsumer>()),
   );
 
   serviceLocator
@@ -203,8 +205,8 @@ void setUpForRepos() {
     ),
   );
 
-  serviceLocator.registerLazySingleton<RoomRepo>(
-    () => RoomRepoImpl(
+  serviceLocator.registerLazySingleton<RoomeRepo>(
+    () => RoomeRepoImpl(
       roomeDataSource: serviceLocator.get<RoomeDataSource>(),
       networkInfo: serviceLocator.get<NetworkInfo>(),
     ),
@@ -263,29 +265,29 @@ void setUpForUseCases() {
   );
 
   serviceLocator.registerLazySingleton<ChangeBottomNavUseCase>(
-    () => ChangeBottomNavUseCase(roomRepo: serviceLocator.get<RoomRepo>()),
+    () => ChangeBottomNavUseCase(roomRepo: serviceLocator.get<RoomeRepo>()),
   );
 
   serviceLocator.registerLazySingleton<ChangeBottomNavToHomeUseCase>(
     () => ChangeBottomNavToHomeUseCase(
-      roomRepo: serviceLocator.get<RoomRepo>(),
+      roomRepo: serviceLocator.get<RoomeRepo>(),
     ),
   );
 
   serviceLocator.registerLazySingleton<GetBodyUseCse>(
-    () => GetBodyUseCse(roomRepo: serviceLocator.get<RoomRepo>()),
+    () => GetBodyUseCse(roomRepo: serviceLocator.get<RoomeRepo>()),
   );
 
   serviceLocator.registerLazySingleton<GetBottomNavItemsUseCase>(
-    () => GetBottomNavItemsUseCase(roomRepo: serviceLocator.get<RoomRepo>()),
+    () => GetBottomNavItemsUseCase(roomRepo: serviceLocator.get<RoomeRepo>()),
   );
 
   serviceLocator.registerLazySingleton<GetUserDataUseCase>(
-    () => GetUserDataUseCase(roomRepo: serviceLocator.get<RoomRepo>()),
+    () => GetUserDataUseCase(roomRepo: serviceLocator.get<RoomeRepo>()),
   );
 
   serviceLocator.registerLazySingleton<SignOutUseCase>(
-    () => SignOutUseCase(roomRepo: serviceLocator.get<RoomRepo>()),
+    () => SignOutUseCase(roomRepo: serviceLocator.get<RoomeRepo>()),
   );
 
   serviceLocator.registerLazySingleton<GetFavoritesUseCase>(
@@ -329,6 +331,14 @@ void setUpForUseCases() {
     () => RemoveFromNotificationsUseCase(
         notificationsRepo: serviceLocator.get<NotificationsRepo>()),
   );
+
+  serviceLocator.registerLazySingleton<UpdateUserUseCase>(
+    () => UpdateUserUseCase(roomRepo: serviceLocator.get<RoomeRepo>()),
+  );
+
+  serviceLocator.registerLazySingleton<GetProfileImageUseCase>(
+    () => GetProfileImageUseCase(roomeRepo: serviceLocator.get<RoomeRepo>()),
+  );
 }
 
 void setUpForCubits() {
@@ -358,6 +368,8 @@ void setUpForCubits() {
       getBodyUseCse: serviceLocator.get<GetBodyUseCse>(),
       getBottomNavItemsUseCase: serviceLocator.get<GetBottomNavItemsUseCase>(),
       getUserDataUseCase: serviceLocator.get<GetUserDataUseCase>(),
+      updateUserUseCase: serviceLocator.get<UpdateUserUseCase>(),
+      getProfileImageUseCase: serviceLocator.get<GetProfileImageUseCase>(),
       signOutUseCase: serviceLocator.get<SignOutUseCase>(),
     ),
   );

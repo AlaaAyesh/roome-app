@@ -34,12 +34,12 @@ class LoginRepoImpl extends LoginRepo {
 
   @override
   Future<Either<Failure, UserModel>> userSignIn({
-    required String username,
+    required String usernameOrEmail,
     required String password,
   }) async {
     if (await networkInfo.isConnected) {
       final response = await loginDataSource.userSignIn(
-        username: username,
+        usernameOrEmail: usernameOrEmail,
         password: password,
       );
 

@@ -18,7 +18,7 @@ class SeeAllTextButton extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.only(right: 26.w),
       child: CustomTextButton(
-        onTap: onTap, // TODO: see all logic
+        onTap: onTap,
         child: Text(
           'See all',
           style: AppTextStyles.textStyle15.copyWith(

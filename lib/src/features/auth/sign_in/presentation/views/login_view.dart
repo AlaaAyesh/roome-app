@@ -10,7 +10,7 @@ import '../../../../../config/services/notification_service.dart';
 import '../../../../../config/routes/routes.dart';
 import '../../../../../core/helpers/helper.dart';
 import '../../../../../core/utils/app_strings.dart';
-import '../../../../../core/widgets/auth_loading_dialog.dart';
+import '../../../../../core/widgets/loading_dialog.dart';
 import '../../../../roome/presentation/cubit/roome_cubit.dart';
 
 class LoginView extends StatelessWidget {
@@ -35,18 +35,10 @@ class LoginView extends StatelessWidget {
     if (state is SignInLoadingState || state is SignInWithGoogleLoadingState) {
       showAdaptiveDialog<Widget>(
         context: context,
-        builder: (context) => const AuthLoadingDialog(),
+        builder: (context) => const LoadingDialog(),
       );
     } else {
       context.getBack();
-    }
-
-    if (state is SignInErrorState) {
-      CustomSnackBar.show(
-        context: context,
-        message: state.error,
-        title: "Warning",
-      );
     }
 
     if (state is SignInSuccessState) {
@@ -72,6 +64,14 @@ class LoginView extends StatelessWidget {
           context.navigateAndReplacement(newRoute: Routes.roomViewRoute);
         }
       });
+    }
+
+    if (state is SignInErrorState) {
+      CustomSnackBar.show(
+        context: context,
+        message: state.error,
+        title: "Warning",
+      );
     }
   }
 }

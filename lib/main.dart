@@ -11,6 +11,8 @@ import 'src/core/helpers/cache_helper.dart';
 import 'src/core/helpers/helper.dart';
 import 'src/core/utils/bloc_observer.dart';
 
+// TODO: review all Success Snackbars and remove warning icon or change it
+
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 

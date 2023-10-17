@@ -28,19 +28,19 @@ class LoginForm extends StatefulWidget {
 class _LoginFormState extends State<LoginForm> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
-  final TextEditingController nameController = TextEditingController();
-  final TextEditingController passwordController = TextEditingController();
+  final TextEditingController _nameOrEmailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
 
-  final FocusNode nameFocusNode = FocusNode();
-  final FocusNode passwordFocusNode = FocusNode();
+  final FocusNode _nameOrEmailFocusNode = FocusNode();
+  final FocusNode _passwordFocusNode = FocusNode();
 
   @override
   void dispose() {
     super.dispose();
 
-    disposeControllers();
+    _disposeControllers();
 
-    disposeFocusNodes();
+    _disposeFocusNodes();
   }
 
   @override
@@ -50,28 +50,28 @@ class _LoginFormState extends State<LoginForm> {
       child: Column(
         children: <Widget>[
           ReusableTextFormField(
-            hint: 'Username',
-            controller: nameController,
-            thisFocusNode: nameFocusNode,
+            hint: 'Username or Email',
+            controller: _nameOrEmailController,
+            thisFocusNode: _nameOrEmailFocusNode,
             textCapitalization: TextCapitalization.none,
             keyboardType: TextInputType.text,
             prefixIcon: Icons.person,
             validating: (String? value) {
               Helper.validatingNameField(
-                textName: 'Username',
+                textName: 'Username or Email',
                 context: context,
                 value: value,
               );
               return null;
             },
             onEditingComplete: () {
-              FocusScope.of(context).requestFocus(passwordFocusNode);
+              FocusScope.of(context).requestFocus(_passwordFocusNode);
             },
           ),
           SizedBox(height: SizeConfig.screenHeight! * 0.056),
           ReusablePassTextField(
-            controller: passwordController,
-            thisFocusNode: passwordFocusNode,
+            controller: _passwordController,
+            thisFocusNode: _passwordFocusNode,
             hint: 'Password',
             prefixIcon: Icons.lock,
             visibilityIcon: widget.cubit.passVisibility
@@ -135,19 +135,19 @@ class _LoginFormState extends State<LoginForm> {
     if (_formKey.currentState!.validate()) {
       CustomHelper.keyboardUnfocus(context);
       widget.cubit.userSignIn(
-        username: nameController.text.trim(),
-        password: passwordController.text,
+        usernameOrEmail: _nameOrEmailController.text.trim(),
+        password: _passwordController.text,
       );
     }
   }
 
-  void disposeFocusNodes() {
-    nameFocusNode.dispose();
-    passwordFocusNode.dispose();
+  void _disposeFocusNodes() {
+    _nameOrEmailFocusNode.dispose();
+    _passwordFocusNode.dispose();
   }
 
-  void disposeControllers() {
-    nameController.dispose();
-    passwordController.dispose();
+  void _disposeControllers() {
+    _nameOrEmailController.dispose();
+    _passwordController.dispose();
   }
 }

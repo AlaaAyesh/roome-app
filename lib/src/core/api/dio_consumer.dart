@@ -78,6 +78,6 @@ class DioConsumer implements ApiConsumer {
       data: body,
     );
 
-    return response.data;
+    return jsonDecode(response.data);
   }
 }

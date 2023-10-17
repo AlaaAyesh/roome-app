@@ -24,7 +24,6 @@ class SearchResultListView extends StatelessWidget {
             physics: const NeverScrollableScrollPhysics(),
             // Download all items at the same time
             shrinkWrap: true,
-            // TODO: Delete SearchHotelCard from the whole project and use HotelCard instead
             itemBuilder: (context, index) {
               return FadeInRight(
                 from: AppConstants.fadeInHorizontalValue,
