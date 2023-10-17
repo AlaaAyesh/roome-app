@@ -20,13 +20,13 @@ class LoginCubit extends Cubit<LoginState> {
   bool passVisibility = true;
 
   void userSignIn({
-    required String username,
+    required String usernameOrEmail,
     required String password,
   }) {
     emit(SignInLoadingState());
 
     loginUseCase(LoginParameters(
-      username: username,
+      usernameOrEmail: usernameOrEmail,
       password: password,
     )).then((value) {
       value.fold(

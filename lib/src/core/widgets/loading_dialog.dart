@@ -6,8 +6,8 @@ import 'package:roome/src/config/themes/cubit/themes_cubit.dart';
 
 import '../utils/app_colors.dart';
 
-class AuthLoadingDialog extends StatelessWidget {
-  const AuthLoadingDialog({super.key});
+class LoadingDialog extends StatelessWidget {
+  const LoadingDialog({super.key});
 
   @override
   Widget build(BuildContext context) {

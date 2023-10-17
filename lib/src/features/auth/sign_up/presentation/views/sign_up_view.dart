@@ -9,7 +9,7 @@ import '../../../../../config/routes/routes.dart';
 import '../../../../../core/helpers/cache_helper.dart';
 import '../../../../../core/helpers/helper.dart';
 import '../../../../../core/utils/app_strings.dart';
-import '../../../../../core/widgets/auth_loading_dialog.dart';
+import '../../../../../core/widgets/loading_dialog.dart';
 import '../../../../../core/widgets/custom_snack_bar.dart';
 import '../../../../roome/presentation/cubit/roome_cubit.dart';
 
@@ -33,7 +33,7 @@ class SignUpView extends StatelessWidget {
     if (state is SignUpLoadingState || state is SignUpWithGoogleLoadingState) {
       showAdaptiveDialog<Widget>(
         context: context,
-        builder: (context) => const AuthLoadingDialog(),
+        builder: (context) => const LoadingDialog(),
       );
     } else {
       context.getBack();

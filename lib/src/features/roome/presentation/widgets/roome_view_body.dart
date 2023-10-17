@@ -3,8 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../cubit/roome_cubit.dart';
 
-class RoomViewBody extends StatelessWidget {
-  const RoomViewBody({super.key});
+class RoomeViewBody extends StatelessWidget {
+  const RoomeViewBody({super.key});
 
   @override
   Widget build(BuildContext context) {

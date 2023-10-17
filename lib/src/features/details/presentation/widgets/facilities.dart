@@ -1,14 +1,14 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:reusable_components/reusable_components.dart';
 import 'package:roome/src/config/themes/cubit/themes_cubit.dart';
 
+import '../../../../core/api/end_points.dart';
 import '../../../../core/models/facility.dart';
 import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/app_text_styles.dart';
-import '../../../../core/widgets/custom_error_icon.dart';
 
 class Facilities extends StatelessWidget {
   const Facilities({super.key, required this.facilities});
@@ -26,12 +26,11 @@ class Facilities extends StatelessWidget {
         (index) => Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            CachedNetworkImage(
-              imageUrl: facilities[index].icon!,
+            SvgPicture.network(
+              '${EndPoints.iconBaseUrl}${facilities[index].icon!}',
               height: SizeConfig.screenHeight! * 0.04,
               width: SizeConfig.screenHeight! * 0.04,
               fit: BoxFit.cover,
-              errorWidget: (context, url, error) => const CustomErrorIcon(),
             ),
             SizedBox(height: SizeConfig.screenHeight! * 0.009),
             BlocBuilder<ThemesCubit, ThemeData>(

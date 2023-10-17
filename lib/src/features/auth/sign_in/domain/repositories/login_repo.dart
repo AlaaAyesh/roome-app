@@ -7,7 +7,7 @@ import '../../../../../core/errors/failure.dart';
 
 abstract class LoginRepo {
   Future<Either<Failure, UserModel>> userSignIn({
-    required String username,
+    required String usernameOrEmail,
     required String password,
   });
 

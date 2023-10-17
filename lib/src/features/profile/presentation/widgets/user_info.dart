@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:reusable_components/reusable_components.dart';
 import 'package:roome/src/config/themes/cubit/themes_cubit.dart';
 
 import '../../../../core/utils/app_text_styles.dart';
@@ -18,8 +19,10 @@ class UserInfo extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      mainAxisSize: MainAxisSize.max,
       children: <Widget>[
         Text(title, style: AppTextStyles.textStyle15),
+        SizedBox(width: SizeConfig.screenWidth! * 0.06),
         Flexible(
           child: BlocBuilder<ThemesCubit, ThemeData>(
             builder: (context, state) {

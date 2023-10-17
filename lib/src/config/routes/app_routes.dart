@@ -14,6 +14,8 @@ import 'package:roome/src/features/booking/presentation/views/booking_two_view.d
 import 'package:roome/src/features/booking/presentation/views/payment_view.dart';
 import 'package:roome/src/features/booking/presentation/views/ticket_view.dart';
 import 'package:roome/src/features/details/presentation/views/details_view.dart';
+import 'package:roome/src/features/home/presentation/views/location_map_view.dart';
+import 'package:roome/src/features/home/presentation/views/search_location_view_.dart';
 
 import 'package:roome/src/features/on_boarding/presentation/cubit/on_boarding_cubit.dart';
 import 'package:roome/src/features/on_boarding/presentation/views/on_boarding_view.dart';
@@ -22,7 +24,6 @@ import 'package:roome/src/core/models/using_hero_model.dart';
 import 'package:roome/src/features/home/presentation/views/explore_see_all_view.dart';
 import 'package:roome/src/features/home/presentation/views/near_me_see_all_view.dart';
 import 'package:roome/src/features/profile/presentation/views/edit_profile_view.dart';
-import 'package:roome/src/features/profile/presentation/views/profile_view.dart';
 import 'package:roome/src/features/roome/presentation/views/roome_view.dart';
 import 'package:roome/src/features/search/presentation/cubit/search_cubit.dart';
 import 'package:roome/src/features/search/presentation/views/search_view.dart';
@@ -119,11 +120,15 @@ class AppRoutes {
           builder: (context) => TicketView(bookingInfo: args),
         );
 
-      case Routes.profileViewRoute:
-        return MaterialPageRoute(builder: (context) => const ProfileView());
-
       case Routes.editProfileViewRoute:
         return MaterialPageRoute(builder: (context) => const EditProfileView());
+
+      case Routes.locationMapViewRoute:
+        return MaterialPageRoute(builder: (context) => const LocationMapView());
+
+      case Routes.searchLocationViewRoute:
+        return MaterialPageRoute(
+            builder: (context) => const SearchLocationView());
 
       default:
         return unFoundRoute();

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:roome/src/config/services/notification_service.dart';
 
 import 'package:roome/src/features/roome/presentation/widgets/bottom_nav_bar.dart';
-import 'package:roome/src/features/roome/presentation/widgets/room_view_body.dart';
+import 'package:roome/src/features/roome/presentation/widgets/roome_view_body.dart';
 
 class RoomeView extends StatefulWidget {
   const RoomeView({super.key});
@@ -21,7 +21,7 @@ class _RoomeViewState extends State<RoomeView> {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      body: SafeArea(child: RoomViewBody()),
+      body: SafeArea(child: RoomeViewBody()),
       bottomNavigationBar: BottomNavBar(),
     );
   }

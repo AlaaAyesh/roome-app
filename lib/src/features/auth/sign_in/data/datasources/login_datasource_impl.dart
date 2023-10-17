@@ -29,13 +29,13 @@ class LoginDataSourceImpl implements LoginDataSource {
 
   @override
   Future<Map<String, dynamic>> userSignIn({
-    required String username,
+    required String usernameOrEmail,
     required String password,
   }) async {
     final response = await apiConsumer.post(
       EndPoints.login,
       body: {
-        'username': username,
+        'username': usernameOrEmail,
         'password': password,
       },
     );

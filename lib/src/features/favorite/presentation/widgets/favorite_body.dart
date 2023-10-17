@@ -73,19 +73,22 @@ class FavoriteBody extends StatelessWidget {
                     ),
                   ),
                 )
-              : Center(
-                  child: Padding(
-                    padding: EdgeInsets.only(
-                      top: 40.h,
-                      bottom: 16.h,
-                      right: 27.w,
-                      left: 14.w,
-                    ),
-                    child: SvgPicture.asset(
-                      AppAssets.imageNoFavorite,
-                      fit: BoxFit.contain,
-                      height: SizeConfig.screenHeight! * 0.5,
-                      width: SizeConfig.screenWidth,
+              : FadeInDown(
+                  from: AppConstants.fadeInUpValue,
+                  child: Center(
+                    child: Padding(
+                      padding: EdgeInsets.only(
+                        top: 40.h,
+                        bottom: 16.h,
+                        right: 27.w,
+                        left: 14.w,
+                      ),
+                      child: SvgPicture.asset(
+                        AppAssets.imageNoFavorite,
+                        fit: BoxFit.contain,
+                        height: SizeConfig.screenHeight! * 0.5,
+                        width: SizeConfig.screenWidth,
+                      ),
                     ),
                   ),
                 );

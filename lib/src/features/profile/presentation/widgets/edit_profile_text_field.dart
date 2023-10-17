@@ -14,11 +14,21 @@ class EditProfileTextField extends StatelessWidget {
     required this.controller,
     required this.hint,
     required this.title,
+    required this.keyboardType,
+    required this.textCapitalization,
+    this.validating,
+    this.suffixIcon,
+    this.obscure,
   });
 
   final TextEditingController controller;
   final String hint;
   final String title;
+  final TextInputType keyboardType;
+  final TextCapitalization textCapitalization;
+  final String? Function(String?)? validating;
+  final Widget? suffixIcon;
+  final bool? obscure;
 
   @override
   Widget build(BuildContext context) {
@@ -49,8 +59,11 @@ class EditProfileTextField extends StatelessWidget {
               hintStyle: _buildTextStyle(state),
               style: _buildTextStyle(state),
               controller: controller,
-              textCapitalization: TextCapitalization.words,
-              keyboardType: TextInputType.name,
+              textCapitalization: textCapitalization,
+              keyboardType: keyboardType,
+              validating: validating,
+              suffixIcon: suffixIcon,
+              obscure: obscure,
             ),
           ],
         );

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:roome/src/core/api/api_consumer.dart';
 import 'package:roome/src/core/api/end_points.dart';
 import 'package:roome/src/core/helpers/cache_helper.dart';
@@ -7,13 +8,14 @@ import 'package:roome/src/features/profile/presentation/widgets/profile_body.dar
 import '../../../home/presentation/widgets/home_body.dart';
 import '../../../favorite/presentation/widgets/favorite_body.dart';
 import '../../../notifications/presentation/widgets/notifications_body.dart';
+import '../../domain/entities/update_user_params.dart';
 import '../../presentation/cubit/roome_cubit.dart';
 import 'roome_datasource.dart';
 
-class RoomDataSourceImpl implements RoomeDataSource {
+class RoomeDataSourceImpl implements RoomeDataSource {
   final ApiConsumer apiConsumer;
 
-  const RoomDataSourceImpl({required this.apiConsumer});
+  const RoomeDataSourceImpl({required this.apiConsumer});
 
   @override
   void changeBottomNavIndex({
@@ -45,7 +47,7 @@ class RoomDataSourceImpl implements RoomeDataSource {
       const <BottomNavigationBarItem>[
         BottomNavigationBarItem(
           label: 'Home',
-          icon: Icon(Icons.home),
+          icon: Icon(Icons.home_filled),
         ),
         BottomNavigationBarItem(
           label: 'Notification',
@@ -69,6 +71,37 @@ class RoomDataSourceImpl implements RoomeDataSource {
     );
 
     return response;
+  }
+
+  @override
+  Future<Map<String, dynamic>> updateUser({
+    required int userId,
+    required UpdateUserParams user,
+  }) async {
+    final response = await apiConsumer.put(
+      '${EndPoints.user}/$userId',
+      queryParameters: {
+        'id': userId,
+      },
+      body: {
+        "firstName": user.firstName,
+        "lastName": user.lastName,
+        "username": user.username,
+        "email": user.email,
+        "password": user.password,
+        "role_id": 1,
+        "profileImage": user.profileImage,
+        "nationality": user.nationality,
+        "phoneNumber": user.phoneNumber,
+        "occupation": user.occupation,
+      },
+    );
+    return response;
+  }
+
+  @override
+  Future<XFile?> getProfileImage({required ImageSource source}) async {
+    return await ImagePicker().pickImage(source: source);
   }
 
   @override
