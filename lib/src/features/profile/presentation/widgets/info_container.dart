@@ -10,17 +10,31 @@ class InfoContainer extends StatelessWidget {
     super.key,
     required this.child,
     required this.height,
+    this.personalErrorHeight,
+    this.contactErrorHeight,
+    this.isPersonalValidateError = false,
+    this.isContactValidateError = false,
   });
 
   final double height;
+  final double? personalErrorHeight;
+  final double? contactErrorHeight;
   final Widget child;
+  final bool isPersonalValidateError;
+  final bool isContactValidateError;
 
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<ThemesCubit, ThemeData>(
       builder: (context, state) {
-        return Container(
-          height: height.h,
+        return AnimatedContainer(
+          duration: const Duration(milliseconds: 250),
+          curve: Curves.easeInOut,
+          height: isPersonalValidateError
+              ? personalErrorHeight
+              : isContactValidateError
+                  ? contactErrorHeight
+                  : height.h,
           width: SizeConfig.screenWidth,
           padding: EdgeInsets.only(
             top: 20.h,

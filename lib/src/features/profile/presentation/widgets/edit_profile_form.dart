@@ -35,6 +35,15 @@ class _EditProfileFormState extends State<EditProfileForm> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
+  bool _isPersonalValidateError = false;
+  bool _isContactValidateError = false;
+
+  @override
+  void initState() {
+    _assignValuesToControllers();
+    super.initState();
+  }
+
   @override
   void dispose() {
     _disposeControllers();
@@ -43,14 +52,6 @@ class _EditProfileFormState extends State<EditProfileForm> {
 
   @override
   Widget build(BuildContext context) {
-    _nameController.text =
-        '${Helper.currentUser!.firstName} ${Helper.currentUser!.lastName}';
-    _usernameController.text = Helper.currentUser!.username!;
-    _occupationController.text = Helper.currentUser!.occupation ?? 'Unknown';
-    _nationalityController.text = Helper.currentUser!.nationality ?? 'Unknown';
-    _phoneNumberController.text = Helper.currentUser!.phoneNumber ?? 'Unknown';
-    _emailController.text = Helper.currentUser!.email!;
-    _passwordController.text = Helper.currentUser!.password!;
     return BlocBuilder<ThemesCubit, ThemeData>(
       builder: (context, themeState) {
         return Form(
@@ -70,7 +71,9 @@ class _EditProfileFormState extends State<EditProfileForm> {
               FadeInRight(
                 from: AppConstants.fadeInHorizontalValue,
                 child: InfoContainer(
+                  isPersonalValidateError: _isPersonalValidateError,
                   height: 330,
+                  personalErrorHeight: 500,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -78,32 +81,32 @@ class _EditProfileFormState extends State<EditProfileForm> {
                       EditProfileTextField(
                         title: 'Name',
                         controller: _nameController,
-                        hint: _getHintFor(
-                          '${Helper.currentUser!.firstName} ${Helper.currentUser!.lastName}',
-                        ),
+                        hint: 'Your name',
                         textCapitalization: TextCapitalization.words,
                         keyboardType: TextInputType.name,
                         validating: (String? val) {
-                          Helper.validatingNameField(
-                            context: context,
-                            textName: 'Name',
-                            value: val,
-                          );
+                          if (val!.isEmpty) {
+                            setState(() {
+                              _isPersonalValidateError = true;
+                            });
+                            return "Can't be empty";
+                          }
                           return null;
                         },
                       ),
                       EditProfileTextField(
                         title: 'Username',
                         controller: _usernameController,
-                        hint: _getHintFor(Helper.currentUser!.username),
+                        hint: 'Your username',
                         textCapitalization: TextCapitalization.none,
                         keyboardType: TextInputType.text,
                         validating: (String? val) {
-                          Helper.validatingNameField(
-                            context: context,
-                            textName: 'username',
-                            value: val,
-                          );
+                          if (val!.isEmpty) {
+                            setState(() {
+                              _isPersonalValidateError = true;
+                            });
+                            return "Can't be empty";
+                          }
                           return null;
                         },
                       ),
@@ -113,15 +116,22 @@ class _EditProfileFormState extends State<EditProfileForm> {
                           return EditProfileTextField(
                             title: 'Password',
                             controller: _passwordController,
-                            hint: _getHintFor(Helper.currentUser!.password),
+                            hint: 'Your password',
                             textCapitalization: TextCapitalization.none,
                             keyboardType: TextInputType.visiblePassword,
                             obscure: cubit.passVisible,
                             validating: (String? val) {
-                              Helper.validatingPasswordField(
-                                context: context,
-                                value: val,
-                              );
+                              if (val!.isEmpty) {
+                                setState(() {
+                                  _isPersonalValidateError = true;
+                                });
+                                return "Can't be empty";
+                              } else if (val.length < 8) {
+                                setState(() {
+                                  _isPersonalValidateError = true;
+                                });
+                                return 'Week password';
+                              }
                               return null;
                             },
                             suffixIcon: VisibilityIconButton(
@@ -136,31 +146,32 @@ class _EditProfileFormState extends State<EditProfileForm> {
                       EditProfileTextField(
                         title: 'Occupation',
                         controller: _occupationController,
-                        hint: _getHintFor(Helper.currentUser!.occupation),
+                        hint: 'Your occupation',
                         textCapitalization: TextCapitalization.sentences,
                         keyboardType: TextInputType.text,
                         validating: (String? val) {
-                          Helper.validatingNameField(
-                            context: context,
-                            textName: 'Occupation',
-                            value: val,
-                          );
+                          if (val!.isEmpty) {
+                            setState(() {
+                              _isPersonalValidateError = true;
+                            });
+                            return "Can't be empty";
+                          }
                           return null;
                         },
                       ),
                       EditProfileTextField(
                         title: 'Nationality',
                         controller: _nationalityController,
-                        hint: _getHintFor(Helper.currentUser!.nationality),
+                        hint: 'Your nationality',
                         textCapitalization: TextCapitalization.words,
                         keyboardType: TextInputType.text,
                         validating: (String? val) {
-                          Helper.validatingNameField(
-                            context: context,
-                            textName: 'Nationality',
-                            value: val,
-                          );
-
+                          if (val!.isEmpty) {
+                            setState(() {
+                              _isPersonalValidateError = true;
+                            });
+                            return "Can't be empty";
+                          }
                           return null;
                         },
                       ),
@@ -181,7 +192,9 @@ class _EditProfileFormState extends State<EditProfileForm> {
               FadeInRight(
                 from: AppConstants.fadeInHorizontalValue,
                 child: InfoContainer(
-                  height: 150,
+                  isContactValidateError: _isContactValidateError,
+                  height: 170,
+                  contactErrorHeight: 250,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -189,29 +202,37 @@ class _EditProfileFormState extends State<EditProfileForm> {
                       EditProfileTextField(
                         title: 'Phone number',
                         controller: _phoneNumberController,
-                        hint: _getHintFor(Helper.currentUser!.phoneNumber),
+                        hint: 'Your phone number',
                         textCapitalization: TextCapitalization.none,
                         keyboardType: TextInputType.phone,
                         validating: (String? val) {
-                          Helper.validatingNameField(
-                            context: context,
-                            textName: 'Phone number',
-                            value: val,
-                          );
+                          if (val!.isEmpty) {
+                            setState(() {
+                              _isContactValidateError = true;
+                            });
+                            return "Can't be empty";
+                          }
                           return null;
                         },
                       ),
                       EditProfileTextField(
                         title: 'Email',
                         controller: _emailController,
-                        hint: _getHintFor(Helper.currentUser!.email),
+                        hint: 'Your email',
                         textCapitalization: TextCapitalization.none,
                         keyboardType: TextInputType.emailAddress,
                         validating: (String? val) {
-                          Helper.validatingEmailField(
-                            context: context,
-                            value: val,
-                          );
+                          if (val!.isEmpty) {
+                            setState(() {
+                              _isContactValidateError = true;
+                            });
+                            return "Can't be empty";
+                          } else if (!val.contains('@')) {
+                            setState(() {
+                              _isContactValidateError = true;
+                            });
+                            return "Incorrect Email";
+                          }
                           return null;
                         },
                       ),
@@ -252,14 +273,6 @@ class _EditProfileFormState extends State<EditProfileForm> {
     );
   }
 
-  String _getHintFor(String? hintFor) {
-    if (hintFor == null || hintFor.isEmpty) {
-      return 'Unknown';
-    } else {
-      return hintFor;
-    }
-  }
-
   void _validateAndUpdate(BuildContext context) {
     if (_formKey.currentState!.validate()) {
       CustomHelper.keyboardUnfocus(context);
@@ -280,12 +293,26 @@ class _EditProfileFormState extends State<EditProfileForm> {
     );
   }
 
+  void _forceConditionsToFalse() {
+    if (_isContactValidateError) {
+      setState(() {
+        _isContactValidateError = false;
+      });
+    } else if (_isPersonalValidateError) {
+      setState(() {
+        _isPersonalValidateError = false;
+      });
+    }
+  }
+
   void _controlUpdateUserStates(RoomeState state, BuildContext context) {
     if (state is UpdateUserLoadingState) {
       showAdaptiveDialog<Widget>(
         context: context,
         builder: (context) => const LoadingDialog(),
       );
+
+      _forceConditionsToFalse();
     }
 
     if (state is UpdateUserSuccessState) {
@@ -306,6 +333,17 @@ class _EditProfileFormState extends State<EditProfileForm> {
         title: 'Warning',
       );
     }
+  }
+
+  void _assignValuesToControllers() {
+    _nameController.text =
+        '${Helper.currentUser!.firstName} ${Helper.currentUser!.lastName}';
+    _usernameController.text = Helper.currentUser!.username!;
+    _occupationController.text = Helper.currentUser!.occupation ?? 'Unknown';
+    _nationalityController.text = Helper.currentUser!.nationality ?? 'Unknown';
+    _phoneNumberController.text = Helper.currentUser!.phoneNumber ?? 'Unknown';
+    _emailController.text = Helper.currentUser!.email!;
+    _passwordController.text = Helper.currentUser!.password!;
   }
 
   void _disposeControllers() {
