@@ -35,13 +35,13 @@ class InfoContainer extends StatelessWidget {
               : isContactValidateError
                   ? contactErrorHeight
                   : height.h,
-          // width: SizeConfig.screenWidth,
-          // padding: EdgeInsets.only(
-          //   top: 20.h,
-          //   bottom: 20.h,
-          //   left: 20.w,
-          //   right: 9.w,
-          // ),
+          width: SizeConfig.screenWidth,
+          padding: EdgeInsets.only(
+            top: 20.h,
+            bottom: 20.h,
+            left: 20.w,
+            right: 9.w,
+          ),
           decoration: BoxDecoration(
             color: state.brightness == Brightness.light
                 ? Colors.white
