@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:reusable_components/reusable_components.dart';
 import 'package:roome/src/config/themes/cubit/themes_cubit.dart';
 
@@ -47,7 +46,6 @@ class EditProfileTextField extends StatelessWidget {
               ),
             ),
             CustomTextFormField(
-              height: 35.h,
               errorBorder: InputBorder.none,
               enabledBorder: Helper.buildUnderlineInputBorder(
                 color: AppColors.grey.withOpacity(0.75),
@@ -56,7 +54,10 @@ class EditProfileTextField extends StatelessWidget {
                 color: AppColors.grey.withOpacity(0.75),
               ),
               hint: hint,
-              hintStyle: _buildTextStyle(state),
+              cursorColor: state.brightness == Brightness.light
+                  ? Colors.black
+                  : Colors.white,
+              hintStyle: AppTextStyles.hintStyle,
               style: _buildTextStyle(state),
               controller: controller,
               textCapitalization: textCapitalization,
@@ -76,7 +77,7 @@ class EditProfileTextField extends StatelessWidget {
       fontWeight: FontWeight.normal,
       color: themeState.brightness == Brightness.light
           ? Colors.black
-          : AppColors.white60,
+          : Colors.white,
     );
   }
 }
