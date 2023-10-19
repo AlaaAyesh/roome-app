@@ -4,15 +4,6 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:roome/src/config/routes/routes.dart';
-import 'package:roome/src/core/entities/no_params.dart';
-import 'package:roome/src/core/models/user_model.dart';
-import 'package:roome/src/core/utils/app_navigator.dart';
-import 'package:roome/src/features/roome/domain/entities/change_index_params.dart';
-import 'package:roome/src/features/roome/domain/entities/sign_out_params.dart';
-import 'package:roome/src/features/favorite/domain/entities/user_params.dart';
-import 'package:roome/src/features/roome/domain/entities/update_user_params.dart';
-import 'package:roome/src/features/roome/domain/usecases/update_user_usecase.dart';
 
 import '../../../../core/helpers/helper.dart';
 import '../../../favorite/presentation/cubit/favorite_cubit.dart';
@@ -23,6 +14,14 @@ import '../../domain/usecases/get_bottom_nav_items_usecase.dart';
 import '../../domain/usecases/get_profile_image_usecase.dart';
 import '../../domain/usecases/get_user_data_usecase.dart';
 import '../../domain/usecases/sign_out_usecase.dart';
+import '/src/config/routes/routes.dart';
+import '/src/core/entities/no_params.dart';
+import '/src/core/models/user_model.dart';
+import '/src/core/utils/app_navigator.dart';
+import '/src/features/roome/domain/entities/change_index_params.dart';
+import '/src/features/roome/domain/entities/update_user_params.dart';
+import '/src/features/roome/domain/usecases/update_user_usecase.dart';
+import '/src/features/roome/domain/usecases/upload_profile_image_usecase.dart';
 
 part 'roome_state.dart';
 
@@ -34,6 +33,7 @@ class RoomeCubit extends Cubit<RoomeState> {
   final GetBottomNavItemsUseCase getBottomNavItemsUseCase;
   final UpdateUserUseCase updateUserUseCase;
   final GetProfileImageUseCase getProfileImageUseCase;
+  final UploadProfileImageUseCase uploadProfileImageUseCase;
   final SignOutUseCase signOutUseCase;
 
   RoomeCubit({
@@ -44,6 +44,7 @@ class RoomeCubit extends Cubit<RoomeState> {
     required this.getUserDataUseCase,
     required this.updateUserUseCase,
     required this.getProfileImageUseCase,
+    required this.uploadProfileImageUseCase,
     required this.signOutUseCase,
   }) : super(RoomeInitial());
 
@@ -86,7 +87,7 @@ class RoomeCubit extends Cubit<RoomeState> {
   void getUserData() {
     emit(GetUserDataLoadingState());
 
-    getUserDataUseCase(UserParams(id: Helper.uId)).then((value) {
+    getUserDataUseCase(Helper.uId).then((value) {
       value.fold(
         (failure) {
           emit(GetUserDataErrorState(error: failure.errorMessage.toString()));
@@ -136,7 +137,6 @@ class RoomeCubit extends Cubit<RoomeState> {
   }
 
   File? profileImage;
-  ImagePicker picker = ImagePicker();
 
   void getProfileImage({required ImageSource source}) {
     getProfileImageUseCase(source).then((value) {
@@ -154,8 +154,30 @@ class RoomeCubit extends Cubit<RoomeState> {
     });
   }
 
+  void uploadProfileImage() {
+    emit(UploadingProfileImageLoadingState());
+
+    uploadProfileImageUseCase(profileImage).then((value) {
+      value.fold(
+        (failure) => emit(
+          UploadProfileImageErrorState(error: failure.errorMessage.toString()),
+        ),
+        (taskSnapshot) {
+          taskSnapshot.ref.getDownloadURL().then((value) {
+            emit(UploadProfileImageSuccessState(profileImageUrl: value));
+            updateUser(
+              profileImage: value,
+            );
+          }).catchError((error) {
+            emit(UploadProfileImageErrorState(error: error.toString()));
+          });
+        },
+      );
+    });
+  }
+
   void signOut(BuildContext context) {
-    signOutUseCase(SignOutParams(context: context)).then((value) {
+    signOutUseCase(context).then((value) {
       value.fold(
         (failure) => SignOutErrorState(error: failure.errorMessage.toString()),
         (success) {

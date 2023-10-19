@@ -1,7 +1,4 @@
 import 'package:dartz/dartz.dart';
-import 'package:roome/src/core/network/network_info.dart';
-
-import 'package:roome/src/features/favorite/domain/repositories/favorite_repo.dart';
 
 import '../../../../core/errors/exceptions.dart';
 import '../../../../core/errors/failure.dart';
@@ -9,6 +6,8 @@ import '../../../../core/errors/server_failure.dart';
 import '../../../../core/models/hotel.dart';
 import '../../../../core/utils/app_strings.dart';
 import '../datasources/favorite_datasource.dart';
+import '/src/core/network/network_info.dart';
+import '/src/features/favorite/domain/repositories/favorite_repo.dart';
 
 class FavoriteRepoImpl extends FavoriteRepo {
   final NetworkInfo networkInfo;

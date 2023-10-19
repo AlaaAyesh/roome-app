@@ -1,21 +1,20 @@
+import 'dart:io';
+
 import 'package:dartz/dartz.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
-import 'package:roome/src/core/errors/failure.dart';
-
-import 'package:roome/src/core/models/user_model.dart';
-
-import 'package:roome/src/features/roome/domain/repositories/roome_repo.dart';
-
-import '../../../../core/errors/exceptions.dart';
 import '../../../../core/errors/bug.dart';
+import '../../../../core/errors/exceptions.dart';
 import '../../../../core/errors/server_failure.dart';
-
 import '../../../../core/network/network_info.dart';
 import '../../../../core/utils/app_strings.dart';
 import '../../domain/entities/update_user_params.dart';
 import '../datasources/roome_datasource.dart';
+import '/src/core/errors/failure.dart';
+import '/src/core/models/user_model.dart';
+import '/src/features/roome/domain/repositories/roome_repo.dart';
 
 class RoomeRepoImpl extends RoomeRepo {
   final NetworkInfo networkInfo;
@@ -111,6 +110,24 @@ class RoomeRepoImpl extends RoomeRepo {
       return Right(result);
     } catch (e) {
       return Left(Bug(errorMessage: e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failure, TaskSnapshot>> uploadProfileImage({
+    File? profileImage,
+  }) async {
+    if (await networkInfo.isConnected) {
+      try {
+        final response = await roomeDataSource.uploadProfileImage(
+            profileImage: profileImage);
+
+        return Right(response);
+      } catch (e) {
+        return Left(Bug(errorMessage: e.toString()));
+      }
+    } else {
+      throw const ServerException(exception: AppStrings.opps);
     }
   }
 }

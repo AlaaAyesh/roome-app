@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:reusable_components/reusable_components.dart';
 
+import '../helpers/helper.dart';
 import '../utils/app_colors.dart';
 import '../utils/app_text_styles.dart';
 
@@ -24,11 +25,7 @@ class GlowingCustomButton extends StatelessWidget {
       borderRadius: BorderRadius.all(Radius.circular(12.r)),
       backgroundColor: AppColors.primaryColor,
       boxShadow: [
-        BoxShadow(
-          offset: Offset(0, 4.93.w),
-          blurRadius: 18.49.w,
-          color: AppColors.primaryColor.withOpacity(0.56),
-        ),
+        Helper.glowingShadow(),
       ],
       hasPrefix: false,
       child: Center(

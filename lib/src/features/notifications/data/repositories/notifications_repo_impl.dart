@@ -1,11 +1,11 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
-import 'package:roome/src/core/errors/bug.dart';
 
-import 'package:roome/src/core/errors/failure.dart';
-import 'package:roome/src/features/notifications/data/datasources/notifications_datasource.dart';
-import 'package:roome/src/features/notifications/data/models/notification_model.dart';
-import 'package:roome/src/features/notifications/domain/repositories/notifications_repo.dart';
+import '/src/core/errors/bug.dart';
+import '/src/core/errors/failure.dart';
+import '/src/features/notifications/data/datasources/notifications_datasource.dart';
+import '/src/features/notifications/data/models/notification_model.dart';
+import '/src/features/notifications/domain/repositories/notifications_repo.dart';
 
 class NotificationsRepoImpl extends NotificationsRepo {
   final NotificationsDataSource notificationsDataSource;

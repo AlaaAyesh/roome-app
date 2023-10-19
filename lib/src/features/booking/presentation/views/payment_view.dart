@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:roome/src/features/booking/data/models/booking_info.dart';
-import 'package:roome/src/features/booking/presentation/widgets/payment_view_body.dart';
+
+import '/src/features/booking/data/models/booking_info.dart';
+import '/src/features/booking/presentation/widgets/payment_view_body.dart';
 
 class PaymentView extends StatelessWidget {
   final BookingInfo bookingInfo;

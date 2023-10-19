@@ -1,12 +1,11 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:roome/src/features/auth/sign_up/domain/entities/sign_up_parameters.dart';
-
-import 'package:roome/src/features/auth/sign_up/domain/usecases/sign_up_usecase.dart';
-import 'package:roome/src/features/auth/sign_up/domain/usecases/sign_up_with_google_usecase.dart';
 
 import '../../../../../core/entities/no_params.dart';
 import '../../../../../core/models/user_model.dart';
+import '/src/features/auth/sign_up/domain/entities/sign_up_parameters.dart';
+import '/src/features/auth/sign_up/domain/usecases/sign_up_usecase.dart';
+import '/src/features/auth/sign_up/domain/usecases/sign_up_with_google_usecase.dart';
 
 part 'sign_up_state.dart';
 

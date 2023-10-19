@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:reusable_components/reusable_components.dart';
-import 'package:roome/src/config/themes/cubit/themes_cubit.dart';
-import 'package:roome/src/core/utils/app_navigator.dart';
 
 import '../../../../core/helpers/helper.dart';
 import '../../../../core/utils/app_colors.dart';
@@ -14,6 +12,8 @@ import '../../../../core/widgets/custom_snack_bar.dart';
 import '../../../../core/widgets/loading_dialog.dart';
 import '../../../../core/widgets/visibility_icon_button.dart';
 import '../../../roome/presentation/cubit/roome_cubit.dart';
+import '/src/config/themes/cubit/themes_cubit.dart';
+import '/src/core/utils/app_navigator.dart';
 import 'edit_profile_text_field.dart';
 import 'info_container.dart';
 import 'profile_section_title.dart';

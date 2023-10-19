@@ -4,9 +4,9 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:dio/io.dart';
 import 'package:flutter/foundation.dart';
-import 'package:roome/src/core/api/api_consumer.dart';
 
 import '../utils/service_locator.dart';
+import '/src/core/api/api_consumer.dart';
 import 'app_interceptors.dart';
 import 'end_points.dart';
 import 'status_codes.dart';

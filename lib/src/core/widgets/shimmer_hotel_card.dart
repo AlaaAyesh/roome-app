@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:roome/src/config/themes/cubit/themes_cubit.dart';
-
 import 'package:shimmer/shimmer.dart';
 
 import '../utils/app_colors.dart';
+import '/src/config/themes/cubit/themes_cubit.dart';
 
 class ShimmerHotelCard extends StatelessWidget {
   const ShimmerHotelCard({

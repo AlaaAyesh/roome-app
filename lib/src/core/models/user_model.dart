@@ -51,13 +51,15 @@ class UserModel extends Equatable {
         profileImage: json["profileImage"] as String?,
         reservations: json['reservations'] == null
             ? null
-            : List<Reservation>.from(json["reservations"]
-                .map((x) => Reservation.fromJson(x as Map<String, dynamic>))),
+            : List<Reservation>.from(json["reservations"].map(
+                (x) => Reservation.fromJson(x as Map<String, dynamic>),
+              )),
         favorites: json['favorites'] == null
             ? null
-            : List<Hotel>.from(json["favorites"]
-                .map((x) => Hotel.fromJson(x as Map<String, dynamic>))),
-
+            : List<Hotel>.from(
+                json["favorites"]
+                    .map((x) => Hotel.fromJson(x as Map<String, dynamic>)),
+              ),
         phoneNumber: json["phoneNumber"] as String?,
         occupation: json["occupation"] as String?,
         nationality: json["nationality"] as String?,

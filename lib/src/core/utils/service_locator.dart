@@ -2,53 +2,6 @@ import 'package:dio/dio.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get_it/get_it.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
-import 'package:roome/src/config/themes/cubit/themes_cubit.dart';
-import 'package:roome/src/core/api/api_consumer.dart';
-
-import 'package:roome/src/features/auth/sign_in/presentation/cubit/login_cubit.dart';
-
-import 'package:roome/src/features/auth/sign_up/domain/usecases/sign_up_with_google_usecase.dart';
-
-import 'package:roome/src/features/booking/presentation/cubit/booking_one/booking_one_cubit.dart';
-import 'package:roome/src/features/notifications/data/datasources/notifications_datasource.dart';
-import 'package:roome/src/features/notifications/data/datasources/notifications_datasource_impl.dart';
-import 'package:roome/src/features/notifications/data/repositories/notifications_repo_impl.dart';
-import 'package:roome/src/features/notifications/domain/repositories/notifications_repo.dart';
-import 'package:roome/src/features/notifications/domain/usecases/add_to_notifications_usecase.dart';
-import 'package:roome/src/features/notifications/domain/usecases/remove_from_notifications_usecase.dart';
-import 'package:roome/src/features/notifications/presentation/cubit/notifications_cubit.dart';
-
-import 'package:roome/src/features/on_boarding/data/datasources/on_boarding_datasource.dart';
-import 'package:roome/src/features/on_boarding/data/repositories/on_boarding_repo_impl.dart';
-import 'package:roome/src/features/on_boarding/domain/repositories/on_boarding_repo.dart';
-import 'package:roome/src/features/on_boarding/presentation/cubit/on_boarding_cubit.dart';
-import 'package:roome/src/features/home/data/datasources/hotels/hotels_datasource.dart';
-import 'package:roome/src/features/home/data/datasources/hotels/hotels_datasource_impl.dart';
-import 'package:roome/src/features/home/data/datasources/near_me/near_me_datasource.dart';
-import 'package:roome/src/features/home/data/datasources/near_me/near_me_datasource_impl.dart';
-import 'package:roome/src/features/home/data/datasources/recommended/recommended_datasource.dart';
-import 'package:roome/src/features/home/data/datasources/recommended/recommended_datasource_impl.dart';
-import 'package:roome/src/features/favorite/data/repositories/favorite_repo_impl.dart';
-import 'package:roome/src/features/home/data/repositories/hotels_repo_impl.dart';
-import 'package:roome/src/features/home/data/repositories/near_me_repo_impl.dart';
-import 'package:roome/src/features/home/data/repositories/recommended_repo_impl.dart';
-import 'package:roome/src/features/roome/data/repositories/roome_repo_impl.dart';
-import 'package:roome/src/features/favorite/domain/repositories/favorite_repo.dart';
-import 'package:roome/src/features/home/domain/repositories/hotels_repo.dart';
-import 'package:roome/src/features/home/domain/repositories/near_me_repo.dart';
-import 'package:roome/src/features/home/domain/repositories/recommended_repo.dart';
-import 'package:roome/src/features/roome/domain/repositories/roome_repo.dart';
-import 'package:roome/src/features/home/domain/usecases/hotels/get_hotels_usecase.dart';
-import 'package:roome/src/features/home/domain/usecases/near_me/get_near_me_hotels_usecase.dart';
-import 'package:roome/src/features/home/domain/usecases/recommended/get_recommended_hotels_usecase.dart';
-import 'package:roome/src/features/roome/domain/usecases/get_profile_image_usecase.dart';
-import 'package:roome/src/features/roome/domain/usecases/update_user_usecase.dart';
-import 'package:roome/src/features/search/data/datasources/search_datasource.dart';
-import 'package:roome/src/features/search/data/datasources/search_datasource_impl.dart';
-import 'package:roome/src/features/search/data/repositories/search_repo_impl.dart';
-import 'package:roome/src/features/search/domain/repositories/search_repo.dart';
-import 'package:roome/src/features/search/domain/usecases/search_hotels_usecase.dart';
-import 'package:roome/src/features/search/presentation/cubit/search_cubit.dart';
 
 import '../../features/auth/sign_in/data/datasources/login_datasource.dart';
 import '../../features/auth/sign_in/data/datasources/login_datasource_impl.dart';
@@ -62,18 +15,19 @@ import '../../features/auth/sign_up/data/repositories/sign_up_repo_impl.dart';
 import '../../features/auth/sign_up/domain/repositories/sign_up_repo.dart';
 import '../../features/auth/sign_up/domain/usecases/sign_up_usecase.dart';
 import '../../features/auth/sign_up/presentation/cubit/sign_up_cubit.dart';
+import '../../features/booking/presentation/cubits/booking_one/booking_one_cubit.dart';
 import '../../features/favorite/data/datasources/favorite_datasource.dart';
 import '../../features/favorite/data/datasources/favorite_datasource_impl.dart';
 import '../../features/favorite/domain/usecases/add_to_fav_usecase.dart';
 import '../../features/favorite/domain/usecases/get_favorites_usecase.dart';
 import '../../features/favorite/domain/usecases/remove_from_fav_usecase.dart';
 import '../../features/favorite/presentation/cubit/favorite_cubit.dart';
+import '../../features/home/presentation/cubits/hotels/hotels_cubit.dart';
 import '../../features/home/presentation/cubits/near_me/near_me_cubit.dart';
 import '../../features/home/presentation/cubits/recommended/recommended_cubit.dart';
 import '../../features/on_boarding/data/datasources/on_boarding_datasource_impl.dart';
-import '../../features/home/presentation/cubits/hotels/hotels_cubit.dart';
-import '../../features/roome/data/datasources/roome_datasource_impl.dart';
 import '../../features/roome/data/datasources/roome_datasource.dart';
+import '../../features/roome/data/datasources/roome_datasource_impl.dart';
 import '../../features/roome/domain/usecases/change_bottom_nav_usecase.dart';
 import '../../features/roome/domain/usecases/change_nav_to_home_usecase.dart';
 import '../../features/roome/domain/usecases/get_body_usecase.dart';
@@ -81,10 +35,54 @@ import '../../features/roome/domain/usecases/get_bottom_nav_items_usecase.dart';
 import '../../features/roome/domain/usecases/get_user_data_usecase.dart';
 import '../../features/roome/domain/usecases/sign_out_usecase.dart';
 import '../../features/roome/presentation/cubit/roome_cubit.dart';
+import '../../features/search/presentation/cubit/search_cubit.dart';
 import '../api/app_interceptors.dart';
 import '../api/dio_consumer.dart';
 import '../network/network_info.dart';
 import '../network/network_info_impl.dart';
+import '/src/config/themes/cubit/themes_cubit.dart';
+import '/src/core/api/api_consumer.dart';
+import '/src/features/auth/sign_in/presentation/cubit/login_cubit.dart';
+import '/src/features/auth/sign_up/domain/usecases/sign_up_with_google_usecase.dart';
+
+import '/src/features/favorite/data/repositories/favorite_repo_impl.dart';
+import '/src/features/favorite/domain/repositories/favorite_repo.dart';
+import '/src/features/home/data/datasources/hotels/hotels_datasource.dart';
+import '/src/features/home/data/datasources/hotels/hotels_datasource_impl.dart';
+import '/src/features/home/data/datasources/near_me/near_me_datasource.dart';
+import '/src/features/home/data/datasources/near_me/near_me_datasource_impl.dart';
+import '/src/features/home/data/datasources/recommended/recommended_datasource.dart';
+import '/src/features/home/data/datasources/recommended/recommended_datasource_impl.dart';
+import '/src/features/home/data/repositories/hotels_repo_impl.dart';
+import '/src/features/home/data/repositories/near_me_repo_impl.dart';
+import '/src/features/home/data/repositories/recommended_repo_impl.dart';
+import '/src/features/home/domain/repositories/hotels_repo.dart';
+import '/src/features/home/domain/repositories/near_me_repo.dart';
+import '/src/features/home/domain/repositories/recommended_repo.dart';
+import '/src/features/home/domain/usecases/hotels/get_hotels_usecase.dart';
+import '/src/features/home/domain/usecases/near_me/get_near_me_hotels_usecase.dart';
+import '/src/features/home/domain/usecases/recommended/get_recommended_hotels_usecase.dart';
+import '/src/features/notifications/data/datasources/notifications_datasource.dart';
+import '/src/features/notifications/data/datasources/notifications_datasource_impl.dart';
+import '/src/features/notifications/data/repositories/notifications_repo_impl.dart';
+import '/src/features/notifications/domain/repositories/notifications_repo.dart';
+import '/src/features/notifications/domain/usecases/add_to_notifications_usecase.dart';
+import '/src/features/notifications/domain/usecases/remove_from_notifications_usecase.dart';
+import '/src/features/notifications/presentation/cubit/notifications_cubit.dart';
+import '/src/features/on_boarding/data/datasources/on_boarding_datasource.dart';
+import '/src/features/on_boarding/data/repositories/on_boarding_repo_impl.dart';
+import '/src/features/on_boarding/domain/repositories/on_boarding_repo.dart';
+import '/src/features/on_boarding/presentation/cubit/on_boarding_cubit.dart';
+import '/src/features/roome/data/repositories/roome_repo_impl.dart';
+import '/src/features/roome/domain/repositories/roome_repo.dart';
+import '/src/features/roome/domain/usecases/get_profile_image_usecase.dart';
+import '/src/features/roome/domain/usecases/update_user_usecase.dart';
+import '/src/features/roome/domain/usecases/upload_profile_image_usecase.dart';
+import '/src/features/search/data/datasources/search_datasource.dart';
+import '/src/features/search/data/datasources/search_datasource_impl.dart';
+import '/src/features/search/data/repositories/search_repo_impl.dart';
+import '/src/features/search/domain/repositories/search_repo.dart';
+import '/src/features/search/domain/usecases/search_hotels_usecase.dart';
 
 final GetIt serviceLocator = GetIt.instance;
 
@@ -339,6 +337,10 @@ void setUpForUseCases() {
   serviceLocator.registerLazySingleton<GetProfileImageUseCase>(
     () => GetProfileImageUseCase(roomeRepo: serviceLocator.get<RoomeRepo>()),
   );
+
+  serviceLocator.registerLazySingleton<UploadProfileImageUseCase>(
+    () => UploadProfileImageUseCase(roomeRepo: serviceLocator.get<RoomeRepo>()),
+  );
 }
 
 void setUpForCubits() {
@@ -370,6 +372,8 @@ void setUpForCubits() {
       getUserDataUseCase: serviceLocator.get<GetUserDataUseCase>(),
       updateUserUseCase: serviceLocator.get<UpdateUserUseCase>(),
       getProfileImageUseCase: serviceLocator.get<GetProfileImageUseCase>(),
+      uploadProfileImageUseCase:
+          serviceLocator.get<UploadProfileImageUseCase>(),
       signOutUseCase: serviceLocator.get<SignOutUseCase>(),
     ),
   );

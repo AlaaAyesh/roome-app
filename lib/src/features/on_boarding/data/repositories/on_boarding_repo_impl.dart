@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:roome/src/features/on_boarding/data/datasources/on_boarding_datasource.dart';
 
-import 'package:roome/src/features/on_boarding/domain/entities/on_boarding_entity.dart';
-import 'package:roome/src/features/on_boarding/domain/repositories/on_boarding_repo.dart';
+import '/src/features/on_boarding/data/datasources/on_boarding_datasource.dart';
+import '/src/features/on_boarding/domain/entities/on_boarding_entity.dart';
+import '/src/features/on_boarding/domain/repositories/on_boarding_repo.dart';
 
 class OnBoardingRepoImpl extends OnBoardingRepo {
   final OnBoardingDataSource onBoardingDataSource;

@@ -1,11 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
-
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:roome/src/core/api/end_points.dart';
-
-import 'package:roome/src/features/auth/sign_in/data/datasources/login_datasource.dart';
 
 import '../../../../../core/api/api_consumer.dart';
+import '/src/core/api/end_points.dart';
+import '/src/features/auth/sign_in/data/datasources/login_datasource.dart';
 
 class LoginDataSourceImpl implements LoginDataSource {
   final ApiConsumer apiConsumer;

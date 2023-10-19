@@ -6,9 +6,6 @@ class AppStrings {
   static const String opps =
       'Opps, something is wrong.\nPlease try again later';
 
-  static const String defaultImgUrl =
-      'https://img.freepik.com/free-icon/user_318-159711.jpg?size=626&ext=jpg&ga=GA1.2.825316313.1674289475&semt=ais';
-
   static const String searchHint = 'Search for hotels';
   static const String paymentSuccessful = 'Payment Successful';
   static const String hotelBookingCanceled = 'Hotel Booking Canceled';

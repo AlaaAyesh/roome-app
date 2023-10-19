@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:syncfusion_flutter_sliders/sliders.dart';
 
 import '../../../../core/utils/app_colors.dart';

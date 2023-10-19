@@ -1,16 +1,14 @@
 import 'package:flutter/material.dart';
-
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:reusable_components/reusable_components.dart';
-import 'package:roome/src/core/utils/app_colors.dart';
-import 'package:roome/src/core/utils/app_navigator.dart';
-import 'package:roome/src/core/utils/app_text_styles.dart';
-
-import 'package:roome/src/features/favorite/presentation/widgets/favorite_card.dart';
 
 import '../../../../core/models/hotel.dart';
 import '../../../../core/widgets/glowing_custom_button.dart';
 import '../cubit/favorite_cubit.dart';
+import '/src/core/utils/app_colors.dart';
+import '/src/core/utils/app_navigator.dart';
+import '/src/core/utils/app_text_styles.dart';
+import '/src/features/favorite/presentation/widgets/favorite_card.dart';
 
 class RemoveFromFavBottomSheet {
   static void show({

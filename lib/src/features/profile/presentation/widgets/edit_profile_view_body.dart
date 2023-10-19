@@ -3,14 +3,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:reusable_components/reusable_components.dart';
-import 'package:roome/src/config/themes/cubit/themes_cubit.dart';
-import 'package:roome/src/core/utils/app_navigator.dart';
-import 'package:roome/src/features/profile/presentation/widgets/profile_icon_button.dart';
-import 'package:roome/src/features/profile/presentation/widgets/profile_image.dart';
 
 import '../../../../core/utils/app_assets.dart';
 import '../../../../core/utils/app_constants.dart';
 import '../../../../core/utils/app_text_styles.dart';
+import '/src/config/themes/cubit/themes_cubit.dart';
+import '/src/core/utils/app_navigator.dart';
+import '/src/features/profile/presentation/widgets/profile_icon_button.dart';
+import '/src/features/profile/presentation/widgets/profile_image.dart';
+import '/src/features/profile/presentation/widgets/update_image_button_and_loading.dart';
 import 'edit_profile_form.dart';
 
 class EditProfileViewBody extends StatelessWidget {
@@ -58,6 +59,7 @@ class EditProfileViewBody extends StatelessWidget {
                 from: AppConstants.fadeInHorizontalValue,
                 child: const ProfileImage(),
               ),
+              const UpdateImageButtonAndLoading(),
               SizedBox(height: SizeConfig.screenHeight! * 0.029),
               const EditProfileForm(),
             ],

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:roome/src/features/notifications/data/models/notification_model.dart';
+
+import '/src/features/notifications/data/models/notification_model.dart';
 
 abstract class NotificationsDataSource {
   Future<NotificationsModel> addToNotifications({
