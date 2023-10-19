@@ -3,13 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:reusable_components/reusable_components.dart';
-import 'package:roome/src/core/utils/app_constants.dart';
-
-import 'package:roome/src/core/widgets/hotel_card.dart';
-import 'package:roome/src/features/search/presentation/widgets/shimmer_search_result.dart';
 
 import '../../../../core/widgets/separator_widget.dart';
 import '../cubit/search_cubit.dart';
+import '/src/core/utils/app_constants.dart';
+import '/src/core/widgets/hotel_card.dart';
+import '/src/features/search/presentation/widgets/shimmer_search_result.dart';
 
 class SearchResultListView extends StatelessWidget {
   const SearchResultListView({super.key});

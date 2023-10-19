@@ -4,16 +4,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:reusable_components/reusable_components.dart';
-import 'package:roome/src/config/themes/cubit/themes_cubit.dart';
-import 'package:roome/src/core/utils/app_navigator.dart';
 
 import '../../../../config/routes/routes.dart';
 import '../../../../core/helpers/helper.dart';
 import '../../../../core/utils/app_assets.dart';
 import '../../../../core/utils/app_colors.dart';
-import '../../../../core/utils/app_strings.dart';
 import '../../../../core/utils/app_text_styles.dart';
 import '../../../roome/presentation/cubit/roome_cubit.dart';
+import '/src/config/themes/cubit/themes_cubit.dart';
+import '/src/core/utils/app_navigator.dart';
 import 'info_container.dart';
 import 'profile_icon_button.dart';
 import 'profile_section_title.dart';
@@ -125,8 +124,7 @@ class _ProfileBodyContentState extends State<ProfileBodyContent>
                       position: _leftSlideAnimation,
                       child: Center(
                         child: CachedNetworkImage(
-                          imageUrl: Helper.currentUser!.profileImage ??
-                              AppStrings.defaultImgUrl,
+                          imageUrl: Helper.currentUser!.profileImage!,
                           imageBuilder: (_, image) {
                             return CircleAvatar(
                               radius: 80.r,

@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:roome/src/core/utils/app_navigator.dart';
-import 'package:roome/src/features/auth/sign_up/presentation/cubit/sign_up_cubit.dart';
-import 'package:roome/src/features/auth/sign_up/presentation/widgets/sign_up_view_body.dart';
 
-import '../../../../../config/services/notification_service.dart';
 import '../../../../../config/routes/routes.dart';
+import '../../../../../config/services/notification_service.dart';
 import '../../../../../core/helpers/cache_helper.dart';
 import '../../../../../core/helpers/helper.dart';
 import '../../../../../core/utils/app_strings.dart';
-import '../../../../../core/widgets/loading_dialog.dart';
 import '../../../../../core/widgets/custom_snack_bar.dart';
+import '../../../../../core/widgets/loading_dialog.dart';
 import '../../../../roome/presentation/cubit/roome_cubit.dart';
+import '/src/core/utils/app_navigator.dart';
+import '/src/features/auth/sign_up/presentation/cubit/sign_up_cubit.dart';
+import '/src/features/auth/sign_up/presentation/widgets/sign_up_view_body.dart';
 
 class SignUpView extends StatelessWidget {
   const SignUpView({super.key});

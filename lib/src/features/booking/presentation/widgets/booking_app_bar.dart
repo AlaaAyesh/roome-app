@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:roome/src/core/utils/app_navigator.dart';
 
 import '../../../../core/widgets/custom_app_bar.dart';
+import '/src/core/utils/app_navigator.dart';
 
 class BookingAppBar extends StatelessWidget {
   const BookingAppBar({

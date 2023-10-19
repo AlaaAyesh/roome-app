@@ -2,8 +2,8 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:roome/src/features/on_boarding/domain/entities/on_boarding_entity.dart';
-import 'package:roome/src/features/on_boarding/domain/repositories/on_boarding_repo.dart';
+import '/src/features/on_boarding/domain/entities/on_boarding_entity.dart';
+import '/src/features/on_boarding/domain/repositories/on_boarding_repo.dart';
 
 part 'on_boarding_state.dart';
 

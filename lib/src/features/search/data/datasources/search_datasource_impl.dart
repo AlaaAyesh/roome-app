@@ -1,8 +1,6 @@
-import 'package:roome/src/core/api/api_consumer.dart';
-
-import 'package:roome/src/features/search/data/datasources/search_datasource.dart';
-
 import '../../../../core/api/end_points.dart';
+import '/src/core/api/api_consumer.dart';
+import '/src/features/search/data/datasources/search_datasource.dart';
 
 class SearchDatasourceImpl implements SearchDatasource {
   final ApiConsumer apiConsumer;

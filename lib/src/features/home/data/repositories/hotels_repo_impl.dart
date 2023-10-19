@@ -1,13 +1,13 @@
 import 'package:dartz/dartz.dart';
-import 'package:roome/src/core/network/network_info.dart';
-import 'package:roome/src/features/home/data/datasources/hotels/hotels_datasource.dart';
-import 'package:roome/src/features/home/domain/repositories/hotels_repo.dart';
 
 import '../../../../core/errors/exceptions.dart';
 import '../../../../core/errors/failure.dart';
 import '../../../../core/errors/server_failure.dart';
 import '../../../../core/models/hotel.dart';
 import '../../../../core/utils/app_strings.dart';
+import '/src/core/network/network_info.dart';
+import '/src/features/home/data/datasources/hotels/hotels_datasource.dart';
+import '/src/features/home/domain/repositories/hotels_repo.dart';
 
 class HotelsRepoImpl extends HotelsRepo {
   final NetworkInfo networkInfo;

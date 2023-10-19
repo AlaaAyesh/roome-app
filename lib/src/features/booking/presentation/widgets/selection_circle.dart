@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:roome/src/core/utils/app_colors.dart';
+
+import '/src/core/utils/app_colors.dart';
 
 class SelectionCircle extends StatefulWidget {
   const SelectionCircle({super.key});

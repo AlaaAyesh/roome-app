@@ -1,16 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import 'package:reusable_components/reusable_components.dart';
 
-import 'package:roome/src/core/widgets/try_again_button.dart';
-
-import 'package:roome/src/features/home/presentation/widgets/shimmer_near_me_hotels.dart';
-
-import '../../../../core/widgets/separator_widget.dart';
-
 import '../../../../core/widgets/hotel_card.dart';
+import '../../../../core/widgets/separator_widget.dart';
 import '../cubits/near_me/near_me_cubit.dart';
+import '/src/core/widgets/try_again_button.dart';
+import '/src/features/home/presentation/widgets/shimmer_near_me_hotels.dart';
 
 class NearMeHotels extends StatelessWidget {
   const NearMeHotels({super.key});

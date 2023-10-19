@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/helpers/helper.dart';
 import '../../../../core/models/hotel.dart';
-import '../../domain/entities/user_params.dart';
 import '../../domain/entities/fav_params.dart';
 import '../../domain/usecases/add_to_fav_usecase.dart';
 import '../../domain/usecases/get_favorites_usecase.dart';
@@ -27,7 +26,7 @@ class FavoriteCubit extends Cubit<FavoriteState> {
   void getFavorites() {
     emit(GetFavoritesLoadingState());
 
-    getFavoritesUseCase(UserParams(id: Helper.uId)).then((value) {
+    getFavoritesUseCase(Helper.uId).then((value) {
       value.fold(
         (failure) {
           emit(GetFavoritesErrorState(error: failure.errorMessage.toString()));

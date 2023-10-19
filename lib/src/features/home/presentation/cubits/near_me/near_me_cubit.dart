@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../core/helpers/helper.dart';
 import '../../../../../core/models/hotel.dart';
-import '../../../../favorite/domain/entities/user_params.dart';
 import '../../../../home/domain/usecases/near_me/get_near_me_hotels_usecase.dart';
 
 part 'near_me_state.dart';
@@ -20,7 +19,7 @@ class NearMeCubit extends Cubit<NearMeState> {
   void getNearMeHotels() {
     emit(GetNearMeHotelsLoadingState());
 
-    getNearMeHotelsUseCase(UserParams(id: Helper.uId)).then((value) {
+    getNearMeHotelsUseCase(Helper.uId).then((value) {
       value.fold(
         (failure) {
           emit(GetNearMeHotelsErrorState(

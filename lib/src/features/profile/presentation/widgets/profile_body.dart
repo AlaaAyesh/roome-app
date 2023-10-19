@@ -1,7 +1,7 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
-import 'package:roome/src/core/utils/app_constants.dart';
 
+import '/src/core/utils/app_constants.dart';
 import 'profile_body_content.dart';
 import 'sign_out_floating_button.dart';
 

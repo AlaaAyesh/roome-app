@@ -1,9 +1,8 @@
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-import 'package:roome/src/core/errors/failure.dart';
-
 import '../../../../../core/models/user_model.dart';
+import '/src/core/errors/failure.dart';
 
 abstract class SignUpRepo {
   Future<Either<Failure, UserModel>> userSignUp({

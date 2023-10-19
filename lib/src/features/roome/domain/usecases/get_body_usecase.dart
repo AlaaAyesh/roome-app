@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:roome/src/core/entities/no_params.dart';
 
-import 'package:roome/src/core/usecases/regular_usecase.dart';
-
-import 'package:roome/src/features/roome/domain/repositories/roome_repo.dart';
+import '/src/core/entities/no_params.dart';
+import '/src/core/usecases/regular_usecase.dart';
+import '/src/features/roome/domain/repositories/roome_repo.dart';
 
 class GetBodyUseCse implements RegularUseCases<List<Widget>, NoParams> {
   final RoomeRepo roomRepo;

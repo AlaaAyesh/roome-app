@@ -18,21 +18,14 @@ class CacheHelper {
     return await sharedPreferences.setDouble(key, value);
   }
 
-  //=============== For Getting Saved Boolean Data In Shared Pref ===============
   static bool? getBoolData({required String key}) {
     return sharedPreferences.getBool(key);
-  }
-
-  //=============== For Getting Saved String Data In Shared Pref ===============
-  static String? getStringData({required String key}) {
-    return sharedPreferences.getString(key);
   }
 
   static int? getIntData({required String key}) {
     return sharedPreferences.getInt(key);
   }
 
-  //============== For Removing Some Saved Data From SharedPref ==============
   static Future<bool> removeData({required String key}) async {
     return await sharedPreferences.remove(key);
   }

@@ -3,11 +3,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:reusable_components/reusable_components.dart';
 
-import 'package:roome/src/core/utils/app_navigator.dart';
-import 'package:roome/src/core/widgets/custom_app_bar.dart';
-import 'package:roome/src/features/home/presentation/widgets/see_all_items.dart';
-
 import '../cubits/hotels/hotels_cubit.dart';
+import '/src/core/utils/app_navigator.dart';
+import '/src/core/widgets/custom_app_bar.dart';
+import '/src/features/home/presentation/widgets/see_all_items.dart';
 
 class ExploreSeeAllViewBody extends StatelessWidget {
   const ExploreSeeAllViewBody({super.key});

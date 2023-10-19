@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:roome/src/features/details/presentation/widgets/details_view_body.dart';
 
 import '../../../../core/models/hotel.dart';
+import '/src/features/details/presentation/widgets/details_view_body.dart';
 
 class DetailsView extends StatelessWidget {
   const DetailsView({

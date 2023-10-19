@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:roome/src/config/themes/cubit/themes_cubit.dart';
 
 import '../utils/app_assets.dart';
+import '/src/config/themes/cubit/themes_cubit.dart';
 
 class GetBackArrow extends StatelessWidget {
   const GetBackArrow({super.key, required this.onTap});

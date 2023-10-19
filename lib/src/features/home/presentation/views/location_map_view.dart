@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:roome/src/features/home/presentation/widgets/location_map_view_body.dart';
+
+import '/src/features/home/presentation/widgets/location_map_view_body.dart';
 
 class LocationMapView extends StatelessWidget {
   const LocationMapView({super.key});

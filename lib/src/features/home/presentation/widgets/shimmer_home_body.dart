@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:reusable_components/reusable_components.dart';
-import 'package:roome/src/features/home/presentation/widgets/shimmer_hello_row.dart';
-import 'package:roome/src/features/home/presentation/widgets/shimmer_price_slider_and_search.dart';
-import 'package:roome/src/features/home/presentation/widgets/shimmer_tabs.dart';
+
+import '/src/features/home/presentation/widgets/shimmer_hello_row.dart';
+import '/src/features/home/presentation/widgets/shimmer_price_slider_and_search.dart';
+import '/src/features/home/presentation/widgets/shimmer_tabs.dart';
 
 class ShimmerHomeBody extends StatelessWidget {
   const ShimmerHomeBody({super.key});

@@ -1,13 +1,13 @@
 import 'package:dartz/dartz.dart';
-import 'package:roome/src/core/errors/failure.dart';
-import 'package:roome/src/features/home/data/datasources/near_me/near_me_datasource.dart';
-import 'package:roome/src/features/home/domain/repositories/near_me_repo.dart';
 
 import '../../../../core/errors/exceptions.dart';
 import '../../../../core/errors/server_failure.dart';
 import '../../../../core/models/hotel.dart';
 import '../../../../core/network/network_info.dart';
 import '../../../../core/utils/app_strings.dart';
+import '/src/core/errors/failure.dart';
+import '/src/features/home/data/datasources/near_me/near_me_datasource.dart';
+import '/src/features/home/domain/repositories/near_me_repo.dart';
 
 class NearMeRepoImpl extends NearMeRepo {
   final NetworkInfo networkInfo;

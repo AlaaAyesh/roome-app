@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:roome/src/features/search/presentation/widgets/search_view_body.dart';
+
+import '/src/features/search/presentation/widgets/search_view_body.dart';
 
 class SearchView extends StatelessWidget {
   const SearchView({super.key});

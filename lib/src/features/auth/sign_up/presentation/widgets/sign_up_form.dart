@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:reusable_components/reusable_components.dart';
-import 'package:roome/src/core/widgets/forgot_password_text_button.dart';
 
 import '../../../../../core/helpers/helper.dart';
 import '../../../../../core/utils/app_colors.dart';
@@ -9,6 +8,7 @@ import '../../../../../core/utils/app_text_styles.dart';
 import '../../../../../core/widgets/reusable_pass_text_form_field.dart';
 import '../../../../../core/widgets/reusable_text_form_field.dart';
 import '../cubit/sign_up_cubit.dart';
+import '/src/core/widgets/forgot_password_text_button.dart';
 import 'name_text_field.dart';
 
 class SignUpForm extends StatefulWidget {

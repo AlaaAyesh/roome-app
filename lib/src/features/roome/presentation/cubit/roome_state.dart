@@ -64,6 +64,26 @@ class ProfileImagePickedSuccessState extends RoomeState {}
 
 class ProfileImagePickedErrorState extends RoomeState {}
 
+class UploadingProfileImageLoadingState extends RoomeState {}
+
+class UploadProfileImageSuccessState extends RoomeState {
+  final String profileImageUrl;
+
+  const UploadProfileImageSuccessState({required this.profileImageUrl});
+
+  @override
+  List<Object> get props => [profileImageUrl];
+}
+
+class UploadProfileImageErrorState extends RoomeState {
+  final String error;
+
+  const UploadProfileImageErrorState({required this.error});
+
+  @override
+  List<Object> get props => [error];
+}
+
 class SignOutSuccessState extends RoomeState {
   final int? uId;
 

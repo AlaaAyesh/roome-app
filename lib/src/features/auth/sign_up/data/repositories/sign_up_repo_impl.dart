@@ -1,16 +1,14 @@
 import 'package:dartz/dartz.dart';
-
 import 'package:firebase_auth/firebase_auth.dart';
-
-import 'package:roome/src/core/errors/exceptions.dart';
-import 'package:roome/src/core/errors/failure.dart';
-import 'package:roome/src/core/models/user_model.dart';
-import 'package:roome/src/core/network/network_info.dart';
-import 'package:roome/src/features/auth/sign_up/data/datasources/sign_up_datasource.dart';
-import 'package:roome/src/features/auth/sign_up/domain/repositories/sign_up_repo.dart';
 
 import '../../../../../core/errors/server_failure.dart';
 import '../../../../../core/utils/app_strings.dart';
+import '/src/core/errors/exceptions.dart';
+import '/src/core/errors/failure.dart';
+import '/src/core/models/user_model.dart';
+import '/src/core/network/network_info.dart';
+import '/src/features/auth/sign_up/data/datasources/sign_up_datasource.dart';
+import '/src/features/auth/sign_up/domain/repositories/sign_up_repo.dart';
 
 class SignUpRepoImpl extends SignUpRepo {
   final NetworkInfo networkInfo;

@@ -1,23 +1,20 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:roome/src/config/routes/routes.dart';
-import 'package:roome/src/config/themes/cubit/themes_cubit.dart';
-import 'package:roome/src/core/api/end_points.dart';
-import 'package:roome/src/core/utils/app_navigator.dart';
-import 'package:roome/src/core/widgets/love_icon.dart';
-
-import 'package:roome/src/core/widgets/star_icon.dart';
-import 'package:roome/src/core/widgets/location_text.dart';
-import 'package:roome/src/core/models/using_hero_model.dart';
 
 import '../models/hotel.dart';
 import '../utils/app_colors.dart';
 import '../utils/app_text_styles.dart';
+import '/src/config/routes/routes.dart';
+import '/src/config/themes/cubit/themes_cubit.dart';
+import '/src/core/api/end_points.dart';
+import '/src/core/models/using_hero_model.dart';
+import '/src/core/utils/app_navigator.dart';
+import '/src/core/widgets/location_text.dart';
+import '/src/core/widgets/love_icon.dart';
+import '/src/core/widgets/star_icon.dart';
 import 'custom_error_icon.dart';
-
 import 'price_per_night_text.dart';
 
 class HotelCard extends StatelessWidget {
