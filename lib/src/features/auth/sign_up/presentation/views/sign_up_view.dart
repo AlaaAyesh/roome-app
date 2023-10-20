@@ -35,64 +35,79 @@ class SignUpView extends StatelessWidget {
         context: context,
         builder: (context) => const LoadingDialog(),
       );
-    } else {
-      context.getBack();
     }
 
     if (state is SignUpErrorState) {
-      CustomSnackBar.show(
-        context: context,
-        message: state.error,
-        title: "Warning",
-      );
+      _handleSignUpErrorState(context, state);
     }
 
     if (state is SignUpSuccessState) {
-      CacheHelper.saveData(key: 'uId', value: state.uId).then((value) {
-        if (value) {
-          Helper.uId = state.uId;
-          BlocProvider.of<RoomeCubit>(context).getUserData();
-          CustomSnackBar.show(
-            context: context,
-            title: "Success",
-            message: "Account Created Successfully",
-            backgroundColor: Colors.green,
-            icon: Icons.check_circle,
-          );
-
-          context.navigateAndReplacement(newRoute: Routes.roomViewRoute);
-
-          NotificationService.triggerNotification(
-            title: AppStrings.helloFromRoome,
-            body:
-                'Hello from Roome, ${Helper.currentUser!.firstName} ${AppStrings.waveEmoji}',
-          );
-        }
-      });
+      _handleSignUpSuccessState(context, state);
     }
 
     if (state is SignUpWithGoogleSuccessState) {
-      CacheHelper.saveData(key: 'uId', value: state.uId).then((value) {
-        if (value) {
-          Helper.uId = int.parse(state.uId);
-          BlocProvider.of<RoomeCubit>(context).getUserData();
-          CustomSnackBar.show(
-            context: context,
-            title: "Success",
-            message: "Account Created Successfully",
-            backgroundColor: Colors.green,
-            icon: Icons.check_circle,
-          );
-
-          context.navigateAndReplacement(newRoute: Routes.roomViewRoute);
-
-          NotificationService.triggerNotification(
-            title: AppStrings.helloFromRoome,
-            body:
-                'Hello from Roome, ${Helper.currentUser!.firstName} ${AppStrings.waveEmoji}',
-          );
-        }
-      });
+      _handleSignUpWithGoogleSuccessState(context, state);
     }
+  }
+
+  void _handleSignUpWithGoogleSuccessState(
+    BuildContext context,
+    SignUpWithGoogleSuccessState state,
+  ) {
+    context.getBack();
+    CacheHelper.saveData(key: 'uId', value: state.uId).then((value) {
+      if (value) {
+        Helper.uId = int.parse(state.uId);
+        BlocProvider.of<RoomeCubit>(context).getUserData();
+        _accountCreatedSnackBar(context);
+
+        context.navigateAndReplacement(newRoute: Routes.roomViewRoute);
+      }
+    });
+  }
+
+  void _handleSignUpSuccessState(
+    BuildContext context,
+    SignUpSuccessState state,
+  ) {
+    context.getBack();
+    CacheHelper.saveData(key: 'uId', value: state.uId).then((value) {
+      if (value) {
+        Helper.uId = state.uId;
+        BlocProvider.of<RoomeCubit>(context).getUserData();
+        _accountCreatedSnackBar(context);
+
+        context.navigateAndReplacement(newRoute: Routes.roomViewRoute);
+
+        _sayHelloNotification(state);
+      }
+    });
+  }
+
+  void _handleSignUpErrorState(BuildContext context, SignUpErrorState state) {
+    context.getBack();
+    CustomSnackBar.show(
+      context: context,
+      message: state.error,
+      title: "Warning",
+    );
+  }
+
+  void _sayHelloNotification(SignUpSuccessState state) {
+    NotificationService.triggerNotification(
+      title: AppStrings.helloFromRoome,
+      body:
+          'Hello from Roome, ${state.userModel.firstName} ${AppStrings.waveEmoji}',
+    );
+  }
+
+  void _accountCreatedSnackBar(BuildContext context) {
+    CustomSnackBar.show(
+      context: context,
+      title: "Success",
+      message: "Account Created Successfully",
+      backgroundColor: Colors.green,
+      icon: Icons.check_circle,
+    );
   }
 }

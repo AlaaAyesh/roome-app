@@ -101,6 +101,7 @@ class RoomeCubit extends Cubit<RoomeState> {
   }
 
   void updateUser({
+    int? uId,
     String? firstName,
     String? lastName,
     String? phoneNumber,
@@ -114,7 +115,7 @@ class RoomeCubit extends Cubit<RoomeState> {
     emit(UpdateUserLoadingState());
 
     updateUserUseCase(UpdateUserParams(
-      userId: Helper.uId!,
+      userId: uId,
       firstName: firstName,
       lastName: lastName,
       phoneNumber: phoneNumber,
@@ -154,7 +155,16 @@ class RoomeCubit extends Cubit<RoomeState> {
     });
   }
 
-  void uploadProfileImage() {
+  void uploadProfileImage({
+    String? firstName,
+    String? lastName,
+    String? phoneNumber,
+    String? username,
+    String? email,
+    String? occupation,
+    String? nationality,
+    String? password,
+  }) {
     emit(UploadingProfileImageLoadingState());
 
     uploadProfileImageUseCase(profileImage).then((value) {
@@ -164,10 +174,19 @@ class RoomeCubit extends Cubit<RoomeState> {
         ),
         (taskSnapshot) {
           taskSnapshot.ref.getDownloadURL().then((value) {
-            emit(UploadProfileImageSuccessState(profileImageUrl: value));
             updateUser(
+              uId: Helper.uId,
+              firstName: firstName,
+              lastName: lastName,
+              phoneNumber: phoneNumber,
+              email: email,
+              username: username,
+              password: password,
+              occupation: occupation,
+              nationality: nationality,
               profileImage: value,
             );
+            emit(UploadProfileImageSuccessState(profileImageUrl: value));
           }).catchError((error) {
             emit(UploadProfileImageErrorState(error: error.toString()));
           });

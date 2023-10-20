@@ -17,26 +17,28 @@ class UpdateImageButtonAndLoading extends StatelessWidget {
       builder: (context, state) {
         RoomeCubit cubit = RoomeCubit.getObject(context);
 
-        return FadeInUp(
-          from: AppConstants.fadeInUpValue,
-          child: Column(
-            children: <Widget>[
-              if (cubit.profileImage != null) ...[
-                SizedBox(height: SizeConfig.screenHeight! * 0.015),
-                const ConfirmUpdateImageButton(),
-              ],
-              if (state is UploadingProfileImageLoadingState)
-                SizedBox(height: SizeConfig.screenHeight! * 0.01),
-              if (state is UploadingProfileImageLoadingState)
-                SizedBox(
-                  width: SizeConfig.screenWidth! * 0.4,
-                  child: const LinearProgressIndicator(
-                    color: AppColors.primaryColor,
+        return Align(
+          alignment: Alignment.center,
+          child: FadeInUp(
+            from: AppConstants.fadeInUpValue,
+            child: Column(
+              children: <Widget>[
+                if (cubit.profileImage != null &&
+                    state is! UploadProfileImageSuccessState) ...[
+                  SizedBox(height: SizeConfig.screenHeight! * 0.015),
+                  const ConfirmUpdateImageButton(),
+                ],
+                if (state is UploadingProfileImageLoadingState)
+                  SizedBox(height: SizeConfig.screenHeight! * 0.01),
+                if (state is UploadingProfileImageLoadingState)
+                  SizedBox(
+                    width: SizeConfig.screenWidth! * 0.4,
+                    child: const LinearProgressIndicator(
+                      color: AppColors.primaryColor,
+                    ),
                   ),
-                ),
-              if (cubit.profileImage != null)
-                SizedBox(height: SizeConfig.screenHeight! * 0.01),
-            ],
+              ],
+            ),
           ),
         );
       },

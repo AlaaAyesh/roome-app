@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
+import '../../../../../core/utils/app_strings.dart';
 import '/src/core/api/api_consumer.dart';
 import '/src/core/api/end_points.dart';
 import '/src/features/auth/sign_up/data/datasources/sign_up_datasource.dart';
@@ -26,11 +27,12 @@ class SignUpDataSourceImpl implements SignUpDataSource {
         'username': username,
         'email': email,
         'password': password,
-        'profileImage':
-            'https://img.freepik.com/free-icon/user_318-159711.jpg?size=626&ext=jpg&ga=GA1.2.825316313.1674289475&semt=ais',
+        'profileImage': AppStrings.defaultImageUrl,
+        'phoneNumber': 'Unknown',
+        'occupation': 'Unknown',
+        'nationality': 'Unknown',
       },
     );
-
     return response;
   }
 

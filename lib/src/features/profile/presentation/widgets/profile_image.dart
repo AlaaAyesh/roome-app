@@ -1,4 +1,3 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -22,21 +21,16 @@ class ProfileImage extends StatelessWidget {
           child: Stack(
             alignment: AlignmentDirectional.bottomEnd,
             children: <Widget>[
-              CachedNetworkImage(
-                imageUrl: (cubit.profileImage == null
-                    ? Helper.currentUser!.profileImage
-                    : FileImage(cubit.profileImage!)) as String,
-                imageBuilder: (_, image) {
-                  return CircleAvatar(
-                    radius: 80.r,
-                    backgroundColor: AppColors.primaryColor.withOpacity(0.24),
-                    child: CircleAvatar(
-                      backgroundImage: image,
-                      radius: 65.r,
-                      backgroundColor: AppColors.primaryColor,
-                    ),
-                  );
-                },
+              CircleAvatar(
+                radius: 80.r,
+                backgroundColor: AppColors.primaryColor.withOpacity(0.24),
+                child: CircleAvatar(
+                  backgroundImage: (cubit.profileImage == null
+                      ? NetworkImage(Helper.currentUser!.profileImage!)
+                      : FileImage(cubit.profileImage!)) as ImageProvider,
+                  radius: 65.r,
+                  backgroundColor: AppColors.primaryColor,
+                ),
               ),
               Positioned(
                 right: 30.w,

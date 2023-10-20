@@ -37,41 +37,63 @@ class LoginView extends StatelessWidget {
         context: context,
         builder: (context) => const LoadingDialog(),
       );
-    } else {
-      context.getBack();
     }
-
     if (state is SignInSuccessState) {
-      CacheHelper.saveData(key: 'uId', value: state.uId).then((value) {
-        if (value) {
-          Helper.uId = state.uId;
-          BlocProvider.of<RoomeCubit>(context).getUserData();
-          NotificationService.triggerNotification(
-            title: AppStrings.welcomeBack,
-            body:
-                'We missed you, ${state.userModel.firstName} ${AppStrings.smilingFaceEmoji}',
-          );
-          context.navigateAndReplacement(newRoute: Routes.roomViewRoute);
-        }
-      });
+      _handleSignInSuccessState(context, state);
     }
 
     if (state is SignInWithGoogleSuccessState) {
-      CacheHelper.saveData(key: 'uId', value: state.uId).then((value) {
-        if (value) {
-          Helper.uId = int.parse(state.uId);
-          BlocProvider.of<RoomeCubit>(context).getUserData();
-          context.navigateAndReplacement(newRoute: Routes.roomViewRoute);
-        }
-      });
+      _handleSignInWithGoogleSuccessState(context, state);
     }
 
     if (state is SignInErrorState) {
-      CustomSnackBar.show(
-        context: context,
-        message: state.error,
-        title: "Warning",
-      );
+      _handleSignInErrorState(context, state);
     }
+  }
+
+  void _handleSignInErrorState(BuildContext context, SignInErrorState state) {
+    context.getBack();
+    CustomSnackBar.show(
+      context: context,
+      message: state.error,
+      title: "Warning",
+    );
+  }
+
+  void _handleSignInWithGoogleSuccessState(
+    BuildContext context,
+    SignInWithGoogleSuccessState state,
+  ) {
+    context.getBack();
+    CacheHelper.saveData(key: 'uId', value: state.uId).then((value) {
+      if (value) {
+        Helper.uId = int.parse(state.uId);
+        BlocProvider.of<RoomeCubit>(context).getUserData();
+        context.navigateAndReplacement(newRoute: Routes.roomViewRoute);
+      }
+    });
+  }
+
+  void _handleSignInSuccessState(
+    BuildContext context,
+    SignInSuccessState state,
+  ) {
+    context.getBack();
+    CacheHelper.saveData(key: 'uId', value: state.uId).then((value) {
+      if (value) {
+        Helper.uId = state.uId;
+        BlocProvider.of<RoomeCubit>(context).getUserData();
+        context.navigateAndReplacement(newRoute: Routes.roomViewRoute);
+        _weMissedYouNotification(state);
+      }
+    });
+  }
+
+  void _weMissedYouNotification(SignInSuccessState state) {
+    NotificationService.triggerNotification(
+      title: AppStrings.welcomeBack,
+      body:
+          'We missed you, ${state.userModel.firstName} ${AppStrings.smilingFaceEmoji}',
+    );
   }
 }
