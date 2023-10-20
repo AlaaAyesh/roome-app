@@ -112,10 +112,10 @@ class _SignUpFormState extends State<SignUpForm> {
             thisFocusNode: _passwordFocusNode,
             hint: 'Password',
             prefixIcon: Icons.lock,
-            visibilityIcon: widget.cubit.passVisibility
+            visibilityIcon: widget.cubit.signUpPassVisibility
                 ? Icons.visibility_rounded
                 : Icons.visibility_off_rounded,
-            obscure: widget.cubit.passVisibility,
+            obscure: widget.cubit.signUpPassVisibility,
             validating: (String? value) {
               Helper.validatingPasswordField(
                 context: context,
@@ -123,9 +123,10 @@ class _SignUpFormState extends State<SignUpForm> {
               );
               return null;
             },
-            onSubmit: (String value) => signUp(context),
-            visibilityButtonOnPressed: () =>
-                widget.cubit.switchPassVisibility(),
+            onSubmit: (String value) => _signUp(context),
+            visibilityButtonOnPressed: () {
+              widget.cubit.switchPassVisibility();
+            },
           ),
           SizedBox(height: SizeConfig.screenHeight! * 0.01),
           Align(
@@ -140,7 +141,7 @@ class _SignUpFormState extends State<SignUpForm> {
             child: MyCustomButton(
               height: 47.h,
               width: 305.w,
-              onPressed: () => signUp(context),
+              onPressed: () => _signUp(context),
               hasPrefix: false,
               backgroundColor: AppColors.primaryColor,
               borderRadius: BorderRadius.all(Radius.circular(10.r)),
@@ -161,7 +162,7 @@ class _SignUpFormState extends State<SignUpForm> {
     );
   }
 
-  void signUp(BuildContext context) {
+  void _signUp(BuildContext context) {
     if (_formKey.currentState!.validate()) {
       CustomHelper.keyboardUnfocus(context);
 

@@ -11,7 +11,6 @@ import '/src/config/themes/cubit/themes_cubit.dart';
 import '/src/core/utils/app_navigator.dart';
 import '/src/features/profile/presentation/widgets/profile_icon_button.dart';
 import '/src/features/profile/presentation/widgets/profile_image.dart';
-import '/src/features/profile/presentation/widgets/update_image_button_and_loading.dart';
 import 'edit_profile_form.dart';
 
 class EditProfileViewBody extends StatelessWidget {
@@ -59,7 +58,6 @@ class EditProfileViewBody extends StatelessWidget {
                 from: AppConstants.fadeInHorizontalValue,
                 child: const ProfileImage(),
               ),
-              const UpdateImageButtonAndLoading(),
               SizedBox(height: SizeConfig.screenHeight! * 0.029),
               const EditProfileForm(),
             ],

@@ -19,7 +19,7 @@ class SignUpCubit extends Cubit<SignUpState> {
     required this.signUpWithGoogleUseCase,
   }) : super(SignUpInitial());
 
-  bool passVisibility = true;
+  bool signUpPassVisibility = true;
 
   void userSignUp({
     required String firstName,
@@ -70,7 +70,9 @@ class SignUpCubit extends Cubit<SignUpState> {
   }
 
   void switchPassVisibility() {
-    passVisibility = !passVisibility;
-    emit(SwitchPassVisibleState(passVisibility: passVisibility));
+    signUpPassVisibility = !signUpPassVisibility;
+    emit(
+      SwitchSignUpPassVisibleState(signUpPassVisibility: signUpPassVisibility),
+    );
   }
 }

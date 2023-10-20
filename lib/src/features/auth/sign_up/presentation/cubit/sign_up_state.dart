@@ -14,7 +14,7 @@ class SignUpLoadingState extends SignUpState {}
 class SignUpSuccessState extends SignUpState {
   final int uId;
   final UserModel userModel;
-  
+
   const SignUpSuccessState({required this.uId, required this.userModel});
 
   @override
@@ -30,13 +30,13 @@ class SignUpErrorState extends SignUpState {
   List<Object> get props => [error];
 }
 
-class SwitchPassVisibleState extends SignUpState {
-  final bool passVisibility;
+class SwitchSignUpPassVisibleState extends SignUpState {
+  final bool signUpPassVisibility;
 
-  const SwitchPassVisibleState({required this.passVisibility});
+  const SwitchSignUpPassVisibleState({required this.signUpPassVisibility});
 
   @override
-  List<Object> get props => [passVisibility];
+  List<Object> get props => [signUpPassVisibility];
 }
 
 class SignUpWithGoogleLoadingState extends SignUpState {}

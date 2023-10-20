@@ -50,7 +50,7 @@ class _LoginFormState extends State<LoginForm> {
             controller: _nameOrEmailController,
             thisFocusNode: _nameOrEmailFocusNode,
             textCapitalization: TextCapitalization.none,
-            keyboardType: TextInputType.text,
+            keyboardType: TextInputType.emailAddress,
             prefixIcon: Icons.person,
             validating: (String? value) {
               Helper.validatingNameField(
@@ -70,10 +70,12 @@ class _LoginFormState extends State<LoginForm> {
             thisFocusNode: _passwordFocusNode,
             hint: 'Password',
             prefixIcon: Icons.lock,
-            visibilityIcon: widget.cubit.passVisibility
+            visibilityIcon: widget.cubit.loginPassVisibility
                 ? Icons.visibility_rounded
                 : Icons.visibility_off_rounded,
-            obscure: widget.cubit.passVisibility,
+            visibilityButtonOnPressed: () =>
+                widget.cubit.switchPassVisibility(),
+            obscure: widget.cubit.loginPassVisibility,
             validating: (String? value) {
               Helper.validatingPasswordField(
                 context: context,
@@ -82,8 +84,6 @@ class _LoginFormState extends State<LoginForm> {
               return null;
             },
             onSubmit: (String value) => login(context),
-            visibilityButtonOnPressed: () =>
-                widget.cubit.switchPassVisibility(),
           ),
           SizedBox(height: SizeConfig.screenHeight! * 0.03),
           Row(

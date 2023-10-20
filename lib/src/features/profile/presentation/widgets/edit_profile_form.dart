@@ -252,7 +252,11 @@ class _EditProfileFormState extends State<EditProfileForm> {
                     width: SizeConfig.screenWidth,
                     backgroundColor: AppColors.primaryColor,
                     borderRadius: BorderRadius.all(Radius.circular(12.r)),
-                    onPressed: () => _validateAndUpdate(context),
+                    onPressed: () {
+                      RoomeCubit.getObject(context).profileImage == null
+                          ? _validateAndUpdate(context)
+                          : _validateAndUpdateUserWithProfileImage(context);
+                    },
                     hasPrefix: false,
                     child: Center(
                       child: Text(
@@ -280,8 +284,29 @@ class _EditProfileFormState extends State<EditProfileForm> {
     }
   }
 
+  void _validateAndUpdateUserWithProfileImage(context) {
+    if (_formKey.currentState!.validate()) {
+      CustomHelper.keyboardUnfocus(context);
+      _updateUserAndProfileImage(context);
+    }
+  }
+
   void _updateUser(BuildContext context) {
     BlocProvider.of<RoomeCubit>(context).updateUser(
+      uId: Helper.uId,
+      firstName: _nameController.text.split(' ').first.trim(),
+      lastName: _nameController.text.split(' ').last.trim(),
+      username: _usernameController.text.trim(),
+      occupation: _occupationController.text.trim(),
+      nationality: _nationalityController.text.trim(),
+      phoneNumber: _phoneNumberController.text,
+      email: _emailController.text.trim(),
+      password: _passwordController.text,
+    );
+  }
+
+  void _updateUserAndProfileImage(context) {
+    BlocProvider.of<RoomeCubit>(context).uploadProfileImage(
       firstName: _nameController.text.split(' ').first.trim(),
       lastName: _nameController.text.split(' ').last.trim(),
       username: _usernameController.text.trim(),
@@ -339,9 +364,9 @@ class _EditProfileFormState extends State<EditProfileForm> {
     _nameController.text =
         '${Helper.currentUser!.firstName} ${Helper.currentUser!.lastName}';
     _usernameController.text = Helper.currentUser!.username!;
-    _occupationController.text = Helper.currentUser!.occupation ?? 'Unknown';
-    _nationalityController.text = Helper.currentUser!.nationality ?? 'Unknown';
-    _phoneNumberController.text = Helper.currentUser!.phoneNumber ?? 'Unknown';
+    _occupationController.text = Helper.currentUser!.occupation!;
+    _nationalityController.text = Helper.currentUser!.nationality!;
+    _phoneNumberController.text = Helper.currentUser!.phoneNumber!;
     _emailController.text = Helper.currentUser!.email!;
     _passwordController.text = Helper.currentUser!.password!;
   }

@@ -46,10 +46,10 @@ class SignInWithGoogleErrorState extends LoginState {
   List<Object> get props => [error];
 }
 
-class SwitchPassVisibleState extends LoginState {
+class SwitchLoginPassVisibleState extends LoginState {
   final bool passVisibility;
 
-  const SwitchPassVisibleState({required this.passVisibility});
+  const SwitchLoginPassVisibleState({required this.passVisibility});
 
   @override
   List<Object> get props => [passVisibility];

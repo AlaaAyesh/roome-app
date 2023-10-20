@@ -18,7 +18,7 @@ class LoginCubit extends Cubit<LoginState> {
     required this.loginWithGoogleUseCase,
   }) : super(LoginInitial());
 
-  bool passVisibility = true;
+  bool loginPassVisibility = true;
 
   void userSignIn({
     required String usernameOrEmail,
@@ -57,7 +57,7 @@ class LoginCubit extends Cubit<LoginState> {
   }
 
   void switchPassVisibility() {
-    passVisibility = !passVisibility;
-    emit(SwitchPassVisibleState(passVisibility: passVisibility));
+    loginPassVisibility = !loginPassVisibility;
+    emit(SwitchLoginPassVisibleState(passVisibility: loginPassVisibility));
   }
 }
