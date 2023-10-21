@@ -11,6 +11,7 @@ import '/src/features/auth/sign_up/presentation/cubit/sign_up_cubit.dart';
 import '/src/features/auth/sign_up/presentation/views/sign_up_view.dart';
 import '/src/features/booking/data/models/booked_hotel_info.dart';
 import '/src/features/booking/data/models/booking_info.dart';
+import '/src/features/booking/presentation/cubits/payment/payment_cubit.dart';
 import '/src/features/booking/presentation/views/booking_one_view.dart';
 import '/src/features/booking/presentation/views/booking_two_view.dart';
 import '/src/features/booking/presentation/views/payment_view.dart';
@@ -109,7 +110,10 @@ class AppRoutes {
       case Routes.paymentViewRoute:
         final args = routeSettings.arguments as BookingInfo;
         return MaterialPageRoute(
-          builder: (context) => PaymentView(bookingInfo: args),
+          builder: (context) => BlocProvider(
+            create: (context) => serviceLocator.get<PaymentCubit>(),
+            child: PaymentView(bookingInfo: args),
+          ),
         );
 
       case Routes.ticketViewRoute:
@@ -126,7 +130,8 @@ class AppRoutes {
 
       case Routes.searchLocationViewRoute:
         return MaterialPageRoute(
-            builder: (context) => const SearchLocationView());
+          builder: (context) => const SearchLocationView(),
+        );
 
       default:
         return unFoundRoute();

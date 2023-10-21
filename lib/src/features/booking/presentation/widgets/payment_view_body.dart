@@ -15,6 +15,7 @@ import '/src/core/utils/app_text_styles.dart';
 import '/src/core/widgets/custom_action_button.dart';
 import '/src/core/widgets/custom_app_bar.dart';
 import '/src/features/booking/data/models/booking_info.dart';
+import '/src/features/booking/presentation/cubits/payment/payment_cubit.dart';
 import '/src/features/booking/presentation/widgets/section_title.dart';
 import '/src/features/notifications/presentation/cubit/notifications_cubit.dart';
 import 'other_payment_method.dart';
@@ -38,84 +39,91 @@ class PaymentViewBody extends StatelessWidget {
             right: 31.w,
             bottom: 14.h,
           ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              CustomAppBar(
-                spaceBetween: 100,
-                title: 'Payment',
-                arrowOnTap: () => context.getBack(),
-              ),
-              SizedBox(height: SizeConfig.screenHeight! * 0.031),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          child: BlocBuilder<PaymentCubit, PaymentState>(
+            builder: (context, state) {
+              return Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  const SectionTitle(title: 'My Card'),
-                  CustomTextButton(
-                    onTap: () {},
-                    child: Text(
-                      'Edit Card',
-                      style: AppTextStyles.hintStyle.copyWith(
-                        color: AppColors.primaryColor,
-                        fontWeight: FontWeight.normal,
+                  CustomAppBar(
+                    spaceBetween: 100,
+                    title: 'Payment',
+                    arrowOnTap: () => context.getBack(),
+                  ),
+                  SizedBox(height: SizeConfig.screenHeight! * 0.031),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      const SectionTitle(title: 'My Card'),
+                      CustomTextButton(
+                        onTap: () {},
+                        child: Text(
+                          'Edit Card',
+                          style: AppTextStyles.hintStyle.copyWith(
+                            color: AppColors.primaryColor,
+                            fontWeight: FontWeight.normal,
+                          ),
+                        ),
                       ),
+                    ],
+                  ),
+                  SizedBox(height: SizeConfig.screenHeight! * 0.018),
+                  ClipRRect(
+                    borderRadius: BorderRadius.all(Radius.circular(20.r)),
+                    child: SvgPicture.asset(
+                      AppAssets.imageCreditCard,
+                      fit: BoxFit.cover,
                     ),
                   ),
+                  SizedBox(height: SizeConfig.screenHeight! * 0.04),
+                  const SectionTitle(title: 'Other Payment Method'),
+                  SizedBox(height: SizeConfig.screenHeight! * 0.036),
+                  const OtherPaymentMethod(
+                    icon: AppAssets.iconNewCredit,
+                    text: 'New credit/Debit Card',
+                  ),
+                  SizedBox(height: SizeConfig.screenHeight! * 0.035),
+                  const OtherPaymentMethod(
+                    icon: AppAssets.iconPaypal,
+                    text: 'Paypal',
+                  ),
+                  SizedBox(height: SizeConfig.screenHeight! * 0.1),
+                  CustomActionButton(
+                    buttonText: 'Continue',
+                    onPressed: () {
+                      _handleSuccessNotifications(context);
+
+                      showAdaptiveDialog(
+                        context: context,
+                        builder: (context) =>
+                            PaymentDialog(bookingInfo: bookingInfo),
+                      );
+
+                      BlocProvider.of<PaymentCubit>(context).convertContinue();
+                    },
+                    textStyle: AppTextStyles.textStyle15.copyWith(
+                      color: Colors.white,
+                      fontWeight: FontWeight.w600,
+                    ),
+                    backgroundColor: AppColors.primaryColor,
+                  ),
+                  SizedBox(height: SizeConfig.screenHeight! * 0.015),
+                  if (!BlocProvider.of<PaymentCubit>(context).isContinueTapped)
+                    CustomActionButton(
+                      buttonText: 'Cancel Booking',
+                      onPressed: () {
+                        _handleCancelNotifications(context);
+
+                        context.getBack();
+                      },
+                      textStyle: AppTextStyles.textStyle15.copyWith(
+                        color: Colors.white,
+                        fontWeight: FontWeight.w600,
+                      ),
+                      backgroundColor: Colors.red,
+                    ),
                 ],
-              ),
-              SizedBox(height: SizeConfig.screenHeight! * 0.018),
-              ClipRRect(
-                borderRadius: BorderRadius.all(Radius.circular(20.r)),
-                child: SvgPicture.asset(
-                  AppAssets.imageCreditCard,
-                  fit: BoxFit.cover,
-                ),
-              ),
-              SizedBox(height: SizeConfig.screenHeight! * 0.04),
-              const SectionTitle(title: 'Other Payment Method'),
-              SizedBox(height: SizeConfig.screenHeight! * 0.036),
-              const OtherPaymentMethod(
-                icon: AppAssets.iconNewCredit,
-                text: 'New credit/Debit Card',
-              ),
-              SizedBox(height: SizeConfig.screenHeight! * 0.035),
-              const OtherPaymentMethod(
-                icon: AppAssets.iconPaypal,
-                text: 'Paypal',
-              ),
-              SizedBox(height: SizeConfig.screenHeight! * 0.1),
-              CustomActionButton(
-                buttonText: 'Continue',
-                onPressed: () {
-                  _handleSuccessNotifications(context);
-
-                  showAdaptiveDialog(
-                    context: context,
-                    builder: (context) =>
-                        PaymentDialog(bookingInfo: bookingInfo),
-                  );
-                },
-                textStyle: AppTextStyles.textStyle15.copyWith(
-                  color: Colors.white,
-                  fontWeight: FontWeight.w600,
-                ),
-                backgroundColor: AppColors.primaryColor,
-              ),
-              SizedBox(height: SizeConfig.screenHeight! * 0.015),
-              CustomActionButton(
-                buttonText: 'Cancel Booking',
-                onPressed: () {
-                  _handleCancelNotifications(context);
-
-                  context.getBack();
-                },
-                textStyle: AppTextStyles.textStyle15.copyWith(
-                  color: Colors.white,
-                  fontWeight: FontWeight.w600,
-                ),
-                backgroundColor: Colors.red,
-              ),
-            ],
+              );
+            },
           ),
         ),
       ),

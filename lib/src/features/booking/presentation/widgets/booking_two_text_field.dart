@@ -7,7 +7,7 @@ import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/app_text_styles.dart';
 import '/src/core/utils/app_constants.dart';
 
-class BookingTwoTextField extends StatefulWidget {
+class BookingTwoTextField extends StatelessWidget {
   const BookingTwoTextField({
     super.key,
     required this.controller,
@@ -20,6 +20,7 @@ class BookingTwoTextField extends StatefulWidget {
     this.hintStyle,
     this.prefixIcon,
     this.validating,
+    this.enabled,
   });
 
   final TextEditingController controller;
@@ -30,33 +31,27 @@ class BookingTwoTextField extends StatefulWidget {
   final String? hint;
   final TextStyle? hintStyle;
   final BoxBorder? border;
+  final bool? enabled;
   final Widget? prefixIcon;
   final String? Function(String?)? validating;
-
-  @override
-  State<BookingTwoTextField> createState() => _BookingTwoTextFieldState();
-}
-
-class _BookingTwoTextFieldState extends State<BookingTwoTextField> {
-  bool isValidating = false;
 
   @override
   Widget build(BuildContext context) {
     return FadeInRight(
       from: AppConstants.fadeInHorizontalValue,
       child: CustomTextFormField(
-        hint: widget.hint ?? '',
-        controller: widget.controller,
-        hintStyle: widget.hintStyle,
-        textCapitalization: widget.textCapitalization,
-        keyboardType: widget.keyboardType,
+        enabled: enabled,
+        hint: hint ?? '',
+        controller: controller,
+        hintStyle: hintStyle,
+        textCapitalization: textCapitalization,
+        keyboardType: keyboardType,
         backgroundColor:
-            widget.backgroundColor ?? AppColors.primaryColor.withOpacity(0.03),
+            backgroundColor ?? AppColors.primaryColor.withOpacity(0.03),
         borderRadius: BorderRadius.all(Radius.circular(10.r)),
-        height: isValidating ? 50.h : 40.h,
-        width: widget.width?.w,
+        width: width?.w,
         textFieldBorder: InputBorder.none,
-        border: widget.border ??
+        border: border ??
             Border.all(
               color: AppColors.darkGrey.withOpacity(0.63),
             ),
@@ -64,21 +59,11 @@ class _BookingTwoTextFieldState extends State<BookingTwoTextField> {
         style: AppTextStyles.textStyle15.copyWith(
           fontWeight: FontWeight.w500,
         ),
-        prefixIcon: widget.prefixIcon,
-        validating: (String? val) {
-          setState(() {
-            isValidating = true;
-          });
-
-          if (val!.isEmpty) {
-            return "Can't be blank";
-          }
-          return null;
-        },
-        contentPadding: EdgeInsets.only(
-          left: 16.w,
-          right: 16.w,
-          top: isValidating ? 20.h : 8.h,
+        prefixIcon: prefixIcon,
+        validating: validating,
+        contentPadding: EdgeInsets.symmetric(
+          horizontal: 16.w,
+          vertical: 8.h,
         ),
         errorBorder: InputBorder.none,
         enabledBorder: InputBorder.none,

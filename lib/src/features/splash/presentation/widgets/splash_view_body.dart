@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:reusable_components/reusable_components.dart';
 
 import '/src/core/utils/app_assets.dart';
@@ -23,7 +24,10 @@ class SplashViewBody extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
           SizedBox(height: SizeConfig.screenHeight! * 0.13),
-          Image.asset(AppAssets.appIcon),
+          ClipRRect(
+            borderRadius: BorderRadius.all(Radius.circular(40.r)),
+            child: Image.asset(AppAssets.appIcon),
+          ),
           Text(
             AppStrings.appTitle,
             style: AppTextStyles.splashTextStyle,

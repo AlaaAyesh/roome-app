@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get_it/get_it.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
+import 'package:roome/src/features/booking/presentation/cubits/payment/payment_cubit.dart';
 
 import '../../features/auth/sign_in/data/datasources/login_datasource.dart';
 import '../../features/auth/sign_in/data/datasources/login_datasource_impl.dart';
@@ -418,4 +419,6 @@ void setUpForCubits() {
           serviceLocator.get<RemoveFromNotificationsUseCase>(),
     ),
   );
+
+  serviceLocator.registerFactory<PaymentCubit>(() => PaymentCubit());
 }
