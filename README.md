@@ -1,10 +1,10 @@
 # Roome
 
-![Roome Logo](assets/appIcon.png)
+<p align="center">
+  <img src="assets/appIcon.png" alt="Roome Logo" width="100">
+</p>
 
-## Description
-
-Roome is a Flutter app designed to help users find and book hotels for their vacations or leisure activities. The app provides a user-friendly interface to explore various hotel options (Near Me, Recommended, Popular) and make reservations. With features like clean architecture, Cubit state management, local notifications, OpenStreetMap integration, dark mode, hotel details, and favoriting, Roome offers a comprehensive solution for users looking to plan their ideal getaway.
+Roome is a Flutter app designed to help users find and book hotels for their vacations or leisure activities. The app provides a user-friendly interface to explore various hotel options (Near Me, Recommended, Popular) and make reservations. With features like clean architecture, Cubit state management, local notifications, OpenStreetMap integration, dark mode, hotel details, and favorite,
 
 ## Table of Contents
 
@@ -15,6 +15,10 @@ Roome is a Flutter app designed to help users find and book hotels for their vac
 - [Contributing](#contributing)
 
 ## Preview
+
+<div style="display: flex" > 
+  <img style="display: inline-block" src="https://github.com/ahmedghaly15/Social-App/assets/108659381/3cec1455-b2ec-4179-aaf5-4e6f69e1302f" width= "300" height = "600"/>
+</div>
 
 ## Installation
 
@@ -42,13 +46,13 @@ Once the Roome app is installed and launched, follow these steps to utilize its 
 
 Roome offers the following features:
 
-- Clean architecture: The app follows the principles of clean architecture, which promotes separation of concerns and maintainability.
-- Cubit state management: Roome utilizes Cubit as a state management solution to efficiently handle and update the UI based on the app's internal state.
-- Local notifications: Users receive notifications for important updates, such as booking confirmations or reminders for upcoming reservations.
-- OpenStreetMap integration: The app integrates with OpenStreetMap to help users explore their location and discover nearby hotels.
-- Dark mode: Roome offers a visually pleasing dark mode option for users who prefer a darker interface.
-- Hotel details: Users can explore detailed information about each hotel, including amenities, services, pricing, and availability.
-- Favorites: Roome allows users to add hotels to their favorites list for easy access and quick booking.
+- `Clean architecture`: The app follows the principles of clean architecture, which promotes separation of concerns and maintainability.
+- `Cubit state management`: Roome utilizes Cubit as a state management solution to efficiently handle and update the UI based on the app's internal state.
+- `Local notifications`: Users receive notifications for important updates, such as booking confirmations or reminders for upcoming reservations.
+- `OpenStreetMap integration`: The app integrates with OpenStreetMap to help users explore their location and discover nearby hotels.
+- `Dark mode`: Roome offers a visually pleasing dark mode option for users who prefer a darker interface.
+- `Hotel details`: Users can explore detailed information about each hotel, including amenities, services, pricing, and availability.
+- `Favorites`: Roome allows users to add hotels to their favorites list for easy access and quick booking.
 
 ## Contributing
 
