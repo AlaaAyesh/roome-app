@@ -44,3 +44,12 @@ class DecreaseGuestNumberState extends BookingOneState {
   @override
   List<Object> get props => [number];
 }
+
+class ChangeSelectedRoomType extends BookingOneState {
+  final String selectedRoomType;
+
+  const ChangeSelectedRoomType({required this.selectedRoomType});
+
+  @override
+  List<Object> get props => [selectedRoomType];
+}

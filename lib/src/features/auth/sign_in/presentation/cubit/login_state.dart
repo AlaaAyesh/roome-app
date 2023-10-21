@@ -54,3 +54,12 @@ class SwitchLoginPassVisibleState extends LoginState {
   @override
   List<Object> get props => [passVisibility];
 }
+
+class SwitchRememberMeState extends LoginState {
+  final bool remembered;
+
+  const SwitchRememberMeState({required this.remembered});
+
+  @override
+  List<Object> get props => [remembered];
+}

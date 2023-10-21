@@ -88,7 +88,7 @@ class _LoginFormState extends State<LoginForm> {
           SizedBox(height: SizeConfig.screenHeight! * 0.03),
           Row(
             children: <Widget>[
-              const RememberMeCheckBox(),
+              RememberMeCheckBox(cubit: widget.cubit),
               SizedBox(width: SizeConfig.screenHeight! * 0.008),
               Text(
                 'Remember Me',

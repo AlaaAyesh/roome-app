@@ -1,32 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:roome/src/features/auth/sign_in/presentation/cubit/login_cubit.dart';
 
 import '../../../../../core/utils/app_colors.dart';
 
-class RememberMeCheckBox extends StatefulWidget {
-  const RememberMeCheckBox({super.key});
+class RememberMeCheckBox extends StatelessWidget {
+  final LoginCubit cubit;
 
-  @override
-  State<RememberMeCheckBox> createState() => _RememberMeCheckBoxState();
-}
-
-class _RememberMeCheckBoxState extends State<RememberMeCheckBox> {
-  bool isRemembered = false;
+  const RememberMeCheckBox({super.key, required this.cubit});
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        if (isRemembered) {
-          setState(() {
-            isRemembered = !isRemembered;
-          });
-        } else {
-          setState(() {
-            isRemembered = true;
-          });
-        }
-      },
+      onTap: () => cubit.switchRemembered(),
       child: Container(
         height: 15.w,
         width: 15.w,
@@ -39,7 +25,7 @@ class _RememberMeCheckBoxState extends State<RememberMeCheckBox> {
           ),
         ),
         child: Center(
-          child: isRemembered
+          child: cubit.remembered
               ? Icon(
                   Icons.check,
                   color: AppColors.primaryColor,

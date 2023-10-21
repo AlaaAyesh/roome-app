@@ -17,3 +17,21 @@ class ContinueTappedState extends PaymentState {
   @override
   List<Object> get props => [isContinueTapped];
 }
+
+class ChangePaypalCircleColorState extends PaymentState {
+  final Color circleColor;
+
+  const ChangePaypalCircleColorState({required this.circleColor});
+
+  @override
+  List<Object> get props => [circleColor];
+}
+
+class ChangeCreditCircleColorState extends PaymentState {
+  final Color circleColor;
+
+  const ChangeCreditCircleColorState({required this.circleColor});
+
+  @override
+  List<Object> get props => [circleColor];
+}

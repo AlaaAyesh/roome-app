@@ -60,4 +60,12 @@ class LoginCubit extends Cubit<LoginState> {
     loginPassVisibility = !loginPassVisibility;
     emit(SwitchLoginPassVisibleState(passVisibility: loginPassVisibility));
   }
+
+  bool remembered = false;
+
+  void switchRemembered() {
+    remembered = !remembered;
+
+    emit(SwitchRememberMeState(remembered: remembered));
+  }
 }
