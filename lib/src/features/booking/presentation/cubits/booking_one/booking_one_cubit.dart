@@ -29,4 +29,12 @@ class BookingOneCubit extends Cubit<BookingOneState> {
     guestNumber--;
     emit(DecreaseGuestNumberState(number: guestNumber));
   }
+
+  String selectedRoomType = 'Double';
+
+  void changeSelectedRoomType(String? newVal) {
+    selectedRoomType = newVal!;
+
+    emit(ChangeSelectedRoomType(selectedRoomType: selectedRoomType));
+  }
 }

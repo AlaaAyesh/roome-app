@@ -75,9 +75,8 @@ class _BookingOneBodyContentState extends State<BookingOneBodyContent> {
               onSelectionChanged: (args) {
                 selectedRange = args.value;
                 setState(() {
-                  _checkInDate = DateFormat.MMMd()
-                      .format(selectedRange.startDate!)
-                      .toString();
+                  _checkInDate =
+                      DateFormat.MMMd().format(selectedRange.startDate!);
 
                   if (selectedRange.endDate == null) {
                     endDate = selectedRange.startDate;
@@ -86,9 +85,8 @@ class _BookingOneBodyContentState extends State<BookingOneBodyContent> {
                       _checkOutDate = DateFormat.MMMd().format(endDate!);
                     });
                   } else {
-                    _checkOutDate = DateFormat.MMMd()
-                        .format(selectedRange.endDate!)
-                        .toString();
+                    _checkOutDate =
+                        DateFormat.MMMd().format(selectedRange.endDate!);
                   }
                 });
               },

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:roome/src/features/booking/presentation/cubits/payment/payment_cubit.dart';
 
 import '../../../../core/utils/app_colors.dart';
 import '/src/config/themes/cubit/themes_cubit.dart';
@@ -54,9 +55,23 @@ class OtherPaymentMethod extends StatelessWidget {
             },
           ),
           const Spacer(),
-          const SelectionCircle(),
+          BlocBuilder<PaymentCubit, PaymentState>(
+            builder: (context, state) {
+              PaymentCubit cubit = BlocProvider.of<PaymentCubit>(context);
+              return SelectionCircle(
+                color: _checkPaymentMethod()
+                    ? cubit.paypalCircleColor
+                    : cubit.creditCircleColor,
+                onTap: () => _checkPaymentMethod()
+                    ? cubit.changePaypalCircleColor()
+                    : cubit.changeCreditCircleColor(),
+              );
+            },
+          ),
         ],
       ),
     );
   }
+
+  bool _checkPaymentMethod() => text.toLowerCase().contains('paypal');
 }
