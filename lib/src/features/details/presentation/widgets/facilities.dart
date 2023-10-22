@@ -4,7 +4,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:reusable_components/reusable_components.dart';
 
-import '../../../../core/api/end_points.dart';
 import '../../../../core/models/facility.dart';
 import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/app_text_styles.dart';
@@ -27,7 +26,7 @@ class Facilities extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             SvgPicture.network(
-              '${EndPoints.iconBaseUrl}${facilities[index].icon!}',
+              facilities[index].icon!,
               height: SizeConfig.screenHeight! * 0.04,
               width: SizeConfig.screenHeight! * 0.04,
               fit: BoxFit.cover,

@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:reusable_components/reusable_components.dart';
 
-import '../../../../core/api/end_points.dart';
 import '../../../../core/helpers/helper.dart';
 import '../../../../core/models/hotel.dart';
 import '../../../../core/widgets/custom_error_icon.dart';
@@ -26,7 +25,7 @@ class DetailsImage extends StatelessWidget {
         ClipRRect(
           borderRadius: BorderRadius.all(Radius.circular(20.r)),
           child: CachedNetworkImage(
-            imageUrl: '${EndPoints.imageBaseUrl}${hotel.images![0].path}',
+            imageUrl: hotel.images![0].path!,
             height: SizeConfig.screenHeight! * 0.45,
             width: double.infinity,
             fit: BoxFit.cover,
@@ -75,7 +74,7 @@ class DetailsImage extends StatelessWidget {
                 lastIndex: Helper.getLength(hotel.images!) - 1,
                 imagesNumber: Helper.getLength(hotel.images!),
                 hotel: hotel,
-                image: '${EndPoints.imageBaseUrl}${hotel.images![index].path!}',
+                image: hotel.images![index].path!,
               ),
             ),
           ),

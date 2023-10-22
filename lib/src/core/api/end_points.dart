@@ -1,8 +1,5 @@
 class EndPoints {
-  static const String host = 'http://192.168.1.9:7070/';
-  static const String baseUrl = '${host}api/';
-  static const String imageBaseUrl = '${baseUrl}images/';
-  static const String iconBaseUrl = '${baseUrl}icons/';
+  static const String baseUrl = 'https://roome-cyka.onrender.com/api/';
   static const String user = '${baseUrl}user';
   static const String login = '${baseUrl}auth/login';
   static const String register = '${baseUrl}auth/register';

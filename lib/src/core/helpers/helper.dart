@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../features/favorite/presentation/cubit/favorite_cubit.dart';
+import '../../features/roome/presentation/cubit/roome_cubit.dart';
 import '../models/hotel.dart';
 import '../models/user_model.dart';
 import '../utils/app_colors.dart';
@@ -10,6 +13,11 @@ import '/src/core/widgets/custom_snack_bar.dart';
 class Helper {
   static int? uId;
   static UserModel? currentUser;
+
+  static void getUserAndFavorites(BuildContext context) {
+    BlocProvider.of<RoomeCubit>(context).getUserData();
+    BlocProvider.of<FavoriteCubit>(context).getFavorites();
+  }
 
   static UnderlineInputBorder buildUnderlineInputBorder({Color? color}) {
     return UnderlineInputBorder(

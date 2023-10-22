@@ -5,7 +5,6 @@ import 'package:gallery_image_viewer/gallery_image_viewer.dart';
 import 'package:reusable_components/reusable_components.dart';
 
 import '../../../../core/models/hotel.dart';
-import '/src/core/api/end_points.dart';
 import '/src/core/utils/app_constants.dart';
 import '/src/core/utils/app_text_styles.dart';
 import 'more_image_item.dart';
@@ -67,9 +66,7 @@ class MoreDetailsImages extends StatelessWidget {
       MultiImageProvider multiImageProvider = MultiImageProvider(
         List.generate(
           imagesNumber >= 3 ? withoutFirstThree() : imagesNumber,
-          (index) => Image.network(
-                  '${EndPoints.imageBaseUrl}${hotel.images![index].path}')
-              .image,
+          (index) => Image.network(hotel.images![index].path!).image,
           growable: false,
         ),
       );

@@ -8,7 +8,6 @@ import '../../../../../core/helpers/helper.dart';
 import '../../../../../core/utils/app_strings.dart';
 import '../../../../../core/widgets/custom_snack_bar.dart';
 import '../../../../../core/widgets/loading_dialog.dart';
-import '../../../../roome/presentation/cubit/roome_cubit.dart';
 import '/src/core/utils/app_navigator.dart';
 import '/src/features/auth/sign_up/presentation/cubit/sign_up_cubit.dart';
 import '/src/features/auth/sign_up/presentation/widgets/sign_up_view_body.dart';
@@ -58,9 +57,8 @@ class SignUpView extends StatelessWidget {
     CacheHelper.saveData(key: 'uId', value: state.uId).then((value) {
       if (value) {
         Helper.uId = int.parse(state.uId);
-        BlocProvider.of<RoomeCubit>(context).getUserData();
+        Helper.getUserAndFavorites(context);
         _accountCreatedSnackBar(context);
-
         context.navigateAndReplacement(newRoute: Routes.roomViewRoute);
       }
     });
@@ -74,11 +72,9 @@ class SignUpView extends StatelessWidget {
     CacheHelper.saveData(key: 'uId', value: state.uId).then((value) {
       if (value) {
         Helper.uId = state.uId;
-        BlocProvider.of<RoomeCubit>(context).getUserData();
+        Helper.getUserAndFavorites(context);
         _accountCreatedSnackBar(context);
-
         context.navigateAndReplacement(newRoute: Routes.roomViewRoute);
-
         _sayHelloNotification(state);
       }
     });

@@ -5,7 +5,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:reusable_components/reusable_components.dart';
 
 import '../../../../config/routes/routes.dart';
-import '../../../../core/api/end_points.dart';
 import '../../../../core/models/hotel.dart';
 import '../../../../core/models/using_hero_model.dart';
 import '../../../../core/utils/app_colors.dart';
@@ -64,8 +63,7 @@ class FavoriteCard extends StatelessWidget {
                     child: Hero(
                       tag: hotel.id!,
                       child: CachedNetworkImage(
-                        imageUrl:
-                            '${EndPoints.imageBaseUrl}${hotel.images![0].path}',
+                        imageUrl: hotel.images![0].path!,
                         height: 98.h,
                         width: 155.w,
                         fit: BoxFit.cover,

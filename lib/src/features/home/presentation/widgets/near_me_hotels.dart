@@ -22,6 +22,7 @@ class NearMeHotels extends StatelessWidget {
             height: SizeConfig.screenHeight! * 0.26,
             width: SizeConfig.screenWidth,
             child: ListView.separated(
+              reverse: true,
               physics: const BouncingScrollPhysics(),
               scrollDirection: Axis.horizontal,
               padding: EdgeInsets.symmetric(

@@ -8,7 +8,6 @@ import '../utils/app_colors.dart';
 import '../utils/app_text_styles.dart';
 import '/src/config/routes/routes.dart';
 import '/src/config/themes/cubit/themes_cubit.dart';
-import '/src/core/api/end_points.dart';
 import '/src/core/models/using_hero_model.dart';
 import '/src/core/utils/app_navigator.dart';
 import '/src/core/widgets/location_text.dart';
@@ -67,8 +66,7 @@ class HotelCard extends StatelessWidget {
                         child: Hero(
                           tag: hotel.id!,
                           child: CachedNetworkImage(
-                            imageUrl:
-                                '${EndPoints.imageBaseUrl}${hotel.images![0].path}',
+                            imageUrl: hotel.images![0].path!,
                             height: 89.h,
                             width: double.infinity,
                             fit: BoxFit.cover,
