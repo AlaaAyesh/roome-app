@@ -6,6 +6,8 @@
 
 Roome is a Flutter app designed to help users find and book hotels for their vacations or leisure activities. The app provides a user-friendly interface to explore various hotel options (Near Me, Recommended, Popular) and make reservations. With features like clean architecture, Cubit state management, local notifications, OpenStreetMap integration, dark mode, hotel details, and favorite,
 
+📱 The Roome app is fully responsive, ensuring a seamless experience across different devices and screen sizes.
+
 ## Table of Contents
 
 - [Preview](#preview)
