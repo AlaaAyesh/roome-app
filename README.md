@@ -1,11 +1,10 @@
 # Roome
 
-<div style="display: flex;">
-  <div style="flex-grow: 1;">
-    Roome is a Flutter app designed to help users find and book hotels for their vacations or leisure activities. The app provides a user-friendly interface to explore various hotel options (Near Me, Recommended, Popular) and make reservations. With features like clean architecture, Cubit state management, local notifications, OpenStreetMap integration, dark mode, hotel details, and favorite,
-  </div>
-  <img src="assets/appIcon.png" alt="Roome Logo" style="width: 100px; flex-shrink: 0;">
-</div>
+<p align="center">
+  <img src="assets/appIcon.png" alt="Roome Logo" width="100">
+</p>
+
+Roome is a Flutter app designed to help users find and book hotels for their vacations or leisure activities. The app provides a user-friendly interface to explore various hotel options (Near Me, Recommended, Popular) and make reservations. With features like clean architecture, Cubit state management, local notifications, OpenStreetMap integration, dark mode, hotel details, and favorite,
 
 ## Table of Contents
 

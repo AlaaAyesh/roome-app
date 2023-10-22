@@ -122,7 +122,7 @@ class RoomeCubit extends Cubit<RoomeState> {
       email: email,
       username: username,
       password: password,
-      profileImage: profileImage,
+      profileImage: profileImage ?? Helper.currentUser!.profileImage,
       occupation: occupation,
       nationality: nationality,
     )).then((value) {

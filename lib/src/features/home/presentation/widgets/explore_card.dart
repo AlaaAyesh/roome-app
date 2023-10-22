@@ -4,7 +4,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:reusable_components/reusable_components.dart';
 
-import '../../../../core/api/end_points.dart';
 import '../../../../core/models/hotel.dart';
 import '../../../../core/models/using_hero_model.dart';
 import '../../../../core/utils/app_colors.dart';
@@ -53,8 +52,7 @@ class ExploreCard extends StatelessWidget {
                   child: ClipRRect(
                     borderRadius: BorderRadius.all(Radius.circular(10.r)),
                     child: CachedNetworkImage(
-                      imageUrl:
-                          '${EndPoints.imageBaseUrl}${hotel.images![0].path}',
+                      imageUrl: hotel.images![0].path!,
                       height: SizeConfig.screenHeight! * 0.14,
                       width: SizeConfig.screenWidth! * 0.15,
                       fit: BoxFit.cover,

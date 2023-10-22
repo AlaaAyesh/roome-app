@@ -6,7 +6,6 @@ import '../../../../../config/services/notification_service.dart';
 import '../../../../../core/helpers/helper.dart';
 import '../../../../../core/utils/app_strings.dart';
 import '../../../../../core/widgets/loading_dialog.dart';
-import '../../../../roome/presentation/cubit/roome_cubit.dart';
 import '/src/core/helpers/cache_helper.dart';
 import '/src/core/utils/app_navigator.dart';
 import '/src/core/widgets/custom_snack_bar.dart';
@@ -68,7 +67,7 @@ class LoginView extends StatelessWidget {
     CacheHelper.saveData(key: 'uId', value: state.uId).then((value) {
       if (value) {
         Helper.uId = int.parse(state.uId);
-        BlocProvider.of<RoomeCubit>(context).getUserData();
+        Helper.getUserAndFavorites(context);
         context.navigateAndReplacement(newRoute: Routes.roomViewRoute);
       }
     });
@@ -82,7 +81,7 @@ class LoginView extends StatelessWidget {
     CacheHelper.saveData(key: 'uId', value: state.uId).then((value) {
       if (value) {
         Helper.uId = state.uId;
-        BlocProvider.of<RoomeCubit>(context).getUserData();
+        Helper.getUserAndFavorites(context);
         context.navigateAndReplacement(newRoute: Routes.roomViewRoute);
         _weMissedYouNotification(state);
       }
