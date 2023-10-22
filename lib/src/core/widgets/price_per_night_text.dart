@@ -26,7 +26,7 @@ class PricePerNightText extends StatelessWidget {
           mainAxisAlignment: mainAxisAlignment ?? MainAxisAlignment.end,
           children: <Widget>[
             Text(
-              price.toString(),
+              price!.toStringAsFixed(1),
               style: AppTextStyles.bottomNavTextStyle.copyWith(
                 fontSize: fontSize,
                 fontWeight: FontWeight.w900,

@@ -4,30 +4,22 @@
   <img src="assets/appIcon.png" alt="Roome Logo" width="100">
 </p>
 
-Roome is a Flutter app designed to help users find and book hotels for their vacations or leisure activities. The app provides a user-friendly interface to explore various hotel options (Near Me, Recommended, Popular) and make reservations. With features like clean architecture, Cubit state management, local notifications, OpenStreetMap integration, dark mode, hotel details, and favorite,
+Roome is a Flutter app designed to help users find and book hotels for their vacations or leisure activities. The app provides a user-friendly interface to explore various hotel options (Near Me, Recommended, Popular) and make reservations. With features like clean architecture, Cubit state management, local notifications, OpenStreetMap integration, dark mode, hotel details, and favorite. Roome app is fully responsive, ensuring a seamless experience across different devices and screen sizes.
 
 ## Table of Contents
 
 - [Preview](#preview)
-- [Installation](#installation)
+- [Download](#download)
 - [Usage](#usage)
 - [Features](#features)
 - [Contributing](#contributing)
 
 ## Preview
 
-<div style="display: flex" > 
-  <img style="display: inline-block" src="https://github.com/ahmedghaly15/Social-App/assets/108659381/3cec1455-b2ec-4179-aaf5-4e6f69e1302f" width= "300" height = "600"/>
-</div>
 
-## Installation
+## Download
 
-1. Make sure you have Flutter SDK installed. If not, refer to the official Flutter documentation for installation instructions.
-2. Clone this repository to your local machine using the command: `git clone https://github.com/your-username/roome.git`.
-3. Navigate to the cloned repository: `cd roome`.
-4. Run `flutter pub get` to fetch the necessary dependencies.
-5. Connect a device or start an emulator.
-6. Launch the app by running `flutter run`.
+[Download APK](https://www.mediafire.com/file/7itjktwc06urepo/Roome.apk/file)
 
 ## Usage
 
