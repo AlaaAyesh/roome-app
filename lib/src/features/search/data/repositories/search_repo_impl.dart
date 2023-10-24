@@ -9,7 +9,7 @@ import '/src/core/network/network_info.dart';
 import '/src/features/search/data/datasources/search_datasource.dart';
 import '/src/features/search/domain/repositories/search_repo.dart';
 
-class SearchRepoImpl extends SearchRepo {
+class SearchRepoImpl implements SearchRepo {
   final NetworkInfo networkInfo;
   final SearchDatasource searchDatasource;
 

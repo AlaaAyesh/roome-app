@@ -4,7 +4,7 @@ import '/src/features/on_boarding/data/datasources/on_boarding_datasource.dart';
 import '/src/features/on_boarding/domain/entities/on_boarding_entity.dart';
 import '/src/features/on_boarding/domain/repositories/on_boarding_repo.dart';
 
-class OnBoardingRepoImpl extends OnBoardingRepo {
+class OnBoardingRepoImpl implements OnBoardingRepo {
   final OnBoardingDataSource onBoardingDataSource;
 
   OnBoardingRepoImpl({required this.onBoardingDataSource});

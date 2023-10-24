@@ -16,7 +16,7 @@ import '/src/core/errors/failure.dart';
 import '/src/core/models/user_model.dart';
 import '/src/features/roome/domain/repositories/roome_repo.dart';
 
-class RoomeRepoImpl extends RoomeRepo {
+class RoomeRepoImpl implements RoomeRepo {
   final NetworkInfo networkInfo;
 
   final RoomeDataSource roomeDataSource;

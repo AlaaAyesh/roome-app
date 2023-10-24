@@ -9,7 +9,7 @@ import '/src/core/network/network_info.dart';
 import '/src/features/home/data/datasources/hotels/hotels_datasource.dart';
 import '/src/features/home/domain/repositories/hotels_repo.dart';
 
-class HotelsRepoImpl extends HotelsRepo {
+class HotelsRepoImpl implements HotelsRepo {
   final NetworkInfo networkInfo;
   final HotelsDataSource hotelsDataSource;
 

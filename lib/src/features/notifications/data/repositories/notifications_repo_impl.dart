@@ -7,7 +7,7 @@ import '/src/features/notifications/data/datasources/notifications_datasource.da
 import '/src/features/notifications/data/models/notification_model.dart';
 import '/src/features/notifications/domain/repositories/notifications_repo.dart';
 
-class NotificationsRepoImpl extends NotificationsRepo {
+class NotificationsRepoImpl implements NotificationsRepo {
   final NotificationsDataSource notificationsDataSource;
 
   NotificationsRepoImpl({required this.notificationsDataSource});
