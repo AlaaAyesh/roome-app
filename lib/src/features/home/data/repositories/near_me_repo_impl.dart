@@ -9,7 +9,7 @@ import '/src/core/errors/failure.dart';
 import '/src/features/home/data/datasources/near_me/near_me_datasource.dart';
 import '/src/features/home/domain/repositories/near_me_repo.dart';
 
-class NearMeRepoImpl extends NearMeRepo {
+class NearMeRepoImpl implements NearMeRepo {
   final NetworkInfo networkInfo;
   final NearMeDataSource nearMeDataSource;
 

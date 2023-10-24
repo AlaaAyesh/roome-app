@@ -9,12 +9,14 @@ import '/src/core/network/network_info.dart';
 import '/src/features/home/data/datasources/recommended/recommended_datasource.dart';
 import '/src/features/home/domain/repositories/recommended_repo.dart';
 
-class RecommendedRepoImpl extends RecommendedRepo {
+class RecommendedRepoImpl implements RecommendedRepo {
   final NetworkInfo networkInfo;
   final RecommendedDataSource recommendedDataSource;
 
-  RecommendedRepoImpl(
-      {required this.networkInfo, required this.recommendedDataSource});
+  RecommendedRepoImpl({
+    required this.networkInfo,
+    required this.recommendedDataSource,
+  });
 
   @override
   Future<Either<Failure, dynamic>> getRecommendedMeHotels({

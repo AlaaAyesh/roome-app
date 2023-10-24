@@ -10,7 +10,7 @@ import '/src/core/utils/app_strings.dart';
 import '/src/features/auth/sign_in/data/datasources/login_datasource.dart';
 import '/src/features/auth/sign_in/domain/repositories/login_repo.dart';
 
-class LoginRepoImpl extends LoginRepo {
+class LoginRepoImpl implements LoginRepo {
   final NetworkInfo networkInfo;
   final LoginDataSource loginDataSource;
 

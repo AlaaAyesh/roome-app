@@ -9,7 +9,7 @@ import '../datasources/favorite_datasource.dart';
 import '/src/core/network/network_info.dart';
 import '/src/features/favorite/domain/repositories/favorite_repo.dart';
 
-class FavoriteRepoImpl extends FavoriteRepo {
+class FavoriteRepoImpl implements FavoriteRepo {
   final NetworkInfo networkInfo;
   final FavoriteDataSource favoriteDataSource;
 

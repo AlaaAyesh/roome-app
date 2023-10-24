@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:dio/dio.dart';
 
 import '../api/status_codes.dart';
+import '/src/core/utils/app_strings.dart';
 import 'failure.dart';
 
 class ServerFailure extends Failure {
@@ -57,7 +58,6 @@ class ServerFailure extends Failure {
     } else if (statusCode == StatusCodes.internalServerError) {
       return ServerFailure(errorMessage: parsedResponse['error']);
     }
-    return ServerFailure(
-        errorMessage: "Opps something went wrong, please try again later!");
+    return ServerFailure(errorMessage: AppStrings.opps);
   }
 }
