@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import 'package:dio/dio.dart';
 
 import '../../../../core/errors/exceptions.dart';
 import '../../../../core/errors/server_failure.dart';
@@ -31,6 +32,9 @@ class NearMeRepoImpl implements NearMeRepo {
 
         return Right(nearMeHotels);
       } catch (e) {
+        if (e is DioException) {
+          return Left(ServerFailure.fromDioException(e));
+        }
         return Left(ServerFailure(errorMessage: e.toString()));
       }
     } else {

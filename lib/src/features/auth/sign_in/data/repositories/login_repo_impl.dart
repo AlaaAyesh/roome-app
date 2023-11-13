@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import 'package:dio/dio.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 import '../../../../../core/errors/server_failure.dart';
@@ -23,6 +24,9 @@ class LoginRepoImpl implements LoginRepo {
         final user = await loginDataSource.signInWithGoogle();
         return Right(user);
       } catch (e) {
+        if (e is DioException) {
+          return Left(ServerFailure.fromDioException(e));
+        }
         return Left(ServerFailure(errorMessage: e.toString()));
       }
     } else {

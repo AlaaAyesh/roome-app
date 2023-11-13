@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import 'package:dio/dio.dart';
 
 import '../../../../core/errors/exceptions.dart';
 import '../../../../core/errors/failure.dart';
@@ -35,6 +36,9 @@ class RecommendedRepoImpl implements RecommendedRepo {
 
         return Right(recommendedHotels);
       } catch (e) {
+        if (e is DioException) {
+          return Left(ServerFailure.fromDioException(e));
+        }
         return Left(ServerFailure(errorMessage: e.toString()));
       }
     } else {
