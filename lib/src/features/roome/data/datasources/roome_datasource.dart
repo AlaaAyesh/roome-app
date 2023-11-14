@@ -3,8 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart';
-
-import '/src/features/roome/domain/entities/update_user_params.dart';
+import 'package:roome/src/features/roome/domain/entities/update_user_params.dart';
 
 abstract class RoomeDataSource {
   void changeBottomNavIndex({

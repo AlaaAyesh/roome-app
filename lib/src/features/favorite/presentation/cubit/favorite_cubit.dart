@@ -1,12 +1,11 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../../../../core/helpers/helper.dart';
-import '../../../../core/models/hotel.dart';
-import '../../domain/entities/fav_params.dart';
-import '../../domain/usecases/add_to_fav_usecase.dart';
-import '../../domain/usecases/get_favorites_usecase.dart';
-import '../../domain/usecases/remove_from_fav_usecase.dart';
+import 'package:roome/src/core/helpers/helper.dart';
+import 'package:roome/src/core/models/hotel.dart';
+import 'package:roome/src/features/favorite/domain/entities/fav_params.dart';
+import 'package:roome/src/features/favorite/domain/usecases/add_to_fav_usecase.dart';
+import 'package:roome/src/features/favorite/domain/usecases/get_favorites_usecase.dart';
+import 'package:roome/src/features/favorite/domain/usecases/remove_from_fav_usecase.dart';
 
 part 'favorite_state.dart';
 

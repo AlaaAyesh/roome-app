@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../app_theme.dart';
-import '/src/core/helpers/cache_helper.dart';
+import 'package:roome/src/config/themes/app_theme.dart';
+import 'package:roome/src/core/helpers/cache_helper.dart';
 
 class ThemesCubit extends Cubit<ThemeData> {
   ThemesCubit() : super(AppTheme.lightTheme) {

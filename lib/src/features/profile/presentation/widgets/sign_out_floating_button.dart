@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
-import '../../../roome/presentation/cubit/roome_cubit.dart';
+import 'package:roome/src/features/roome/presentation/cubit/roome_cubit.dart';
 
 class SignOutFloatingButton extends StatelessWidget {
   const SignOutFloatingButton({Key? key}) : super(key: key);

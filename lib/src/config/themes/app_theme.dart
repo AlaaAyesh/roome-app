@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
-import '/src/core/utils/app_colors.dart';
-import '/src/core/utils/app_strings.dart';
+import 'package:roome/src/core/utils/app_colors.dart';
+import 'package:roome/src/core/utils/app_strings.dart';
 
 class AppTheme {
   static ThemeData get lightTheme => ThemeData(

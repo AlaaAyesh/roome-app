@@ -4,17 +4,16 @@ import 'package:dartz/dartz.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-
-import '../../../../core/errors/bug.dart';
-import '../../../../core/errors/exceptions.dart';
-import '../../../../core/errors/server_failure.dart';
-import '../../../../core/network/network_info.dart';
-import '../../../../core/utils/app_strings.dart';
-import '../../domain/entities/update_user_params.dart';
-import '../datasources/roome_datasource.dart';
-import '/src/core/errors/failure.dart';
-import '/src/core/models/user_model.dart';
-import '/src/features/roome/domain/repositories/roome_repo.dart';
+import 'package:roome/src/core/errors/bug.dart';
+import 'package:roome/src/core/errors/exceptions.dart';
+import 'package:roome/src/core/errors/failure.dart';
+import 'package:roome/src/core/errors/server_failure.dart';
+import 'package:roome/src/core/models/user_model.dart';
+import 'package:roome/src/core/network/network_info.dart';
+import 'package:roome/src/core/utils/app_strings.dart';
+import 'package:roome/src/features/roome/data/datasources/roome_datasource.dart';
+import 'package:roome/src/features/roome/domain/entities/update_user_params.dart';
+import 'package:roome/src/features/roome/domain/repositories/roome_repo.dart';
 
 class RoomeRepoImpl implements RoomeRepo {
   final NetworkInfo networkInfo;

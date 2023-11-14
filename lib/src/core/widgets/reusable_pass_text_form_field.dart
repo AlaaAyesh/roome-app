@@ -2,12 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:reusable_components/reusable_components.dart';
-
-import '../helpers/helper.dart';
-import '../utils/app_text_styles.dart';
-import '/src/config/themes/cubit/themes_cubit.dart';
-import '/src/core/utils/app_colors.dart';
-import 'visibility_icon_button.dart';
+import 'package:roome/src/config/themes/cubit/themes_cubit.dart';
+import 'package:roome/src/core/helpers/helper.dart';
+import 'package:roome/src/core/utils/app_colors.dart';
+import 'package:roome/src/core/utils/app_text_styles.dart';
+import 'package:roome/src/core/widgets/visibility_icon_button.dart';
 
 class ReusablePassTextField extends StatelessWidget {
   const ReusablePassTextField({

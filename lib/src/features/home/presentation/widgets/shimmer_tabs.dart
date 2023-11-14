@@ -2,13 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:reusable_components/reusable_components.dart';
+import 'package:roome/src/config/themes/cubit/themes_cubit.dart';
+import 'package:roome/src/core/helpers/helper.dart';
+import 'package:roome/src/core/utils/app_colors.dart';
+import 'package:roome/src/features/home/presentation/widgets/shimmer_explore_list.dart';
+import 'package:roome/src/features/home/presentation/widgets/shimmer_near_me_hotels.dart';
 import 'package:shimmer/shimmer.dart';
-
-import '../../../../core/utils/app_colors.dart';
-import '/src/config/themes/cubit/themes_cubit.dart';
-import '/src/core/helpers/helper.dart';
-import '/src/features/home/presentation/widgets/shimmer_explore_list.dart';
-import '/src/features/home/presentation/widgets/shimmer_near_me_hotels.dart';
 
 class ShimmerTabs extends StatelessWidget {
   const ShimmerTabs({super.key});

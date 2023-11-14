@@ -2,11 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
-
-import '../../../../core/helpers/helper.dart';
-import '../../../../core/utils/app_colors.dart';
-import '/src/features/profile/presentation/widgets/edit_image_bottom_sheet.dart';
-import '/src/features/roome/presentation/cubit/roome_cubit.dart';
+import 'package:roome/src/core/helpers/helper.dart';
+import 'package:roome/src/core/utils/app_colors.dart';
+import 'package:roome/src/features/profile/presentation/widgets/edit_image_bottom_sheet.dart';
+import 'package:roome/src/features/roome/presentation/cubit/roome_cubit.dart';
 
 class ProfileImage extends StatelessWidget {
   const ProfileImage({super.key});

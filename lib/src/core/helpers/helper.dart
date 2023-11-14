@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
-import '../../features/favorite/presentation/cubit/favorite_cubit.dart';
-import '../../features/roome/presentation/cubit/roome_cubit.dart';
-import '../models/hotel.dart';
-import '../models/user_model.dart';
-import '../utils/app_colors.dart';
-import '../utils/app_constants.dart';
-import '/src/core/widgets/custom_snack_bar.dart';
+import 'package:roome/src/core/models/hotel.dart';
+import 'package:roome/src/core/models/user_model.dart';
+import 'package:roome/src/core/utils/app_colors.dart';
+import 'package:roome/src/core/utils/app_constants.dart';
+import 'package:roome/src/core/widgets/custom_snack_bar.dart';
+import 'package:roome/src/features/favorite/presentation/cubit/favorite_cubit.dart';
+import 'package:roome/src/features/roome/presentation/cubit/roome_cubit.dart';
 
 class Helper {
   static int? uId;

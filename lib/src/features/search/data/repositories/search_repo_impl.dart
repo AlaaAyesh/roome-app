@@ -1,14 +1,12 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
-
-import '../../../../core/errors/exceptions.dart';
-import '../../../../core/errors/failure.dart';
-import '../../../../core/errors/server_failure.dart';
-import '../../../../core/models/hotel.dart';
-import '../../../../core/utils/app_strings.dart';
-import '/src/core/network/network_info.dart';
-import '/src/features/search/data/datasources/search_datasource.dart';
-import '/src/features/search/domain/repositories/search_repo.dart';
+import 'package:roome/src/core/errors/failure.dart';
+import 'package:roome/src/core/errors/server_failure.dart';
+import 'package:roome/src/core/models/hotel.dart';
+import 'package:roome/src/core/network/network_info.dart';
+import 'package:roome/src/core/utils/app_strings.dart';
+import 'package:roome/src/features/search/data/datasources/search_datasource.dart';
+import 'package:roome/src/features/search/domain/repositories/search_repo.dart';
 
 class SearchRepoImpl implements SearchRepo {
   final NetworkInfo networkInfo;
@@ -42,7 +40,7 @@ class SearchRepoImpl implements SearchRepo {
         return Left(ServerFailure(errorMessage: e.toString()));
       }
     } else {
-      throw const ServerException(exception: AppStrings.opps);
+      return Left(ServerFailure(errorMessage: AppStrings.opps));
     }
   }
 }

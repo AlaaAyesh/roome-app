@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:reusable_components/reusable_components.dart';
-
-import '../../../../../config/routes/routes.dart';
-import '../../../../../core/widgets/auth_title.dart';
-import '../../../../../core/widgets/have_account_or_not.dart';
-import '../../../../../core/widgets/login_with_social_buttons.dart';
-import '../../../../../core/widgets/or_text.dart';
-import '/src/core/utils/app_navigator.dart';
-import '/src/features/auth/sign_in/presentation/cubit/login_cubit.dart';
-import '/src/features/auth/sign_in/presentation/widgets/login_form.dart';
+import 'package:roome/src/config/routes/routes.dart';
+import 'package:roome/src/core/utils/app_navigator.dart';
+import 'package:roome/src/core/widgets/auth_title.dart';
+import 'package:roome/src/core/widgets/have_account_or_not.dart';
+import 'package:roome/src/core/widgets/login_with_social_buttons.dart';
+import 'package:roome/src/core/widgets/or_text.dart';
+import 'package:roome/src/features/auth/sign_in/presentation/cubit/login_cubit.dart';
+import 'package:roome/src/features/auth/sign_in/presentation/widgets/login_form.dart';
 
 class LoginViewBody extends StatelessWidget {
   const LoginViewBody({super.key, required this.cubit, required this.state});

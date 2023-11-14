@@ -4,22 +4,21 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:reusable_components/reusable_components.dart';
-
-import '../../../../config/services/notification_service.dart';
-import '/src/core/utils/app_assets.dart';
-import '/src/core/utils/app_colors.dart';
-import '/src/core/utils/app_constants.dart';
-import '/src/core/utils/app_navigator.dart';
-import '/src/core/utils/app_strings.dart';
-import '/src/core/utils/app_text_styles.dart';
-import '/src/core/widgets/custom_action_button.dart';
-import '/src/core/widgets/custom_app_bar.dart';
-import '/src/features/booking/data/models/booking_info.dart';
-import '/src/features/booking/presentation/cubits/payment/payment_cubit.dart';
-import '/src/features/booking/presentation/widgets/section_title.dart';
-import '/src/features/notifications/presentation/cubit/notifications_cubit.dart';
-import 'other_payment_method.dart';
-import 'payment_dialog.dart';
+import 'package:roome/src/config/services/notification_service.dart';
+import 'package:roome/src/core/utils/app_assets.dart';
+import 'package:roome/src/core/utils/app_colors.dart';
+import 'package:roome/src/core/utils/app_constants.dart';
+import 'package:roome/src/core/utils/app_navigator.dart';
+import 'package:roome/src/core/utils/app_strings.dart';
+import 'package:roome/src/core/utils/app_text_styles.dart';
+import 'package:roome/src/core/widgets/custom_action_button.dart';
+import 'package:roome/src/core/widgets/custom_app_bar.dart';
+import 'package:roome/src/features/booking/data/models/booking_info.dart';
+import 'package:roome/src/features/booking/presentation/cubits/payment/payment_cubit.dart';
+import 'package:roome/src/features/booking/presentation/widgets/other_payment_method.dart';
+import 'package:roome/src/features/booking/presentation/widgets/payment_dialog.dart';
+import 'package:roome/src/features/booking/presentation/widgets/section_title.dart';
+import 'package:roome/src/features/notifications/presentation/cubit/notifications_cubit.dart';
 
 class PaymentViewBody extends StatelessWidget {
   final BookingInfo bookingInfo;

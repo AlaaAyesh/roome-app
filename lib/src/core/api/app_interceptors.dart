@@ -1,7 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
-
-import '../utils/app_strings.dart';
+import 'package:roome/src/core/utils/app_strings.dart';
 
 class AppInterceptors extends Interceptor {
   @override

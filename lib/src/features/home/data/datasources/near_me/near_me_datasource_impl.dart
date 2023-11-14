@@ -1,6 +1,6 @@
-import '../../../../../core/api/api_consumer.dart';
-import '../../../../../core/api/end_points.dart';
-import '/src/features/home/data/datasources/near_me/near_me_datasource.dart';
+import 'package:roome/src/core/api/api_consumer.dart';
+import 'package:roome/src/core/api/end_points.dart';
+import 'package:roome/src/features/home/data/datasources/near_me/near_me_datasource.dart';
 
 class NearMeDataSourceImpl implements NearMeDataSource {
   final ApiConsumer apiConsumer;

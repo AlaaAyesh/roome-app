@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '/src/features/notifications/data/datasources/notifications_datasource.dart';
-import '/src/features/notifications/data/models/notification_model.dart';
-import '/src/features/notifications/presentation/cubit/notifications_cubit.dart';
+import 'package:roome/src/features/notifications/data/datasources/notifications_datasource.dart';
+import 'package:roome/src/features/notifications/data/models/notification_model.dart';
+import 'package:roome/src/features/notifications/presentation/cubit/notifications_cubit.dart';
 
 class NotificationsDataSourceImpl implements NotificationsDataSource {
   @override

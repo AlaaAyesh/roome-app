@@ -1,7 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
-
-import '/src/features/notifications/data/models/notification_model.dart';
+import 'package:roome/src/features/notifications/data/models/notification_model.dart';
 
 class RemoveFromNotificationsParams extends Equatable {
   final NotificationsModel notification;

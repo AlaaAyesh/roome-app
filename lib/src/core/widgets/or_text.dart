@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
-import '../utils/app_text_styles.dart';
+import 'package:roome/src/core/utils/app_text_styles.dart';
 
 class OrText extends StatelessWidget {
-  const OrText({
-    super.key,
-  });
+  const OrText({super.key});
 
   @override
   Widget build(BuildContext context) {

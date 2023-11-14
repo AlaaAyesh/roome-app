@@ -12,7 +12,6 @@ dependencies:
   action_slider: ^0.7.0
   animate_do: ^3.1.2
   awesome_notifications: ^0.8.2
-  bloc: ^8.1.2
   cached_network_image: ^3.3.0
   dartz: ^0.10.1
   dio: ^5.3.3

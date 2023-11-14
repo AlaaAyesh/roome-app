@@ -3,10 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:reusable_components/reusable_components.dart';
-
-import '../utils/app_colors.dart';
-import '../utils/app_text_styles.dart';
-import '/src/config/themes/cubit/themes_cubit.dart';
+import 'package:roome/src/config/themes/cubit/themes_cubit.dart';
+import 'package:roome/src/core/utils/app_colors.dart';
+import 'package:roome/src/core/utils/app_text_styles.dart';
 
 class CustomSocialButton extends StatelessWidget {
   const CustomSocialButton({

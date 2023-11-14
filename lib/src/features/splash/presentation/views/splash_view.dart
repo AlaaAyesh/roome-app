@@ -3,12 +3,11 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:reusable_components/reusable_components.dart';
-
-import '../../../../config/routes/routes.dart';
-import '/src/core/helpers/cache_helper.dart';
-import '/src/core/helpers/helper.dart';
-import '/src/core/utils/app_navigator.dart';
-import '/src/features/splash/presentation/widgets/splash_view_body.dart';
+import 'package:roome/src/config/routes/routes.dart';
+import 'package:roome/src/core/helpers/cache_helper.dart';
+import 'package:roome/src/core/helpers/helper.dart';
+import 'package:roome/src/core/utils/app_navigator.dart';
+import 'package:roome/src/features/splash/presentation/widgets/splash_view_body.dart';
 
 class SplashView extends StatefulWidget {
   const SplashView({super.key});

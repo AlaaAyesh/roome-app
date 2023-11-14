@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import '../../../../core/utils/app_text_styles.dart';
+import 'package:roome/src/core/utils/app_text_styles.dart';
 
 class DetailsSectionTitle extends StatelessWidget {
   const DetailsSectionTitle({

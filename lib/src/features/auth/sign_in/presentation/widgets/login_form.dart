@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:reusable_components/reusable_components.dart';
-
-import '../../../../../core/helpers/helper.dart';
-import '../../../../../core/widgets/forgot_password_text_button.dart';
-import '/src/core/utils/app_colors.dart';
-import '/src/core/utils/app_text_styles.dart';
-import '/src/core/widgets/reusable_pass_text_form_field.dart';
-import '/src/core/widgets/reusable_text_form_field.dart';
-import '/src/features/auth/sign_in/presentation/cubit/login_cubit.dart';
-import 'remember_me_checkbox.dart';
+import 'package:roome/src/core/helpers/helper.dart';
+import 'package:roome/src/core/utils/app_colors.dart';
+import 'package:roome/src/core/utils/app_text_styles.dart';
+import 'package:roome/src/core/widgets/forgot_password_text_button.dart';
+import 'package:roome/src/core/widgets/reusable_pass_text_form_field.dart';
+import 'package:roome/src/core/widgets/reusable_text_form_field.dart';
+import 'package:roome/src/features/auth/sign_in/presentation/cubit/login_cubit.dart';
+import 'package:roome/src/features/auth/sign_in/presentation/widgets/remember_me_checkbox.dart';
 
 class LoginForm extends StatefulWidget {
   const LoginForm({super.key, required this.cubit, required this.state});

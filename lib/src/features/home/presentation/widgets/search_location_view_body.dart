@@ -3,9 +3,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:open_street_map_search_and_pick/open_street_map_search_and_pick.dart';
 import 'package:reusable_components/reusable_components.dart';
-
-import '../../../../core/utils/app_colors.dart';
-import '../../../../core/utils/app_text_styles.dart';
+import 'package:roome/src/core/utils/app_colors.dart';
+import 'package:roome/src/core/utils/app_text_styles.dart';
 
 class SearchLocationViewBody extends StatefulWidget {
   const SearchLocationViewBody({super.key});

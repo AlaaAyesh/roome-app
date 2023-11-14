@@ -4,10 +4,9 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart';
-
-import '../../../../core/errors/failure.dart';
-import '../../../../core/models/user_model.dart';
-import '../entities/update_user_params.dart';
+import 'package:roome/src/core/errors/failure.dart';
+import 'package:roome/src/core/models/user_model.dart';
+import 'package:roome/src/features/roome/domain/entities/update_user_params.dart';
 
 abstract class RoomeRepo {
   void changeBottomNavIndex({

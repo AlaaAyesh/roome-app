@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import '/src/core/utils/app_colors.dart';
+import 'package:roome/src/core/utils/app_colors.dart';
 
 class VisibilityIconButton extends StatelessWidget {
   const VisibilityIconButton({

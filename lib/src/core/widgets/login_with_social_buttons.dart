@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
-import '../utils/app_assets.dart';
-import 'custom_social_button.dart';
+import 'package:roome/src/core/utils/app_assets.dart';
+import 'package:roome/src/core/widgets/custom_social_button.dart';
 
 class LoginWithSocialButtons extends StatelessWidget {
   const LoginWithSocialButtons({

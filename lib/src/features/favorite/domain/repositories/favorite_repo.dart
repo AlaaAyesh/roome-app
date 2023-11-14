@@ -1,6 +1,5 @@
 import 'package:dartz/dartz.dart';
-
-import '../../../../core/errors/failure.dart';
+import 'package:roome/src/core/errors/failure.dart';
 
 abstract class FavoriteRepo {
   Future<Either<Failure, dynamic>> getFavorites({

@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:reusable_components/reusable_components.dart';
-
-import '../../../../core/widgets/separator_widget.dart';
-import '/src/core/widgets/shimmer_hotel_card.dart';
+import 'package:roome/src/core/widgets/separator_widget.dart';
+import 'package:roome/src/core/widgets/shimmer_hotel_card.dart';
 
 class ShimmerSearchResult extends StatelessWidget {
   const ShimmerSearchResult({super.key});

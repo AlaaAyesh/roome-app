@@ -4,17 +4,16 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:reusable_components/reusable_components.dart';
-
-import '../../../../core/widgets/custom_snack_bar.dart';
-import '../../../roome/presentation/cubit/roome_cubit.dart';
-import '../cubit/favorite_cubit.dart';
-import '/src/core/utils/app_assets.dart';
-import '/src/core/utils/app_constants.dart';
-import '/src/core/widgets/custom_app_bar.dart';
-import '/src/core/widgets/custom_error_widget.dart';
-import '/src/core/widgets/separator_widget.dart';
-import '/src/features/favorite/presentation/widgets/shimmer_favorite_body.dart';
-import 'favorite_card.dart';
+import 'package:roome/src/core/utils/app_assets.dart';
+import 'package:roome/src/core/utils/app_constants.dart';
+import 'package:roome/src/core/widgets/custom_app_bar.dart';
+import 'package:roome/src/core/widgets/custom_error_widget.dart';
+import 'package:roome/src/core/widgets/custom_snack_bar.dart';
+import 'package:roome/src/core/widgets/separator_widget.dart';
+import 'package:roome/src/features/favorite/presentation/cubit/favorite_cubit.dart';
+import 'package:roome/src/features/favorite/presentation/widgets/favorite_card.dart';
+import 'package:roome/src/features/favorite/presentation/widgets/shimmer_favorite_body.dart';
+import 'package:roome/src/features/roome/presentation/cubit/roome_cubit.dart';
 
 class FavoriteBody extends StatelessWidget {
   const FavoriteBody({super.key});

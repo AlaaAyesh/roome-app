@@ -2,13 +2,12 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:reusable_components/reusable_components.dart';
-
-import '../../../../core/helpers/helper.dart';
-import '../../../../core/models/hotel.dart';
-import '../../../../core/widgets/custom_error_icon.dart';
-import '/src/core/utils/app_navigator.dart';
-import '/src/core/widgets/love_border_icon.dart';
-import 'more_details_images.dart';
+import 'package:roome/src/core/helpers/helper.dart';
+import 'package:roome/src/core/models/hotel.dart';
+import 'package:roome/src/core/utils/app_navigator.dart';
+import 'package:roome/src/core/widgets/custom_error_icon.dart';
+import 'package:roome/src/core/widgets/love_border_icon.dart';
+import 'package:roome/src/features/details/presentation/widgets/more_details_images.dart';
 
 class DetailsImageWithHero extends StatelessWidget {
   const DetailsImageWithHero({

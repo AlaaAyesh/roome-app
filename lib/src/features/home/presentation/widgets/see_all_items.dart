@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
-
-import '../../../../core/models/hotel.dart';
-import '../../../../core/widgets/separator_widget.dart';
-import '/src/features/home/presentation/widgets/popular_card.dart';
+import 'package:roome/src/core/models/hotel.dart';
+import 'package:roome/src/core/widgets/separator_widget.dart';
+import 'package:roome/src/features/home/presentation/widgets/popular_card.dart';
 
 class SeeAllItems extends StatelessWidget {
   const SeeAllItems({super.key, required this.hotels});
