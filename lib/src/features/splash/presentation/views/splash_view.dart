@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:reusable_components/reusable_components.dart';
 import 'package:roome/src/config/routes/routes.dart';
 import 'package:roome/src/core/helpers/cache_helper.dart';
 import 'package:roome/src/core/helpers/helper.dart';
@@ -22,8 +21,15 @@ class _SplashViewState extends State<SplashView> {
   @override
   void initState() {
     _startDelay();
-    setSystemUIOverlayStyle();
+
     super.initState();
+  }
+
+  @override
+  void didChangeDependencies() {
+    _setSystemUIOverlayStyle();
+
+    super.didChangeDependencies();
   }
 
   @override
@@ -50,10 +56,19 @@ class _SplashViewState extends State<SplashView> {
     }
   }
 
-  void setSystemUIOverlayStyle() {
+  void _setSystemUIOverlayStyle() {
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
+    final double bottomPadding = View.of(context).viewPadding.bottom;
+
+    // Set the color based on the presence of the system navigation bar
+    final Color? systemNavigationBarColor =
+        bottomPadding > 0 ? null : Colors.transparent;
+
     SystemChrome.setSystemUIOverlayStyle(
-      CustomHelper.setTheSystemUIOverlayStyle(
+      SystemUiOverlayStyle(
+        systemNavigationBarColor: systemNavigationBarColor,
+        statusBarColor: Colors.transparent,
+        statusBarBrightness: Brightness.dark,
         statusBarIconBrightness: Brightness.dark,
       ),
     );
