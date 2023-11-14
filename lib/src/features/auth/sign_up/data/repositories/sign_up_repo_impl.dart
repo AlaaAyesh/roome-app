@@ -1,6 +1,5 @@
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:roome/src/core/errors/exceptions.dart';
 import 'package:roome/src/core/errors/failure.dart';
 import 'package:roome/src/core/errors/server_failure.dart';
 import 'package:roome/src/core/models/user_model.dart';
@@ -40,7 +39,7 @@ class SignUpRepoImpl extends SignUpRepo {
         return Right(user);
       }
     } else {
-      throw const ServerException(exception: AppStrings.opps);
+      return Left(ServerFailure(errorMessage: AppStrings.noInternet));
     }
   }
 
@@ -54,7 +53,7 @@ class SignUpRepoImpl extends SignUpRepo {
         return Left(ServerFailure(errorMessage: e.toString()));
       }
     } else {
-      throw const ServerException(exception: AppStrings.opps);
+      return Left(ServerFailure(errorMessage: AppStrings.noInternet));
     }
   }
 }

@@ -1,5 +1,5 @@
 import 'package:dartz/dartz.dart';
-import 'package:roome/src/core/errors/exceptions.dart';
+import 'package:dio/dio.dart';
 import 'package:roome/src/core/errors/failure.dart';
 import 'package:roome/src/core/errors/server_failure.dart';
 import 'package:roome/src/core/models/hotel.dart';
@@ -32,10 +32,13 @@ class FavoriteRepoImpl implements FavoriteRepo {
 
         return Right(favorites);
       } catch (e) {
+        if (e is DioException) {
+          return Left(ServerFailure.fromDioException(e));
+        }
         return Left(ServerFailure(errorMessage: e.toString()));
       }
     } else {
-      throw const ServerException(exception: AppStrings.opps);
+      return Left(ServerFailure(errorMessage: AppStrings.noInternet));
     }
   }
 
@@ -55,10 +58,13 @@ class FavoriteRepoImpl implements FavoriteRepo {
 
         return Right(message);
       } catch (e) {
+        if (e is DioException) {
+          return Left(ServerFailure.fromDioException(e));
+        }
         return Left(ServerFailure(errorMessage: e.toString()));
       }
     } else {
-      throw const ServerException(exception: AppStrings.opps);
+      return Left(ServerFailure(errorMessage: AppStrings.noInternet));
     }
   }
 
@@ -78,10 +84,13 @@ class FavoriteRepoImpl implements FavoriteRepo {
 
         return Right(message);
       } catch (e) {
+        if (e is DioException) {
+          return Left(ServerFailure.fromDioException(e));
+        }
         return Left(ServerFailure(errorMessage: e.toString()));
       }
     } else {
-      throw const ServerException(exception: AppStrings.opps);
+      return Left(ServerFailure(errorMessage: AppStrings.noInternet));
     }
   }
 }

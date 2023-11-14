@@ -4,8 +4,6 @@ import 'package:dartz/dartz.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:roome/src/core/errors/bug.dart';
-import 'package:roome/src/core/errors/exceptions.dart';
 import 'package:roome/src/core/errors/failure.dart';
 import 'package:roome/src/core/errors/server_failure.dart';
 import 'package:roome/src/core/models/user_model.dart';
@@ -62,7 +60,7 @@ class RoomeRepoImpl implements RoomeRepo {
         return Right(user);
       }
     } else {
-      throw const ServerException(exception: AppStrings.opps);
+      return Left(ServerFailure(errorMessage: AppStrings.noInternet));
     }
   }
 
@@ -85,7 +83,7 @@ class RoomeRepoImpl implements RoomeRepo {
         return Right(user);
       }
     } else {
-      throw const ServerException(exception: AppStrings.opps);
+      return Left(ServerFailure(errorMessage: AppStrings.noInternet));
     }
   }
 
@@ -98,7 +96,7 @@ class RoomeRepoImpl implements RoomeRepo {
 
       return Right(response);
     } catch (e) {
-      return Left(Bug(errorMessage: e.toString()));
+      return Left(ServerFailure(errorMessage: e.toString()));
     }
   }
 
@@ -108,7 +106,7 @@ class RoomeRepoImpl implements RoomeRepo {
       final result = await roomeDataSource.signOut(context: context);
       return Right(result);
     } catch (e) {
-      return Left(Bug(errorMessage: e.toString()));
+      return Left(ServerFailure(errorMessage: e.toString()));
     }
   }
 
@@ -123,10 +121,10 @@ class RoomeRepoImpl implements RoomeRepo {
 
         return Right(response);
       } catch (e) {
-        return Left(Bug(errorMessage: e.toString()));
+        return Left(ServerFailure(errorMessage: e.toString()));
       }
     } else {
-      throw const ServerException(exception: AppStrings.opps);
+      return Left(ServerFailure(errorMessage: AppStrings.noInternet));
     }
   }
 }
