@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:reusable_components/reusable_components.dart';
-
-import '../../data/models/offer_model.dart';
-import 'offer_card.dart';
+import 'package:roome/src/features/home/data/models/offer_model.dart';
+import 'package:roome/src/features/home/presentation/widgets/offer_card.dart';
 
 class OffersList extends StatelessWidget {
   const OffersList({super.key});

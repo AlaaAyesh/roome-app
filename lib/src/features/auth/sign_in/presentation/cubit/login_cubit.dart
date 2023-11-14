@@ -1,11 +1,10 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../../../../../core/entities/no_params.dart';
-import '../../domain/usecases/login_usecase.dart';
-import '/src/core/models/user_model.dart';
-import '/src/features/auth/sign_in/domain/entities/login_parameters.dart';
-import '/src/features/auth/sign_in/domain/usecases/login_with_google_usecase.dart';
+import 'package:roome/src/core/entities/no_params.dart';
+import 'package:roome/src/core/models/user_model.dart';
+import 'package:roome/src/features/auth/sign_in/domain/entities/login_parameters.dart';
+import 'package:roome/src/features/auth/sign_in/domain/usecases/login_usecase.dart';
+import 'package:roome/src/features/auth/sign_in/domain/usecases/login_with_google_usecase.dart';
 
 part 'login_state.dart';
 

@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
-import '/src/core/utils/app_navigator.dart';
-import '/src/core/widgets/get_back_arrow.dart';
-import '/src/features/search/presentation/widgets/search_result_list_view.dart';
-
-import 'search_text_field.dart';
+import 'package:roome/src/core/utils/app_navigator.dart';
+import 'package:roome/src/core/widgets/get_back_arrow.dart';
+import 'package:roome/src/features/search/presentation/widgets/search_result_list_view.dart';
+import 'package:roome/src/features/search/presentation/widgets/search_text_field.dart';
 
 class SearchViewBody extends StatelessWidget {
   const SearchViewBody({super.key});

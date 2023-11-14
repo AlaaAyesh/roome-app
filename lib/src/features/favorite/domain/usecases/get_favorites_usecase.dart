@@ -1,8 +1,7 @@
 import 'package:dartz/dartz.dart';
-
-import '/src/core/errors/failure.dart';
-import '/src/core/usecases/base_usecase.dart';
-import '/src/features/favorite/domain/repositories/favorite_repo.dart';
+import 'package:roome/src/core/errors/failure.dart';
+import 'package:roome/src/core/usecases/base_usecase.dart';
+import 'package:roome/src/features/favorite/domain/repositories/favorite_repo.dart';
 
 class GetFavoritesUseCase implements BaseUseCases<dynamic, int> {
   final FavoriteRepo favoriteRepo;

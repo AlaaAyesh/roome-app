@@ -1,14 +1,13 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
-
-import '../../../../core/errors/exceptions.dart';
-import '../../../../core/errors/failure.dart';
-import '../../../../core/errors/server_failure.dart';
-import '../../../../core/models/hotel.dart';
-import '../../../../core/utils/app_strings.dart';
-import '/src/core/network/network_info.dart';
-import '/src/features/home/data/datasources/recommended/recommended_datasource.dart';
-import '/src/features/home/domain/repositories/recommended_repo.dart';
+import 'package:roome/src/core/errors/exceptions.dart';
+import 'package:roome/src/core/errors/failure.dart';
+import 'package:roome/src/core/errors/server_failure.dart';
+import 'package:roome/src/core/models/hotel.dart';
+import 'package:roome/src/core/network/network_info.dart';
+import 'package:roome/src/core/utils/app_strings.dart';
+import 'package:roome/src/features/home/data/datasources/recommended/recommended_datasource.dart';
+import 'package:roome/src/features/home/domain/repositories/recommended_repo.dart';
 
 class RecommendedRepoImpl implements RecommendedRepo {
   final NetworkInfo networkInfo;

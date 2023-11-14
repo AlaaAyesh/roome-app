@@ -4,17 +4,16 @@ import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-
-import '../../../favorite/presentation/widgets/favorite_body.dart';
-import '../../../home/presentation/widgets/home_body.dart';
-import '../../../notifications/presentation/widgets/notifications_body.dart';
-import '../../domain/entities/update_user_params.dart';
-import '../../presentation/cubit/roome_cubit.dart';
-import '/src/core/api/api_consumer.dart';
-import '/src/core/api/end_points.dart';
-import '/src/core/helpers/cache_helper.dart';
-import '/src/features/profile/presentation/widgets/profile_body.dart';
-import 'roome_datasource.dart';
+import 'package:roome/src/core/api/api_consumer.dart';
+import 'package:roome/src/core/api/end_points.dart';
+import 'package:roome/src/core/helpers/cache_helper.dart';
+import 'package:roome/src/features/favorite/presentation/widgets/favorite_body.dart';
+import 'package:roome/src/features/home/presentation/widgets/home_body.dart';
+import 'package:roome/src/features/notifications/presentation/widgets/notifications_body.dart';
+import 'package:roome/src/features/profile/presentation/widgets/profile_body.dart';
+import 'package:roome/src/features/roome/data/datasources/roome_datasource.dart';
+import 'package:roome/src/features/roome/domain/entities/update_user_params.dart';
+import 'package:roome/src/features/roome/presentation/cubit/roome_cubit.dart';
 
 class RoomeDataSourceImpl implements RoomeDataSource {
   final ApiConsumer apiConsumer;

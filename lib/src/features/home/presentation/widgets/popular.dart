@@ -2,12 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
-
-import '../../../../core/widgets/separator_widget.dart';
-import '/src/core/widgets/try_again_button.dart';
-import '/src/features/home/presentation/cubits/hotels/hotels_cubit.dart';
-import '/src/features/home/presentation/widgets/popular_card.dart';
-import '/src/features/home/presentation/widgets/shimmer_popular.dart';
+import 'package:roome/src/core/widgets/separator_widget.dart';
+import 'package:roome/src/core/widgets/try_again_button.dart';
+import 'package:roome/src/features/home/presentation/cubits/hotels/hotels_cubit.dart';
+import 'package:roome/src/features/home/presentation/widgets/popular_card.dart';
+import 'package:roome/src/features/home/presentation/widgets/shimmer_popular.dart';
 
 class Popular extends StatelessWidget {
   const Popular({super.key});

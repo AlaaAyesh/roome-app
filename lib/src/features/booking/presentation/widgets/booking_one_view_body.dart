@@ -2,13 +2,12 @@ import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:reusable_components/reusable_components.dart';
-
-import '/src/core/utils/app_constants.dart';
-import '/src/features/booking/data/models/booked_hotel_info.dart';
-import '/src/features/booking/presentation/widgets/booking_one_form_numbers.dart';
-import 'booking_app_bar.dart';
-import 'booking_one_body_content.dart';
-import 'section_title.dart';
+import 'package:roome/src/core/utils/app_constants.dart';
+import 'package:roome/src/features/booking/data/models/booked_hotel_info.dart';
+import 'package:roome/src/features/booking/presentation/widgets/booking_app_bar.dart';
+import 'package:roome/src/features/booking/presentation/widgets/booking_one_body_content.dart';
+import 'package:roome/src/features/booking/presentation/widgets/booking_one_form_numbers.dart';
+import 'package:roome/src/features/booking/presentation/widgets/section_title.dart';
 
 class BookingOneViewBody extends StatelessWidget {
   const BookingOneViewBody({super.key, required this.bookedHotelInfo});

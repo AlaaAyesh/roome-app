@@ -3,15 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:reusable_components/reusable_components.dart';
-
-import '../../../../core/utils/app_assets.dart';
-import '../../../../core/utils/app_constants.dart';
-import '../../../../core/utils/app_text_styles.dart';
-import '/src/config/themes/cubit/themes_cubit.dart';
-import '/src/core/utils/app_navigator.dart';
-import '/src/features/profile/presentation/widgets/profile_icon_button.dart';
-import '/src/features/profile/presentation/widgets/profile_image.dart';
-import 'edit_profile_form.dart';
+import 'package:roome/src/config/themes/cubit/themes_cubit.dart';
+import 'package:roome/src/core/utils/app_assets.dart';
+import 'package:roome/src/core/utils/app_constants.dart';
+import 'package:roome/src/core/utils/app_navigator.dart';
+import 'package:roome/src/core/utils/app_text_styles.dart';
+import 'package:roome/src/features/profile/presentation/widgets/edit_profile_form.dart';
+import 'package:roome/src/features/profile/presentation/widgets/profile_icon_button.dart';
+import 'package:roome/src/features/profile/presentation/widgets/profile_image.dart';
 
 class EditProfileViewBody extends StatelessWidget {
   const EditProfileViewBody({super.key});

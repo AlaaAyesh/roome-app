@@ -1,6 +1,5 @@
 import 'package:equatable/equatable.dart';
-
-import 'hotel.dart';
+import 'package:roome/src/core/models/hotel.dart';
 
 class UsingHeroModel extends Equatable {
   final Hotel hotel;

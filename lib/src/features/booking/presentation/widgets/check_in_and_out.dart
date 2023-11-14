@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:reusable_components/reusable_components.dart';
-
-import 'check_container.dart';
-import 'section_title.dart';
+import 'package:roome/src/features/booking/presentation/widgets/check_container.dart';
+import 'package:roome/src/features/booking/presentation/widgets/section_title.dart';
 
 class CheckInAndOut extends StatelessWidget {
   const CheckInAndOut({

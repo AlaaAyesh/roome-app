@@ -2,10 +2,9 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:reusable_components/reusable_components.dart';
-
-import '../../../../core/utils/app_text_styles.dart';
-import '../../../../core/widgets/custom_error_icon.dart';
-import '/src/features/home/data/models/offer_model.dart';
+import 'package:roome/src/core/utils/app_text_styles.dart';
+import 'package:roome/src/core/widgets/custom_error_icon.dart';
+import 'package:roome/src/features/home/data/models/offer_model.dart';
 
 class OfferCard extends StatelessWidget {
   const OfferCard({

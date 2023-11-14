@@ -3,16 +3,15 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:reusable_components/reusable_components.dart';
-
-import '../../../../core/helpers/helper.dart';
-import '../../../../core/utils/app_assets.dart';
-import '../../../../core/utils/app_colors.dart';
-import '../../../../core/utils/app_text_styles.dart';
-import '../../../../core/widgets/custom_action_button.dart';
-import '/src/config/routes/routes.dart';
-import '/src/config/themes/cubit/themes_cubit.dart';
-import '/src/core/utils/app_navigator.dart';
-import '/src/features/booking/data/models/booking_info.dart';
+import 'package:roome/src/config/routes/routes.dart';
+import 'package:roome/src/config/themes/cubit/themes_cubit.dart';
+import 'package:roome/src/core/helpers/helper.dart';
+import 'package:roome/src/core/utils/app_assets.dart';
+import 'package:roome/src/core/utils/app_colors.dart';
+import 'package:roome/src/core/utils/app_navigator.dart';
+import 'package:roome/src/core/utils/app_text_styles.dart';
+import 'package:roome/src/core/widgets/custom_action_button.dart';
+import 'package:roome/src/features/booking/data/models/booking_info.dart';
 
 class PaymentDialog extends StatelessWidget {
   const PaymentDialog({

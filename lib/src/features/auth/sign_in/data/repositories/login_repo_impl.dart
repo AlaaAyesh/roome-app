@@ -1,15 +1,14 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-
-import '../../../../../core/errors/server_failure.dart';
-import '/src/core/errors/exceptions.dart';
-import '/src/core/errors/failure.dart';
-import '/src/core/models/user_model.dart';
-import '/src/core/network/network_info.dart';
-import '/src/core/utils/app_strings.dart';
-import '/src/features/auth/sign_in/data/datasources/login_datasource.dart';
-import '/src/features/auth/sign_in/domain/repositories/login_repo.dart';
+import 'package:roome/src/core/errors/exceptions.dart';
+import 'package:roome/src/core/errors/failure.dart';
+import 'package:roome/src/core/errors/server_failure.dart';
+import 'package:roome/src/core/models/user_model.dart';
+import 'package:roome/src/core/network/network_info.dart';
+import 'package:roome/src/core/utils/app_strings.dart';
+import 'package:roome/src/features/auth/sign_in/data/datasources/login_datasource.dart';
+import 'package:roome/src/features/auth/sign_in/domain/repositories/login_repo.dart';
 
 class LoginRepoImpl implements LoginRepo {
   final NetworkInfo networkInfo;

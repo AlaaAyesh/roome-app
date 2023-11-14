@@ -1,7 +1,6 @@
 import 'package:roome/src/core/api/api_consumer.dart';
-
-import '../../../../core/api/end_points.dart';
-import 'favorite_datasource.dart';
+import 'package:roome/src/core/api/end_points.dart';
+import 'package:roome/src/features/favorite/data/datasources/favorite_datasource.dart';
 
 class FavoriteDataSourceImpl implements FavoriteDataSource {
   final ApiConsumer apiConsumer;

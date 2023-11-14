@@ -2,16 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:reusable_components/reusable_components.dart';
-
-import '../../../../core/utils/app_colors.dart';
-import '../../../../core/utils/app_strings.dart';
-import '../../../../core/utils/app_text_styles.dart';
-import '/src/features/search/presentation/cubit/search_cubit.dart';
+import 'package:roome/src/core/utils/app_colors.dart';
+import 'package:roome/src/core/utils/app_strings.dart';
+import 'package:roome/src/core/utils/app_text_styles.dart';
+import 'package:roome/src/features/search/presentation/cubit/search_cubit.dart';
 
 class SearchTextField extends StatefulWidget {
-  const SearchTextField({
-    super.key,
-  });
+  const SearchTextField({super.key});
 
   @override
   State<SearchTextField> createState() => _SearchTextFieldState();

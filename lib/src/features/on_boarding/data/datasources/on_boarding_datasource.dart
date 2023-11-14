@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import '../../domain/entities/on_boarding_entity.dart';
+import 'package:roome/src/features/on_boarding/domain/entities/on_boarding_entity.dart';
 
 abstract class OnBoardingDataSource {
   List<OnBoardingEntity> getPages();

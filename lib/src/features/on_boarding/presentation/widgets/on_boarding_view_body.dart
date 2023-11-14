@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:reusable_components/reusable_components.dart';
+import 'package:roome/src/core/utils/app_colors.dart';
+import 'package:roome/src/core/utils/app_text_styles.dart';
+import 'package:roome/src/features/on_boarding/presentation/cubit/on_boarding_cubit.dart';
+import 'package:roome/src/features/on_boarding/presentation/widgets/on_boarding_button.dart';
+import 'package:roome/src/features/on_boarding/presentation/widgets/page_view_item.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-
-import '../../../../core/utils/app_colors.dart';
-import '/src/core/utils/app_text_styles.dart';
-import '/src/features/on_boarding/presentation/cubit/on_boarding_cubit.dart';
-import '/src/features/on_boarding/presentation/widgets/page_view_item.dart';
-import 'on_boarding_button.dart';
 
 class OnBoardingViewBody extends StatefulWidget {
   const OnBoardingViewBody({super.key, required this.cubit});

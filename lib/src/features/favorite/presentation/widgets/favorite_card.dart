@@ -3,19 +3,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:reusable_components/reusable_components.dart';
-
-import '../../../../config/routes/routes.dart';
-import '../../../../core/models/hotel.dart';
-import '../../../../core/models/using_hero_model.dart';
-import '../../../../core/utils/app_colors.dart';
-import '../../../../core/utils/app_text_styles.dart';
-import '../../../../core/widgets/custom_error_icon.dart';
-import '../../../../core/widgets/price_per_night_text.dart';
-import '../../../../core/widgets/star_icon.dart';
-import '../cubit/favorite_cubit.dart';
-import '/src/config/themes/cubit/themes_cubit.dart';
-import '/src/core/utils/app_navigator.dart';
-import '/src/features/favorite/presentation/widgets/remove_from_fav_bottom_sheet.dart';
+import 'package:roome/src/config/routes/routes.dart';
+import 'package:roome/src/config/themes/cubit/themes_cubit.dart';
+import 'package:roome/src/core/models/hotel.dart';
+import 'package:roome/src/core/models/using_hero_model.dart';
+import 'package:roome/src/core/utils/app_colors.dart';
+import 'package:roome/src/core/utils/app_navigator.dart';
+import 'package:roome/src/core/utils/app_text_styles.dart';
+import 'package:roome/src/core/widgets/custom_error_icon.dart';
+import 'package:roome/src/core/widgets/price_per_night_text.dart';
+import 'package:roome/src/core/widgets/star_icon.dart';
+import 'package:roome/src/features/favorite/presentation/cubit/favorite_cubit.dart';
+import 'package:roome/src/features/favorite/presentation/widgets/remove_from_fav_bottom_sheet.dart';
 
 class FavoriteCard extends StatelessWidget {
   const FavoriteCard({

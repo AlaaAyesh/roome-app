@@ -4,14 +4,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:reusable_components/reusable_components.dart';
-
-import '../../../../core/utils/app_assets.dart';
-import '../../../../core/widgets/custom_app_bar.dart';
-import '../../../../core/widgets/separator_widget.dart';
-import '../../../roome/presentation/cubit/roome_cubit.dart';
-import '../cubit/notifications_cubit.dart';
-import '/src/core/utils/app_constants.dart';
-import 'notifications_card.dart';
+import 'package:roome/src/core/utils/app_assets.dart';
+import 'package:roome/src/core/utils/app_constants.dart';
+import 'package:roome/src/core/widgets/custom_app_bar.dart';
+import 'package:roome/src/core/widgets/separator_widget.dart';
+import 'package:roome/src/features/notifications/presentation/cubit/notifications_cubit.dart';
+import 'package:roome/src/features/notifications/presentation/widgets/notifications_card.dart';
+import 'package:roome/src/features/roome/presentation/cubit/roome_cubit.dart';
 
 class NotificationsBody extends StatelessWidget {
   const NotificationsBody({super.key});

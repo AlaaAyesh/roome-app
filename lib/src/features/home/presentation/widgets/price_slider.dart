@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:roome/src/core/utils/app_colors.dart';
 import 'package:syncfusion_flutter_sliders/sliders.dart';
-
-import '../../../../core/utils/app_colors.dart';
 
 class PriceSlider extends StatefulWidget {
   const PriceSlider({super.key});

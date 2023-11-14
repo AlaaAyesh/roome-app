@@ -1,12 +1,11 @@
-import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
-
-import '../../data/models/notification_model.dart';
-import '/src/features/notifications/domain/entities/add_to_notifications_params.dart';
-import '/src/features/notifications/domain/entities/remove_from_notifications_params.dart';
-import '/src/features/notifications/domain/usecases/add_to_notifications_usecase.dart';
-import '/src/features/notifications/domain/usecases/remove_from_notifications_usecase.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:roome/src/features/notifications/data/models/notification_model.dart';
+import 'package:roome/src/features/notifications/domain/entities/add_to_notifications_params.dart';
+import 'package:roome/src/features/notifications/domain/entities/remove_from_notifications_params.dart';
+import 'package:roome/src/features/notifications/domain/usecases/add_to_notifications_usecase.dart';
+import 'package:roome/src/features/notifications/domain/usecases/remove_from_notifications_usecase.dart';
 
 part 'notifications_state.dart';
 
@@ -57,9 +56,12 @@ class NotificationsCubit extends Cubit<NotificationsState> {
     required NotificationsModel notification,
     required BuildContext context,
   }) {
-    removeFromNotificationsUseCase(RemoveFromNotificationsParams(
-            notification: notification, context: context))
-        .then((value) {
+    removeFromNotificationsUseCase(
+      RemoveFromNotificationsParams(
+        notification: notification,
+        context: context,
+      ),
+    ).then((value) {
       value.fold(
         (failure) => emit(
           RemoveFromNotificationsErrorState(

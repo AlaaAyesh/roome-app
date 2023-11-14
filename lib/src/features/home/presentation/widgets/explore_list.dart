@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:reusable_components/reusable_components.dart';
-
-import '../../../../core/widgets/separator_widget.dart';
-import '../cubits/hotels/hotels_cubit.dart';
-import '/src/core/widgets/try_again_button.dart';
-import '/src/features/home/presentation/widgets/shimmer_explore_list.dart';
-import 'explore_card.dart';
+import 'package:roome/src/core/widgets/separator_widget.dart';
+import 'package:roome/src/core/widgets/try_again_button.dart';
+import 'package:roome/src/features/home/presentation/cubits/hotels/hotels_cubit.dart';
+import 'package:roome/src/features/home/presentation/widgets/explore_card.dart';
+import 'package:roome/src/features/home/presentation/widgets/shimmer_explore_list.dart';
 
 class ExploreList extends StatelessWidget {
   const ExploreList({super.key});

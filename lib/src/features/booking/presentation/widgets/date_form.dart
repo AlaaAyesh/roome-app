@@ -2,21 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:reusable_components/reusable_components.dart';
-
-import '../../../../core/utils/app_colors.dart';
-import '../cubits/booking_one/booking_one_cubit.dart';
-import '/src/config/routes/routes.dart';
-import '/src/config/themes/cubit/themes_cubit.dart';
-import '/src/core/utils/app_navigator.dart';
-import '/src/core/utils/app_text_styles.dart';
-import '/src/core/widgets/custom_snack_bar.dart';
-import '/src/core/widgets/glowing_custom_button.dart';
-import '/src/features/booking/data/models/booked_hotel_info.dart';
-import '/src/features/booking/data/models/booking_info.dart';
-import '/src/features/booking/presentation/widgets/check_in_and_out.dart';
-import '/src/features/booking/presentation/widgets/number_of.dart';
-import 'custom_bordered_container.dart';
-import 'section_title.dart';
+import 'package:roome/src/config/routes/routes.dart';
+import 'package:roome/src/config/themes/cubit/themes_cubit.dart';
+import 'package:roome/src/core/utils/app_colors.dart';
+import 'package:roome/src/core/utils/app_navigator.dart';
+import 'package:roome/src/core/utils/app_text_styles.dart';
+import 'package:roome/src/core/widgets/custom_snack_bar.dart';
+import 'package:roome/src/core/widgets/glowing_custom_button.dart';
+import 'package:roome/src/features/booking/data/models/booked_hotel_info.dart';
+import 'package:roome/src/features/booking/data/models/booking_info.dart';
+import 'package:roome/src/features/booking/presentation/cubits/booking_one/booking_one_cubit.dart';
+import 'package:roome/src/features/booking/presentation/widgets/check_in_and_out.dart';
+import 'package:roome/src/features/booking/presentation/widgets/custom_bordered_container.dart';
+import 'package:roome/src/features/booking/presentation/widgets/number_of.dart';
+import 'package:roome/src/features/booking/presentation/widgets/section_title.dart';
 
 class DateForm extends StatelessWidget {
   const DateForm({

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-
-import '../../../../../core/helpers/helper.dart';
-import '../../../../../core/widgets/reusable_text_form_field.dart';
+import 'package:roome/src/core/helpers/helper.dart';
+import 'package:roome/src/core/widgets/reusable_text_form_field.dart';
 
 class NameTextField extends StatelessWidget {
   const NameTextField({

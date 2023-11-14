@@ -2,11 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:reusable_components/reusable_components.dart';
-
-import '../../../../core/widgets/custom_app_bar.dart';
-import '../cubits/near_me/near_me_cubit.dart';
-import '/src/core/utils/app_navigator.dart';
-import '/src/features/home/presentation/widgets/see_all_items.dart';
+import 'package:roome/src/core/utils/app_navigator.dart';
+import 'package:roome/src/core/widgets/custom_app_bar.dart';
+import 'package:roome/src/features/home/presentation/cubits/near_me/near_me_cubit.dart';
+import 'package:roome/src/features/home/presentation/widgets/see_all_items.dart';
 
 class NearMeSeeAllViewBody extends StatelessWidget {
   const NearMeSeeAllViewBody({super.key});

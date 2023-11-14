@@ -4,19 +4,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:reusable_components/reusable_components.dart';
+import 'package:roome/src/config/routes/routes.dart';
+import 'package:roome/src/config/themes/cubit/themes_cubit.dart';
+import 'package:roome/src/core/helpers/helper.dart';
+import 'package:roome/src/core/utils/app_assets.dart';
+import 'package:roome/src/core/utils/app_colors.dart';
+import 'package:roome/src/core/utils/app_navigator.dart';
+import 'package:roome/src/core/utils/app_text_styles.dart';
+import 'package:roome/src/features/profile/presentation/widgets/info_container.dart';
+import 'package:roome/src/features/profile/presentation/widgets/profile_icon_button.dart';
+import 'package:roome/src/features/profile/presentation/widgets/profile_section_title.dart';
+import 'package:roome/src/features/profile/presentation/widgets/user_info.dart';
+import 'package:roome/src/features/roome/presentation/cubit/roome_cubit.dart';
 
-import '../../../../config/routes/routes.dart';
-import '../../../../core/helpers/helper.dart';
-import '../../../../core/utils/app_assets.dart';
-import '../../../../core/utils/app_colors.dart';
-import '../../../../core/utils/app_text_styles.dart';
-import '../../../roome/presentation/cubit/roome_cubit.dart';
-import '/src/config/themes/cubit/themes_cubit.dart';
-import '/src/core/utils/app_navigator.dart';
-import 'info_container.dart';
-import 'profile_icon_button.dart';
-import 'profile_section_title.dart';
-import 'user_info.dart';
+
 
 class ProfileBodyContent extends StatefulWidget {
   const ProfileBodyContent({super.key});

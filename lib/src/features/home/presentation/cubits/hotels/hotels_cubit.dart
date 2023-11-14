@@ -1,9 +1,8 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../../../../../core/entities/no_params.dart';
-import '../../../../../core/models/hotel.dart';
-import '../../../domain/usecases/hotels/get_hotels_usecase.dart';
+import 'package:roome/src/core/entities/no_params.dart';
+import 'package:roome/src/core/models/hotel.dart';
+import 'package:roome/src/features/home/domain/usecases/hotels/get_hotels_usecase.dart';
 
 part 'hotels_state.dart';
 

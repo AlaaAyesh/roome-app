@@ -1,10 +1,9 @@
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
-
-import '../api/status_codes.dart';
-import '/src/core/utils/app_strings.dart';
-import 'failure.dart';
+import 'package:roome/src/core/api/status_codes.dart';
+import 'package:roome/src/core/errors/failure.dart';
+import 'package:roome/src/core/utils/app_strings.dart';
 
 class ServerFailure extends Failure {
   ServerFailure({String? errorMessage}) : super(errorMessage: errorMessage);

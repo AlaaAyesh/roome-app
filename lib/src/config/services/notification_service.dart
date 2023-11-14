@@ -2,8 +2,7 @@ import 'dart:math';
 
 import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:flutter/material.dart';
-
-import '/src/core/utils/app_colors.dart';
+import 'package:roome/src/core/utils/app_colors.dart';
 
 class NotificationService {
   static void initAwesomeNotifications() {

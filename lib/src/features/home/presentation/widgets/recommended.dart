@@ -4,11 +4,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:reusable_components/reusable_components.dart';
-
-import '../cubits/recommended/recommended_cubit.dart';
-import '/src/core/widgets/hotel_card.dart';
-import '/src/core/widgets/try_again_button.dart';
-import '/src/features/home/presentation/widgets/shimmer_recommended.dart';
+import 'package:roome/src/core/widgets/hotel_card.dart';
+import 'package:roome/src/core/widgets/try_again_button.dart';
+import 'package:roome/src/features/home/presentation/cubits/recommended/recommended_cubit.dart';
+import 'package:roome/src/features/home/presentation/widgets/shimmer_recommended.dart';
 
 class Recommended extends StatelessWidget {
   const Recommended({super.key});

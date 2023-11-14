@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-
-import '/src/features/booking/data/models/booking_info.dart';
-import '/src/features/booking/presentation/widgets/booking_two_view_body.dart';
+import 'package:roome/src/features/booking/data/models/booking_info.dart';
+import 'package:roome/src/features/booking/presentation/widgets/booking_two_view_body.dart';
 
 class BookingTwoView extends StatelessWidget {
   final BookingInfo bookingInfo;

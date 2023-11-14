@@ -2,11 +2,10 @@ import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:reusable_components/reusable_components.dart';
-
-import '../../../../core/utils/app_colors.dart';
-import '../../../../core/utils/app_constants.dart';
-import '/src/features/roome/presentation/cubit/roome_cubit.dart';
-import 'confirm_update_image_button.dart';
+import 'package:roome/src/core/utils/app_colors.dart';
+import 'package:roome/src/core/utils/app_constants.dart';
+import 'package:roome/src/features/profile/presentation/widgets/confirm_update_image_button.dart';
+import 'package:roome/src/features/roome/presentation/cubit/roome_cubit.dart';
 
 class UpdateImageButtonAndLoading extends StatelessWidget {
   const UpdateImageButtonAndLoading({super.key});

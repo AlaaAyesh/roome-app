@@ -3,20 +3,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:reusable_components/reusable_components.dart';
-
-import '../../../../core/helpers/helper.dart';
-import '../../../../core/utils/app_colors.dart';
-import '../../../../core/utils/app_constants.dart';
-import '../../../../core/utils/app_text_styles.dart';
-import '../../../../core/widgets/custom_snack_bar.dart';
-import '../../../../core/widgets/loading_dialog.dart';
-import '../../../../core/widgets/visibility_icon_button.dart';
-import '../../../roome/presentation/cubit/roome_cubit.dart';
-import '/src/config/themes/cubit/themes_cubit.dart';
-import '/src/core/utils/app_navigator.dart';
-import 'edit_profile_text_field.dart';
-import 'info_container.dart';
-import 'profile_section_title.dart';
+import 'package:roome/src/config/themes/cubit/themes_cubit.dart';
+import 'package:roome/src/core/helpers/helper.dart';
+import 'package:roome/src/core/utils/app_colors.dart';
+import 'package:roome/src/core/utils/app_constants.dart';
+import 'package:roome/src/core/utils/app_navigator.dart';
+import 'package:roome/src/core/utils/app_text_styles.dart';
+import 'package:roome/src/core/widgets/custom_snack_bar.dart';
+import 'package:roome/src/core/widgets/loading_dialog.dart';
+import 'package:roome/src/core/widgets/visibility_icon_button.dart';
+import 'package:roome/src/features/profile/presentation/widgets/edit_profile_text_field.dart';
+import 'package:roome/src/features/profile/presentation/widgets/info_container.dart';
+import 'package:roome/src/features/profile/presentation/widgets/profile_section_title.dart';
+import 'package:roome/src/features/roome/presentation/cubit/roome_cubit.dart';
 
 class EditProfileForm extends StatefulWidget {
   const EditProfileForm({super.key});

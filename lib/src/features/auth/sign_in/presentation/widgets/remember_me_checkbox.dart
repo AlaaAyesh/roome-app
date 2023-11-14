@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:roome/src/core/utils/app_colors.dart';
 import 'package:roome/src/features/auth/sign_in/presentation/cubit/login_cubit.dart';
-
-import '../../../../../core/utils/app_colors.dart';
 
 class RememberMeCheckBox extends StatelessWidget {
   final LoginCubit cubit;

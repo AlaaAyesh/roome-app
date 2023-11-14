@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:reusable_components/reusable_components.dart';
-
-import '../../../../core/widgets/separator_widget.dart';
-import 'shimmer_explore_card.dart';
+import 'package:roome/src/core/widgets/separator_widget.dart';
+import 'package:roome/src/features/home/presentation/widgets/shimmer_explore_card.dart';
 
 class ShimmerExploreList extends StatelessWidget {
   const ShimmerExploreList({super.key});

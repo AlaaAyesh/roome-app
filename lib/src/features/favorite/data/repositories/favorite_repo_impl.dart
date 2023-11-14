@@ -1,13 +1,12 @@
 import 'package:dartz/dartz.dart';
-
-import '../../../../core/errors/exceptions.dart';
-import '../../../../core/errors/failure.dart';
-import '../../../../core/errors/server_failure.dart';
-import '../../../../core/models/hotel.dart';
-import '../../../../core/utils/app_strings.dart';
-import '../datasources/favorite_datasource.dart';
-import '/src/core/network/network_info.dart';
-import '/src/features/favorite/domain/repositories/favorite_repo.dart';
+import 'package:roome/src/core/errors/exceptions.dart';
+import 'package:roome/src/core/errors/failure.dart';
+import 'package:roome/src/core/errors/server_failure.dart';
+import 'package:roome/src/core/models/hotel.dart';
+import 'package:roome/src/core/network/network_info.dart';
+import 'package:roome/src/core/utils/app_strings.dart';
+import 'package:roome/src/features/favorite/data/datasources/favorite_datasource.dart';
+import 'package:roome/src/features/favorite/domain/repositories/favorite_repo.dart';
 
 class FavoriteRepoImpl implements FavoriteRepo {
   final NetworkInfo networkInfo;
