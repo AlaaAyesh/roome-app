@@ -33,7 +33,7 @@ class ServerFailure extends Failure {
         return ServerFailure(errorMessage: 'Request to ApiServer was canceled');
 
       case DioExceptionType.connectionError:
-        return ServerFailure(errorMessage: 'No Internet Connection');
+        return ServerFailure(errorMessage: AppStrings.noInternet);
 
       case DioExceptionType.unknown:
         return ServerFailure(
@@ -41,9 +41,7 @@ class ServerFailure extends Failure {
         );
 
       default:
-        return ServerFailure(
-          errorMessage: "Opps something went wrong, please try again later!",
-        );
+        return ServerFailure(errorMessage: AppStrings.opps);
     }
   }
 

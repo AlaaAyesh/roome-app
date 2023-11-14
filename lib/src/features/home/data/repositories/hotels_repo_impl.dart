@@ -1,6 +1,5 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
-import 'package:roome/src/core/errors/exceptions.dart';
 import 'package:roome/src/core/errors/failure.dart';
 import 'package:roome/src/core/errors/server_failure.dart';
 import 'package:roome/src/core/models/hotel.dart';
@@ -35,7 +34,7 @@ class HotelsRepoImpl implements HotelsRepo {
         return Left(ServerFailure(errorMessage: e.toString()));
       }
     } else {
-      throw const ServerException(exception: AppStrings.opps);
+      return Left(ServerFailure(errorMessage: AppStrings.noInternet));
     }
   }
 }
