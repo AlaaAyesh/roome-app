@@ -17,15 +17,13 @@ Future<void> main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
+  await setUpServiceLocator();
+
   NotificationService.initAwesomeNotifications();
 
   Bloc.observer = MyBlocObserver();
 
-  setUpServiceLocator();
-
-  await CacheHelper.initSharedPref();
-
-  Helper.uId = CacheHelper.getIntData(key: 'uId');
+  Helper.uId = serviceLocator.get<CacheHelper>().getIntData(key: 'uId');
 
   runApp(const RoomeApp());
 }

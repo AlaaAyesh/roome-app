@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:reusable_components/reusable_components.dart';
+import 'package:roome/src/core/helpers/cache_helper.dart';
 import 'package:roome/src/core/helpers/helper.dart';
-import 'package:roome/src/core/utils/app_colors.dart';
 import 'package:roome/src/core/utils/app_text_styles.dart';
+import 'package:roome/src/core/utils/service_locator.dart';
+import 'package:roome/src/core/widgets/auth_button.dart';
 import 'package:roome/src/core/widgets/forgot_password_text_button.dart';
 import 'package:roome/src/core/widgets/reusable_pass_text_form_field.dart';
 import 'package:roome/src/core/widgets/reusable_text_form_field.dart';
@@ -63,7 +64,7 @@ class _LoginFormState extends State<LoginForm> {
               FocusScope.of(context).requestFocus(_passwordFocusNode);
             },
           ),
-          SizedBox(height: SizeConfig.screenHeight! * 0.056),
+          const SizedBox(height: 56),
           ReusablePassTextField(
             controller: _passwordController,
             thisFocusNode: _passwordFocusNode,
@@ -84,11 +85,11 @@ class _LoginFormState extends State<LoginForm> {
             },
             onSubmit: (String value) => login(context),
           ),
-          SizedBox(height: SizeConfig.screenHeight! * 0.03),
+          const SizedBox(height: 34),
           Row(
             children: <Widget>[
               RememberMeCheckBox(cubit: widget.cubit),
-              SizedBox(width: SizeConfig.screenHeight! * 0.008),
+              const SizedBox(width: 8),
               Text(
                 'Remember Me',
                 style: AppTextStyles.textStyle14Medium,
@@ -99,28 +100,14 @@ class _LoginFormState extends State<LoginForm> {
               ),
             ],
           ),
-          SizedBox(height: SizeConfig.screenHeight! * 0.04),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 15.w),
-            child: MyCustomButton(
-              height: 47.h,
-              width: 305.w,
-              onPressed: () => login(context),
-              hasPrefix: false,
-              backgroundColor: AppColors.primaryColor,
-              borderRadius: BorderRadius.all(Radius.circular(10.r)),
-              child: Center(
-                child: Text(
-                  'Log in',
-                  style: AppTextStyles.textStyle15.copyWith(
-                    color: Colors.white,
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-              ),
-            ),
+          const SizedBox(height: 40),
+          AuthButton(
+            buttonTitle: 'Log In',
+            onPressed: () {
+              serviceLocator.get<CacheHelper>().clearData();
+            },
           ),
-          SizedBox(height: SizeConfig.screenHeight! * 0.04),
+          const SizedBox(height: 40),
         ],
       ),
     );

@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:reusable_components/reusable_components.dart';
 import 'package:roome/src/core/helpers/helper.dart';
-import 'package:roome/src/core/utils/app_colors.dart';
-import 'package:roome/src/core/utils/app_text_styles.dart';
+import 'package:roome/src/core/widgets/auth_button.dart';
 import 'package:roome/src/core/widgets/forgot_password_text_button.dart';
 import 'package:roome/src/core/widgets/reusable_pass_text_form_field.dart';
 import 'package:roome/src/core/widgets/reusable_text_form_field.dart';
@@ -57,7 +55,7 @@ class _SignUpFormState extends State<SignUpForm> {
                 toFocusNode: _lastNameFocusNode,
                 hint: 'First name',
               ),
-              SizedBox(width: SizeConfig.screenWidth! * 0.05),
+              const SizedBox(width: 50),
               NameTextField(
                 controller: _lastNameController,
                 thisFocusNode: _lastNameFocusNode,
@@ -66,7 +64,7 @@ class _SignUpFormState extends State<SignUpForm> {
               ),
             ],
           ),
-          SizedBox(height: SizeConfig.screenHeight! * 0.02),
+          const SizedBox(height: 20),
           ReusableTextFormField(
             controller: _usernameController,
             hint: 'Username',
@@ -86,7 +84,7 @@ class _SignUpFormState extends State<SignUpForm> {
               FocusScope.of(context).requestFocus(_emailFocusNode);
             },
           ),
-          SizedBox(height: SizeConfig.screenHeight! * 0.02),
+          const SizedBox(height: 20),
           ReusableTextFormField(
             hint: 'Email',
             controller: _emailController,
@@ -105,7 +103,7 @@ class _SignUpFormState extends State<SignUpForm> {
               FocusScope.of(context).requestFocus(_passwordFocusNode);
             },
           ),
-          SizedBox(height: SizeConfig.screenHeight! * 0.02),
+          const SizedBox(height: 20),
           ReusablePassTextField(
             controller: _passwordController,
             thisFocusNode: _passwordFocusNode,
@@ -127,35 +125,19 @@ class _SignUpFormState extends State<SignUpForm> {
               widget.cubit.switchPassVisibility();
             },
           ),
-          SizedBox(height: SizeConfig.screenHeight! * 0.01),
+          const SizedBox(height: 10),
           Align(
             alignment: AlignmentDirectional.centerEnd,
             child: ForgotPasswordTextButton(
               onTap: () {},
             ),
           ),
-          SizedBox(height: SizeConfig.screenHeight! * 0.03),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 15.w),
-            child: MyCustomButton(
-              height: 47.h,
-              width: 305.w,
-              onPressed: () => _signUp(context),
-              hasPrefix: false,
-              backgroundColor: AppColors.primaryColor,
-              borderRadius: BorderRadius.all(Radius.circular(10.r)),
-              child: Center(
-                child: Text(
-                  'Sign up',
-                  style: AppTextStyles.textStyle15.copyWith(
-                    color: Colors.white,
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-              ),
-            ),
+          const SizedBox(height: 30),
+          AuthButton(
+            buttonTitle: 'Sign up',
+            onPressed: () => _signUp(context),
           ),
-          SizedBox(height: SizeConfig.screenHeight! * 0.03),
+          const SizedBox(height: 30),
         ],
       ),
     );

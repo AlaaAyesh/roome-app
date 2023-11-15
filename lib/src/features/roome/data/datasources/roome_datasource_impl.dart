@@ -7,6 +7,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:roome/src/core/api/api_consumer.dart';
 import 'package:roome/src/core/api/end_points.dart';
 import 'package:roome/src/core/helpers/cache_helper.dart';
+import 'package:roome/src/core/utils/service_locator.dart';
 import 'package:roome/src/features/favorite/presentation/widgets/favorite_body.dart';
 import 'package:roome/src/features/home/presentation/widgets/home_body.dart';
 import 'package:roome/src/features/notifications/presentation/widgets/notifications_body.dart';
@@ -119,6 +120,6 @@ class RoomeDataSourceImpl implements RoomeDataSource {
 
   @override
   Future<bool> signOut({required BuildContext context}) async {
-    return await CacheHelper.removeData(key: 'uId');
+    return await serviceLocator.get<CacheHelper>().removeData(key: 'uId');
   }
 }
