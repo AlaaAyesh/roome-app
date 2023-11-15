@@ -6,6 +6,7 @@ import 'package:roome/src/config/themes/cubit/themes_cubit.dart';
 import 'package:roome/src/core/api/api_consumer.dart';
 import 'package:roome/src/core/api/app_interceptors.dart';
 import 'package:roome/src/core/api/dio_consumer.dart';
+import 'package:roome/src/core/helpers/cache_helper.dart';
 import 'package:roome/src/core/network/network_info.dart';
 import 'package:roome/src/core/network/network_info_impl.dart';
 import 'package:roome/src/features/auth/sign_in/data/datasources/login_datasource.dart';
@@ -82,24 +83,25 @@ import 'package:roome/src/features/search/data/repositories/search_repo_impl.dar
 import 'package:roome/src/features/search/domain/repositories/search_repo.dart';
 import 'package:roome/src/features/search/domain/usecases/search_hotels_usecase.dart';
 import 'package:roome/src/features/search/presentation/cubit/search_cubit.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 final GetIt serviceLocator = GetIt.instance;
 
-void setUpServiceLocator() {
-  setUpForExternal();
+Future<void> setUpServiceLocator() async {
+  await _setUpForExternal();
 
-  setUpForCore();
+  _setUpForCore();
 
-  setUpForDataSources();
+  _setUpForDataSources();
 
-  setUpForRepos();
+  _setUpForRepos();
 
-  setUpForUseCases();
+  _setUpForUseCases();
 
-  setUpForCubits();
+  _setUpForCubits();
 }
 
-void setUpForExternal() {
+Future<void> _setUpForExternal() async {
   serviceLocator.registerLazySingleton<InternetConnectionChecker>(
     () => InternetConnectionChecker(),
   );
@@ -122,14 +124,22 @@ void setUpForExternal() {
     ),
   );
 
+  SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+  serviceLocator
+      .registerLazySingleton<SharedPreferences>(() => sharedPreferences);
+
   serviceLocator.registerLazySingleton<Dio>(() => Dio());
 }
 
-void setUpForCore() {
+void _setUpForCore() {
   serviceLocator.registerLazySingleton<NetworkInfo>(
     () => NetworkInfoImpl(
       connectionChecker: serviceLocator.get<InternetConnectionChecker>(),
     ),
+  );
+
+  serviceLocator.registerLazySingleton<CacheHelper>(
+    () => CacheHelper(serviceLocator<SharedPreferences>()),
   );
 
   serviceLocator.registerLazySingleton<ApiConsumer>(
@@ -137,7 +147,7 @@ void setUpForCore() {
   );
 }
 
-void setUpForDataSources() {
+void _setUpForDataSources() {
   serviceLocator.registerLazySingleton<OnBoardingDataSource>(
     () => OnBoardingDataSourceImpl(),
   );
@@ -183,7 +193,7 @@ void setUpForDataSources() {
   );
 }
 
-void setUpForRepos() {
+void _setUpForRepos() {
   serviceLocator.registerLazySingleton<OnBoardingRepo>(() => OnBoardingRepoImpl(
         onBoardingDataSource: serviceLocator.get<OnBoardingDataSource>(),
       ));
@@ -244,7 +254,7 @@ void setUpForRepos() {
   );
 }
 
-void setUpForUseCases() {
+void _setUpForUseCases() {
   serviceLocator.registerLazySingleton<LoginUseCase>(
     () => LoginUseCase(loginRepo: serviceLocator.get<LoginRepo>()),
   );
@@ -342,7 +352,7 @@ void setUpForUseCases() {
   );
 }
 
-void setUpForCubits() {
+void _setUpForCubits() {
   serviceLocator.registerFactory<OnBoardingCubit>(() => OnBoardingCubit(
         onBoardingRepo: serviceLocator.get<OnBoardingRepo>(),
       ));
