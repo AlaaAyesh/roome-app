@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:reusable_components/reusable_components.dart';
 import 'package:roome/src/core/utils/app_text_styles.dart';
 import 'package:roome/src/features/on_boarding/domain/entities/on_boarding_entity.dart';
 
@@ -14,26 +12,27 @@ class PageViewItem extends StatelessWidget {
     return Column(
       children: <Widget>[
         ClipRRect(
-          borderRadius: BorderRadius.only(bottomLeft: Radius.circular(50.r)),
+          borderRadius:
+              const BorderRadius.only(bottomLeft: Radius.circular(50)),
           child: Image.asset(
             pageInfo.image,
-            height: SizeConfig.screenHeight! * 0.56,
-            width: SizeConfig.screenWidth,
+            height: 429,
+            width: double.infinity,
             fit: BoxFit.cover,
           ),
         ),
-        SizedBox(height: 16.h),
+        const SizedBox(height: 56),
         Padding(
-          padding: EdgeInsets.symmetric(horizontal: 5.w),
+          padding: const EdgeInsets.symmetric(horizontal: 5),
           child: Text(
             pageInfo.heading,
             style: AppTextStyles.onBoardingHeadingTextStyle,
             textAlign: TextAlign.center,
           ),
         ),
-        SizedBox(height: 5.h),
+        const SizedBox(height: 5),
         Padding(
-          padding: EdgeInsets.symmetric(horizontal: 10.w),
+          padding: const EdgeInsets.symmetric(horizontal: 10),
           child: Text(
             pageInfo.subHeading,
             style: AppTextStyles.textStyle15,

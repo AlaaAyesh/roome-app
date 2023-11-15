@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:reusable_components/reusable_components.dart';
 
 class OnBoardingButton extends StatelessWidget {
@@ -26,9 +25,9 @@ class OnBoardingButton extends StatelessWidget {
         onPressed: onPressed,
         hasPrefix: false,
         backgroundColor: backgroundColor,
-        borderRadius: BorderRadius.all(Radius.circular(50.r)),
-        height: 46.h,
-        width: 396.w,
+        borderRadius: const BorderRadius.all(Radius.circular(50)),
+        height: 46,
+        width: double.infinity,
         child: Center(
           child: Text(
             buttonText,

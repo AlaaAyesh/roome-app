@@ -6,6 +6,7 @@ import 'package:roome/src/config/routes/routes.dart';
 import 'package:roome/src/core/helpers/cache_helper.dart';
 import 'package:roome/src/core/helpers/helper.dart';
 import 'package:roome/src/core/utils/app_navigator.dart';
+import 'package:roome/src/core/utils/service_locator.dart';
 import 'package:roome/src/features/splash/presentation/widgets/splash_view_body.dart';
 
 class SplashView extends StatefulWidget {
@@ -39,20 +40,21 @@ class _SplashViewState extends State<SplashView> {
   }
 
   void _startDelay() {
-    _timer = Timer(const Duration(milliseconds: 1500), () => _goToNext());
+    _timer = Timer(const Duration(milliseconds: 2500), () => _goToNext());
   }
 
   void _goToNext() {
-    bool? onBoarding = CacheHelper.getBoolData(key: 'onBoarding');
+    bool? onBoarding =
+        serviceLocator.get<CacheHelper>().getBoolData(key: 'onBoarding');
 
     if (onBoarding != null) {
       if (Helper.uId != null) {
-        context.navigateAndRemoveUntil(newRoute: Routes.roomViewRoute);
+        context.navigateAndReplacement(newRoute: Routes.roomViewRoute);
       } else {
-        context.navigateAndRemoveUntil(newRoute: Routes.loginViewRoute);
+        context.navigateAndReplacement(newRoute: Routes.loginViewRoute);
       }
     } else {
-      context.navigateAndRemoveUntil(newRoute: Routes.onBoardingViewRoute);
+      context.navigateAndReplacement(newRoute: Routes.onBoardingViewRoute);
     }
   }
 

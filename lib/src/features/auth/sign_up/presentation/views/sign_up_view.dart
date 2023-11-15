@@ -6,6 +6,7 @@ import 'package:roome/src/core/helpers/cache_helper.dart';
 import 'package:roome/src/core/helpers/helper.dart';
 import 'package:roome/src/core/utils/app_navigator.dart';
 import 'package:roome/src/core/utils/app_strings.dart';
+import 'package:roome/src/core/utils/service_locator.dart';
 import 'package:roome/src/core/widgets/custom_snack_bar.dart';
 import 'package:roome/src/core/widgets/loading_dialog.dart';
 import 'package:roome/src/features/auth/sign_up/presentation/cubit/sign_up_cubit.dart';
@@ -53,7 +54,10 @@ class SignUpView extends StatelessWidget {
     SignUpWithGoogleSuccessState state,
   ) {
     context.getBack();
-    CacheHelper.saveData(key: 'uId', value: state.uId).then((value) {
+    serviceLocator
+        .get<CacheHelper>()
+        .saveData(key: 'uId', value: state.uId)
+        .then((value) {
       if (value) {
         Helper.uId = int.parse(state.uId);
         Helper.getUserAndFavorites(context);
@@ -68,7 +72,10 @@ class SignUpView extends StatelessWidget {
     SignUpSuccessState state,
   ) {
     context.getBack();
-    CacheHelper.saveData(key: 'uId', value: state.uId).then((value) {
+    serviceLocator
+        .get<CacheHelper>()
+        .saveData(key: 'uId', value: state.uId)
+        .then((value) {
       if (value) {
         Helper.uId = state.uId;
         Helper.getUserAndFavorites(context);
