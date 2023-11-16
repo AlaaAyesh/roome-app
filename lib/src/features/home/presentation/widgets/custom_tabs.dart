@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:reusable_components/reusable_components.dart';
+
 import 'package:roome/src/config/themes/cubit/themes_cubit.dart';
 import 'package:roome/src/core/utils/app_colors.dart';
 import 'package:roome/src/core/utils/app_text_styles.dart';
@@ -24,13 +23,13 @@ class _CustomTabsState extends State<CustomTabs> {
   double changePositionedOfLine() {
     switch (current) {
       case 0:
-        return 8.h;
+        return 13;
 
       case 1:
-        return 90.h;
+        return 105;
 
       case 2:
-        return 220.h;
+        return 260;
 
       default:
         return 0;
@@ -40,16 +39,16 @@ class _CustomTabsState extends State<CustomTabs> {
   double changeWidthOfLine() {
     switch (current) {
       case 0:
-        return 50.w;
+        return 50;
 
       case 1:
-        return 100.w;
+        return 100;
 
       case 2:
-        return 45.w;
+        return 45;
 
       default:
-        return 0.w;
+        return 0;
     }
   }
 
@@ -59,8 +58,8 @@ class _CustomTabsState extends State<CustomTabs> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         SizedBox(
-          height: SizeConfig.screenHeight! * 0.05,
-          width: SizeConfig.screenWidth,
+          height: 40,
+          width: double.infinity,
           child: Stack(
             children: <Widget>[
               Positioned(
@@ -68,8 +67,8 @@ class _CustomTabsState extends State<CustomTabs> {
                 right: 0,
                 left: 0,
                 child: SizedBox(
-                  height: SizeConfig.screenHeight! * 0.04,
-                  width: SizeConfig.screenWidth,
+                  height: 40,
+                  width: double.infinity,
                   child: ListView.builder(
                     physics: const BouncingScrollPhysics(),
                     scrollDirection: Axis.horizontal,
@@ -83,8 +82,8 @@ class _CustomTabsState extends State<CustomTabs> {
                         },
                         child: Padding(
                           padding: EdgeInsets.only(
-                            left: index == 0 ? 10.w : 22.w,
-                            top: 7.w,
+                            left: index == 0 ? 10 : 22,
+                            top: 7,
                           ),
                           child: BlocBuilder<ThemesCubit, ThemeData>(
                             builder: (context, state) {
@@ -118,7 +117,7 @@ class _CustomTabsState extends State<CustomTabs> {
                   duration: const Duration(milliseconds: 400),
                   curve: Curves.fastLinearToSlowEaseIn,
                   width: changeWidthOfLine(),
-                  height: SizeConfig.screenHeight! * 0.008,
+                  height: 8,
                   color: AppColors.primaryColor.withOpacity(0.71),
                 ),
               ),

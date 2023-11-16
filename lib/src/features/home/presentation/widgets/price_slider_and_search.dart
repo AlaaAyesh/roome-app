@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:reusable_components/reusable_components.dart';
+
 import 'package:roome/src/config/themes/cubit/themes_cubit.dart';
 import 'package:roome/src/core/utils/app_colors.dart';
 import 'package:roome/src/core/utils/app_text_styles.dart';
@@ -14,15 +13,15 @@ class PriceSliderAndSearch extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 153.h,
-      width: 384.w,
-      padding: EdgeInsets.only(top: 11.h, left: 13.w),
-      margin: EdgeInsets.only(right: 26.w),
+      width: double.infinity,
+      constraints: const BoxConstraints(
+        minHeight: 0,
+      ),
+      padding: const EdgeInsets.only(top: 11, left: 13, bottom: 11),
+      margin: const EdgeInsets.only(right: 26),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.all(Radius.circular(20.r)),
-        border: Border.all(
-          color: AppColors.borderColor,
-        ),
+        borderRadius: const BorderRadius.all(Radius.circular(20)),
+        border: Border.all(color: AppColors.borderColor),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -30,23 +29,23 @@ class PriceSliderAndSearch extends StatelessWidget {
           Text(
             'Price Range Per Night',
             style: AppTextStyles.textStyle14Medium.copyWith(
-              fontSize: 13.sp,
+              fontSize: 13,
             ),
           ),
-          SizedBox(height: SizeConfig.screenHeight! * 0.05),
+          const SizedBox(height: 50),
           const PriceSlider(),
-          SizedBox(height: SizeConfig.screenHeight! * 0.005),
+          const SizedBox(height: 5),
           BlocBuilder<ThemesCubit, ThemeData>(
             builder: (context, state) {
               return Padding(
-                padding: EdgeInsets.only(right: 16.w),
+                padding: const EdgeInsets.only(right: 16),
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
-                    DisabledSearchField(state: state),
+                    Expanded(child: DisabledSearchField(state: state)),
+                    const SizedBox(width: 10),
                     Container(
-                      height: 38.w,
-                      width: 38.w,
+                      height: 38,
+                      width: 38,
                       decoration: BoxDecoration(
                         color: state.brightness == Brightness.light
                             ? Colors.white
@@ -58,9 +57,9 @@ class PriceSliderAndSearch extends StatelessWidget {
                       child: Center(
                         child: GestureDetector(
                           onTap: () {}, // TODO: Filtering Logic
-                          child: Icon(
+                          child: const Icon(
                             Icons.filter_list,
-                            size: 22.w,
+                            size: 22,
                             color: AppColors.primaryColor,
                           ),
                         ),

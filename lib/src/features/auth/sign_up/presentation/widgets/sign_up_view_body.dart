@@ -29,7 +29,7 @@ class SignUpViewBody extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                GetBackArrow(onTap: () => context.getBack()),
+                const GetBackArrow(),
                 const AuthTitle(
                   title: 'Sign up',
                   margin: EdgeInsets.only(

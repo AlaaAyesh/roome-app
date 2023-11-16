@@ -1,7 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:roome/src/config/routes/routes.dart';
 import 'package:roome/src/config/themes/cubit/themes_cubit.dart';
 import 'package:roome/src/core/models/hotel.dart';
@@ -18,14 +17,14 @@ import 'package:roome/src/core/widgets/star_icon.dart';
 class HotelCard extends StatelessWidget {
   const HotelCard({
     super.key,
-    required this.cardHeight,
-    required this.cardWidth,
+    this.cardHeight,
+    this.cardWidth,
     required this.hotel,
   });
 
   final Hotel hotel;
-  final double cardHeight;
-  final double cardWidth;
+  final double? cardHeight;
+  final double? cardWidth;
 
   @override
   Widget build(BuildContext context) {
@@ -43,11 +42,11 @@ class HotelCard extends StatelessWidget {
               color: state.brightness == Brightness.light
                   ? Colors.white
                   : AppColors.darkGreyColor,
-              borderRadius: BorderRadius.all(Radius.circular(13.r)),
+              borderRadius: const BorderRadius.all(Radius.circular(13)),
               boxShadow: [
                 BoxShadow(
-                  offset: Offset(0, 1.73.w),
-                  blurRadius: 10.w,
+                  offset: const Offset(0, 1.73),
+                  blurRadius: 10,
                   color: AppColors.shadowColor,
                 ),
               ],
@@ -59,14 +58,15 @@ class HotelCard extends StatelessWidget {
                   alignment: AlignmentDirectional.bottomStart,
                   children: <Widget>[
                     Padding(
-                      padding: EdgeInsets.all(4.w),
+                      padding: const EdgeInsets.all(4),
                       child: ClipRRect(
-                        borderRadius: BorderRadius.all(Radius.circular(18.r)),
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(18)),
                         child: Hero(
                           tag: hotel.id!,
                           child: CachedNetworkImage(
                             imageUrl: hotel.images![0].path!,
-                            height: 89.h,
+                            height: 89,
                             width: double.infinity,
                             fit: BoxFit.cover,
                             errorWidget: (context, url, error) =>
@@ -79,7 +79,7 @@ class HotelCard extends StatelessWidget {
                   ],
                 ),
                 Padding(
-                  padding: EdgeInsets.only(top: 1.h, right: 10.w, left: 10.w),
+                  padding: const EdgeInsets.only(top: 1, right: 10, left: 10),
                   child: Row(
                     children: <Widget>[
                       Flexible(
@@ -94,7 +94,7 @@ class HotelCard extends StatelessWidget {
                       ),
                       const Spacer(),
                       const StarIcon(),
-                      SizedBox(width: 3.w),
+                      const SizedBox(width: 3),
                       Text(
                         hotel.rate!.toString(),
                         style: AppTextStyles.bottomNavTextStyle.copyWith(
@@ -105,11 +105,11 @@ class HotelCard extends StatelessWidget {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.only(left: 10.w, top: 7.h),
+                  padding: const EdgeInsets.only(left: 10, top: 7),
                   child: LocationText(location: hotel.location!),
                 ),
                 Padding(
-                  padding: EdgeInsets.only(right: 10.w, top: 7.h),
+                  padding: const EdgeInsets.only(right: 10, top: 7),
                   child: PricePerNightText(price: hotel.price!),
                 ),
               ],

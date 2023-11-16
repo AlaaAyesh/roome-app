@@ -1,13 +1,30 @@
 import 'package:flutter/material.dart';
-import 'package:roome/src/features/home/presentation/widgets/near_me_see_all_view_body.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:roome/src/core/utils/app_constants.dart';
+import 'package:roome/src/core/widgets/custom_sliver_app_bar.dart';
+import 'package:roome/src/features/home/presentation/cubits/near_me/near_me_cubit.dart';
+import 'package:roome/src/features/home/presentation/widgets/see_all_items.dart';
 
 class NearMeSeeAllView extends StatelessWidget {
   const NearMeSeeAllView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: NearMeSeeAllViewBody(),
+    return Scaffold(
+      body: CustomScrollView(
+        physics: AppConstants.physics,
+        slivers: <Widget>[
+          const CustomSliverAppBar(title: 'Near Me'),
+          SliverPadding(
+            padding: const EdgeInsets.only(right: 27, left: 14),
+            sliver: SliverFillRemaining(
+              child: SeeAllItems(
+                hotels: BlocProvider.of<NearMeCubit>(context).resultNearMe,
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

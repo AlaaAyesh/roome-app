@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:reusable_components/reusable_components.dart';
 import 'package:roome/src/config/themes/cubit/themes_cubit.dart';
 import 'package:roome/src/core/utils/app_colors.dart';
 import 'package:roome/src/core/widgets/separator_widget.dart';
@@ -23,17 +22,15 @@ class ShimmerNearMeHotels extends StatelessWidget {
               : AppColors.darkShimmerHighlightColor,
           enabled: true,
           child: SizedBox(
-            height: SizeConfig.screenHeight! * 0.26,
-            width: SizeConfig.screenWidth,
+            height: 200,
+            width: double.infinity,
             child: ListView.separated(
               physics: const BouncingScrollPhysics(),
               scrollDirection: Axis.horizontal,
-              padding: EdgeInsets.symmetric(
-                vertical: SizeConfig.screenHeight! * 0.01,
-              ),
-              itemBuilder: (context, index) => ShimmerHotelCard(
-                cardHeight: SizeConfig.screenHeight! * 0.24,
-                cardWidth: SizeConfig.screenWidth! * 0.55,
+              padding: const EdgeInsets.symmetric(vertical: 10),
+              itemBuilder: (context, index) => const ShimmerHotelCard(
+                cardHeight: 170,
+                cardWidth: 200,
               ),
               separatorBuilder: (context, index) => const SeparatorWidget(),
               itemCount: 8,

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:roome/src/config/themes/cubit/themes_cubit.dart';
 import 'package:roome/src/core/utils/app_colors.dart';
 import 'package:shimmer/shimmer.dart';
@@ -8,12 +7,12 @@ import 'package:shimmer/shimmer.dart';
 class ShimmerHotelCard extends StatelessWidget {
   const ShimmerHotelCard({
     super.key,
-    required this.cardHeight,
-    required this.cardWidth,
+    this.cardHeight,
+    this.cardWidth,
   });
 
-  final double cardHeight;
-  final double cardWidth;
+  final double? cardHeight;
+  final double? cardWidth;
 
   @override
   Widget build(BuildContext context) {
@@ -32,11 +31,11 @@ class ShimmerHotelCard extends StatelessWidget {
             width: cardWidth,
             decoration: BoxDecoration(
               color: AppColors.shimmerContainerColor,
-              borderRadius: BorderRadius.all(Radius.circular(13.r)),
+              borderRadius: const BorderRadius.all(Radius.circular(13)),
               boxShadow: [
                 BoxShadow(
-                  offset: Offset(0, 1.73.w),
-                  blurRadius: 10.w,
+                  offset: const Offset(0, 1.73),
+                  blurRadius: 10,
                   color: AppColors.shadowColor,
                 ),
               ],

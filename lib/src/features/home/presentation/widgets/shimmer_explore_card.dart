@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:reusable_components/reusable_components.dart';
+
 import 'package:roome/src/config/themes/cubit/themes_cubit.dart';
 import 'package:roome/src/core/utils/app_colors.dart';
 import 'package:shimmer/shimmer.dart';
@@ -22,15 +21,14 @@ class ShimmerExploreCard extends StatelessWidget {
               : AppColors.darkShimmerHighlightColor,
           enabled: true,
           child: Container(
-            height: SizeConfig.screenHeight! * 0.15,
-            width: SizeConfig.screenWidth! * 0.4,
+            width: 130,
             decoration: BoxDecoration(
               color: AppColors.shimmerContainerColor,
-              borderRadius: BorderRadius.all(Radius.circular(12.r)),
+              borderRadius: const BorderRadius.all(Radius.circular(12)),
               boxShadow: [
                 BoxShadow(
-                  offset: Offset(0, 1.15.w),
-                  blurRadius: 6.89.w,
+                  offset: const Offset(0, 1.15),
+                  blurRadius: 6.89,
                   color: AppColors.shadowColor,
                 ),
               ],

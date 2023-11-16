@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:reusable_components/reusable_components.dart';
 import 'package:roome/src/core/widgets/separator_widget.dart';
 import 'package:roome/src/core/widgets/try_again_button.dart';
 import 'package:roome/src/features/home/presentation/cubits/hotels/hotels_cubit.dart';
@@ -18,19 +17,20 @@ class ExploreList extends StatelessWidget {
           return const ShimmerExploreList();
         } else if (state is GetHotelsSuccessState) {
           return SizedBox(
-            height: SizeConfig.screenHeight! * 0.15,
-            width: SizeConfig.screenWidth,
+            height: 110,
+            width: double.infinity,
             child: ListView.separated(
               physics: const BouncingScrollPhysics(),
               scrollDirection: Axis.horizontal,
-              padding: EdgeInsets.symmetric(
-                vertical: SizeConfig.screenHeight! * 0.01,
-              ),
-              itemBuilder: (context, index) => ExploreCard(
-                hotel: state.hotels[index],
+              padding: const EdgeInsets.symmetric(vertical: 10),
+              itemBuilder: (context, index) => Padding(
+                padding: EdgeInsets.only(left: index == 0 ? 5 : 0),
+                child: ExploreCard(
+                  hotel: state.hotels[index],
+                ),
               ),
               separatorBuilder: (context, index) => const SeparatorWidget(),
-              itemCount: 3,
+              itemCount: state.hotels.length,
             ),
           );
         } else if (state is GetHotelsErrorState) {

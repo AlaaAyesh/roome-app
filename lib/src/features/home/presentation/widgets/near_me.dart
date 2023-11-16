@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:reusable_components/reusable_components.dart';
 import 'package:roome/src/config/routes/routes.dart';
 import 'package:roome/src/config/themes/cubit/themes_cubit.dart';
 import 'package:roome/src/core/utils/app_navigator.dart';
@@ -16,12 +15,12 @@ class NearMe extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(top: SizeConfig.screenHeight! * 0.008),
+      padding: const EdgeInsets.only(top: 8),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           const NearMeHotels(),
-          SizedBox(height: SizeConfig.screenHeight! * 0.005),
+          const SizedBox(height: 5),
           Align(
             alignment: AlignmentDirectional.centerEnd,
             child: SeeAllTextButton(
@@ -30,7 +29,7 @@ class NearMe extends StatelessWidget {
               ),
             ),
           ),
-          SizedBox(height: SizeConfig.screenHeight! * 0.01),
+          const SizedBox(height: 10),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
@@ -54,9 +53,9 @@ class NearMe extends StatelessWidget {
               )
             ],
           ),
-          SizedBox(height: SizeConfig.screenHeight! * 0.011),
+          const SizedBox(height: 10),
           const ExploreList(),
-          SizedBox(height: SizeConfig.screenHeight! * 0.02),
+          const SizedBox(height: 20),
           const OffersList(),
         ],
       ),

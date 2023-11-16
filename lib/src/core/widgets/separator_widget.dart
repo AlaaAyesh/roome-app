@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class SeparatorWidget extends StatelessWidget {
   const SeparatorWidget({
@@ -14,8 +13,8 @@ class SeparatorWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: width?.w,
-      height: height?.h,
+      width: width,
+      height: height,
     );
   }
 }

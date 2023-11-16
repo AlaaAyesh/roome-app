@@ -1,9 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
-import 'package:reusable_components/reusable_components.dart';
 import 'package:roome/src/core/widgets/hotel_card.dart';
 import 'package:roome/src/core/widgets/try_again_button.dart';
 import 'package:roome/src/features/home/presentation/cubits/recommended/recommended_cubit.dart';
@@ -20,10 +18,7 @@ class Recommended extends StatelessWidget {
           return const ShimmerRecommended();
         } else if (state is GetRecommendedHotelsSuccessState) {
           return Padding(
-            padding: EdgeInsets.only(
-              top: SizeConfig.screenHeight! * 0.015,
-              right: 26.w,
-            ),
+            padding: const EdgeInsets.only(top: 15, right: 26),
             child: GridView.builder(
               itemBuilder: (context, index) =>
                   AnimationConfiguration.staggeredGrid(
@@ -34,8 +29,6 @@ class Recommended extends StatelessWidget {
                   child: FadeInAnimation(
                     child: HotelCard(
                       hotel: state.recommendedHotels[index],
-                      cardHeight: SizeConfig.screenHeight! * 0.24,
-                      cardWidth: SizeConfig.screenWidth! * 0.4,
                     ),
                   ),
                 ),
@@ -50,7 +43,7 @@ class Recommended extends StatelessWidget {
               clipBehavior: Clip.hardEdge,
               gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
                 maxCrossAxisExtent: 200,
-                mainAxisExtent: 220,
+                mainAxisExtent: 200,
                 mainAxisSpacing: 20,
                 crossAxisSpacing: 15,
                 childAspectRatio: 3 / 2,

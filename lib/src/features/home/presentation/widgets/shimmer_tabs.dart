@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:reusable_components/reusable_components.dart';
 import 'package:roome/src/config/themes/cubit/themes_cubit.dart';
 import 'package:roome/src/core/helpers/helper.dart';
 import 'package:roome/src/core/utils/app_colors.dart';
 import 'package:roome/src/features/home/presentation/widgets/shimmer_explore_list.dart';
 import 'package:roome/src/features/home/presentation/widgets/shimmer_near_me_hotels.dart';
+import 'package:roome/src/features/home/presentation/widgets/shimmer_offers_list.dart';
 import 'package:shimmer/shimmer.dart';
 
 class ShimmerTabs extends StatelessWidget {
@@ -24,7 +23,7 @@ class ShimmerTabs extends StatelessWidget {
               ? AppColors.shimmerHighlightColor
               : AppColors.darkShimmerHighlightColor,
           child: Padding(
-            padding: EdgeInsets.only(top: SizeConfig.screenHeight! * 0.03),
+            padding: const EdgeInsets.only(top: 30),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
@@ -32,62 +31,63 @@ class ShimmerTabs extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: <Widget>[
                     Container(
-                      height: 15.h,
-                      width: 65.w,
+                      height: 15,
+                      width: 65,
                       decoration: Helper.buildShimmerDecoration(state),
                     ),
                     Container(
-                      height: 15.h,
-                      width: 130.w,
+                      height: 15,
+                      width: 130,
                       decoration: Helper.buildShimmerDecoration(state),
                     ),
                     Container(
-                      height: 15.h,
-                      width: 75.w,
+                      height: 15,
+                      width: 75,
                       decoration: Helper.buildShimmerDecoration(state),
                     ),
                   ],
                 ),
                 Padding(
-                  padding:
-                      EdgeInsets.only(top: SizeConfig.screenHeight! * 0.008),
+                  padding: const EdgeInsets.only(top: 8),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       const ShimmerNearMeHotels(),
-                      SizedBox(height: SizeConfig.screenHeight! * 0.005),
+                      const SizedBox(height: 5),
                       Align(
                         alignment: AlignmentDirectional.centerEnd,
                         child: Padding(
-                          padding: EdgeInsets.only(right: 26.w),
+                          padding: const EdgeInsets.only(right: 26),
                           child: Container(
-                            height: 12.h,
-                            width: 70.w,
+                            height: 12,
+                            width: 70,
                             decoration: Helper.buildShimmerDecoration(state),
                           ),
                         ),
                       ),
-                      SizedBox(height: SizeConfig.screenHeight! * 0.01),
+                      const SizedBox(height: 10),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: <Widget>[
                           Container(
-                            height: 15.h,
-                            width: 85.w,
+                            height: 15,
+                            width: 85,
                             decoration: Helper.buildShimmerDecoration(state),
                           ),
                           Padding(
-                            padding: EdgeInsets.only(right: 26.w),
+                            padding: const EdgeInsets.only(right: 26),
                             child: Container(
-                              height: 12.h,
-                              width: 70.w,
+                              height: 12,
+                              width: 70,
                               decoration: Helper.buildShimmerDecoration(state),
                             ),
                           ),
                         ],
                       ),
-                      SizedBox(height: SizeConfig.screenHeight! * 0.011),
+                      const SizedBox(height: 10),
                       const ShimmerExploreList(),
+                      const SizedBox(height: 20),
+                      const ShimmerOffersList(),
                     ],
                   ),
                 ),

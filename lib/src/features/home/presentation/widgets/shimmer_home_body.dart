@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:reusable_components/reusable_components.dart';
 import 'package:roome/src/features/home/presentation/widgets/shimmer_hello_row.dart';
 import 'package:roome/src/features/home/presentation/widgets/shimmer_price_slider_and_search.dart';
 import 'package:roome/src/features/home/presentation/widgets/shimmer_tabs.dart';
@@ -10,18 +8,18 @@ class ShimmerHomeBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
+    return const SingleChildScrollView(
       child: Padding(
         padding: EdgeInsets.only(
-          bottom: 16.h,
-          left: 21.w,
+          bottom: 16,
+          left: 21,
         ),
         child: Column(
           children: <Widget>[
-            const ShimmerHelloRow(),
-            SizedBox(height: SizeConfig.screenHeight! * 0.023),
-            const ShimmerPriceSliderAndSearch(),
-            const ShimmerTabs(),
+            ShimmerHelloRow(),
+            SizedBox(height: 23),
+            ShimmerPriceSliderAndSearch(),
+            ShimmerTabs(),
           ],
         ),
       ),

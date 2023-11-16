@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:roome/src/core/utils/app_colors.dart';
 import 'package:roome/src/core/utils/app_strings.dart';
 
@@ -10,9 +9,9 @@ class AppTheme {
         scaffoldBackgroundColor: AppColors.scaffoldBackgroundColor,
         fontFamily: AppStrings.fontFamily,
         brightness: Brightness.light,
-        bottomNavigationBarTheme: BottomNavigationBarThemeData(
+        bottomNavigationBarTheme: const BottomNavigationBarThemeData(
           backgroundColor: Colors.white,
-          elevation: 2.h,
+          elevation: 2,
         ),
       );
 
@@ -22,9 +21,9 @@ class AppTheme {
         scaffoldBackgroundColor: Colors.black,
         fontFamily: AppStrings.fontFamily,
         brightness: Brightness.dark,
-        bottomNavigationBarTheme: BottomNavigationBarThemeData(
+        bottomNavigationBarTheme: const BottomNavigationBarThemeData(
           backgroundColor: Colors.black,
-          elevation: 2.h,
+          elevation: 2,
         ),
       );
 }
