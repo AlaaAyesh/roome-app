@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:reusable_components/reusable_components.dart';
 import 'package:roome/src/core/utils/app_colors.dart';
 import 'package:roome/src/core/utils/app_strings.dart';
@@ -28,17 +27,17 @@ class _SearchTextFieldState extends State<SearchTextField> {
   Widget build(BuildContext context) {
     return CustomSearchTextField(
       autofocus: true,
-      height: 36.h,
+      height: 36,
       backgroundColor: AppColors.darkGrey.withOpacity(0.65),
-      contentPadding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 6.h),
-      borderRadius: BorderRadius.all(Radius.circular(10.r)),
+      contentPadding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+      borderRadius: const BorderRadius.all(Radius.circular(10)),
       searchTextFieldController: _searchTextFieldController,
       hint: AppStrings.searchHint,
       hintStyle: AppTextStyles.textStyle14Medium.copyWith(
         color: AppColors.lightGrey.withOpacity(0.24),
       ),
       style: AppTextStyles.textStyle14Medium,
-      suffixIcon: Icon(Icons.search, size: 22.w, color: Colors.black),
+      suffixIcon: const Icon(Icons.search, size: 22, color: Colors.black),
       enabledBorder: InputBorder.none,
       focusedBorder: InputBorder.none,
       errorBorder: InputBorder.none,

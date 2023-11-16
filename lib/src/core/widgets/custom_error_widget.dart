@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:reusable_components/reusable_components.dart';
 import 'package:roome/src/config/themes/cubit/themes_cubit.dart';
 import 'package:roome/src/core/utils/app_colors.dart';
 import 'package:roome/src/core/utils/app_strings.dart';
 import 'package:roome/src/core/utils/app_text_styles.dart';
+import 'package:roome/src/core/widgets/try_again_button.dart';
 
 class CustomErrorWidget extends StatelessWidget {
   const CustomErrorWidget({
@@ -54,24 +54,7 @@ class CustomErrorWidget extends StatelessWidget {
               ),
             ],
             const Spacer(),
-            MyCustomButton(
-              borderRadius: const BorderRadius.all(Radius.circular(16)),
-              height: 50,
-              width: 250,
-              backgroundColor: AppColors.primaryColor,
-              onPressed: onPressed,
-              hasPrefix: false,
-              child: Center(
-                child: Text(
-                  'Try again',
-                  style: AppTextStyles.appBarTextStyle.copyWith(
-                    color: state.brightness == Brightness.light
-                        ? Colors.white
-                        : Colors.black,
-                  ),
-                ),
-              ),
-            ),
+            TryAgainButton(onPressed: onPressed),
             const Spacer(),
           ],
         );

@@ -5,6 +5,6 @@ class BottomSpacer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const SizedBox(height: 24);
+    return const SizedBox(height: 16);
   }
 }

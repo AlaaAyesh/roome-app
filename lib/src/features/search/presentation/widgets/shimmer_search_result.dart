@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:reusable_components/reusable_components.dart';
+
 import 'package:roome/src/core/widgets/separator_widget.dart';
 import 'package:roome/src/core/widgets/shimmer_hotel_card.dart';
 
@@ -15,12 +14,12 @@ class ShimmerSearchResult extends StatelessWidget {
       // Download all items at the same time
       shrinkWrap: true,
       itemBuilder: (context, index) {
-        return ShimmerHotelCard(
-          cardHeight: SizeConfig.screenHeight! * 0.24,
-          cardWidth: SizeConfig.screenWidth! * 0.55,
+        return const ShimmerHotelCard(
+          cardHeight: 150,
+          cardWidth: double.infinity,
         );
       },
-      separatorBuilder: (context, index) => SeparatorWidget(height: 15.h),
+      separatorBuilder: (context, index) => const SeparatorWidget(height: 15),
       itemCount: 8,
     );
   }

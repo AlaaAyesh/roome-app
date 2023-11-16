@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:reusable_components/reusable_components.dart';
 import 'package:roome/src/config/themes/cubit/themes_cubit.dart';
 import 'package:roome/src/core/models/facility.dart';
 import 'package:roome/src/core/utils/app_colors.dart';
@@ -16,7 +14,7 @@ class Facilities extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Wrap(
-      spacing: 20.w,
+      spacing: 20,
       verticalDirection: VerticalDirection.down,
       direction: Axis.horizontal,
       children: List.generate(
@@ -26,17 +24,17 @@ class Facilities extends StatelessWidget {
           children: <Widget>[
             SvgPicture.network(
               facilities[index].icon!,
-              height: SizeConfig.screenHeight! * 0.04,
-              width: SizeConfig.screenHeight! * 0.04,
+              height: 40,
+              width: 40,
               fit: BoxFit.cover,
             ),
-            SizedBox(height: SizeConfig.screenHeight! * 0.009),
+            const SizedBox(height: 9),
             BlocBuilder<ThemesCubit, ThemeData>(
               builder: (context, state) {
                 return Text(
                   facilities[index].name!,
                   style: AppTextStyles.textStyle14Medium.copyWith(
-                    fontSize: 13.sp,
+                    fontSize: 13,
                     color: state.brightness == Brightness.light
                         ? AppColors.lightGrey.withOpacity(0.49)
                         : AppColors.white60,
