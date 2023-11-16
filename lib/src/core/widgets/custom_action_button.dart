@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:reusable_components/reusable_components.dart';
 
 class CustomActionButton extends StatelessWidget {
@@ -23,9 +22,9 @@ class CustomActionButton extends StatelessWidget {
     return Align(
       alignment: Alignment.center,
       child: MyCustomButton(
-        height: 40.h,
-        width: 200.w,
-        borderRadius: BorderRadius.all(Radius.circular(12.r)),
+        height: 50,
+        width: double.infinity,
+        borderRadius: const BorderRadius.all(Radius.circular(12)),
         backgroundColor: backgroundColor,
         onPressed: onPressed,
         hasPrefix: false,

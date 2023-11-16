@@ -1,8 +1,6 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
-import 'package:reusable_components/reusable_components.dart';
 import 'package:roome/src/core/utils/app_colors.dart';
 import 'package:roome/src/core/utils/app_constants.dart';
 import 'package:roome/src/core/utils/app_text_styles.dart';
@@ -44,11 +42,10 @@ class _BookingOneBodyContentState extends State<BookingOneBodyContent> {
         FadeInLeft(
           from: AppConstants.fadeInHorizontalValue,
           child: Container(
-            height: SizeConfig.screenHeight! * 0.4,
-            width: SizeConfig.screenWidth!,
+            width: double.infinity,
             decoration: BoxDecoration(
               color: AppColors.primaryColor.withOpacity(0.15),
-              borderRadius: BorderRadius.all(Radius.circular(10.r)),
+              borderRadius: const BorderRadius.all(Radius.circular(10)),
             ),
             child: SfDateRangePicker(
               controller: _dateRangePickerController,
@@ -56,7 +53,7 @@ class _BookingOneBodyContentState extends State<BookingOneBodyContent> {
               selectionMode: DateRangePickerSelectionMode.range,
               selectionShape: DateRangePickerSelectionShape.circle,
               minDate: DateTime.now(),
-              headerHeight: 50.h,
+              headerHeight: 50,
               headerStyle: DateRangePickerHeaderStyle(
                 textStyle: AppTextStyles.textStyle14Medium,
               ),
@@ -92,7 +89,7 @@ class _BookingOneBodyContentState extends State<BookingOneBodyContent> {
             ),
           ),
         ),
-        SizedBox(height: SizeConfig.screenHeight! * 0.023),
+        const SizedBox(height: 23),
         FadeInUp(
           from: AppConstants.fadeInUpValue,
           child: DateForm(

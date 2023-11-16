@@ -20,6 +20,7 @@ class NumberOfContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CustomBorderedContainer(
+      padding: const EdgeInsets.all(8),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[

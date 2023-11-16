@@ -9,9 +9,7 @@ class BookingTwoView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: BookingTwoViewBody(bookingInfo: bookingInfo),
-      ),
+      body: SafeArea(child: BookingTwoViewBody(bookingInfo: bookingInfo)),
     );
   }
 }

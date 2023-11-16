@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:reusable_components/reusable_components.dart';
 import 'package:roome/src/features/booking/presentation/widgets/check_container.dart';
 import 'package:roome/src/features/booking/presentation/widgets/section_title.dart';
 
@@ -17,20 +16,22 @@ class CheckInAndOut extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
-        Row(
+        const Row(
           children: <Widget>[
-            const SectionTitle(title: 'Check In'),
-            SizedBox(width: SizeConfig.screenWidth! * 0.33),
-            const SectionTitle(title: 'Check Out'),
+            SectionTitle(title: 'Check In'),
+            Spacer(),
+            Expanded(child: SectionTitle(title: 'Check Out')),
           ],
         ),
-        SizedBox(height: SizeConfig.screenHeight! * 0.016),
+        const SizedBox(height: 16),
         Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
-            CheckContainer(hint: checkInDate),
-            const Icon(Icons.arrow_forward),
-            CheckContainer(hint: checkOutDate),
+            Expanded(child: CheckContainer(hint: checkInDate)),
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 20),
+              child: Icon(Icons.arrow_forward),
+            ),
+            Expanded(child: CheckContainer(hint: checkOutDate)),
           ],
         )
       ],

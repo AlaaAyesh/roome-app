@@ -3,7 +3,6 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pretty_qr_code/pretty_qr_code.dart';
 import 'package:reusable_components/reusable_components.dart';
 import 'package:roome/src/config/themes/cubit/themes_cubit.dart';
@@ -26,22 +25,22 @@ class BookingInfoContainer extends StatelessWidget {
     return BlocBuilder<ThemesCubit, ThemeData>(
       builder: (context, state) {
         return Container(
-          height: SizeConfig.screenHeight! * 0.72,
-          width: SizeConfig.screenWidth,
-          padding: EdgeInsets.symmetric(vertical: 8.h, horizontal: 15.w),
+          constraints: const BoxConstraints(minHeight: 0),
+          width: double.infinity,
+          padding: const EdgeInsets.symmetric(vertical: 17, horizontal: 27),
           decoration: BoxDecoration(
             color: state.brightness == Brightness.light
                 ? Colors.white
-                : AppColors.darkGreyColor,
-            borderRadius: BorderRadius.all(Radius.circular(10.r)),
+                : const Color.fromARGB(255, 73, 73, 73),
+            borderRadius: const BorderRadius.all(Radius.circular(10)),
             border: Border.all(
               color: HexColorHandler('E3E3E4'),
-              width: 1.w,
+              width: 1,
             ),
             boxShadow: <BoxShadow>[
               BoxShadow(
-                offset: Offset(0, 1.73.w),
-                blurRadius: 10.w,
+                offset: const Offset(0, 1.73),
+                blurRadius: 10,
                 color: AppColors.shadowColor,
               ),
             ],
@@ -61,9 +60,9 @@ class BookingInfoContainer extends StatelessWidget {
                   overflow: TextOverflow.ellipsis,
                   textAlign: TextAlign.start,
                 ),
-                SizedBox(height: SizeConfig.screenHeight! * 0.014),
+                const SizedBox(height: 14),
                 SizedBox(
-                  height: 150.h,
+                  height: 150,
                   child: PrettyQrView.data(
                     data: jsonEncode(bookingInfo.toJson()),
                     decoration: PrettyQrDecoration(
@@ -75,7 +74,7 @@ class BookingInfoContainer extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(height: SizeConfig.screenHeight! * 0.023),
+                const SizedBox(height: 14),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
@@ -88,7 +87,7 @@ class BookingInfoContainer extends StatelessWidget {
                             : AppColors.white60,
                       ),
                     ),
-                    SizedBox(width: SizeConfig.screenWidth! * 0.02),
+                    const SizedBox(width: 20),
                     Text(
                       _generateRandomString(),
                       style: AppTextStyles.textStyle15.copyWith(
@@ -97,38 +96,38 @@ class BookingInfoContainer extends StatelessWidget {
                     ),
                   ],
                 ),
-                SizedBox(height: SizeConfig.screenHeight! * 0.03),
+                const SizedBox(height: 30),
                 InfoRow(
                   title: 'Name',
                   info: '${bookingInfo.firstName} ${bookingInfo.surname}',
                 ),
-                SizedBox(height: SizeConfig.screenHeight! * 0.015),
+                const SizedBox(height: 15),
                 InfoRow(
                   title: 'Email',
                   info: bookingInfo.email!,
                 ),
-                SizedBox(height: SizeConfig.screenHeight! * 0.015),
+                const SizedBox(height: 15),
                 InfoRow(
                   title: 'Phone',
                   info: bookingInfo.phoneNumber!,
                 ),
-                SizedBox(height: SizeConfig.screenHeight! * 0.02),
+                const SizedBox(height: 20),
                 CheckInAndOut(
                   checkInDate: bookingInfo.checkInDate!,
                   checkOutDate: bookingInfo.checkOutDate!,
                 ),
-                SizedBox(height: SizeConfig.screenHeight! * 0.02),
+                const SizedBox(height: 20),
                 InfoRow(
                   title: 'Room Type',
                   info: bookingInfo.roomType!,
                   isRoomType: true,
                 ),
-                SizedBox(height: SizeConfig.screenHeight! * 0.015),
+                const SizedBox(height: 15),
                 InfoRow(
                   title: 'Guest',
                   info: bookingInfo.guestNumber!.toString(),
                 ),
-                SizedBox(height: SizeConfig.screenHeight! * 0.015),
+                const SizedBox(height: 15),
                 InfoRow(
                   title: 'Number of rooms',
                   info: bookingInfo.roomNumber!.toString(),

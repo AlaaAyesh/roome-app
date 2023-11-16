@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:reusable_components/reusable_components.dart';
 import 'package:roome/src/config/themes/cubit/themes_cubit.dart';
 import 'package:roome/src/core/utils/app_colors.dart';
@@ -22,23 +21,23 @@ class NotificationCard extends StatelessWidget {
     return BlocBuilder<ThemesCubit, ThemeData>(
       builder: (context, state) {
         return Container(
-          height: 100.h,
-          width: SizeConfig.screenWidth,
-          padding: EdgeInsets.only(
-            top: 8.h,
-            left: 4.w,
-            right: 8.w,
-            bottom: 8.h,
+          height: 100,
+          width: double.infinity,
+          padding: const EdgeInsets.only(
+            top: 8,
+            left: 4,
+            right: 8,
+            bottom: 8,
           ),
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.all(Radius.circular(12.r)),
+            borderRadius: const BorderRadius.all(Radius.circular(12)),
             color: state.brightness == Brightness.light
                 ? HexColorHandler('E4E4E4')
                 : AppColors.darkGreyColor,
             boxShadow: <BoxShadow>[
               BoxShadow(
-                blurRadius: 4.w,
-                offset: Offset(0, 4.w),
+                blurRadius: 4,
+                offset: const Offset(0, 4),
                 color: Colors.black.withOpacity(0.25),
               ),
             ],
@@ -54,7 +53,7 @@ class NotificationCard extends StatelessWidget {
               ),
               Expanded(
                 child: Padding(
-                  padding: EdgeInsets.only(top: 7.h),
+                  padding: const EdgeInsets.only(top: 7),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
@@ -72,7 +71,7 @@ class NotificationCard extends StatelessWidget {
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsets.only(top: 7.h),
+                            padding: const EdgeInsets.only(top: 7),
                             child: GestureDetector(
                               onTap: () =>
                                   BlocProvider.of<NotificationsCubit>(context)
@@ -80,21 +79,21 @@ class NotificationCard extends StatelessWidget {
                                 notification: notification,
                                 context: context,
                               ),
-                              child: Icon(
+                              child: const Icon(
                                 Icons.delete,
                                 color: Colors.red,
-                                size: 22.w,
+                                size: 22,
                               ),
                             ),
                           ),
                         ],
                       ),
-                      SizedBox(height: SizeConfig.screenHeight! * 0.01),
+                      const SizedBox(height: 10),
                       Flexible(
                         child: Text(
                           notification.body,
                           style: AppTextStyles.textStyle12.copyWith(
-                            fontSize: 13.sp,
+                            fontSize: 13,
                             color: state.brightness == Brightness.light
                                 ? Colors.black.withOpacity(0.6)
                                 : AppColors.white60,

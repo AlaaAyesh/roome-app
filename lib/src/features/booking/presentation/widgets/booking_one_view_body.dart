@@ -1,10 +1,9 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:reusable_components/reusable_components.dart';
+
 import 'package:roome/src/core/utils/app_constants.dart';
+import 'package:roome/src/core/widgets/custom_sliver_app_bar.dart';
 import 'package:roome/src/features/booking/data/models/booked_hotel_info.dart';
-import 'package:roome/src/features/booking/presentation/widgets/booking_app_bar.dart';
 import 'package:roome/src/features/booking/presentation/widgets/booking_one_body_content.dart';
 import 'package:roome/src/features/booking/presentation/widgets/booking_one_form_numbers.dart';
 import 'package:roome/src/features/booking/presentation/widgets/section_title.dart';
@@ -16,37 +15,39 @@ class BookingOneViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      physics: const BouncingScrollPhysics(),
-      child: Padding(
-        padding: EdgeInsets.only(
-          top: 42.h,
-          left: 31.w,
-          right: 31.w,
-          bottom: 14.h,
+    return CustomScrollView(
+      physics: AppConstants.physics,
+      slivers: [
+        const CustomSliverAppBar(
+          title: 'Booking Form',
+          centerTitle: true,
         ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            FadeInRight(
-              from: AppConstants.fadeInHorizontalValue,
-              child: const BookingAppBar(),
+        SliverPadding(
+          padding: const EdgeInsets.only(
+            left: 31,
+            right: 31,
+            bottom: 14,
+          ),
+          sliver: SliverToBoxAdapter(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                FadeInRight(
+                  from: AppConstants.fadeInHorizontalValue,
+                  child: const BookingOneFormNumbers(isBookingOne: true),
+                ),
+                const SizedBox(height: 23),
+                FadeInLeft(
+                  from: AppConstants.fadeInHorizontalValue,
+                  child: const SectionTitle(title: 'Select Date'),
+                ),
+                const SizedBox(height: 12),
+                BookingOneBodyContent(bookedHotelInfo: bookedHotelInfo),
+              ],
             ),
-            SizedBox(height: SizeConfig.screenHeight! * 0.02),
-            FadeInRight(
-              from: AppConstants.fadeInHorizontalValue,
-              child: const BookingOneFormNumbers(isBookingOne: true),
-            ),
-            SizedBox(height: SizeConfig.screenHeight! * 0.023),
-            FadeInLeft(
-              from: AppConstants.fadeInHorizontalValue,
-              child: const SectionTitle(title: 'Select Date'),
-            ),
-            SizedBox(height: SizeConfig.screenHeight! * 0.012),
-            BookingOneBodyContent(bookedHotelInfo: bookedHotelInfo),
-          ],
+          ),
         ),
-      ),
+      ],
     );
   }
 }

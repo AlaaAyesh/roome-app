@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class NotificationStatusContainer extends StatelessWidget {
@@ -21,18 +20,18 @@ class NotificationStatusContainer extends StatelessWidget {
       children: <Widget>[
         SvgPicture.asset(circles),
         Container(
-          height: 40.w,
-          width: 40.w,
+          height: 40,
+          width: 40,
           decoration: BoxDecoration(
             color: color,
             shape: BoxShape.circle,
           ),
           child: Center(
             child: Container(
-              height: 18.w,
-              width: 18.w,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(8.r)),
+              height: 18,
+              width: 18,
+              decoration: const BoxDecoration(
+                borderRadius: BorderRadius.all(Radius.circular(8)),
                 color: Colors.white,
               ),
               child: Center(

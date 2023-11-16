@@ -2,14 +2,13 @@ import 'package:animate_do/animate_do.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:reusable_components/reusable_components.dart';
 import 'package:roome/src/config/routes/routes.dart';
 import 'package:roome/src/config/themes/cubit/themes_cubit.dart';
 import 'package:roome/src/core/utils/app_colors.dart';
 import 'package:roome/src/core/utils/app_constants.dart';
 import 'package:roome/src/core/utils/app_navigator.dart';
 import 'package:roome/src/core/utils/app_text_styles.dart';
+import 'package:roome/src/core/widgets/bottom_spacer.dart';
 import 'package:roome/src/core/widgets/custom_action_button.dart';
 import 'package:roome/src/features/booking/data/models/booking_info.dart';
 import 'package:roome/src/features/booking/presentation/widgets/booking_two_text_field.dart';
@@ -51,41 +50,45 @@ class _BookingTwoFormState extends State<BookingTwoForm> {
         children: <Widget>[
           Row(
             children: <Widget>[
-              _buildFadeInSectionTitle(title: 'FirstName'),
-              SizedBox(width: SizeConfig.screenWidth! * 0.3),
-              _buildFadeInSectionTitle(title: 'Surname'),
+              Expanded(child: _buildFadeInSectionTitle(title: 'First Name')),
+              const SizedBox(width: 35),
+              Expanded(child: _buildFadeInSectionTitle(title: 'Surname')),
             ],
           ),
-          SizedBox(height: SizeConfig.screenHeight! * 0.014),
+          const SizedBox(height: 14),
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
-              BookingTwoTextField(
-                controller: _firstNameController,
-                textCapitalization: TextCapitalization.words,
-                keyboardType: TextInputType.text,
-                validating: (String? val) {
-                  return _validateBlankFields(val);
-                },
+              Expanded(
+                child: BookingTwoTextField(
+                  controller: _firstNameController,
+                  textCapitalization: TextCapitalization.words,
+                  keyboardType: TextInputType.text,
+                  validating: (String? val) {
+                    return _validateBlankFields(val);
+                  },
+                ),
               ),
-              BookingTwoTextField(
-                controller: _surnameController,
-                textCapitalization: TextCapitalization.words,
-                keyboardType: TextInputType.text,
-                validating: (String? val) {
-                  return _validateBlankFields(val);
-                },
+              const SizedBox(width: 35),
+              Expanded(
+                child: BookingTwoTextField(
+                  controller: _surnameController,
+                  textCapitalization: TextCapitalization.words,
+                  keyboardType: TextInputType.text,
+                  validating: (String? val) {
+                    return _validateBlankFields(val);
+                  },
+                ),
               ),
             ],
           ),
-          SizedBox(height: SizeConfig.screenHeight! * 0.026),
+          const SizedBox(height: 26),
           _buildFadeInSectionTitle(title: 'Email'),
-          SizedBox(height: SizeConfig.screenHeight! * 0.014),
+          const SizedBox(height: 14),
           BookingTwoTextField(
             controller: _emailController,
             textCapitalization: TextCapitalization.none,
             keyboardType: TextInputType.emailAddress,
-            width: SizeConfig.screenWidth,
+            width: double.infinity,
             validating: (String? val) {
               if (val!.isEmpty) {
                 return "Can't be blank!";
@@ -96,21 +99,21 @@ class _BookingTwoFormState extends State<BookingTwoForm> {
               return null;
             },
           ),
-          SizedBox(height: SizeConfig.screenHeight! * 0.026),
+          const SizedBox(height: 26),
           _buildFadeInSectionTitle(title: 'Phone'),
-          SizedBox(height: SizeConfig.screenHeight! * 0.014),
+          const SizedBox(height: 14),
           BookingTwoTextField(
             controller: _phoneController,
             textCapitalization: TextCapitalization.none,
             keyboardType: TextInputType.phone,
-            width: SizeConfig.screenWidth,
+            width: double.infinity,
             validating: (String? val) {
               return _validateBlankFields(val);
             },
           ),
-          SizedBox(height: SizeConfig.screenHeight! * 0.021),
+          const SizedBox(height: 21),
           _buildFadeInSectionTitle(title: 'Kindly upload any valid ID'),
-          SizedBox(height: SizeConfig.screenHeight! * 0.017),
+          const SizedBox(height: 17),
           Row(
             children: <Widget>[
               FadeInRight(
@@ -123,15 +126,15 @@ class _BookingTwoFormState extends State<BookingTwoForm> {
                   ),
                 ),
               ),
-              SizedBox(width: SizeConfig.screenWidth! * 0.012),
-              Icon(
+              const SizedBox(width: 12),
+              const Icon(
                 Icons.attach_file,
                 color: AppColors.darkGrey,
-                size: 22.w,
+                size: 22,
               ),
             ],
           ),
-          SizedBox(height: SizeConfig.screenHeight! * 0.013),
+          const SizedBox(height: 13),
           BlocBuilder<ThemesCubit, ThemeData>(
             builder: (context, state) {
               return GestureDetector(
@@ -149,20 +152,20 @@ class _BookingTwoFormState extends State<BookingTwoForm> {
                     return _validateBlankFields(val);
                   },
                   border: Border.all(color: AppColors.primaryColor),
-                  width: SizeConfig.screenWidth,
+                  width: double.infinity,
                   backgroundColor: state.brightness == Brightness.light
                       ? Colors.white
                       : Colors.black,
-                  prefixIcon: Icon(
+                  prefixIcon: const Icon(
                     Icons.cloud_upload,
                     color: AppColors.primaryColor,
-                    size: 24.w,
+                    size: 24,
                   ),
                 ),
               );
             },
           ),
-          SizedBox(height: SizeConfig.screenHeight! * 0.019),
+          const SizedBox(height: 19),
           FadeInRight(
             from: AppConstants.fadeInHorizontalValue,
             child: Align(
@@ -176,19 +179,19 @@ class _BookingTwoFormState extends State<BookingTwoForm> {
               ),
             ),
           ),
-          SizedBox(height: SizeConfig.screenHeight! * 0.008),
+          const SizedBox(height: 8),
           _buildFadeInSectionTitle(title: 'Input your NIN Code'),
-          SizedBox(height: SizeConfig.screenHeight! * 0.014),
+          const SizedBox(height: 14),
           BookingTwoTextField(
             controller: _ninCodeNameController,
             textCapitalization: TextCapitalization.none,
             keyboardType: TextInputType.number,
-            width: SizeConfig.screenWidth,
+            width: double.infinity,
             validating: (String? val) {
               return _validateBlankFields(val);
             },
           ),
-          SizedBox(height: SizeConfig.screenHeight! * 0.035),
+          const SizedBox(height: 35),
           FadeInUp(
             from: AppConstants.fadeInUpValue,
             child: CustomActionButton(
@@ -201,6 +204,7 @@ class _BookingTwoFormState extends State<BookingTwoForm> {
               backgroundColor: AppColors.primaryColor,
             ),
           ),
+          const BottomSpacer(),
         ],
       ),
     );

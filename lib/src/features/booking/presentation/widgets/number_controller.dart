@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:roome/src/core/utils/app_colors.dart';
 
 class NumberController extends StatelessWidget {
@@ -15,11 +14,11 @@ class NumberController extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 31.h,
-      width: 35.w,
+      height: 31,
+      width: 35,
       decoration: BoxDecoration(
         color: AppColors.primaryColor.withOpacity(0.17),
-        borderRadius: BorderRadius.all(Radius.circular(7.r)),
+        borderRadius: const BorderRadius.all(Radius.circular(7)),
       ),
       child: Center(
         child: GestureDetector(
@@ -27,7 +26,7 @@ class NumberController extends StatelessWidget {
           child: Icon(
             icon,
             color: AppColors.primaryColor.withOpacity(0.74),
-            size: 20.w,
+            size: 20,
           ),
         ),
       ),

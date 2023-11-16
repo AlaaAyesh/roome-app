@@ -10,17 +10,20 @@ class CustomSliverAppBar extends StatelessWidget {
     required this.title,
     this.leading = const GetBackArrow(),
     this.actions,
+    this.centerTitle,
   });
 
   final String title;
   final Widget? leading;
   final List<Widget>? actions;
+  final bool? centerTitle;
 
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
       leading: leading,
       actions: actions,
+      centerTitle: centerTitle,
       title: BlocBuilder<ThemesCubit, ThemeData>(
         builder: (context, state) {
           return Text(
