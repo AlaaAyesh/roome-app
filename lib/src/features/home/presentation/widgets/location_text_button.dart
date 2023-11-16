@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:roome/src/config/routes/routes.dart';
 import 'package:roome/src/config/themes/cubit/themes_cubit.dart';
 import 'package:roome/src/core/utils/app_colors.dart';
@@ -42,7 +41,7 @@ class _LocationTextButtonState extends State<LocationTextButton> {
           return Text(
             'Location',
             style: AppTextStyles.textStyle14Medium.copyWith(
-              fontSize: 13.sp,
+              fontSize: 13,
               color: isLocationTapped
                   ? AppColors.primaryColor
                   : state.brightness == Brightness.light
