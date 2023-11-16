@@ -3,16 +3,17 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:reusable_components/reusable_components.dart';
 import 'package:roome/src/config/themes/cubit/themes_cubit.dart';
 import 'package:roome/src/core/utils/app_colors.dart';
+import 'package:roome/src/core/utils/app_strings.dart';
 import 'package:roome/src/core/utils/app_text_styles.dart';
 
 class CustomErrorWidget extends StatelessWidget {
   const CustomErrorWidget({
     super.key,
-    this.onPressed,
+    required this.onPressed,
     required this.error,
   });
 
-  final VoidCallback? onPressed;
+  final VoidCallback onPressed;
   final String error;
 
   @override
@@ -20,12 +21,12 @@ class CustomErrorWidget extends StatelessWidget {
     return BlocBuilder<ThemesCubit, ThemeData>(
       builder: (context, state) {
         return Column(
-          mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
+            const Spacer(),
             const Center(
               child: Icon(
-                Icons.warning,
+                Icons.refresh,
                 color: AppColors.primaryColor,
                 size: 150,
               ),
@@ -34,27 +35,31 @@ class CustomErrorWidget extends StatelessWidget {
               margin: const EdgeInsets.symmetric(vertical: 12),
               child: Flexible(
                 child: Text(
-                  error,
+                  error == AppStrings.noInternet ? '$error. Tap to try' : error,
                   style: AppTextStyles.hintStyle.copyWith(
                     color: state.brightness == Brightness.light
                         ? Colors.black
                         : Colors.white,
-                    fontWeight: FontWeight.w500,
+                    fontWeight: FontWeight.w600,
                   ),
                   textAlign: TextAlign.center,
                 ),
               ),
             ),
-            const SizedBox(height: 15),
+            if (error == AppStrings.noInternet) ...[
+              Text(
+                'Connect to the internet and try again.',
+                style: AppTextStyles.textStyle12,
+                textAlign: TextAlign.center,
+              ),
+            ],
+            const Spacer(),
             MyCustomButton(
-              borderRadius: const BorderRadius.all(Radius.circular(24)),
+              borderRadius: const BorderRadius.all(Radius.circular(16)),
               height: 50,
-              width: double.infinity,
+              width: 250,
               backgroundColor: AppColors.primaryColor,
-              elevation: 500,
-              onPressed: () {
-                if (onPressed != null) onPressed!();
-              },
+              onPressed: onPressed,
               hasPrefix: false,
               child: Center(
                 child: Text(
@@ -67,6 +72,7 @@ class CustomErrorWidget extends StatelessWidget {
                 ),
               ),
             ),
+            const Spacer(),
           ],
         );
       },
