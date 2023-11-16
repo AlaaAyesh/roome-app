@@ -21,7 +21,7 @@ class TicketViewBody extends StatelessWidget {
       child: CustomScrollView(
         slivers: [
           const CustomSliverAppBar(
-            title: 'Ticket',
+            titleText: 'Ticket',
             centerTitle: true,
           ),
           SliverPadding(

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:reusable_components/reusable_components.dart';
 import 'package:roome/src/core/helpers/helper.dart';
 import 'package:roome/src/core/utils/app_colors.dart';
@@ -12,15 +11,16 @@ class ConfirmUpdateImageButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var size = MediaQuery.of(context).size;
     return MyCustomButton(
       onPressed: () {
         BlocProvider.of<RoomeCubit>(context).uploadProfileImage();
       },
       hasPrefix: false,
       backgroundColor: AppColors.primaryColor,
-      width: SizeConfig.screenWidth! * 0.5,
-      height: SizeConfig.screenHeight! * 0.048,
-      borderRadius: BorderRadius.all(Radius.circular(16.r)),
+      width: size.width * 0.5,
+      height: 48,
+      borderRadius: const BorderRadius.all(Radius.circular(16)),
       boxShadow: [
         Helper.glowingShadow(),
       ],

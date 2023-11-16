@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:reusable_components/reusable_components.dart';
 import 'package:roome/src/config/themes/cubit/themes_cubit.dart';
 import 'package:roome/src/core/utils/app_assets.dart';
@@ -43,9 +42,9 @@ class ProfileImageEditBottomSheet extends StatelessWidget {
       builder: (context, state) => BottomSheet(
         backgroundColor:
             state.brightness == Brightness.light ? Colors.white : Colors.black,
-        shape: RoundedRectangleBorder(
+        shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.vertical(
-            top: Radius.circular(50.0.r),
+            top: Radius.circular(50.0),
           ),
         ),
         enableDrag: true,
@@ -53,14 +52,14 @@ class ProfileImageEditBottomSheet extends StatelessWidget {
         builder: (context) {
           return ListView(
             shrinkWrap: true,
-            padding: EdgeInsets.only(
-              top: 10.w,
-              left: 10.w,
-              right: 10.w,
-              bottom: 20.w,
+            padding: const EdgeInsets.only(
+              top: 10,
+              left: 10,
+              right: 10,
+              bottom: 20,
             ),
             children: <Widget>[
-              SizedBox(height: SizeConfig.screenHeight! * 0.008),
+              const SizedBox(height: 4),
               Text(
                 "Pick a profile picture",
                 style: state.brightness == Brightness.light
@@ -68,7 +67,7 @@ class ProfileImageEditBottomSheet extends StatelessWidget {
                     : AppTextStyles.snackBarTitle,
                 textAlign: TextAlign.center,
               ),
-              SizedBox(height: SizeConfig.screenHeight! * 0.01),
+              const SizedBox(height: 10),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
