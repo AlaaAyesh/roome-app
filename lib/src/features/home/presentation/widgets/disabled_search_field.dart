@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:reusable_components/reusable_components.dart';
 import 'package:roome/src/config/routes/routes.dart';
 import 'package:roome/src/core/utils/app_colors.dart';
@@ -21,20 +20,20 @@ class DisabledSearchField extends StatelessWidget {
       onTap: () => context.navigateTo(routeName: Routes.searchViewRoute),
       child: CustomSearchTextField(
         enabled: false,
-        height: 36.h,
-        width: 230.w,
+        height: 36,
+        width: 230,
         backgroundColor: state.brightness == Brightness.light
             ? AppColors.darkGrey.withOpacity(0.65)
             : Colors.white54,
-        contentPadding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 6.h),
-        borderRadius: BorderRadius.all(Radius.circular(10.r)),
+        contentPadding: const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
+        borderRadius: const BorderRadius.all(Radius.circular(10)),
         searchTextFieldController: searchTextFieldController,
         hint: AppStrings.searchHint,
         hintStyle: AppTextStyles.textStyle14Medium.copyWith(
           color: AppColors.lightGrey.withOpacity(0.24),
         ),
         style: AppTextStyles.textStyle14Medium,
-        suffixIcon: Icon(Icons.search, size: 22.w, color: Colors.black),
+        suffixIcon: const Icon(Icons.search, size: 22, color: Colors.black),
         enabledBorder: InputBorder.none,
         focusedBorder: InputBorder.none,
         errorBorder: InputBorder.none,

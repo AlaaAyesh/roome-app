@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:reusable_components/reusable_components.dart';
-import 'package:roome/src/core/helpers/cache_helper.dart';
 import 'package:roome/src/core/helpers/helper.dart';
 import 'package:roome/src/core/utils/app_text_styles.dart';
-import 'package:roome/src/core/utils/service_locator.dart';
 import 'package:roome/src/core/widgets/auth_button.dart';
 import 'package:roome/src/core/widgets/forgot_password_text_button.dart';
 import 'package:roome/src/core/widgets/reusable_pass_text_form_field.dart';
@@ -83,7 +81,7 @@ class _LoginFormState extends State<LoginForm> {
               );
               return null;
             },
-            onSubmit: (String value) => login(context),
+            onSubmit: (String value) => _login(context),
           ),
           const SizedBox(height: 34),
           Row(
@@ -104,7 +102,8 @@ class _LoginFormState extends State<LoginForm> {
           AuthButton(
             buttonTitle: 'Log In',
             onPressed: () {
-              serviceLocator.get<CacheHelper>().clearData();
+              // serviceLocator.get<CacheHelper>().clearData();
+              _login(context);
             },
           ),
           const SizedBox(height: 40),
@@ -113,7 +112,7 @@ class _LoginFormState extends State<LoginForm> {
     );
   }
 
-  void login(BuildContext context) {
+  void _login(BuildContext context) {
     if (_formKey.currentState!.validate()) {
       CustomHelper.keyboardUnfocus(context);
       widget.cubit.userSignIn(

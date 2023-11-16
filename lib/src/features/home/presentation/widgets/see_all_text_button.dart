@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:reusable_components/reusable_components.dart';
 import 'package:roome/src/core/utils/app_colors.dart';
 import 'package:roome/src/core/utils/app_text_styles.dart';
@@ -15,7 +14,7 @@ class SeeAllTextButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(right: 26.w),
+      padding: const EdgeInsets.only(right: 26),
       child: CustomTextButton(
         onTap: onTap,
         child: Text(

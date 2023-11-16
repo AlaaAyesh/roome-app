@@ -4,8 +4,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:roome/app.dart';
 import 'package:roome/src/config/services/notification_service.dart';
-import 'package:roome/src/core/helpers/cache_helper.dart';
-import 'package:roome/src/core/helpers/helper.dart';
 import 'package:roome/src/core/utils/bloc_observer.dart';
 import 'package:roome/src/core/utils/firebase_options.dart';
 import 'package:roome/src/core/utils/service_locator.dart';
@@ -22,8 +20,6 @@ Future<void> main() async {
   NotificationService.initAwesomeNotifications();
 
   Bloc.observer = MyBlocObserver();
-
-  Helper.uId = serviceLocator.get<CacheHelper>().getIntData(key: 'uId');
 
   runApp(const RoomeApp());
 }

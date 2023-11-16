@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:open_street_map_search_and_pick/open_street_map_search_and_pick.dart';
-import 'package:reusable_components/reusable_components.dart';
 import 'package:roome/src/core/utils/app_colors.dart';
 import 'package:roome/src/core/utils/app_text_styles.dart';
 
@@ -41,8 +39,8 @@ class _SearchLocationViewBodyState extends State<SearchLocationViewBody> {
         fontWeight: FontWeight.bold,
       ),
       hintText: 'Search',
-      buttonHeight: 40.h,
-      buttonWidth: SizeConfig.screenWidth! * 0.85,
+      buttonHeight: 40,
+      buttonWidth: double.infinity,
       buttonTextStyle: AppTextStyles.textStyle15.copyWith(
         fontWeight: FontWeight.bold,
         color: Colors.white,

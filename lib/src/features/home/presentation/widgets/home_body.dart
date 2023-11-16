@@ -1,8 +1,6 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:reusable_components/reusable_components.dart';
 import 'package:roome/src/core/utils/app_constants.dart';
 import 'package:roome/src/core/widgets/custom_error_widget.dart';
 import 'package:roome/src/features/home/presentation/widgets/custom_tabs.dart';
@@ -24,17 +22,14 @@ class HomeBody extends StatelessWidget {
           return SingleChildScrollView(
             child: FadeInUp(
               from: AppConstants.fadeInUpValue,
-              child: Padding(
-                padding: EdgeInsets.only(
-                  bottom: 16.h,
-                  left: 21.w,
-                ),
+              child: const Padding(
+                padding: EdgeInsets.only(bottom: 16, left: 21),
                 child: Column(
                   children: <Widget>[
-                    const HelloRow(),
-                    SizedBox(height: SizeConfig.screenHeight! * 0.023),
-                    const PriceSliderAndSearch(),
-                    const CustomTabs(),
+                    HelloRow(),
+                    SizedBox(height: 23),
+                    PriceSliderAndSearch(),
+                    CustomTabs(),
                   ],
                 ),
               ),

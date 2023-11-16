@@ -22,7 +22,7 @@ class CustomAppBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: <Widget>[
-        GetBackArrow(onTap: arrowOnTap),
+        const GetBackArrow(),
         SizedBox(width: spaceBetween.w),
         BlocBuilder<ThemesCubit, ThemeData>(
           builder: (context, state) {

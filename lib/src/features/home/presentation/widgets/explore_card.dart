@@ -1,8 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:reusable_components/reusable_components.dart';
+
 import 'package:roome/src/config/routes/routes.dart';
 import 'package:roome/src/config/themes/cubit/themes_cubit.dart';
 import 'package:roome/src/core/models/hotel.dart';
@@ -28,17 +27,16 @@ class ExploreCard extends StatelessWidget {
       child: BlocBuilder<ThemesCubit, ThemeData>(
         builder: (context, state) {
           return Container(
-            height: SizeConfig.screenHeight! * 0.15,
-            width: SizeConfig.screenWidth! * 0.4,
+            width: 130,
             decoration: BoxDecoration(
               color: state.brightness == Brightness.light
                   ? Colors.white
                   : AppColors.darkGreyColor,
-              borderRadius: BorderRadius.all(Radius.circular(12.r)),
+              borderRadius: const BorderRadius.all(Radius.circular(12)),
               boxShadow: [
                 BoxShadow(
-                  offset: Offset(0, 1.15.w),
-                  blurRadius: 6.89.w,
+                  offset: const Offset(0, 1.15),
+                  blurRadius: 6.89,
                   color: AppColors.shadowColor,
                 ),
               ],
@@ -46,17 +44,20 @@ class ExploreCard extends StatelessWidget {
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
-                Padding(
-                  padding: EdgeInsets.symmetric(vertical: 3.h, horizontal: 5.w),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.all(Radius.circular(10.r)),
-                    child: CachedNetworkImage(
-                      imageUrl: hotel.images![0].path!,
-                      height: SizeConfig.screenHeight! * 0.14,
-                      width: SizeConfig.screenWidth! * 0.15,
-                      fit: BoxFit.cover,
-                      errorWidget: (context, url, error) =>
-                          const CustomErrorIcon(),
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                      vertical: 3,
+                      horizontal: 5,
+                    ),
+                    child: ClipRRect(
+                      borderRadius: const BorderRadius.all(Radius.circular(10)),
+                      child: CachedNetworkImage(
+                        imageUrl: hotel.images![0].path!,
+                        fit: BoxFit.cover,
+                        errorWidget: (context, url, error) =>
+                            const CustomErrorIcon(),
+                      ),
                     ),
                   ),
                 ),
@@ -69,7 +70,7 @@ class ExploreCard extends StatelessWidget {
                         child: Text(
                           hotel.name!,
                           style: AppTextStyles.bottomNavTextStyle.copyWith(
-                            fontSize: 12.sp,
+                            fontSize: 12,
                           ),
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
@@ -79,7 +80,7 @@ class ExploreCard extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
                           const StarIcon(),
-                          SizedBox(width: 3.w),
+                          const SizedBox(width: 3),
                           Text(
                             hotel.rate!.toString(),
                             style: AppTextStyles.bottomNavTextStyle.copyWith(

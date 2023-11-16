@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:roome/src/core/widgets/separator_widget.dart';
 import 'package:roome/src/core/widgets/try_again_button.dart';
@@ -17,16 +16,15 @@ class Popular extends StatelessWidget {
       if (state is GetHotelsLoadingState) {
         return const ShimmerPopular();
       } else if (state is GetHotelsSuccessState) {
-        // return const ShimmerPopular();
         return ListView.separated(
           physics: const NeverScrollableScrollPhysics(),
-          padding: EdgeInsets.only(right: 32.w, top: 15.h),
+          padding: const EdgeInsets.only(right: 32, top: 15),
           shrinkWrap: true,
           itemBuilder: (context, index) => AnimationConfiguration.staggeredList(
             position: index,
             duration: const Duration(milliseconds: 475),
             child: SlideAnimation(
-              horizontalOffset: 150.w,
+              horizontalOffset: 150,
               curve: Curves.fastLinearToSlowEaseIn,
               child: FadeInAnimation(
                 child: PopularCard(

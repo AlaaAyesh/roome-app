@@ -22,14 +22,12 @@ class _SplashViewState extends State<SplashView> {
   @override
   void initState() {
     _startDelay();
-
     super.initState();
   }
 
   @override
   void didChangeDependencies() {
     _setSystemUIOverlayStyle();
-
     super.didChangeDependencies();
   }
 
@@ -44,6 +42,7 @@ class _SplashViewState extends State<SplashView> {
   }
 
   void _goToNext() {
+    Helper.uId = serviceLocator.get<CacheHelper>().getIntData(key: 'uId');
     bool? onBoarding =
         serviceLocator.get<CacheHelper>().getBoolData(key: 'onBoarding');
 

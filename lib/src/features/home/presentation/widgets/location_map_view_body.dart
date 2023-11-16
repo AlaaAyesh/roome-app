@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_osm_plugin/flutter_osm_plugin.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:reusable_components/reusable_components.dart';
 import 'package:roome/src/config/routes/routes.dart';
 import 'package:roome/src/core/utils/app_colors.dart';
@@ -30,6 +29,8 @@ class _LocationViewBodyState extends State<LocationViewBody> {
 
   @override
   Widget build(BuildContext context) {
+    var size = MediaQuery.of(context).size;
+
     return Stack(
       alignment: Alignment.bottomRight,
       children: <Widget>[
@@ -41,35 +42,35 @@ class _LocationViewBodyState extends State<LocationViewBody> {
           ),
           osmOption: OSMOption(
             markerOption: MarkerOption(
-              defaultMarker: MarkerIcon(
+              defaultMarker: const MarkerIcon(
                 icon: Icon(
                   Icons.person_pin_circle,
                   color: Colors.black,
-                  size: 48.w,
+                  size: 48,
                 ),
               ),
             ),
             roadConfiguration: const RoadOption(roadColor: Colors.lightBlue),
             showZoomController: true,
-            zoomOption: ZoomOption(
-              initZoom: 12.w,
-              minZoomLevel: 4.w,
-              maxZoomLevel: 14.w,
-              stepZoom: 1.0.w,
+            zoomOption: const ZoomOption(
+              initZoom: 12,
+              minZoomLevel: 4,
+              maxZoomLevel: 14,
+              stepZoom: 1.0,
             ),
             userLocationMarker: UserLocationMaker(
-              personMarker: MarkerIcon(
+              personMarker: const MarkerIcon(
                 icon: Icon(
                   Icons.person_pin_circle,
                   color: AppColors.primaryColor,
-                  size: 48.w,
+                  size: 48,
                 ),
               ),
-              directionArrowMarker: MarkerIcon(
+              directionArrowMarker: const MarkerIcon(
                 icon: Icon(
                   Icons.location_on,
                   color: Colors.purple,
-                  size: 48.w,
+                  size: 48,
                 ),
               ),
             ),
@@ -83,12 +84,12 @@ class _LocationViewBodyState extends State<LocationViewBody> {
           },
         ),
         Padding(
-          padding: EdgeInsets.only(right: 8.w, bottom: 16.h),
+          padding: const EdgeInsets.only(right: 8, bottom: 16),
           child: MyCustomButton(
             backgroundColor: AppColors.primaryColor,
-            height: 30.h,
-            width: SizeConfig.screenWidth! * 0.3,
-            borderRadius: BorderRadius.circular(16.r),
+            height: 30,
+            width: size.width * 0.3,
+            borderRadius: BorderRadius.circular(16),
             onPressed: () =>
                 context.navigateTo(routeName: Routes.searchLocationViewRoute),
             hasPrefix: false,

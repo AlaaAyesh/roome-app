@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:reusable_components/reusable_components.dart';
 import 'package:roome/src/config/themes/cubit/themes_cubit.dart';
 import 'package:roome/src/core/utils/app_colors.dart';
@@ -24,15 +23,15 @@ class CustomErrorWidget extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            Center(
+            const Center(
               child: Icon(
                 Icons.warning,
                 color: AppColors.primaryColor,
-                size: 150.w,
+                size: 150,
               ),
             ),
             Container(
-              margin: EdgeInsets.symmetric(vertical: 12.h),
+              margin: const EdgeInsets.symmetric(vertical: 12),
               child: Flexible(
                 child: Text(
                   error,
@@ -46,13 +45,13 @@ class CustomErrorWidget extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(height: 15.h),
+            const SizedBox(height: 15),
             MyCustomButton(
-              borderRadius: BorderRadius.all(Radius.circular(24.r)),
-              height: 50.h,
-              width: SizeConfig.screenWidth! * 0.55,
+              borderRadius: const BorderRadius.all(Radius.circular(24)),
+              height: 50,
+              width: double.infinity,
               backgroundColor: AppColors.primaryColor,
-              elevation: 500.w,
+              elevation: 500,
               onPressed: () {
                 if (onPressed != null) onPressed!();
               },

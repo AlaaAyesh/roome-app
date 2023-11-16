@@ -19,8 +19,8 @@ class _LocationTextButtonState extends State<LocationTextButton> {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () async {
+    return TextButton.icon(
+      onPressed: () async {
         setState(() {
           isLocationTapped = true;
         });
@@ -32,32 +32,27 @@ class _LocationTextButtonState extends State<LocationTextButton> {
           });
         });
       },
-      child: Row(
-        children: <Widget>[
-          Icon(
-            Icons.location_on_outlined,
-            color: AppColors.primaryColor,
-            size: 19.w,
-          ),
-          SizedBox(width: 5.w),
-          BlocBuilder<ThemesCubit, ThemeData>(
-            builder: (context, state) {
-              return Text(
-                'Location',
-                style: AppTextStyles.textStyle14Medium.copyWith(
-                  fontSize: 13.sp,
-                  color: isLocationTapped
-                      ? AppColors.primaryColor
-                      : state.brightness == Brightness.light
-                          ? AppColors.lightGrey.withOpacity(0.24)
-                          : AppColors.white60,
-                ),
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
-              );
-            },
-          ),
-        ],
+      icon: const Icon(
+        Icons.location_on_outlined,
+        color: AppColors.primaryColor,
+        size: 19,
+      ),
+      label: BlocBuilder<ThemesCubit, ThemeData>(
+        builder: (context, state) {
+          return Text(
+            'Location',
+            style: AppTextStyles.textStyle14Medium.copyWith(
+              fontSize: 13.sp,
+              color: isLocationTapped
+                  ? AppColors.primaryColor
+                  : state.brightness == Brightness.light
+                      ? AppColors.lightGrey.withOpacity(0.24)
+                      : AppColors.white60,
+            ),
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+          );
+        },
       ),
     );
   }
