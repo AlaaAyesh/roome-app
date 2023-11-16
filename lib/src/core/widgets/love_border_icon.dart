@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:roome/src/core/models/hotel.dart';
 import 'package:roome/src/features/favorite/presentation/cubit/favorite_cubit.dart';
 
@@ -33,7 +32,7 @@ class LoveBorderIcon extends StatelessWidget {
               : Icons.favorite_border,
           color:
               cubit.favoriteHotels.contains(hotel) ? Colors.red : borderColor,
-          size: iconSize.w,
+          size: iconSize,
         ),
       );
     });

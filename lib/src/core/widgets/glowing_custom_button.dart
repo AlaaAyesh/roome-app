@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:reusable_components/reusable_components.dart';
 import 'package:roome/src/core/helpers/helper.dart';
 import 'package:roome/src/core/utils/app_colors.dart';
@@ -19,9 +18,9 @@ class GlowingCustomButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return MyCustomButton(
       onPressed: onPressed,
-      height: 50.h,
-      width: 148.w,
-      borderRadius: BorderRadius.all(Radius.circular(12.r)),
+      height: 50,
+      width: 148,
+      borderRadius: const BorderRadius.all(Radius.circular(12)),
       backgroundColor: AppColors.primaryColor,
       boxShadow: [
         Helper.glowingShadow(),

@@ -10,20 +10,22 @@ class TryAgainButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MyCustomButton(
-      borderRadius: const BorderRadius.all(Radius.circular(24)),
-      height: 45,
-      width: 40,
-      backgroundColor: AppColors.primaryColor,
-      elevation: 500,
-      onPressed: onPressed,
-      hasPrefix: false,
-      child: Center(
-        child: Text(
-          'Try again',
-          style: AppTextStyles.textStyle15.copyWith(
-            color: Colors.white,
-            fontWeight: FontWeight.w600,
+    return Center(
+      child: MyCustomButton(
+        borderRadius: const BorderRadius.all(Radius.circular(16)),
+        height: 45,
+        width: 200,
+        backgroundColor: AppColors.primaryColor,
+        elevation: 500,
+        onPressed: onPressed,
+        hasPrefix: false,
+        child: Center(
+          child: Text(
+            'Try again',
+            style: AppTextStyles.textStyle15.copyWith(
+              color: Colors.white,
+              fontWeight: FontWeight.w600,
+            ),
           ),
         ),
       ),

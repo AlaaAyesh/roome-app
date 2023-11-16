@@ -1,8 +1,7 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:reusable_components/reusable_components.dart';
+
 import 'package:roome/src/core/utils/app_constants.dart';
 import 'package:roome/src/core/widgets/hotel_card.dart';
 import 'package:roome/src/core/widgets/separator_widget.dart';
@@ -18,7 +17,7 @@ class SearchResultListView extends StatelessWidget {
       builder: (context, state) {
         if (state is SearchSuccessState) {
           return ListView.separated(
-            padding: EdgeInsets.zero,
+            padding: const EdgeInsets.all(8),
             physics: const NeverScrollableScrollPhysics(),
             // Download all items at the same time
             shrinkWrap: true,
@@ -26,13 +25,14 @@ class SearchResultListView extends StatelessWidget {
               return FadeInRight(
                 from: AppConstants.fadeInHorizontalValue,
                 child: HotelCard(
-                  cardHeight: SizeConfig.screenHeight! * 0.24,
-                  cardWidth: SizeConfig.screenWidth! * 0.55,
+                  // cardHeight: 240,
+                  cardWidth: double.infinity,
                   hotel: state.hotels[index],
                 ),
               );
             },
-            separatorBuilder: (context, index) => SeparatorWidget(height: 15.h),
+            separatorBuilder: (context, index) =>
+                const SeparatorWidget(height: 15),
             itemCount: state.hotels.length,
           );
         } else if (state is SearchLoadingState) {
