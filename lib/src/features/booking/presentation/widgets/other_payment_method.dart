@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:roome/src/config/themes/cubit/themes_cubit.dart';
 import 'package:roome/src/core/utils/app_colors.dart';
 import 'package:roome/src/core/utils/app_text_styles.dart';
@@ -20,26 +19,22 @@ class OtherPaymentMethod extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 40.h,
+      height: 40,
       width: double.infinity,
-      padding: EdgeInsets.only(
-        top: 8.h,
-        bottom: 8.h,
-        left: 4.w,
-        right: 15.w,
+      padding: const EdgeInsets.only(
+        top: 8,
+        bottom: 8,
+        left: 4,
+        right: 15,
       ),
-      margin: EdgeInsets.only(left: 20.w),
       decoration: BoxDecoration(
         color: AppColors.primaryColor.withOpacity(0.15),
-        borderRadius: BorderRadius.all(Radius.circular(10.r)),
+        borderRadius: const BorderRadius.all(Radius.circular(10)),
       ),
       child: Row(
         children: <Widget>[
-          Image.asset(
-            icon,
-            fit: BoxFit.cover,
-          ),
-          SizedBox(width: 19.w),
+          Image.asset(icon, fit: BoxFit.cover),
+          const SizedBox(width: 19),
           BlocBuilder<ThemesCubit, ThemeData>(
             builder: (context, state) {
               return Text(

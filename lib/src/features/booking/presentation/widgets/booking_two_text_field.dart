@@ -1,6 +1,5 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:reusable_components/reusable_components.dart';
 import 'package:roome/src/core/utils/app_colors.dart';
 import 'package:roome/src/core/utils/app_constants.dart';
@@ -47,8 +46,8 @@ class BookingTwoTextField extends StatelessWidget {
         keyboardType: keyboardType,
         backgroundColor:
             backgroundColor ?? AppColors.primaryColor.withOpacity(0.03),
-        borderRadius: BorderRadius.all(Radius.circular(10.r)),
-        width: width?.w,
+        borderRadius: const BorderRadius.all(Radius.circular(10)),
+        width: width,
         textFieldBorder: InputBorder.none,
         border: border ??
             Border.all(
@@ -60,9 +59,9 @@ class BookingTwoTextField extends StatelessWidget {
         ),
         prefixIcon: prefixIcon,
         validating: validating,
-        contentPadding: EdgeInsets.symmetric(
-          horizontal: 16.w,
-          vertical: 8.h,
+        contentPadding: const EdgeInsets.symmetric(
+          horizontal: 16,
+          vertical: 8,
         ),
         errorBorder: InputBorder.none,
         enabledBorder: InputBorder.none,

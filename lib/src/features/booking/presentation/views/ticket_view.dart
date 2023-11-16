@@ -10,7 +10,7 @@ class TicketView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(child: TicketViewBody(bookingInfo: bookingInfo)),
+      body: TicketViewBody(bookingInfo: bookingInfo),
     );
   }
 }

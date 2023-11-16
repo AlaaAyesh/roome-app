@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:reusable_components/reusable_components.dart';
 import 'package:roome/src/config/routes/routes.dart';
 import 'package:roome/src/config/themes/cubit/themes_cubit.dart';
 import 'package:roome/src/core/utils/app_colors.dart';
 import 'package:roome/src/core/utils/app_navigator.dart';
 import 'package:roome/src/core/utils/app_text_styles.dart';
+import 'package:roome/src/core/widgets/bottom_spacer.dart';
 import 'package:roome/src/core/widgets/custom_snack_bar.dart';
 import 'package:roome/src/core/widgets/glowing_custom_button.dart';
 import 'package:roome/src/features/booking/data/models/booked_hotel_info.dart';
@@ -47,7 +46,7 @@ class DateForm extends StatelessWidget {
               checkInDate: checkInDate,
               checkOutDate: checkOutDate,
             ),
-            SizedBox(height: SizeConfig.screenHeight! * 0.029),
+            const SizedBox(height: 16),
             const Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
@@ -55,76 +54,84 @@ class DateForm extends StatelessWidget {
                 SectionTitle(title: 'Number of rooms'),
               ],
             ),
-            SizedBox(height: SizeConfig.screenHeight! * 0.022),
+            const SizedBox(height: 16),
             Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
-                CustomBorderedContainer(
-                  padding: EdgeInsets.only(left: 8.w),
-                  child: Row(
-                    children: <Widget>[
-                      Text(
-                        cubit.selectedRoomType,
-                        style: AppTextStyles.textStyle14Medium.copyWith(
-                          fontWeight: FontWeight.bold,
-                          color: AppColors.primaryColor.withOpacity(0.94),
+                Expanded(
+                  child: CustomBorderedContainer(
+                    padding: const EdgeInsets.only(left: 8),
+                    child: Row(
+                      children: <Widget>[
+                        Text(
+                          cubit.selectedRoomType,
+                          style: AppTextStyles.textStyle14Medium.copyWith(
+                            fontWeight: FontWeight.bold,
+                            color: AppColors.primaryColor.withOpacity(0.94),
+                          ),
                         ),
-                      ),
-                      DropdownButton(
-                        borderRadius: BorderRadius.circular(10.r),
-                        items: roomTypes
-                            .map<DropdownMenuItem<String>>((String type) {
-                          return DropdownMenuItem<String>(
-                            value: type,
-                            child: Text(
-                              type,
-                              style: AppTextStyles.textStyle14Medium.copyWith(
-                                fontWeight: FontWeight.bold,
-                                color: AppColors.primaryColor.withOpacity(0.94),
-                              ),
+                        Expanded(
+                          child: DropdownButton(
+                            borderRadius: BorderRadius.circular(10),
+                            items: roomTypes
+                                .map<DropdownMenuItem<String>>((String type) {
+                              return DropdownMenuItem<String>(
+                                value: type,
+                                child: Text(
+                                  type,
+                                  style:
+                                      AppTextStyles.textStyle14Medium.copyWith(
+                                    fontWeight: FontWeight.bold,
+                                    color: AppColors.primaryColor
+                                        .withOpacity(0.94),
+                                  ),
+                                ),
+                              );
+                            }).toList(),
+                            onChanged: (String? newVal) {
+                              cubit.changeSelectedRoomType(newVal);
+                            },
+                            icon: BlocBuilder<ThemesCubit, ThemeData>(
+                              builder: (context, state) {
+                                return Icon(
+                                  Icons.keyboard_arrow_down,
+                                  color: state.brightness == Brightness.light
+                                      ? Colors.black.withOpacity(0.62)
+                                      : Colors.white70,
+                                );
+                              },
                             ),
-                          );
-                        }).toList(),
-                        onChanged: (String? newVal) {
-                          cubit.changeSelectedRoomType(newVal);
-                        },
-                        icon: BlocBuilder<ThemesCubit, ThemeData>(
-                          builder: (context, state) {
-                            return Icon(
-                              Icons.keyboard_arrow_down,
-                              color: state.brightness == Brightness.light
-                                  ? Colors.black.withOpacity(0.62)
-                                  : Colors.white70,
-                            );
-                          },
+                            elevation: 4.toInt(),
+                            underline: Container(height: 0),
+                          ),
                         ),
-                        elevation: 4.w.toInt(),
-                        underline: Container(height: 0),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
+                const SizedBox(width: 50),
                 BlocBuilder<BookingOneCubit, BookingOneState>(
                   builder: (BuildContext context, BookingOneState state) {
                     BookingOneCubit cubit =
                         BlocProvider.of<BookingOneCubit>(context);
-                    return NumberOfContainer(
-                      number: cubit.roomNumber,
-                      reduceOnTap: cubit.roomNumber == 1
-                          ? null
-                          : () => cubit.decreaseRoomNumber(),
-                      increaseOnTap: () => cubit.increaseRoomNumber(),
+                    return Expanded(
+                      child: NumberOfContainer(
+                        number: cubit.roomNumber,
+                        reduceOnTap: cubit.roomNumber == 1
+                            ? null
+                            : () => cubit.decreaseRoomNumber(),
+                        increaseOnTap: () => cubit.increaseRoomNumber(),
+                      ),
                     );
                   },
                 ),
               ],
             ),
-            SizedBox(height: SizeConfig.screenHeight! * 0.022),
+            const SizedBox(height: 22),
             const Align(
-              alignment: Alignment.center,
+              alignment: AlignmentDirectional.center,
               child: SectionTitle(title: 'Guest'),
             ),
-            SizedBox(height: SizeConfig.screenHeight! * 0.019),
+            const SizedBox(height: 16),
             NumberOfContainer(
               number: cubit.guestNumber,
               reduceOnTap: cubit.guestNumber == 1
@@ -132,7 +139,7 @@ class DateForm extends StatelessWidget {
                   : () => cubit.decreaseGuestNumber(),
               increaseOnTap: () => cubit.increaseGuestNumber(),
             ),
-            SizedBox(height: SizeConfig.screenHeight! * 0.056),
+            const SizedBox(height: 50),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
@@ -151,7 +158,7 @@ class DateForm extends StatelessWidget {
                 ),
               ],
             ),
-            SizedBox(height: SizeConfig.screenHeight! * 0.014),
+            const BottomSpacer(),
           ],
         );
       },
