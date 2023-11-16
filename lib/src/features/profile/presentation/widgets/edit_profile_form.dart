@@ -1,7 +1,6 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:reusable_components/reusable_components.dart';
 import 'package:roome/src/config/themes/cubit/themes_cubit.dart';
 import 'package:roome/src/core/helpers/helper.dart';
@@ -9,6 +8,7 @@ import 'package:roome/src/core/utils/app_colors.dart';
 import 'package:roome/src/core/utils/app_constants.dart';
 import 'package:roome/src/core/utils/app_navigator.dart';
 import 'package:roome/src/core/utils/app_text_styles.dart';
+import 'package:roome/src/core/widgets/bottom_spacer.dart';
 import 'package:roome/src/core/widgets/custom_snack_bar.dart';
 import 'package:roome/src/core/widgets/loading_dialog.dart';
 import 'package:roome/src/core/widgets/visibility_icon_button.dart';
@@ -66,12 +66,12 @@ class _EditProfileFormState extends State<EditProfileForm> {
                   themeState: themeState,
                 ),
               ),
-              SizedBox(height: SizeConfig.screenHeight! * 0.01),
+              const SizedBox(height: 10),
               FadeInRight(
                 from: AppConstants.fadeInHorizontalValue,
                 child: InfoContainer(
                   isPersonalValidateError: _isPersonalValidateError,
-                  height: 330,
+                  height: 400,
                   personalErrorHeight: 500,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -178,7 +178,7 @@ class _EditProfileFormState extends State<EditProfileForm> {
                   ),
                 ),
               ),
-              SizedBox(height: SizeConfig.screenHeight! * 0.025),
+              const SizedBox(height: 25),
               FadeInRight(
                 from: AppConstants.fadeInHorizontalValue,
                 child: ProfileSectionTitle(
@@ -187,7 +187,7 @@ class _EditProfileFormState extends State<EditProfileForm> {
                   themeState: themeState,
                 ),
               ),
-              SizedBox(height: SizeConfig.screenHeight! * 0.01),
+              const SizedBox(height: 10),
               FadeInRight(
                 from: AppConstants.fadeInHorizontalValue,
                 child: InfoContainer(
@@ -239,7 +239,7 @@ class _EditProfileFormState extends State<EditProfileForm> {
                   ),
                 ),
               ),
-              SizedBox(height: SizeConfig.screenHeight! * 0.044),
+              const SizedBox(height: 44),
               BlocListener<RoomeCubit, RoomeState>(
                 listener: (context, state) {
                   _controlUpdateUserStates(state, context);
@@ -247,10 +247,10 @@ class _EditProfileFormState extends State<EditProfileForm> {
                 child: FadeInLeft(
                   from: AppConstants.fadeInHorizontalValue,
                   child: MyCustomButton(
-                    height: 50.h,
-                    width: SizeConfig.screenWidth,
+                    height: 50,
+                    width: double.infinity,
                     backgroundColor: AppColors.primaryColor,
-                    borderRadius: BorderRadius.all(Radius.circular(12.r)),
+                    borderRadius: const BorderRadius.all(Radius.circular(12)),
                     onPressed: () {
                       RoomeCubit.getObject(context).profileImage == null
                           ? _validateAndUpdate(context)
@@ -269,6 +269,7 @@ class _EditProfileFormState extends State<EditProfileForm> {
                   ),
                 ),
               ),
+              const BottomSpacer(),
             ],
           ),
         );

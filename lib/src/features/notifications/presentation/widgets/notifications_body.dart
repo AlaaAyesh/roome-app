@@ -8,6 +8,7 @@ import 'package:roome/src/core/widgets/custom_sliver_app_bar.dart';
 import 'package:roome/src/core/widgets/separator_widget.dart';
 import 'package:roome/src/features/notifications/presentation/cubit/notifications_cubit.dart';
 import 'package:roome/src/features/notifications/presentation/widgets/notifications_card.dart';
+import 'package:roome/src/features/roome/presentation/cubit/roome_cubit.dart';
 
 class NotificationsBody extends StatelessWidget {
   const NotificationsBody({super.key});
@@ -24,7 +25,14 @@ class NotificationsBody extends StatelessWidget {
                 child: CustomScrollView(
                   physics: AppConstants.physics,
                   slivers: [
-                    const CustomSliverAppBar(title: 'Notifications'),
+                    CustomSliverAppBar(
+                      titleText: 'Notifications',
+                      arrowBackOnTap: () {
+                        BlocProvider.of<RoomeCubit>(context)
+                            .changeBottomNavToHome(context);
+                        BlocProvider.of<RoomeCubit>(context).getUserData();
+                      },
+                    ),
                     SliverPadding(
                       padding: const EdgeInsets.only(
                         top: 40,

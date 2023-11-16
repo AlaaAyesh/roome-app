@@ -16,7 +16,7 @@ class BookingTwoViewBody extends StatelessWidget {
     return CustomScrollView(
       physics: AppConstants.physics,
       slivers: [
-        const CustomSliverAppBar(title: 'Booking Form', centerTitle: true),
+        const CustomSliverAppBar(titleText: 'Booking Form', centerTitle: true),
         SliverPadding(
           padding: const EdgeInsets.only(left: 31, right: 31),
           sliver: SliverToBoxAdapter(

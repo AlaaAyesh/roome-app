@@ -7,35 +7,41 @@ import 'package:roome/src/core/widgets/get_back_arrow.dart';
 class CustomSliverAppBar extends StatelessWidget {
   const CustomSliverAppBar({
     super.key,
-    required this.title,
-    this.leading = const GetBackArrow(),
+    this.titleText,
+    this.leading,
     this.actions,
     this.centerTitle,
+    this.arrowBackOnTap,
+    this.title,
   });
 
-  final String title;
+  final Widget? title;
+  final String? titleText;
   final Widget? leading;
   final List<Widget>? actions;
   final bool? centerTitle;
+  final void Function()? arrowBackOnTap;
 
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
-      leading: leading,
+      leading: leading ?? GetBackArrow(onTap: arrowBackOnTap),
       actions: actions,
       centerTitle: centerTitle,
-      title: BlocBuilder<ThemesCubit, ThemeData>(
-        builder: (context, state) {
-          return Text(
-            title,
-            style: state.brightness == Brightness.light
-                ? AppTextStyles.appBarTextStyle
-                : AppTextStyles.appBarTextStyle.copyWith(
-                    color: Colors.white,
-                  ),
-          );
-        },
-      ),
+      title: titleText != null
+          ? BlocBuilder<ThemesCubit, ThemeData>(
+              builder: (context, state) {
+                return Text(
+                  titleText!,
+                  style: state.brightness == Brightness.light
+                      ? AppTextStyles.appBarTextStyle
+                      : AppTextStyles.appBarTextStyle.copyWith(
+                          color: Colors.white,
+                        ),
+                );
+              },
+            )
+          : title,
     );
   }
 }

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:roome/src/core/helpers/helper.dart';
 import 'package:roome/src/core/utils/app_colors.dart';
@@ -21,21 +20,21 @@ class ProfileImage extends StatelessWidget {
             alignment: AlignmentDirectional.bottomEnd,
             children: <Widget>[
               CircleAvatar(
-                radius: 80.r,
+                radius: 80,
                 backgroundColor: AppColors.primaryColor.withOpacity(0.24),
                 child: CircleAvatar(
                   backgroundImage: (cubit.profileImage == null
                       ? NetworkImage(Helper.currentUser!.profileImage!)
                       : FileImage(cubit.profileImage!)) as ImageProvider,
-                  radius: 65.r,
+                  radius: 65,
                   backgroundColor: AppColors.primaryColor,
                 ),
               ),
               Positioned(
-                right: 30.w,
+                right: 30,
                 child: Container(
-                  height: 24.w,
-                  width: 24.w,
+                  height: 24,
+                  width: 24,
                   decoration: const BoxDecoration(
                     shape: BoxShape.circle,
                     color: AppColors.primaryColor,
@@ -51,10 +50,10 @@ class ProfileImage extends StatelessWidget {
                           cubit.getProfileImage(source: ImageSource.camera);
                         },
                       ),
-                      child: Icon(
+                      child: const Icon(
                         Icons.edit,
                         color: Colors.white,
-                        size: 17.w,
+                        size: 17,
                       ),
                     ),
                   ),

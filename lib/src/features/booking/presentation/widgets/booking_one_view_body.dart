@@ -19,7 +19,7 @@ class BookingOneViewBody extends StatelessWidget {
       physics: AppConstants.physics,
       slivers: [
         const CustomSliverAppBar(
-          title: 'Booking Form',
+          titleText: 'Booking Form',
           centerTitle: true,
         ),
         SliverPadding(

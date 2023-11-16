@@ -14,7 +14,7 @@ class NearMeSeeAllView extends StatelessWidget {
       body: CustomScrollView(
         physics: AppConstants.physics,
         slivers: <Widget>[
-          const CustomSliverAppBar(title: 'Near Me'),
+          const CustomSliverAppBar(titleText: 'Near Me'),
           SliverPadding(
             padding: const EdgeInsets.only(right: 27, left: 14),
             sliver: SliverFillRemaining(

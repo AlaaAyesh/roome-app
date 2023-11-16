@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:reusable_components/reusable_components.dart';
 import 'package:roome/src/config/themes/cubit/themes_cubit.dart';
 import 'package:roome/src/core/utils/app_colors.dart';
@@ -34,26 +33,26 @@ class InfoContainer extends StatelessWidget {
               ? personalErrorHeight
               : isContactValidateError
                   ? contactErrorHeight
-                  : height.h,
-          width: SizeConfig.screenWidth,
-          padding: EdgeInsets.only(
-            top: 20.h,
-            bottom: 20.h,
-            left: 20.w,
-            right: 9.w,
+                  : height,
+          width: double.infinity,
+          padding: const EdgeInsets.only(
+            top: 20,
+            bottom: 20,
+            left: 20,
+            right: 9,
           ),
           decoration: BoxDecoration(
             color: state.brightness == Brightness.light
                 ? Colors.white
                 : AppColors.darkGreyColor,
-            borderRadius: BorderRadius.all(Radius.circular(20.r)),
+            borderRadius: const BorderRadius.all(Radius.circular(20)),
             border: Border.all(
               color: HexColorHandler('D9D9D9').withOpacity(0.37),
             ),
             boxShadow: <BoxShadow>[
               BoxShadow(
-                offset: Offset(0, 4.h),
-                blurRadius: 4.w,
+                offset: const Offset(0, 4),
+                blurRadius: 4,
                 color: Colors.black.withOpacity(0.25),
               ),
             ],

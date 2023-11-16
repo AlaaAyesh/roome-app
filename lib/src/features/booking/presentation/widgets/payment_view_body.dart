@@ -33,7 +33,8 @@ class PaymentViewBody extends StatelessWidget {
           builder: (context, state) => CustomScrollView(
                 physics: AppConstants.physics,
                 slivers: [
-                  const CustomSliverAppBar(title: 'Payment', centerTitle: true),
+                  const CustomSliverAppBar(
+                      titleText: 'Payment', centerTitle: true),
                   SliverPadding(
                     padding: const EdgeInsets.only(left: 31, right: 31),
                     sliver: SliverToBoxAdapter(

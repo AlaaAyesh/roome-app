@@ -14,7 +14,7 @@ class ExploreSeeAllView extends StatelessWidget {
       body: CustomScrollView(
         physics: AppConstants.physics,
         slivers: <Widget>[
-          const CustomSliverAppBar(title: 'Explore'),
+          const CustomSliverAppBar(titleText: 'Explore'),
           SliverPadding(
             padding: const EdgeInsets.only(right: 27, left: 14),
             sliver: SliverFillRemaining(

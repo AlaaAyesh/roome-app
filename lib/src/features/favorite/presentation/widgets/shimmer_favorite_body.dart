@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:reusable_components/reusable_components.dart';
 import 'package:roome/src/config/themes/cubit/themes_cubit.dart';
 import 'package:roome/src/core/helpers/helper.dart';
@@ -26,18 +25,18 @@ class ShimmerFavoriteBody extends StatelessWidget {
           child: SingleChildScrollView(
             physics: const BouncingScrollPhysics(),
             child: Padding(
-              padding: EdgeInsets.only(
-                top: 40.h,
-                bottom: 16.h,
-                right: 27.w,
-                left: 14.w,
+              padding: const EdgeInsets.only(
+                top: 40,
+                bottom: 16,
+                right: 27,
+                left: 14,
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Container(
-                    height: 15.h,
-                    width: 110.w,
+                    height: 15,
+                    width: 110,
                     decoration: Helper.buildShimmerDecoration(state),
                   ),
                   SizedBox(height: SizeConfig.screenHeight! * 0.047),
@@ -50,10 +49,11 @@ class ShimmerFavoriteBody extends StatelessWidget {
                       width: SizeConfig.screenWidth! * 0.9,
                       decoration: BoxDecoration(
                         color: AppColors.shimmerContainerColor,
-                        borderRadius: BorderRadius.all(Radius.circular(10.r)),
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(10)),
                         border: Border.all(
                           color: AppColors.borderColor,
-                          width: 1.w,
+                          width: 1,
                         ),
                       ),
                     ),

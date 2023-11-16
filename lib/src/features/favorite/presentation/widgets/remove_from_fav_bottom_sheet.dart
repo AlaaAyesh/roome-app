@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:reusable_components/reusable_components.dart';
 import 'package:roome/src/config/themes/cubit/themes_cubit.dart';
 import 'package:roome/src/core/models/hotel.dart';
@@ -74,7 +73,7 @@ class _FavRemoveBottomSheetState extends State<FavRemoveBottomSheet>
         },
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.vertical(
-            top: Radius.circular(50.0.r),
+            top: Radius.circular(50.0),
           ),
         ),
         backgroundColor:
@@ -82,14 +81,14 @@ class _FavRemoveBottomSheetState extends State<FavRemoveBottomSheet>
         dragHandleColor: state.brightness == Brightness.light
             ? AppColors.darkGrey.withOpacity(0.49)
             : AppColors.white60,
-        dragHandleSize: Size(50.w, 3.h),
+        dragHandleSize: Size(50, 3),
         onClosing: () => context.getBack(),
         builder: (context) => ListView(
           shrinkWrap: true,
           padding: EdgeInsets.only(
-            right: 15.w,
-            left: 15.w,
-            bottom: 30.h,
+            right: 15,
+            left: 15,
+            bottom: 30,
           ),
           children: <Widget>[
             Text(
@@ -111,9 +110,9 @@ class _FavRemoveBottomSheetState extends State<FavRemoveBottomSheet>
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
                 MyCustomButton(
-                  height: 50.h,
-                  width: 148.w,
-                  borderRadius: BorderRadius.all(Radius.circular(12.r)),
+                  height: 50,
+                  width: 148,
+                  borderRadius: BorderRadius.all(Radius.circular(12)),
                   backgroundColor: AppColors.primaryColor.withOpacity(0.24),
                   onPressed: () => context.getBack(),
                   hasPrefix: false,

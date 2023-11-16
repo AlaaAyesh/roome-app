@@ -1,7 +1,6 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:reusable_components/reusable_components.dart';
 import 'package:roome/src/core/utils/app_colors.dart';
 import 'package:roome/src/core/utils/app_constants.dart';
 import 'package:roome/src/features/profile/presentation/widgets/confirm_update_image_button.dart';
@@ -15,7 +14,7 @@ class UpdateImageButtonAndLoading extends StatelessWidget {
     return BlocBuilder<RoomeCubit, RoomeState>(
       builder: (context, state) {
         RoomeCubit cubit = RoomeCubit.getObject(context);
-
+        var size = MediaQuery.of(context).size;
         return Align(
           alignment: Alignment.center,
           child: FadeInUp(
@@ -24,14 +23,14 @@ class UpdateImageButtonAndLoading extends StatelessWidget {
               children: <Widget>[
                 if (cubit.profileImage != null &&
                     state is! UploadProfileImageSuccessState) ...[
-                  SizedBox(height: SizeConfig.screenHeight! * 0.015),
+                  const SizedBox(height: 15),
                   const ConfirmUpdateImageButton(),
                 ],
                 if (state is UploadingProfileImageLoadingState)
-                  SizedBox(height: SizeConfig.screenHeight! * 0.01),
+                  const SizedBox(height: 10),
                 if (state is UploadingProfileImageLoadingState)
                   SizedBox(
-                    width: SizeConfig.screenWidth! * 0.4,
+                    width: size.width * 0.4,
                     child: const LinearProgressIndicator(
                       color: AppColors.primaryColor,
                     ),
