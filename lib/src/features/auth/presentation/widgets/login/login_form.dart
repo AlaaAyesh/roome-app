@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:reusable_components/reusable_components.dart';
 import 'package:roome/src/core/helpers/helper.dart';
 import 'package:roome/src/core/utils/app_text_styles.dart';
 import 'package:roome/src/features/auth/presentation/widgets/auth_button.dart';
@@ -101,10 +100,7 @@ class _LoginFormState extends State<LoginForm> {
           const SizedBox(height: 40),
           AuthButton(
             buttonTitle: 'Log In',
-            onPressed: () {
-              // serviceLocator.get<CacheHelper>().clearData();
-              _login(context);
-            },
+            onPressed: () => _login(context),
           ),
           const SizedBox(height: 40),
         ],
@@ -114,7 +110,7 @@ class _LoginFormState extends State<LoginForm> {
 
   void _login(BuildContext context) {
     if (_formKey.currentState!.validate()) {
-      CustomHelper.keyboardUnfocus(context);
+      Helper.keyboardUnfocus(context);
       widget.cubit.userSignIn(
         usernameOrEmail: _nameOrEmailController.text.trim(),
         password: _passwordController.text,

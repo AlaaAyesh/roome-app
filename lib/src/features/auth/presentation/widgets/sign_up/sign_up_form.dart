@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:reusable_components/reusable_components.dart';
 import 'package:roome/src/core/helpers/helper.dart';
 import 'package:roome/src/features/auth/presentation/widgets/auth_button.dart';
 import 'package:roome/src/features/auth/presentation/widgets/forgot_password_text_button.dart';
@@ -145,7 +144,7 @@ class _SignUpFormState extends State<SignUpForm> {
 
   void _signUp(BuildContext context) {
     if (_formKey.currentState!.validate()) {
-      CustomHelper.keyboardUnfocus(context);
+      Helper.keyboardUnfocus(context);
 
       widget.cubit.userSignUp(
         firstName: _firstNameController.text.trim(),

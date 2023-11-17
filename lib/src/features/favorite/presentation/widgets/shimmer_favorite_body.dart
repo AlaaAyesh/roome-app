@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:reusable_components/reusable_components.dart';
 import 'package:roome/src/config/themes/cubit/themes_cubit.dart';
 import 'package:roome/src/core/helpers/helper.dart';
 import 'package:roome/src/core/utils/app_colors.dart';
+import 'package:roome/src/core/utils/app_constants.dart';
 import 'package:roome/src/core/widgets/separator_widget.dart';
 import 'package:shimmer/shimmer.dart';
 
@@ -23,7 +23,7 @@ class ShimmerFavoriteBody extends StatelessWidget {
               : AppColors.darkShimmerHighlightColor,
           enabled: true,
           child: SingleChildScrollView(
-            physics: const BouncingScrollPhysics(),
+            physics: AppConstants.physics,
             child: Padding(
               padding: const EdgeInsets.only(
                 top: 40,
@@ -39,14 +39,14 @@ class ShimmerFavoriteBody extends StatelessWidget {
                     width: 110,
                     decoration: Helper.buildShimmerDecoration(state),
                   ),
-                  SizedBox(height: SizeConfig.screenHeight! * 0.047),
+                  const SizedBox(height: 47),
                   ListView.separated(
                     shrinkWrap: true,
                     padding: EdgeInsets.zero,
                     physics: const NeverScrollableScrollPhysics(),
                     itemBuilder: (context, index) => Container(
-                      height: SizeConfig.screenHeight! * 0.15,
-                      width: SizeConfig.screenWidth! * 0.9,
+                      height: 120,
+                      width: double.infinity,
                       decoration: BoxDecoration(
                         color: AppColors.shimmerContainerColor,
                         borderRadius:

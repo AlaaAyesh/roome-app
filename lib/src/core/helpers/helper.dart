@@ -100,4 +100,8 @@ class Helper {
   static int getLength(List<HotelImage> hotelImages) {
     return hotelImages.length >= 4 ? 3 : hotelImages.length;
   }
+
+  static void keyboardUnfocus(BuildContext context) {
+    FocusScope.of(context).unfocus();
+  }
 }

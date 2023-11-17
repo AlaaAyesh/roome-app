@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:reusable_components/reusable_components.dart';
 import 'package:roome/src/config/themes/cubit/themes_cubit.dart';
 import 'package:roome/src/core/utils/app_colors.dart';
 
@@ -22,7 +21,7 @@ class LoadingDialog extends StatelessWidget {
               borderRadius: const BorderRadius.all(Radius.circular(16)),
             ),
             child: Center(
-              child: CustomCircularProgressIndicator(
+              child: CircularProgressIndicator(
                 color: AppColors.primaryColor,
                 backgroundColor: state.brightness == Brightness.light
                     ? Colors.white

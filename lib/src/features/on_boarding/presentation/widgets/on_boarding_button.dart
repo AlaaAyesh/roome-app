@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:reusable_components/reusable_components.dart';
+import 'package:roome/src/core/widgets/my_custom_button.dart';
 
 class OnBoardingButton extends StatelessWidget {
   const OnBoardingButton({

@@ -2,7 +2,6 @@ import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:reusable_components/reusable_components.dart';
 import 'package:roome/src/config/services/notification_service.dart';
 import 'package:roome/src/core/utils/app_assets.dart';
 import 'package:roome/src/core/utils/app_colors.dart';
@@ -45,8 +44,8 @@ class PaymentViewBody extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: <Widget>[
                               const SectionTitle(title: 'My Card'),
-                              CustomTextButton(
-                                onTap: () {},
+                              TextButton(
+                                onPressed: () {},
                                 child: Text(
                                   'Edit Card',
                                   style: AppTextStyles.hintStyle.copyWith(
