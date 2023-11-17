@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:roome/src/core/models/hotel.dart';
 import 'package:roome/src/core/models/user_model.dart';
 import 'package:roome/src/core/utils/app_colors.dart';
@@ -22,7 +21,7 @@ class Helper {
     return UnderlineInputBorder(
       borderSide: BorderSide(
         color: color ?? AppColors.primaryColor,
-        width: 0.75.w,
+        width: 0.75,
       ),
     );
   }
@@ -92,8 +91,8 @@ class Helper {
 
   static BoxShadow glowingShadow() {
     return BoxShadow(
-      offset: Offset(0, 4.93.w),
-      blurRadius: 18.49.w,
+      offset: const Offset(0, 4.93),
+      blurRadius: 18.49,
       color: AppColors.primaryColor.withOpacity(0.56),
     );
   }

@@ -71,7 +71,7 @@ class _FavRemoveBottomSheetState extends State<FavRemoveBottomSheet>
         onDragStart: (_) {
           _animationController.forward();
         },
-        shape: RoundedRectangleBorder(
+        shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.vertical(
             top: Radius.circular(50.0),
           ),
@@ -81,63 +81,61 @@ class _FavRemoveBottomSheetState extends State<FavRemoveBottomSheet>
         dragHandleColor: state.brightness == Brightness.light
             ? AppColors.darkGrey.withOpacity(0.49)
             : AppColors.white60,
-        dragHandleSize: Size(50, 3),
+        dragHandleSize: const Size(50, 3),
         onClosing: () => context.getBack(),
-        builder: (context) => ListView(
-          shrinkWrap: true,
-          padding: EdgeInsets.only(
-            right: 15,
-            left: 15,
-            bottom: 30,
-          ),
-          children: <Widget>[
-            Text(
-              'Remove from favorite?',
-              style: AppTextStyles.appBarTextStyle.copyWith(
-                color: state.brightness == Brightness.light
-                    ? Colors.black.withOpacity(0.71)
-                    : Colors.white,
+        builder: (context) => Padding(
+          padding: const EdgeInsets.only(right: 15, left: 15, bottom: 30),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              Text(
+                'Remove from favorite?',
+                style: AppTextStyles.appBarTextStyle.copyWith(
+                  color: state.brightness == Brightness.light
+                      ? Colors.black.withOpacity(0.71)
+                      : Colors.white,
+                ),
+                textAlign: TextAlign.center,
               ),
-              textAlign: TextAlign.center,
-            ),
-            SizedBox(height: SizeConfig.screenHeight! * 0.046),
-            FavoriteCard(
-              cubit: widget.cubit,
-              hotel: widget.hotel,
-            ),
-            SizedBox(height: SizeConfig.screenHeight! * 0.033),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: <Widget>[
-                MyCustomButton(
-                  height: 50,
-                  width: 148,
-                  borderRadius: BorderRadius.all(Radius.circular(12)),
-                  backgroundColor: AppColors.primaryColor.withOpacity(0.24),
-                  onPressed: () => context.getBack(),
-                  hasPrefix: false,
-                  child: Center(
-                    child: Text(
-                      'Cancel',
-                      style: AppTextStyles.textStyle15.copyWith(
-                        color: AppColors.primaryColor,
-                        fontWeight: FontWeight.w600,
+              const SizedBox(height: 16),
+              FavoriteCard(
+                cubit: widget.cubit,
+                hotel: widget.hotel,
+              ),
+              const SizedBox(height: 32),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: <Widget>[
+                  MyCustomButton(
+                    height: 50,
+                    width: 148,
+                    borderRadius: const BorderRadius.all(Radius.circular(12)),
+                    backgroundColor: AppColors.primaryColor.withOpacity(0.24),
+                    onPressed: () => context.getBack(),
+                    hasPrefix: false,
+                    child: Center(
+                      child: Text(
+                        'Cancel',
+                        style: AppTextStyles.textStyle15.copyWith(
+                          color: AppColors.primaryColor,
+                          fontWeight: FontWeight.w600,
+                        ),
                       ),
                     ),
                   ),
-                ),
-                GlowingCustomButton(
-                  onPressed: () {
-                    widget.cubit.removeFromFav(
-                      hotelId: widget.hotel.id!,
-                    );
-                    context.getBack();
-                  },
-                  buttonText: 'Yes, remove',
-                ),
-              ],
-            ),
-          ],
+                  GlowingCustomButton(
+                    onPressed: () {
+                      widget.cubit.removeFromFav(
+                        hotelId: widget.hotel.id!,
+                      );
+                      context.getBack();
+                    },
+                    buttonText: 'Yes, remove',
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );

@@ -7,10 +7,15 @@ import 'package:roome/src/core/helpers/helper.dart';
 import 'package:roome/src/core/utils/app_navigator.dart';
 import 'package:roome/src/core/utils/app_strings.dart';
 import 'package:roome/src/core/utils/service_locator.dart';
+import 'package:roome/src/core/widgets/auth_title.dart';
+import 'package:roome/src/core/widgets/bottom_spacer.dart';
 import 'package:roome/src/core/widgets/custom_snack_bar.dart';
+import 'package:roome/src/core/widgets/have_account_or_not.dart';
 import 'package:roome/src/core/widgets/loading_dialog.dart';
+import 'package:roome/src/core/widgets/login_with_social_buttons.dart';
+import 'package:roome/src/core/widgets/or_text.dart';
 import 'package:roome/src/features/auth/sign_in/presentation/cubit/login_cubit.dart';
-import 'package:roome/src/features/auth/sign_in/presentation/widgets/login_view_body.dart';
+import 'package:roome/src/features/auth/sign_in/presentation/widgets/login_form.dart';
 
 class LoginView extends StatelessWidget {
   const LoginView({super.key});
@@ -19,12 +24,53 @@ class LoginView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: BlocConsumer<LoginCubit, LoginState>(
-        listener: (context, state) {
-          controlSignInViewStates(state, context);
-        },
+        listener: (context, state) => controlSignInViewStates(state, context),
         builder: (context, state) {
           LoginCubit cubit = BlocProvider.of<LoginCubit>(context);
-          return LoginViewBody(cubit: cubit, state: state);
+          return CustomScrollView(
+            slivers: [
+              SliverPadding(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 70, horizontal: 38),
+                sliver: SliverToBoxAdapter(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      const AuthTitle(
+                        title: 'Log in',
+                        margin: EdgeInsets.symmetric(vertical: 69),
+                      ),
+                      LoginForm(cubit: cubit, state: state),
+                      const OrText(),
+                      const SizedBox(height: 14),
+                      LoginWithSocialButtons(
+                        googleOnTap: () => cubit.signInWithGoogle(),
+                        appleOnTap: () {
+                          // TODO: Login with Apple
+                        },
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              SliverFillRemaining(
+                hasScrollBody: false,
+                child: Column(
+                  children: <Widget>[
+                    const Spacer(),
+                    HaveAccountOrNot(
+                      onTap: () {
+                        context.navigateTo(routeName: Routes.signUpViewRoute);
+                      },
+                      buttonText: 'Sign up',
+                      question: "Don't have an account?",
+                    ),
+                    const BottomSpacer(),
+                  ],
+                ),
+              ),
+            ],
+          );
         },
       ),
     );

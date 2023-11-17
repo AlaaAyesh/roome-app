@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:reusable_components/reusable_components.dart';
 import 'package:roome/src/config/themes/cubit/themes_cubit.dart';
 import 'package:roome/src/core/helpers/helper.dart';
@@ -53,7 +52,7 @@ class ReusableTextFormField extends StatelessWidget {
             color: state.brightness == Brightness.light
                 ? AppColors.textFieldIconColor
                 : AppColors.white60,
-            size: 23.w,
+            size: 23,
           ),
           controller: controller,
           focusNode: thisFocusNode,
