@@ -21,7 +21,7 @@ class NumberController extends StatelessWidget {
         borderRadius: const BorderRadius.all(Radius.circular(7)),
       ),
       child: Center(
-        child: GestureDetector(
+        child: InkWell(
           onTap: onTap,
           child: Icon(
             icon,

@@ -40,7 +40,7 @@ class ProfileImage extends StatelessWidget {
                     color: AppColors.primaryColor,
                   ),
                   child: Center(
-                    child: GestureDetector(
+                    child: InkWell(
                       onTap: () => EditProfileImageBottomSheet.buildBottomSheet(
                         context: context,
                         onPressedGallery: () {
