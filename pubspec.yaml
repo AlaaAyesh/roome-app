@@ -36,9 +36,6 @@ dependencies:
   intl: ^0.18.1
   open_street_map_search_and_pick: ^0.1.0
   pretty_qr_code: ^3.0.0
-  reusable_components:
-    git:
-      url: https://github.com/ahmedghaly15/Reusable-Components-Package
   shared_preferences: ^2.2.0
   shimmer: ^3.0.0
   smooth_page_indicator: ^1.1.0

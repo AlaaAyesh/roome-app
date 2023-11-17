@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:reusable_components/reusable_components.dart';
 import 'package:roome/src/config/routes/routes.dart';
 import 'package:roome/src/core/utils/app_colors.dart';
 import 'package:roome/src/core/utils/app_navigator.dart';
 import 'package:roome/src/core/utils/app_strings.dart';
 import 'package:roome/src/core/utils/app_text_styles.dart';
+import 'package:roome/src/core/widgets/custom_text_form_field.dart';
 
 class DisabledSearchField extends StatelessWidget {
   const DisabledSearchField({super.key, required this.state});
@@ -18,7 +18,9 @@ class DisabledSearchField extends StatelessWidget {
 
     return GestureDetector(
       onTap: () => context.navigateTo(routeName: Routes.searchViewRoute),
-      child: CustomSearchTextField(
+      child: CustomTextFormField(
+        keyboardType: TextInputType.text,
+        textCapitalization: TextCapitalization.none,
         enabled: false,
         height: 36,
         width: 230,
@@ -27,7 +29,7 @@ class DisabledSearchField extends StatelessWidget {
             : Colors.white54,
         contentPadding: const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
         borderRadius: const BorderRadius.all(Radius.circular(10)),
-        searchTextFieldController: searchTextFieldController,
+        controller: searchTextFieldController,
         hint: AppStrings.searchHint,
         hintStyle: AppTextStyles.textStyle14Medium.copyWith(
           color: AppColors.lightGrey.withOpacity(0.24),

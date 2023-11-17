@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:reusable_components/reusable_components.dart';
 import 'package:roome/src/core/utils/app_colors.dart';
 import 'package:roome/src/core/utils/app_text_styles.dart';
 
@@ -25,8 +24,8 @@ class HaveAccountOrNot extends StatelessWidget {
           style: AppTextStyles.textStyle15.copyWith(fontSize: 14),
         ),
         const SizedBox(width: 5),
-        CustomTextButton(
-          onTap: onTap,
+        TextButton(
+          onPressed: onTap,
           child: Text(
             buttonText,
             style: AppTextStyles.textStyle15.copyWith(

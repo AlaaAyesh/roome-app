@@ -10,10 +10,7 @@ class ShimmerHomeBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return const SingleChildScrollView(
       child: Padding(
-        padding: EdgeInsets.only(
-          bottom: 16,
-          left: 21,
-        ),
+        padding: EdgeInsets.only(bottom: 16, left: 21),
         child: Column(
           children: <Widget>[
             ShimmerHelloRow(),

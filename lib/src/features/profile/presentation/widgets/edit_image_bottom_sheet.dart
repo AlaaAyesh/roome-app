@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:reusable_components/reusable_components.dart';
 import 'package:roome/src/config/themes/cubit/themes_cubit.dart';
 import 'package:roome/src/core/utils/app_assets.dart';
+import 'package:roome/src/core/utils/app_navigator.dart';
 import 'package:roome/src/core/utils/app_text_styles.dart';
 import 'package:roome/src/features/profile/presentation/widgets/image_circle_button.dart';
 
@@ -48,7 +48,7 @@ class ProfileImageEditBottomSheet extends StatelessWidget {
           ),
         ),
         enableDrag: true,
-        onClosing: () => CustomNavigator.getBack(),
+        onClosing: () => context.getBack(),
         builder: (context) {
           return ListView(
             shrinkWrap: true,

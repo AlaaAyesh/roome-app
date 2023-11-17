@@ -1,7 +1,6 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:reusable_components/reusable_components.dart';
 import 'package:roome/src/config/themes/cubit/themes_cubit.dart';
 import 'package:roome/src/core/helpers/helper.dart';
 import 'package:roome/src/core/utils/app_colors.dart';
@@ -10,6 +9,7 @@ import 'package:roome/src/core/utils/app_navigator.dart';
 import 'package:roome/src/core/utils/app_text_styles.dart';
 import 'package:roome/src/core/widgets/bottom_spacer.dart';
 import 'package:roome/src/core/widgets/custom_snack_bar.dart';
+import 'package:roome/src/core/widgets/my_custom_button.dart';
 import 'package:roome/src/features/auth/presentation/widgets/loading_dialog.dart';
 import 'package:roome/src/core/widgets/visibility_icon_button.dart';
 import 'package:roome/src/features/profile/presentation/widgets/edit_profile_text_field.dart';
@@ -279,14 +279,14 @@ class _EditProfileFormState extends State<EditProfileForm> {
 
   void _validateAndUpdate(BuildContext context) {
     if (_formKey.currentState!.validate()) {
-      CustomHelper.keyboardUnfocus(context);
+      Helper.keyboardUnfocus(context);
       _updateUser(context);
     }
   }
 
   void _validateAndUpdateUserWithProfileImage(context) {
     if (_formKey.currentState!.validate()) {
-      CustomHelper.keyboardUnfocus(context);
+      Helper.keyboardUnfocus(context);
       _updateUserAndProfileImage(context);
     }
   }

@@ -20,7 +20,6 @@ class NearMe extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           const NearMeHotels(),
-          const SizedBox(height: 5),
           Align(
             alignment: AlignmentDirectional.centerEnd,
             child: SeeAllTextButton(
@@ -29,7 +28,6 @@ class NearMe extends StatelessWidget {
               ),
             ),
           ),
-          const SizedBox(height: 10),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
@@ -53,7 +51,6 @@ class NearMe extends StatelessWidget {
               )
             ],
           ),
-          const SizedBox(height: 10),
           const ExploreList(),
           const SizedBox(height: 20),
           const OffersList(),

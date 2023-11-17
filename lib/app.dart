@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:reusable_components/reusable_components.dart';
 
 import 'package:roome/src/config/routes/app_routes.dart';
 import 'package:roome/src/config/themes/cubit/themes_cubit.dart';
@@ -18,7 +17,6 @@ class RoomeApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    SizeConfig().init(context);
     return MultiBlocProvider(
       providers: [
         BlocProvider(
