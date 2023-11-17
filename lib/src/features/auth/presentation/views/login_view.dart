@@ -30,8 +30,7 @@ class LoginView extends StatelessWidget {
           return CustomScrollView(
             slivers: [
               SliverPadding(
-                padding:
-                    const EdgeInsets.symmetric(vertical: 70, horizontal: 38),
+                padding: const EdgeInsets.only(top: 70, left: 38, right: 38),
                 sliver: SliverToBoxAdapter(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -65,7 +64,7 @@ class LoginView extends StatelessWidget {
                       buttonText: 'Sign up',
                       question: "Don't have an account?",
                     ),
-                    const BottomSpacer(),
+                    const BottomSpacer(height: 16),
                   ],
                 ),
               ),

@@ -59,7 +59,13 @@ class _ProfileBodyContentState extends State<ProfileBodyContent>
                 animation: _leftAnimationController,
                 builder: (context, _) => SlideTransition(
                   position: _leftSlideAnimation,
-                  child: const GetBackArrow(),
+                  child: GetBackArrow(
+                    onTap: () {
+                      BlocProvider.of<RoomeCubit>(context)
+                          .changeBottomNavToHome(context);
+                      BlocProvider.of<RoomeCubit>(context).getUserData();
+                    },
+                  ),
                 ),
               ),
               actions: <Widget>[

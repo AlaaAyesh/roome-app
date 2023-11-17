@@ -15,39 +15,41 @@ class BookingOneView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: CustomScrollView(
-        physics: AppConstants.physics,
-        slivers: [
-          const CustomSliverAppBar(
-            titleText: 'Booking Form',
-            centerTitle: true,
-          ),
-          SliverPadding(
-            padding: const EdgeInsets.only(
-              left: 31,
-              right: 31,
-              bottom: 14,
+      body: SafeArea(
+        child: CustomScrollView(
+          physics: AppConstants.physics,
+          slivers: [
+            const CustomSliverAppBar(
+              titleText: 'Booking Form',
+              centerTitle: true,
             ),
-            sliver: SliverToBoxAdapter(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  FadeInRight(
-                    from: AppConstants.fadeInHorizontalValue,
-                    child: const BookingOneFormNumbers(isBookingOne: true),
-                  ),
-                  const SizedBox(height: 23),
-                  FadeInLeft(
-                    from: AppConstants.fadeInHorizontalValue,
-                    child: const SectionTitle(title: 'Select Date'),
-                  ),
-                  const SizedBox(height: 12),
-                  BookingOneBodyContent(bookedHotelInfo: bookedHotelInfo),
-                ],
+            SliverPadding(
+              padding: const EdgeInsets.only(
+                left: 31,
+                right: 31,
+                bottom: 14,
+              ),
+              sliver: SliverToBoxAdapter(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    FadeInRight(
+                      from: AppConstants.fadeInHorizontalValue,
+                      child: const BookingOneFormNumbers(isBookingOne: true),
+                    ),
+                    const SizedBox(height: 23),
+                    FadeInLeft(
+                      from: AppConstants.fadeInHorizontalValue,
+                      child: const SectionTitle(title: 'Select Date'),
+                    ),
+                    const SizedBox(height: 12),
+                    BookingOneBodyContent(bookedHotelInfo: bookedHotelInfo),
+                  ],
+                ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

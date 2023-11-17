@@ -16,39 +16,41 @@ class EditProfileView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: BlocBuilder<ThemesCubit, ThemeData>(
-        builder: (context, state) => CustomScrollView(
-          physics: AppConstants.physics,
-          slivers: [
-            CustomSliverAppBar(
-              centerTitle: true,
-              title: FadeInRight(
-                from: AppConstants.fadeInHorizontalValue,
-                child: Text(
-                  'Edit Profile',
-                  style: state.brightness == Brightness.light
-                      ? AppTextStyles.appBarTextStyle
-                      : AppTextStyles.appBarTextStyle
-                          .copyWith(color: Colors.white),
+        builder: (context, state) => SafeArea(
+          child: CustomScrollView(
+            physics: AppConstants.physics,
+            slivers: [
+              CustomSliverAppBar(
+                centerTitle: true,
+                title: FadeInRight(
+                  from: AppConstants.fadeInHorizontalValue,
+                  child: Text(
+                    'Edit Profile',
+                    style: state.brightness == Brightness.light
+                        ? AppTextStyles.appBarTextStyle
+                        : AppTextStyles.appBarTextStyle
+                            .copyWith(color: Colors.white),
+                  ),
                 ),
               ),
-            ),
-            SliverPadding(
-              padding: const EdgeInsets.symmetric(horizontal: 44),
-              sliver: SliverToBoxAdapter(
-                child: Column(
-                  children: <Widget>[
-                    FadeInLeft(
-                      from: AppConstants.fadeInHorizontalValue,
-                      child: const ProfileImage(),
-                    ),
-                    const SizedBox(height: 49),
-                    const EditProfileForm(),
-                    const BottomSpacer(),
-                  ],
+              SliverPadding(
+                padding: const EdgeInsets.symmetric(horizontal: 44),
+                sliver: SliverToBoxAdapter(
+                  child: Column(
+                    children: <Widget>[
+                      FadeInLeft(
+                        from: AppConstants.fadeInHorizontalValue,
+                        child: const ProfileImage(),
+                      ),
+                      const SizedBox(height: 49),
+                      const EditProfileForm(),
+                      const BottomSpacer(),
+                    ],
+                  ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

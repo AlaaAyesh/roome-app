@@ -60,6 +60,7 @@ class _LoginFormState extends State<LoginForm> {
             onEditingComplete: () {
               FocusScope.of(context).requestFocus(_passwordFocusNode);
             },
+            autoFillHints: const <String>[AutofillHints.email],
           ),
           const SizedBox(height: 56),
           ReusablePassTextField(
@@ -97,7 +98,7 @@ class _LoginFormState extends State<LoginForm> {
               ),
             ],
           ),
-          const SizedBox(height: 40),
+          const SizedBox(height: 34),
           AuthButton(
             buttonTitle: 'Log In',
             onPressed: () => _login(context),

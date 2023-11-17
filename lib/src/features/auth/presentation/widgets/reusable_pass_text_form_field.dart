@@ -57,6 +57,7 @@ class ReusablePassTextField extends StatelessWidget {
                 : AppColors.white60,
             size: 23,
           ),
+          autofillHints: const <String>[AutofillHints.password],
           controller: controller,
           focusNode: thisFocusNode,
           textCapitalization: TextCapitalization.none,

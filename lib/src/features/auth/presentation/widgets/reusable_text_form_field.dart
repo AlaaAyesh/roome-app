@@ -18,6 +18,7 @@ class ReusableTextFormField extends StatelessWidget {
     this.validating,
     this.onEditingComplete,
     this.onSubmit,
+    this.autoFillHints,
   });
 
   final TextEditingController controller;
@@ -29,12 +30,14 @@ class ReusableTextFormField extends StatelessWidget {
   final void Function(String)? onSubmit;
   final TextInputType keyboardType;
   final TextCapitalization textCapitalization;
+  final List<String>? autoFillHints;
 
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<ThemesCubit, ThemeData>(
       builder: (context, state) {
         return CustomTextFormField(
+          autofillHints: autoFillHints,
           cursorColor: state.brightness == Brightness.light
               ? Colors.black
               : Colors.white,

@@ -40,6 +40,7 @@ class CustomTextFormField extends StatelessWidget {
     this.borderRadius,
     this.textFieldBorder,
     this.focusedErrorBorder = InputBorder.none,
+    this.autofillHints,
   }) : super(key: key);
 
   final bool autofocus;
@@ -79,6 +80,7 @@ class CustomTextFormField extends StatelessWidget {
   final List<BoxShadow>? boxShadow;
   final InputBorder? textFieldBorder;
   final InputBorder? focusedErrorBorder;
+  final List<String>? autofillHints;
 
   @override
   Widget build(BuildContext context) {
@@ -96,6 +98,7 @@ class CustomTextFormField extends StatelessWidget {
         enabled: enabled,
         controller: controller,
         focusNode: focusNode,
+        autofillHints: autofillHints,
         decoration: InputDecoration(
           isDense: true,
           border: textFieldBorder,

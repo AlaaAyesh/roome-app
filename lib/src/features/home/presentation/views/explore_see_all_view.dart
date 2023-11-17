@@ -11,19 +11,18 @@ class ExploreSeeAllView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: CustomScrollView(
-        physics: AppConstants.physics,
-        slivers: <Widget>[
-          const CustomSliverAppBar(titleText: 'Explore'),
-          SliverPadding(
-            padding: const EdgeInsets.only(right: 27, left: 14),
-            sliver: SliverFillRemaining(
+      body: SafeArea(
+        child: CustomScrollView(
+          physics: AppConstants.physics,
+          slivers: <Widget>[
+            const CustomSliverAppBar(titleText: 'Explore'),
+            SliverFillRemaining(
               child: SeeAllItems(
                 hotels: BlocProvider.of<HotelsCubit>(context).resultHotels,
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

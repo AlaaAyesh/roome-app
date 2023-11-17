@@ -46,9 +46,10 @@ class PaymentViewBody extends StatelessWidget {
                               const SectionTitle(title: 'My Card'),
                               TextButton(
                                 onPressed: () {},
-                                child: Text(
+                                child: const Text(
                                   'Edit Card',
-                                  style: AppTextStyles.hintStyle.copyWith(
+                                  style: TextStyle(
+                                    fontSize: 16,
                                     color: AppColors.primaryColor,
                                     fontWeight: FontWeight.normal,
                                   ),
