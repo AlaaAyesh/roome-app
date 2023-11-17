@@ -9,20 +9,20 @@ import 'package:roome/src/core/api/dio_consumer.dart';
 import 'package:roome/src/core/helpers/cache_helper.dart';
 import 'package:roome/src/core/network/network_info.dart';
 import 'package:roome/src/core/network/network_info_impl.dart';
-import 'package:roome/src/features/auth/sign_in/data/datasources/login_datasource.dart';
-import 'package:roome/src/features/auth/sign_in/data/datasources/login_datasource_impl.dart';
-import 'package:roome/src/features/auth/sign_in/data/repositories/login_repo_impl.dart';
-import 'package:roome/src/features/auth/sign_in/domain/repositories/login_repo.dart';
-import 'package:roome/src/features/auth/sign_in/domain/usecases/login_usecase.dart';
-import 'package:roome/src/features/auth/sign_in/domain/usecases/login_with_google_usecase.dart';
-import 'package:roome/src/features/auth/sign_in/presentation/cubit/login_cubit.dart';
-import 'package:roome/src/features/auth/sign_up/data/datasources/sign_up_datasource.dart';
-import 'package:roome/src/features/auth/sign_up/data/datasources/sign_up_datasource_impl.dart';
-import 'package:roome/src/features/auth/sign_up/data/repositories/sign_up_repo_impl.dart';
-import 'package:roome/src/features/auth/sign_up/domain/repositories/sign_up_repo.dart';
-import 'package:roome/src/features/auth/sign_up/domain/usecases/sign_up_usecase.dart';
-import 'package:roome/src/features/auth/sign_up/domain/usecases/sign_up_with_google_usecase.dart';
-import 'package:roome/src/features/auth/sign_up/presentation/cubit/sign_up_cubit.dart';
+import 'package:roome/src/features/auth/data/datasources/login/login_datasource.dart';
+import 'package:roome/src/features/auth/data/datasources/login/login_datasource_impl.dart';
+import 'package:roome/src/features/auth/data/repositories/login_repo_impl.dart';
+import 'package:roome/src/features/auth/domain/repositories/login_repo.dart';
+import 'package:roome/src/features/auth/domain/usecases/login/user_login_usecase.dart';
+import 'package:roome/src/features/auth/domain/usecases/login/login_with_google_usecase.dart';
+import 'package:roome/src/features/auth/presentation/cubit/login/login_cubit.dart';
+import 'package:roome/src/features/auth/data/datasources/sign_up/sign_up_datasource.dart';
+import 'package:roome/src/features/auth/data/datasources/sign_up/sign_up_datasource_impl.dart';
+import 'package:roome/src/features/auth/data/repositories/sign_up_repo_impl.dart';
+import 'package:roome/src/features/auth/domain/repositories/sign_up_repo.dart';
+import 'package:roome/src/features/auth/domain/usecases/sign_up/user_sign_up_usecase.dart';
+import 'package:roome/src/features/auth/domain/usecases/sign_up/sign_up_with_google_usecase.dart';
+import 'package:roome/src/features/auth/presentation/cubit/sign_up/sign_up_cubit.dart';
 import 'package:roome/src/features/booking/presentation/cubits/booking_one/booking_one_cubit.dart';
 import 'package:roome/src/features/booking/presentation/cubits/payment/payment_cubit.dart';
 import 'package:roome/src/features/favorite/data/datasources/favorite_datasource.dart';
@@ -255,16 +255,16 @@ void _setUpForRepos() {
 }
 
 void _setUpForUseCases() {
-  serviceLocator.registerLazySingleton<LoginUseCase>(
-    () => LoginUseCase(loginRepo: serviceLocator.get<LoginRepo>()),
+  serviceLocator.registerLazySingleton<UserLoginUseCase>(
+    () => UserLoginUseCase(loginRepo: serviceLocator.get<LoginRepo>()),
   );
 
   serviceLocator.registerLazySingleton<LoginWithGoogleUseCase>(
     () => LoginWithGoogleUseCase(loginRepo: serviceLocator.get<LoginRepo>()),
   );
 
-  serviceLocator.registerLazySingleton<SignUpUseCase>(
-    () => SignUpUseCase(signUpRepo: serviceLocator.get<SignUpRepo>()),
+  serviceLocator.registerLazySingleton<UserSignUpUseCase>(
+    () => UserSignUpUseCase(signUpRepo: serviceLocator.get<SignUpRepo>()),
   );
 
   serviceLocator.registerLazySingleton<SignUpWithGoogleUseCase>(
@@ -359,14 +359,14 @@ void _setUpForCubits() {
 
   serviceLocator.registerFactory<LoginCubit>(
     () => LoginCubit(
-      loginUseCase: serviceLocator.get<LoginUseCase>(),
+      loginUseCase: serviceLocator.get<UserLoginUseCase>(),
       loginWithGoogleUseCase: serviceLocator.get<LoginWithGoogleUseCase>(),
     ),
   );
 
   serviceLocator.registerFactory<SignUpCubit>(
     () => SignUpCubit(
-      signUpUseCase: serviceLocator.get<SignUpUseCase>(),
+      signUpUseCase: serviceLocator.get<UserSignUpUseCase>(),
       signUpWithGoogleUseCase: serviceLocator.get<SignUpWithGoogleUseCase>(),
     ),
   );
