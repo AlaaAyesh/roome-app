@@ -25,7 +25,7 @@ class MoreDetailsImages extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => showHotelImages(context),
+      onTap: () => _showHotelImages(context),
       child: index == lastIndex && imagesNumber >= 3
           ? FadeInRight(
               from: AppConstants.fadeInHorizontalValue,
@@ -58,11 +58,11 @@ class MoreDetailsImages extends StatelessWidget {
     );
   }
 
-  void showHotelImages(BuildContext context) {
+  void _showHotelImages(BuildContext context) {
     if (index == lastIndex) {
       MultiImageProvider multiImageProvider = MultiImageProvider(
         List.generate(
-          imagesNumber >= 3 ? withoutFirstThree() : imagesNumber,
+          imagesNumber >= 3 ? _withoutFirstThree() : imagesNumber,
           (index) => Image.network(hotel.images![index].path!).image,
           growable: false,
         ),
@@ -78,7 +78,7 @@ class MoreDetailsImages extends StatelessWidget {
     }
   }
 
-  int withoutFirstThree() {
+  int _withoutFirstThree() {
     List<HotelImage> hotelImages = hotel.images!;
     hotelImages.removeRange(0, 3);
 
