@@ -13,7 +13,7 @@ class SeeAllItems extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView.separated(
       physics: const NeverScrollableScrollPhysics(),
-      padding: const EdgeInsets.only(top: 15),
+      padding: const EdgeInsets.only(right: 27, left: 14, top: 15, bottom: 24),
       shrinkWrap: true,
       itemBuilder: (context, index) => AnimationConfiguration.staggeredList(
         position: index,

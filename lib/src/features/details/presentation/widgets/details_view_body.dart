@@ -36,7 +36,7 @@ class DetailsViewBody extends StatelessWidget {
           physics: AppConstants.physics,
           slivers: [
             SliverPadding(
-              padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 22),
+              padding: const EdgeInsets.symmetric(horizontal: 22),
               sliver: SliverToBoxAdapter(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,

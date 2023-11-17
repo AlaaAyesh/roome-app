@@ -17,55 +17,57 @@ class TicketView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: FadeInUp(
-        from: AppConstants.fadeInUpValue,
-        child: CustomScrollView(
-          slivers: [
-            const CustomSliverAppBar(
-              titleText: 'Ticket',
-              centerTitle: true,
-            ),
-            SliverPadding(
-              padding: const EdgeInsets.symmetric(horizontal: 31),
-              sliver: SliverToBoxAdapter(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    const SizedBox(height: 35),
-                    BookingInfoContainer(bookingInfo: bookingInfo),
-                  ],
+      body: SafeArea(
+        child: FadeInUp(
+          from: AppConstants.fadeInUpValue,
+          child: CustomScrollView(
+            slivers: [
+              const CustomSliverAppBar(
+                titleText: 'Ticket',
+                centerTitle: true,
+              ),
+              SliverPadding(
+                padding: const EdgeInsets.symmetric(horizontal: 31),
+                sliver: SliverToBoxAdapter(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      const SizedBox(height: 35),
+                      BookingInfoContainer(bookingInfo: bookingInfo),
+                    ],
+                  ),
                 ),
               ),
-            ),
-            SliverPadding(
-              padding: const EdgeInsets.symmetric(horizontal: 31),
-              sliver: SliverFillRemaining(
-                hasScrollBody: false,
-                child: Column(
-                  children: <Widget>[
-                    const Spacer(),
-                    CustomActionButton(
-                      buttonText: 'Download Ticket',
-                      onPressed: () {},
-                      textStyle: AppTextStyles.textStyle15.copyWith(
-                        color: Colors.white,
-                        fontWeight: FontWeight.w600,
-                      ),
-                      backgroundColor: AppColors.grey,
-                      boxShadow: <BoxShadow>[
-                        BoxShadow(
-                          offset: const Offset(0, 4),
-                          blurRadius: 4,
-                          color: AppColors.primaryColor.withOpacity(0.15),
+              SliverPadding(
+                padding: const EdgeInsets.symmetric(horizontal: 31),
+                sliver: SliverFillRemaining(
+                  hasScrollBody: false,
+                  child: Column(
+                    children: <Widget>[
+                      const Spacer(),
+                      CustomActionButton(
+                        buttonText: 'Download Ticket',
+                        onPressed: () {},
+                        textStyle: AppTextStyles.textStyle15.copyWith(
+                          color: Colors.white,
+                          fontWeight: FontWeight.w600,
                         ),
-                      ],
-                    ),
-                    const BottomSpacer(),
-                  ],
+                        backgroundColor: AppColors.grey,
+                        boxShadow: <BoxShadow>[
+                          BoxShadow(
+                            offset: const Offset(0, 4),
+                            blurRadius: 4,
+                            color: AppColors.primaryColor.withOpacity(0.15),
+                          ),
+                        ],
+                      ),
+                      const BottomSpacer(),
+                    ],
+                  ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

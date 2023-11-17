@@ -10,37 +10,39 @@ class SearchView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      body: CustomScrollView(
-        physics: AppConstants.physics,
-        slivers: <Widget>[
-          SliverPadding(
-            padding: EdgeInsets.only(
-              top: 40,
-              bottom: 16,
-              right: 27,
-              left: 14,
-            ),
-            sliver: SliverToBoxAdapter(
-              child: Column(
-                children: <Widget>[
-                  Row(
-                    children: <Widget>[
-                      GetBackArrow(),
-                      SizedBox(width: 8),
-                      Expanded(child: SearchTextField()),
-                    ],
-                  ),
-                ],
+      body: SafeArea(
+        child: CustomScrollView(
+          physics: AppConstants.physics,
+          slivers: <Widget>[
+            SliverPadding(
+              padding: EdgeInsets.only(
+                top: 40,
+                bottom: 16,
+                right: 27,
+                left: 14,
+              ),
+              sliver: SliverToBoxAdapter(
+                child: Column(
+                  children: <Widget>[
+                    Row(
+                      children: <Widget>[
+                        GetBackArrow(),
+                        SizedBox(width: 8),
+                        Expanded(child: SearchTextField()),
+                      ],
+                    ),
+                  ],
+                ),
               ),
             ),
-          ),
-          SliverPadding(
-            padding: EdgeInsets.only(right: 27, left: 14),
-            sliver: SliverFillRemaining(
-              child: SearchResultListView(),
+            SliverPadding(
+              padding: EdgeInsets.only(right: 27, left: 14),
+              sliver: SliverFillRemaining(
+                child: SearchResultListView(),
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

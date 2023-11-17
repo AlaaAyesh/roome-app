@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:roome/src/config/themes/cubit/themes_cubit.dart';
+import 'package:roome/src/core/helpers/helper.dart';
 import 'package:roome/src/core/utils/app_colors.dart';
 import 'package:roome/src/core/widgets/separator_widget.dart';
 import 'package:shimmer/shimmer.dart';
@@ -30,10 +31,7 @@ class ShimmerOffersList extends StatelessWidget {
             child: Container(
               height: 130,
               width: 300,
-              decoration: const BoxDecoration(
-                color: AppColors.shimmerContainerColor,
-                borderRadius: BorderRadius.all(Radius.circular(10)),
-              ),
+              decoration: Helper.buildShimmerDecoration(state),
             ),
           ),
         ),

@@ -15,9 +15,11 @@ class DetailsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: DetailsViewBody(
-        hotel: hotel,
-        usingHero: usingHero,
+      body: SafeArea(
+        child: DetailsViewBody(
+          hotel: hotel,
+          usingHero: usingHero,
+        ),
       ),
     );
   }

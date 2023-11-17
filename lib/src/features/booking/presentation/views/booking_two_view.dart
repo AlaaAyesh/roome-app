@@ -13,28 +13,30 @@ class BookingTwoView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: CustomScrollView(
-        physics: AppConstants.physics,
-        slivers: [
-          const CustomSliverAppBar(
-              titleText: 'Booking Form', centerTitle: true),
-          SliverPadding(
-            padding: const EdgeInsets.only(left: 31, right: 31),
-            sliver: SliverToBoxAdapter(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  FadeInRight(
-                    from: AppConstants.fadeInHorizontalValue,
-                    child: const BookingOneFormNumbers(isBookingOne: false),
-                  ),
-                  const SizedBox(height: 46),
-                  BookingTwoForm(bookingInfo: bookingInfo),
-                ],
+      body: SafeArea(
+        child: CustomScrollView(
+          physics: AppConstants.physics,
+          slivers: [
+            const CustomSliverAppBar(
+                titleText: 'Booking Form', centerTitle: true),
+            SliverPadding(
+              padding: const EdgeInsets.only(left: 31, right: 31),
+              sliver: SliverToBoxAdapter(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    FadeInRight(
+                      from: AppConstants.fadeInHorizontalValue,
+                      child: const BookingOneFormNumbers(isBookingOne: false),
+                    ),
+                    const SizedBox(height: 46),
+                    BookingTwoForm(bookingInfo: bookingInfo),
+                  ],
+                ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
