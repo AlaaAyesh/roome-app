@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:roome/src/core/utils/app_colors.dart';
 
 class CustomErrorIcon extends StatelessWidget {
@@ -7,9 +6,9 @@ class CustomErrorIcon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Icon(
+    return const Icon(
       Icons.error,
-      size: 22.w,
+      size: 22,
       color: AppColors.primaryColor,
     );
   }

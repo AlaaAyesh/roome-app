@@ -1,6 +1,5 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:roome/src/core/utils/app_colors.dart';
 import 'package:roome/src/core/utils/app_constants.dart';
 import 'package:roome/src/core/utils/app_text_styles.dart';
@@ -53,8 +52,8 @@ class TicketViewBody extends StatelessWidget {
                     backgroundColor: AppColors.grey,
                     boxShadow: <BoxShadow>[
                       BoxShadow(
-                        offset: Offset(0, 4.w),
-                        blurRadius: 4.w,
+                        offset: const Offset(0, 4),
+                        blurRadius: 4,
                         color: AppColors.primaryColor.withOpacity(0.15),
                       ),
                     ],
