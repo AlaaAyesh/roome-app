@@ -11,15 +11,18 @@ class NumberOfContainer extends StatelessWidget {
     required this.number,
     required this.reduceOnTap,
     required this.increaseOnTap,
+    this.width,
   });
 
   final int number;
   final VoidCallback? reduceOnTap;
   final VoidCallback increaseOnTap;
+  final double? width;
 
   @override
   Widget build(BuildContext context) {
     return CustomBorderedContainer(
+      width: width,
       padding: const EdgeInsets.all(8),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,

@@ -19,13 +19,25 @@ class LoginForm extends StatefulWidget {
 }
 
 class _LoginFormState extends State<LoginForm> {
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  late final GlobalKey<FormState> _formKey;
+  late final AutovalidateMode autoValidateMode;
 
   final TextEditingController _nameOrEmailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
   final FocusNode _nameOrEmailFocusNode = FocusNode();
   final FocusNode _passwordFocusNode = FocusNode();
+
+  @override
+  void initState() {
+    _initFormAttributes();
+    super.initState();
+  }
+
+  void _initFormAttributes() {
+    _formKey = GlobalKey<FormState>();
+    autoValidateMode = AutovalidateMode.disabled;
+  }
 
   @override
   void dispose() {
@@ -60,7 +72,10 @@ class _LoginFormState extends State<LoginForm> {
             onEditingComplete: () {
               FocusScope.of(context).requestFocus(_passwordFocusNode);
             },
-            autoFillHints: const <String>[AutofillHints.email],
+            autoFillHints: const <String>[
+              AutofillHints.email,
+              AutofillHints.name,
+            ],
           ),
           const SizedBox(height: 56),
           ReusablePassTextField(
@@ -92,9 +107,11 @@ class _LoginFormState extends State<LoginForm> {
                 'Remember Me',
                 style: AppTextStyles.textStyle14Medium,
               ),
-              const Spacer(),
-              ForgotPasswordTextButton(
-                onTap: () {},
+              const SizedBox(width: 16),
+              Expanded(
+                child: ForgotPasswordTextButton(
+                  onTap: () {},
+                ),
               ),
             ],
           ),
@@ -116,6 +133,10 @@ class _LoginFormState extends State<LoginForm> {
         usernameOrEmail: _nameOrEmailController.text.trim(),
         password: _passwordController.text,
       );
+    } else {
+      setState(() {
+        autoValidateMode = AutovalidateMode.always;
+      });
     }
   }
 

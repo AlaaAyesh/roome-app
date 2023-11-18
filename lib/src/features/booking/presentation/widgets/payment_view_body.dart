@@ -89,6 +89,7 @@ class PaymentViewBody extends StatelessWidget {
                       hasScrollBody: false,
                       child: Column(
                         children: <Widget>[
+                          const BottomSpacer(height: 16),
                           const Spacer(),
                           CustomActionButton(
                             buttonText: 'Continue',

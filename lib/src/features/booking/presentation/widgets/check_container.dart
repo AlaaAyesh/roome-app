@@ -18,7 +18,6 @@ class CheckContainer extends StatelessWidget {
       builder: (context, state) {
         return Container(
           height: 46,
-          padding: const EdgeInsets.only(left: 18, right: 16),
           decoration: BoxDecoration(
             color: state.brightness == Brightness.light
                 ? AppColors.primaryColor.withOpacity(0.04)
@@ -26,8 +25,7 @@ class CheckContainer extends StatelessWidget {
             borderRadius: const BorderRadius.all(Radius.circular(10)),
           ),
           child: Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Text(
                 hint,
@@ -36,6 +34,7 @@ class CheckContainer extends StatelessWidget {
                   color: Colors.black.withOpacity(0.6),
                 ),
               ),
+              const SizedBox(width: 8),
               Icon(
                 Icons.calendar_today,
                 color: Colors.black.withOpacity(0.6),

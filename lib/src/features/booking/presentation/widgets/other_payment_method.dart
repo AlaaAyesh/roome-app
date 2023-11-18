@@ -37,18 +37,22 @@ class OtherPaymentMethod extends StatelessWidget {
           const SizedBox(width: 19),
           BlocBuilder<ThemesCubit, ThemeData>(
             builder: (context, state) {
-              return Text(
-                text,
-                style: AppTextStyles.hintStyle.copyWith(
-                  fontWeight: FontWeight.w500,
-                  color: state.brightness == Brightness.light
-                      ? Colors.black
-                      : Colors.white,
+              return Expanded(
+                child: Text(
+                  text,
+                  style: AppTextStyles.hintStyle.copyWith(
+                    fontWeight: FontWeight.w500,
+                    color: state.brightness == Brightness.light
+                        ? Colors.black
+                        : Colors.white,
+                  ),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
                 ),
               );
             },
           ),
-          const Spacer(),
+          const SizedBox(width: 8),
           BlocBuilder<PaymentCubit, PaymentState>(
             builder: (context, state) {
               PaymentCubit cubit = BlocProvider.of<PaymentCubit>(context);

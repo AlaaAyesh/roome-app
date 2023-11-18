@@ -47,8 +47,7 @@ class FavoriteBody extends StatelessWidget {
                           right: 27,
                           left: 14,
                         ),
-                        // If SliverFillRemaining not working use SliverToBoxAdapter
-                        sliver: SliverFillRemaining(
+                        sliver: SliverToBoxAdapter(
                           child: ListView.separated(
                             shrinkWrap: true,
                             padding: EdgeInsets.zero,

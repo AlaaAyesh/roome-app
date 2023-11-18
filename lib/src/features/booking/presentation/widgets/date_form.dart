@@ -48,10 +48,10 @@ class DateForm extends StatelessWidget {
             ),
             const SizedBox(height: 16),
             const Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              // mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
-                SectionTitle(title: 'Room Type'),
-                SectionTitle(title: 'Number of rooms'),
+                Expanded(child: SectionTitle(title: 'Room Type')),
+                Expanded(child: SectionTitle(title: 'Number of rooms')),
               ],
             ),
             const SizedBox(height: 16),
@@ -71,6 +71,8 @@ class DateForm extends StatelessWidget {
                         ),
                         Expanded(
                           child: DropdownButton(
+                            isExpanded: true,
+                            padding: EdgeInsets.zero,
                             borderRadius: BorderRadius.circular(10),
                             items: roomTypes
                                 .map<DropdownMenuItem<String>>((String type) {
@@ -108,7 +110,7 @@ class DateForm extends StatelessWidget {
                     ),
                   ),
                 ),
-                const SizedBox(width: 50),
+                const SizedBox(width: 8),
                 BlocBuilder<BookingOneCubit, BookingOneState>(
                   builder: (BuildContext context, BookingOneState state) {
                     BookingOneCubit cubit =
@@ -133,6 +135,7 @@ class DateForm extends StatelessWidget {
             ),
             const SizedBox(height: 16),
             NumberOfContainer(
+              width: 150,
               number: cubit.guestNumber,
               reduceOnTap: cubit.guestNumber == 1
                   ? null
@@ -141,7 +144,6 @@ class DateForm extends StatelessWidget {
             ),
             const SizedBox(height: 50),
             Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 Text(
                   'Total: ${computePrice(bookedHotelInfo.price!)}/night',
@@ -149,12 +151,15 @@ class DateForm extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                GlowingCustomButton(
-                  onPressed: () => _continueToBookingTwo(
-                    context: context,
-                    cubit: cubit,
+                const SizedBox(width: 16),
+                Expanded(
+                  child: GlowingCustomButton(
+                    onPressed: () => _continueToBookingTwo(
+                      context: context,
+                      cubit: cubit,
+                    ),
+                    buttonText: 'Continue',
                   ),
-                  buttonText: 'Continue',
                 ),
               ],
             ),

@@ -23,12 +23,14 @@ class PaymentDialog extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<ThemesCubit, ThemeData>(
       builder: (context, state) {
+        var size = MediaQuery.of(context).size;
+
         return Container(
           width: double.infinity,
-          margin: const EdgeInsets.only(
+          margin: EdgeInsets.only(
             left: 32,
             right: 32,
-            top: 250,
+            top: size.height * 0.2,
             bottom: 50,
           ),
           padding: const EdgeInsets.only(
@@ -108,7 +110,7 @@ class PaymentDialog extends StatelessWidget {
                 ),
                 backgroundColor: AppColors.primaryColor,
               ),
-              const SizedBox(height: 16),
+              const SizedBox(height: 8),
               CustomActionButton(
                 buttonText: 'Cancel',
                 onPressed: () => context.getBack(),

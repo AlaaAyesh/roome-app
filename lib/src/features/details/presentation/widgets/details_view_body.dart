@@ -96,22 +96,24 @@ class DetailsViewBody extends StatelessWidget {
                   children: <Widget>[
                     const Spacer(),
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
                         PricePerNightText(
                           price: hotel.price,
                           fontSize: 20,
                           mainAxisAlignment: MainAxisAlignment.start,
                         ),
-                        GlowingCustomButton(
-                          onPressed: () => context.navigateTo(
-                            routeName: Routes.bookingOneViewRoute,
-                            arguments: BookedHotelInfo(
-                              hotelName: hotel.name,
-                              price: hotel.price,
+                        const SizedBox(width: 16),
+                        Expanded(
+                          child: GlowingCustomButton(
+                            onPressed: () => context.navigateTo(
+                              routeName: Routes.bookingOneViewRoute,
+                              arguments: BookedHotelInfo(
+                                hotelName: hotel.name,
+                                price: hotel.price,
+                              ),
                             ),
+                            buttonText: 'Book Now',
                           ),
-                          buttonText: 'Book Now',
                         ),
                       ],
                     ),

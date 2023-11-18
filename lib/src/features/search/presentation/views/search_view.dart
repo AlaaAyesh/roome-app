@@ -37,7 +37,7 @@ class SearchView extends StatelessWidget {
             ),
             SliverPadding(
               padding: EdgeInsets.only(right: 27, left: 14),
-              sliver: SliverFillRemaining(
+              sliver: SliverToBoxAdapter(
                 child: SearchResultListView(),
               ),
             ),

@@ -16,7 +16,7 @@ class ExploreSeeAllView extends StatelessWidget {
           physics: AppConstants.physics,
           slivers: <Widget>[
             const CustomSliverAppBar(titleText: 'Explore'),
-            SliverFillRemaining(
+            SliverToBoxAdapter(
               child: SeeAllItems(
                 hotels: BlocProvider.of<HotelsCubit>(context).resultHotels,
               ),
