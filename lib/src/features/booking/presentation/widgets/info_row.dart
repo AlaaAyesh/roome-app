@@ -44,6 +44,8 @@ class InfoRow extends StatelessWidget {
               : AppTextStyles.textStyle12.copyWith(
                   fontWeight: FontWeight.w600,
                 ),
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
         ),
       ],
     );

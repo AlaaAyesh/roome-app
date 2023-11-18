@@ -16,7 +16,7 @@ class NearMeSeeAllView extends StatelessWidget {
           physics: AppConstants.physics,
           slivers: <Widget>[
             const CustomSliverAppBar(titleText: 'Near Me'),
-            SliverFillRemaining(
+            SliverToBoxAdapter(
               child: SeeAllItems(
                 hotels: BlocProvider.of<NearMeCubit>(context).resultNearMe,
               ),

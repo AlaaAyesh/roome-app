@@ -40,7 +40,7 @@ class NotificationsBody extends StatelessWidget {
                         right: 29,
                         left: 29,
                       ),
-                      sliver: SliverFillRemaining(
+                      sliver: SliverToBoxAdapter(
                         child: ListView.separated(
                           shrinkWrap: true,
                           padding: EdgeInsets.zero,

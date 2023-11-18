@@ -45,95 +45,93 @@ class BookingInfoContainer extends StatelessWidget {
               ),
             ],
           ),
-          child: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: <Widget>[
-                Text(
-                  bookingInfo.hotelName!,
-                  style: AppTextStyles.appBarTextStyle.copyWith(
-                    color: state.brightness == Brightness.light
-                        ? Colors.black
-                        : Colors.white,
-                  ),
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                  textAlign: TextAlign.start,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              Text(
+                bookingInfo.hotelName!,
+                style: AppTextStyles.appBarTextStyle.copyWith(
+                  color: state.brightness == Brightness.light
+                      ? Colors.black
+                      : Colors.white,
                 ),
-                const SizedBox(height: 14),
-                SizedBox(
-                  height: 150,
-                  child: PrettyQrView.data(
-                    data: jsonEncode(bookingInfo.toJson()),
-                    decoration: PrettyQrDecoration(
-                      shape: PrettyQrRoundedSymbol(
-                        color: state.brightness == Brightness.light
-                            ? Colors.black
-                            : Colors.white,
-                      ),
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                textAlign: TextAlign.start,
+              ),
+              const SizedBox(height: 14),
+              SizedBox(
+                height: 150,
+                child: PrettyQrView.data(
+                  data: jsonEncode(bookingInfo.toJson()),
+                  decoration: PrettyQrDecoration(
+                    shape: PrettyQrRoundedSymbol(
+                      color: state.brightness == Brightness.light
+                          ? Colors.black
+                          : Colors.white,
                     ),
                   ),
                 ),
-                const SizedBox(height: 14),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Text(
-                      'Booking ID:',
-                      style: AppTextStyles.textStyle15.copyWith(
-                        fontWeight: FontWeight.w500,
-                        color: state.brightness == Brightness.light
-                            ? Colors.black.withOpacity(0.46)
-                            : AppColors.white60,
-                      ),
+              ),
+              const SizedBox(height: 14),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Text(
+                    'Booking ID:',
+                    style: AppTextStyles.textStyle15.copyWith(
+                      fontWeight: FontWeight.w500,
+                      color: state.brightness == Brightness.light
+                          ? Colors.black.withOpacity(0.46)
+                          : AppColors.white60,
                     ),
-                    const SizedBox(width: 20),
-                    Text(
-                      _generateRandomString(),
-                      style: AppTextStyles.textStyle15.copyWith(
-                        fontWeight: FontWeight.w500,
-                      ),
+                  ),
+                  const SizedBox(width: 20),
+                  Text(
+                    _generateRandomString(),
+                    style: AppTextStyles.textStyle15.copyWith(
+                      fontWeight: FontWeight.w500,
                     ),
-                  ],
-                ),
-                const SizedBox(height: 30),
-                InfoRow(
-                  title: 'Name',
-                  info: '${bookingInfo.firstName} ${bookingInfo.surname}',
-                ),
-                const SizedBox(height: 15),
-                InfoRow(
-                  title: 'Email',
-                  info: bookingInfo.email!,
-                ),
-                const SizedBox(height: 15),
-                InfoRow(
-                  title: 'Phone',
-                  info: bookingInfo.phoneNumber!,
-                ),
-                const SizedBox(height: 20),
-                CheckInAndOut(
-                  checkInDate: bookingInfo.checkInDate!,
-                  checkOutDate: bookingInfo.checkOutDate!,
-                ),
-                const SizedBox(height: 20),
-                InfoRow(
-                  title: 'Room Type',
-                  info: bookingInfo.roomType!,
-                  isRoomType: true,
-                ),
-                const SizedBox(height: 15),
-                InfoRow(
-                  title: 'Guest',
-                  info: bookingInfo.guestNumber!.toString(),
-                ),
-                const SizedBox(height: 15),
-                InfoRow(
-                  title: 'Number of rooms',
-                  info: bookingInfo.roomNumber!.toString(),
-                ),
-              ],
-            ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 30),
+              InfoRow(
+                title: 'Name',
+                info: '${bookingInfo.firstName} ${bookingInfo.surname}',
+              ),
+              const SizedBox(height: 15),
+              InfoRow(
+                title: 'Email',
+                info: bookingInfo.email!,
+              ),
+              const SizedBox(height: 15),
+              InfoRow(
+                title: 'Phone',
+                info: bookingInfo.phoneNumber!,
+              ),
+              const SizedBox(height: 20),
+              CheckInAndOut(
+                checkInDate: bookingInfo.checkInDate!,
+                checkOutDate: bookingInfo.checkOutDate!,
+              ),
+              const SizedBox(height: 20),
+              InfoRow(
+                title: 'Room Type',
+                info: bookingInfo.roomType!,
+                isRoomType: true,
+              ),
+              const SizedBox(height: 15),
+              InfoRow(
+                title: 'Guest',
+                info: bookingInfo.guestNumber!.toString(),
+              ),
+              const SizedBox(height: 15),
+              InfoRow(
+                title: 'Number of rooms',
+                info: bookingInfo.roomNumber!.toString(),
+              ),
+            ],
           ),
         );
       },

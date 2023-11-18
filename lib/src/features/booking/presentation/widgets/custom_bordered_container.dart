@@ -5,10 +5,16 @@ import 'package:roome/src/core/helpers/hex_color_handler.dart';
 import 'package:roome/src/core/utils/app_colors.dart';
 
 class CustomBorderedContainer extends StatelessWidget {
-  const CustomBorderedContainer({super.key, required this.child, this.padding});
+  const CustomBorderedContainer({
+    super.key,
+    required this.child,
+    this.padding,
+    this.width,
+  });
 
   final Widget child;
   final EdgeInsetsGeometry? padding;
+  final double? width;
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +22,7 @@ class CustomBorderedContainer extends StatelessWidget {
       builder: (context, state) {
         return Container(
           constraints: const BoxConstraints(minHeight: 0),
-          width: 150,
+          width: width,
           padding: padding,
           decoration: BoxDecoration(
             color: state.brightness == Brightness.light

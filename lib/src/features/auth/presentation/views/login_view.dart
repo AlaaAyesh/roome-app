@@ -30,14 +30,14 @@ class LoginView extends StatelessWidget {
           return CustomScrollView(
             slivers: [
               SliverPadding(
-                padding: const EdgeInsets.only(top: 70, left: 38, right: 38),
+                padding: const EdgeInsets.only(left: 38, right: 38),
                 sliver: SliverToBoxAdapter(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       const AuthTitle(
                         title: 'Log in',
-                        margin: EdgeInsets.symmetric(vertical: 69),
+                        margin: EdgeInsets.only(bottom: 70, top: 140),
                       ),
                       LoginForm(cubit: cubit, state: state),
                       const OrText(),

@@ -27,13 +27,26 @@ class BookingTwoForm extends StatefulWidget {
 }
 
 class _BookingTwoFormState extends State<BookingTwoForm> {
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  late final GlobalKey<FormState> _formKey;
+  late final AutovalidateMode autoValidateMode;
+
   final TextEditingController _firstNameController = TextEditingController();
   final TextEditingController _surnameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _phoneController = TextEditingController();
   final TextEditingController _idController = TextEditingController();
   final TextEditingController _ninCodeNameController = TextEditingController();
+
+  @override
+  void initState() {
+    _initFormAttributes();
+    super.initState();
+  }
+
+  void _initFormAttributes() {
+    _formKey = GlobalKey<FormState>();
+    autoValidateMode = AutovalidateMode.disabled;
+  }
 
   @override
   void dispose() {
@@ -243,6 +256,10 @@ class _BookingTwoFormState extends State<BookingTwoForm> {
         ),
       );
       _clearTextFields();
+    } else {
+      setState(() {
+        autoValidateMode = AutovalidateMode.always;
+      });
     }
   }
 

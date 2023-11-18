@@ -18,7 +18,8 @@ class SignUpForm extends StatefulWidget {
 }
 
 class _SignUpFormState extends State<SignUpForm> {
-  final GlobalKey<FormState> _formKey = GlobalKey();
+  late final GlobalKey<FormState> _formKey;
+  late final AutovalidateMode autoValidateMode;
 
   final TextEditingController _firstNameController = TextEditingController();
   final TextEditingController _lastNameController = TextEditingController();
@@ -31,6 +32,17 @@ class _SignUpFormState extends State<SignUpForm> {
   final FocusNode _usernameFocusNode = FocusNode();
   final FocusNode _emailFocusNode = FocusNode();
   final FocusNode _passwordFocusNode = FocusNode();
+
+  @override
+  void initState() {
+    _initFormAttributes();
+    super.initState();
+  }
+
+  void _initFormAttributes() {
+    _formKey = GlobalKey<FormState>();
+    autoValidateMode = AutovalidateMode.disabled;
+  }
 
   @override
   void dispose() {
@@ -153,6 +165,10 @@ class _SignUpFormState extends State<SignUpForm> {
         email: _emailController.text.trim(),
         password: _passwordController.text,
       );
+    } else {
+      setState(() {
+        autoValidateMode = AutovalidateMode.always;
+      });
     }
   }
 

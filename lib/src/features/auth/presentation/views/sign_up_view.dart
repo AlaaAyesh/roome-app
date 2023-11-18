@@ -7,10 +7,10 @@ import 'package:roome/src/core/helpers/helper.dart';
 import 'package:roome/src/core/utils/app_navigator.dart';
 import 'package:roome/src/core/utils/app_strings.dart';
 import 'package:roome/src/core/utils/service_locator.dart';
+import 'package:roome/src/core/widgets/custom_sliver_app_bar.dart';
 import 'package:roome/src/features/auth/presentation/widgets/auth_title.dart';
 import 'package:roome/src/core/widgets/bottom_spacer.dart';
 import 'package:roome/src/core/widgets/custom_snack_bar.dart';
-import 'package:roome/src/core/widgets/get_back_arrow.dart';
 import 'package:roome/src/features/auth/presentation/widgets/have_account_or_not.dart';
 import 'package:roome/src/features/auth/presentation/widgets/loading_dialog.dart';
 import 'package:roome/src/features/auth/presentation/widgets/login_with_social_buttons.dart';
@@ -28,47 +28,49 @@ class SignUpView extends StatelessWidget {
         listener: (context, state) => controlSignUpViewStates(state, context),
         builder: (context, state) {
           SignUpCubit cubit = BlocProvider.of<SignUpCubit>(context);
-          return CustomScrollView(
-            slivers: [
-              SliverPadding(
-                padding: const EdgeInsets.only(top: 70, left: 38, right: 38),
-                sliver: SliverToBoxAdapter(
+          return SafeArea(
+            child: CustomScrollView(
+              slivers: [
+                const CustomSliverAppBar(),
+                SliverPadding(
+                  padding: const EdgeInsets.only(left: 38, right: 38),
+                  sliver: SliverToBoxAdapter(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        const AuthTitle(
+                          title: 'Sign up',
+                          margin: EdgeInsets.only(top: 40, bottom: 50),
+                        ),
+                        SignUpForm(cubit: cubit, state: state),
+                        const OrText(),
+                        const SizedBox(height: 16),
+                        LoginWithSocialButtons(
+                          googleOnTap: () {},
+                          appleOnTap: () {
+                            // TODO: Sign up with Apple
+                          },
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                SliverFillRemaining(
+                  hasScrollBody: false,
                   child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
-                      const GetBackArrow(),
-                      const AuthTitle(
-                        title: 'Sign up',
-                        margin: EdgeInsets.only(top: 40, bottom: 50),
+                      const Spacer(),
+                      HaveAccountOrNot(
+                        onTap: () => context.getBack(),
+                        buttonText: 'Log in',
+                        question: 'Already have an account?',
                       ),
-                      SignUpForm(cubit: cubit, state: state),
-                      const OrText(),
-                      const SizedBox(height: 16),
-                      LoginWithSocialButtons(
-                        googleOnTap: () {},
-                        appleOnTap: () {
-                          // TODO: Sign up with Apple
-                        },
-                      ),
+                      const BottomSpacer(height: 16),
                     ],
                   ),
                 ),
-              ),
-              SliverFillRemaining(
-                hasScrollBody: false,
-                child: Column(
-                  children: <Widget>[
-                    const Spacer(),
-                    HaveAccountOrNot(
-                      onTap: () => context.getBack(),
-                      buttonText: 'Log in',
-                      question: 'Already have an account?',
-                    ),
-                    const BottomSpacer(height: 16),
-                  ],
-                ),
-              ),
-            ],
+              ],
+            ),
           );
         },
       ),

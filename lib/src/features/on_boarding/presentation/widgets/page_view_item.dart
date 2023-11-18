@@ -9,6 +9,7 @@ class PageViewItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var size = MediaQuery.of(context).size;
     return Column(
       children: <Widget>[
         ClipRRect(
@@ -16,12 +17,12 @@ class PageViewItem extends StatelessWidget {
               const BorderRadius.only(bottomLeft: Radius.circular(50)),
           child: Image.asset(
             pageInfo.image,
-            height: 429,
+            height: size.height * 0.45,
             width: double.infinity,
             fit: BoxFit.cover,
           ),
         ),
-        const SizedBox(height: 56),
+        const Spacer(),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 5),
           child: Text(
@@ -39,6 +40,7 @@ class PageViewItem extends StatelessWidget {
             textAlign: TextAlign.center,
           ),
         ),
+        const Spacer(),
       ],
     );
   }

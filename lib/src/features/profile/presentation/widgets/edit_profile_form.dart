@@ -25,7 +25,9 @@ class EditProfileForm extends StatefulWidget {
 }
 
 class _EditProfileFormState extends State<EditProfileForm> {
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  late final GlobalKey<FormState> _formKey;
+  late final AutovalidateMode autoValidateMode;
+
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _occupationController = TextEditingController();
@@ -37,9 +39,15 @@ class _EditProfileFormState extends State<EditProfileForm> {
   bool _isPersonalValidateError = false;
   bool _isContactValidateError = false;
 
+  void _initFormAttributes() {
+    _formKey = GlobalKey<FormState>();
+    autoValidateMode = AutovalidateMode.disabled;
+  }
+
   @override
   void initState() {
     _assignValuesToControllers();
+    _initFormAttributes();
     super.initState();
   }
 
@@ -281,6 +289,10 @@ class _EditProfileFormState extends State<EditProfileForm> {
     if (_formKey.currentState!.validate()) {
       Helper.keyboardUnfocus(context);
       _updateUser(context);
+    } else {
+      setState(() {
+        autoValidateMode = AutovalidateMode.always;
+      });
     }
   }
 
@@ -288,6 +300,10 @@ class _EditProfileFormState extends State<EditProfileForm> {
     if (_formKey.currentState!.validate()) {
       Helper.keyboardUnfocus(context);
       _updateUserAndProfileImage(context);
+    } else {
+      setState(() {
+        autoValidateMode = AutovalidateMode.always;
+      });
     }
   }
 
