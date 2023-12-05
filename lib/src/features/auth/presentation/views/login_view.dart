@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:roome/src/config/routes/routes.dart';
+import 'package:roome/src/config/router/routes.dart';
 import 'package:roome/src/config/services/notification_service.dart';
 import 'package:roome/src/core/helpers/cache_helper.dart';
 import 'package:roome/src/core/helpers/helper.dart';
@@ -100,7 +100,7 @@ class LoginView extends StatelessWidget {
     CustomSnackBar.show(
       context: context,
       message: state.error,
-      title: "Warning",
+      state: CustomSnackBarState.error,
     );
   }
 

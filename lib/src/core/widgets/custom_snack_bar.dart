@@ -1,34 +1,40 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:roome/src/core/utils/app_text_styles.dart';
+
+enum CustomSnackBarState { warning, success, error }
 
 class CustomSnackBar {
   static void show({
     required BuildContext context,
     required String message,
-    required String title,
-    IconData icon = Icons.warning_rounded,
-    Color backgroundColor = Colors.red,
+    required CustomSnackBarState state,
     bool showCloseIcon = true,
+    String? title,
   }) {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+        padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 12.h),
         content: Row(
           children: <Widget>[
-            Icon(icon, color: Colors.white, size: 40),
-            const SizedBox(width: 10),
+            Icon(
+              _chooseSnackBarIcon(state),
+              color: Colors.white,
+              size: 40.w,
+            ),
+            SizedBox(width: 10.w),
             Flexible(
               child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Text(
-                    title,
+                    title ?? _chooseSnackBarTitle(state, context),
                     style: AppTextStyles.textStyle15.copyWith(
                       color: Colors.white,
                       fontWeight: FontWeight.w500,
                     ),
                   ),
-                  const SizedBox(height: 5),
                   Text(
                     message,
                     style:
@@ -42,13 +48,69 @@ class CustomSnackBar {
         dismissDirection: DismissDirection.horizontal,
         showCloseIcon: showCloseIcon,
         closeIconColor: Colors.white,
-        backgroundColor: backgroundColor,
+        backgroundColor: _chooseSnackBarColor(state),
         duration: const Duration(seconds: 3),
         behavior: SnackBarBehavior.floating,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(16),
+          borderRadius: BorderRadius.circular(16.r),
         ),
       ),
     );
+  }
+
+  static Color _chooseSnackBarColor(CustomSnackBarState state) {
+    Color color;
+    switch (state) {
+      case CustomSnackBarState.success:
+        color = Colors.green;
+        break;
+      case CustomSnackBarState.error:
+        color = Colors.red;
+        break;
+      case CustomSnackBarState.warning:
+        color = Colors.amber;
+        break;
+    }
+    return color;
+  }
+
+  static IconData _chooseSnackBarIcon(CustomSnackBarState state) {
+    IconData icon;
+
+    switch (state) {
+      case CustomSnackBarState.warning:
+        icon = Icons.warning_amber_outlined;
+        break;
+
+      case CustomSnackBarState.success:
+        icon = Icons.check_circle;
+        break;
+
+      case CustomSnackBarState.error:
+        icon = Icons.error;
+        break;
+    }
+
+    return icon;
+  }
+
+  static String _chooseSnackBarTitle(
+    CustomSnackBarState state,
+    BuildContext context,
+  ) {
+    String title;
+
+    switch (state) {
+      case CustomSnackBarState.error:
+      case CustomSnackBarState.warning:
+        title = 'Warning';
+        break;
+
+      case CustomSnackBarState.success:
+        title = 'Success';
+        break;
+    }
+
+    return title;
   }
 }

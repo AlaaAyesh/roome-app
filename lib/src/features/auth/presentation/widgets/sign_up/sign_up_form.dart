@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:roome/src/core/helpers/helper.dart';
+import 'package:roome/src/core/helpers/auth_helper.dart';
 import 'package:roome/src/features/auth/presentation/widgets/auth_button.dart';
 import 'package:roome/src/features/auth/presentation/widgets/forgot_password_text_button.dart';
 import 'package:roome/src/features/auth/presentation/widgets/reusable_pass_text_form_field.dart';
@@ -84,7 +84,7 @@ class _SignUpFormState extends State<SignUpForm> {
             keyboardType: TextInputType.text,
             textCapitalization: TextCapitalization.none,
             validating: (String? value) {
-              Helper.validatingNameField(
+              AuthHelper.validatingNameField(
                 textName: 'Username',
                 context: context,
                 value: value,
@@ -104,7 +104,7 @@ class _SignUpFormState extends State<SignUpForm> {
             keyboardType: TextInputType.emailAddress,
             prefixIcon: Icons.email,
             validating: (String? value) {
-              Helper.validatingEmailField(
+              AuthHelper.validatingEmailField(
                 context: context,
                 value: value,
               );
@@ -125,7 +125,7 @@ class _SignUpFormState extends State<SignUpForm> {
                 : Icons.visibility_off_rounded,
             obscure: widget.cubit.signUpPassVisibility,
             validating: (String? value) {
-              Helper.validatingPasswordField(
+              AuthHelper.validatingPasswordField(
                 context: context,
                 value: value,
               );
@@ -156,7 +156,7 @@ class _SignUpFormState extends State<SignUpForm> {
 
   void _signUp(BuildContext context) {
     if (_formKey.currentState!.validate()) {
-      Helper.keyboardUnfocus(context);
+      AuthHelper.keyboardUnfocus(context);
 
       widget.cubit.userSignUp(
         firstName: _firstNameController.text.trim(),

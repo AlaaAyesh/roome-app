@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:roome/src/core/helpers/helper.dart';
+import 'package:roome/src/core/helpers/auth_helper.dart';
 import 'package:roome/src/features/auth/presentation/widgets/reusable_text_form_field.dart';
 
 class NameTextField extends StatelessWidget {
@@ -27,7 +27,7 @@ class NameTextField extends StatelessWidget {
         keyboardType: TextInputType.text,
         textCapitalization: TextCapitalization.words,
         validating: (String? value) {
-          Helper.validatingNameField(
+          AuthHelper.validatingNameField(
             textName: hint,
             context: context,
             value: value,

@@ -2,6 +2,7 @@ import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:roome/src/config/themes/cubit/themes_cubit.dart';
+import 'package:roome/src/core/helpers/auth_helper.dart';
 import 'package:roome/src/core/helpers/helper.dart';
 import 'package:roome/src/core/utils/app_colors.dart';
 import 'package:roome/src/core/utils/app_constants.dart';
@@ -287,7 +288,7 @@ class _EditProfileFormState extends State<EditProfileForm> {
 
   void _validateAndUpdate(BuildContext context) {
     if (_formKey.currentState!.validate()) {
-      Helper.keyboardUnfocus(context);
+      AuthHelper.keyboardUnfocus(context);
       _updateUser(context);
     } else {
       setState(() {
@@ -298,7 +299,7 @@ class _EditProfileFormState extends State<EditProfileForm> {
 
   void _validateAndUpdateUserWithProfileImage(context) {
     if (_formKey.currentState!.validate()) {
-      Helper.keyboardUnfocus(context);
+      AuthHelper.keyboardUnfocus(context);
       _updateUserAndProfileImage(context);
     } else {
       setState(() {
@@ -361,8 +362,7 @@ class _EditProfileFormState extends State<EditProfileForm> {
       CustomSnackBar.show(
         context: context,
         message: 'User updated successfully',
-        title: 'Success',
-        backgroundColor: Colors.green,
+        state: CustomSnackBarState.success,
       );
     }
 
@@ -371,7 +371,7 @@ class _EditProfileFormState extends State<EditProfileForm> {
       CustomSnackBar.show(
         context: context,
         message: state.error,
-        title: 'Warning',
+        state: CustomSnackBarState.error,
       );
     }
   }

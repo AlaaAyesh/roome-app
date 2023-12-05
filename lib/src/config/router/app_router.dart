@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:roome/src/config/routes/routes.dart';
+import 'package:roome/src/config/router/routes.dart';
 import 'package:roome/src/core/models/using_hero_model.dart';
 import 'package:roome/src/core/utils/app_text_styles.dart';
 import 'package:roome/service_locator.dart';

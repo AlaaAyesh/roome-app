@@ -93,11 +93,9 @@ class FavoriteBody extends StatelessWidget {
   void controlFavoriteStates(FavoriteState state, BuildContext context) {
     if (state is RemoveFromFavSuccessState) {
       CustomSnackBar.show(
-        backgroundColor: Colors.green,
         context: context,
         message: state.message,
-        title: "Success",
-        icon: Icons.check_circle,
+        state: CustomSnackBarState.success,
       );
     }
   }

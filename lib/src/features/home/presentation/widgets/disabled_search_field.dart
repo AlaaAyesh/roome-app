@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:roome/src/config/routes/routes.dart';
+import 'package:roome/src/config/router/routes.dart';
 import 'package:roome/src/core/utils/app_colors.dart';
 import 'package:roome/src/core/utils/app_navigator.dart';
 import 'package:roome/src/core/utils/app_strings.dart';

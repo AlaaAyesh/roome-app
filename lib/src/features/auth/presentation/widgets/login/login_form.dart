@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:roome/src/core/helpers/helper.dart';
+import 'package:roome/src/core/helpers/auth_helper.dart';
 import 'package:roome/src/core/utils/app_text_styles.dart';
 import 'package:roome/src/features/auth/presentation/widgets/auth_button.dart';
 import 'package:roome/src/features/auth/presentation/widgets/forgot_password_text_button.dart';
@@ -62,7 +62,7 @@ class _LoginFormState extends State<LoginForm> {
             keyboardType: TextInputType.emailAddress,
             prefixIcon: Icons.person,
             validating: (String? value) {
-              Helper.validatingNameField(
+              AuthHelper.validatingNameField(
                 textName: 'Username or Email',
                 context: context,
                 value: value,
@@ -90,7 +90,7 @@ class _LoginFormState extends State<LoginForm> {
                 widget.cubit.switchPassVisibility(),
             obscure: widget.cubit.loginPassVisibility,
             validating: (String? value) {
-              Helper.validatingPasswordField(
+              AuthHelper.validatingPasswordField(
                 context: context,
                 value: value,
               );
@@ -128,7 +128,7 @@ class _LoginFormState extends State<LoginForm> {
 
   void _login(BuildContext context) {
     if (_formKey.currentState!.validate()) {
-      Helper.keyboardUnfocus(context);
+      AuthHelper.keyboardUnfocus(context);
       widget.cubit.userSignIn(
         usernameOrEmail: _nameOrEmailController.text.trim(),
         password: _passwordController.text,
