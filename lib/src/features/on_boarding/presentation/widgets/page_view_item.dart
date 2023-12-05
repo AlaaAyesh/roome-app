@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:roome/src/core/utils/app_text_styles.dart';
 import 'package:roome/src/features/on_boarding/domain/entities/on_boarding_entity.dart';
 
@@ -9,38 +10,30 @@ class PageViewItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var size = MediaQuery.of(context).size;
     return Column(
       children: <Widget>[
-        ClipRRect(
-          borderRadius:
-              const BorderRadius.only(bottomLeft: Radius.circular(50)),
-          child: Image.asset(
-            pageInfo.image,
-            height: size.height * 0.45,
-            width: double.infinity,
-            fit: BoxFit.cover,
+        Expanded(
+          child: ClipRRect(
+            borderRadius: BorderRadius.only(bottomLeft: Radius.circular(50.r)),
+            child: Image.asset(
+              pageInfo.image,
+              width: double.infinity,
+              fit: BoxFit.cover,
+            ),
           ),
         ),
-        const Spacer(),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 5),
-          child: Text(
-            pageInfo.heading,
-            style: AppTextStyles.onBoardingHeadingTextStyle,
-            textAlign: TextAlign.center,
-          ),
+        SizedBox(height: 56.h),
+        Text(
+          pageInfo.heading,
+          style: AppTextStyles.onBoardingHeadingTextStyle,
+          textAlign: TextAlign.center,
         ),
-        const SizedBox(height: 5),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 10),
-          child: Text(
-            pageInfo.subHeading,
-            style: AppTextStyles.textStyle15,
-            textAlign: TextAlign.center,
-          ),
+        SizedBox(height: 5.h),
+        Text(
+          pageInfo.subHeading,
+          style: AppTextStyles.textStyle15,
+          textAlign: TextAlign.center,
         ),
-        const Spacer(),
       ],
     );
   }

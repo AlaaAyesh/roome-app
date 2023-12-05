@@ -1,9 +1,10 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:roome/src/core/helpers/helper.dart';
 import 'package:roome/src/core/utils/app_colors.dart';
 import 'package:roome/src/core/utils/app_constants.dart';
-import 'package:roome/src/features/profile/presentation/widgets/confirm_update_image_button.dart';
+import 'package:roome/src/core/widgets/main_button.dart';
 import 'package:roome/src/features/roome/presentation/cubit/roome_cubit.dart';
 
 class UpdateImageButtonAndLoading extends StatelessWidget {
@@ -24,7 +25,15 @@ class UpdateImageButtonAndLoading extends StatelessWidget {
                 if (cubit.profileImage != null &&
                     state is! UploadProfileImageSuccessState) ...[
                   const SizedBox(height: 15),
-                  const ConfirmUpdateImageButton(),
+                  MainButton(
+                    text: 'Update profile Image',
+                    onPressed: () {
+                      BlocProvider.of<RoomeCubit>(context).uploadProfileImage();
+                    },
+                    boxShadow: [
+                      Helper.glowingShadow(),
+                    ],
+                  ),
                 ],
                 if (state is UploadingProfileImageLoadingState)
                   const SizedBox(height: 10),

@@ -4,13 +4,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:roome/src/config/themes/cubit/themes_cubit.dart';
 import 'package:roome/src/core/helpers/auth_helper.dart';
 import 'package:roome/src/core/helpers/helper.dart';
-import 'package:roome/src/core/utils/app_colors.dart';
 import 'package:roome/src/core/utils/app_constants.dart';
 import 'package:roome/src/core/utils/app_navigator.dart';
 import 'package:roome/src/core/utils/app_text_styles.dart';
 import 'package:roome/src/core/widgets/bottom_spacer.dart';
 import 'package:roome/src/core/widgets/custom_snack_bar.dart';
-import 'package:roome/src/core/widgets/my_custom_button.dart';
+import 'package:roome/src/core/widgets/main_button.dart';
 import 'package:roome/src/features/auth/presentation/widgets/loading_dialog.dart';
 import 'package:roome/src/core/widgets/visibility_icon_button.dart';
 import 'package:roome/src/features/profile/presentation/widgets/edit_profile_text_field.dart';
@@ -255,25 +254,16 @@ class _EditProfileFormState extends State<EditProfileForm> {
                 },
                 child: FadeInLeft(
                   from: AppConstants.fadeInHorizontalValue,
-                  child: MyCustomButton(
-                    height: 50,
-                    width: double.infinity,
-                    backgroundColor: AppColors.primaryColor,
-                    borderRadius: const BorderRadius.all(Radius.circular(12)),
+                  child: MainButton(
                     onPressed: () {
                       RoomeCubit.getObject(context).profileImage == null
                           ? _validateAndUpdate(context)
                           : _validateAndUpdateUserWithProfileImage(context);
                     },
-                    hasPrefix: false,
-                    child: Center(
-                      child: Text(
-                        'Save Edit',
-                        style:
-                            AppTextStyles.onBoardingHeadingTextStyle.copyWith(
-                          color: Colors.white,
-                        ),
-                      ),
+                    text: 'Save Edit',
+                    textStyle:
+                        AppTextStyles.onBoardingHeadingTextStyle.copyWith(
+                      color: Colors.white,
                     ),
                   ),
                 ),

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:roome/src/core/helpers/auth_helper.dart';
-import 'package:roome/src/features/auth/presentation/widgets/auth_button.dart';
+import 'package:roome/src/core/widgets/main_button.dart';
 import 'package:roome/src/features/auth/presentation/widgets/forgot_password_text_button.dart';
 import 'package:roome/src/features/auth/presentation/widgets/reusable_pass_text_form_field.dart';
 import 'package:roome/src/features/auth/presentation/widgets/reusable_text_form_field.dart';
@@ -144,8 +144,8 @@ class _SignUpFormState extends State<SignUpForm> {
             ),
           ),
           const SizedBox(height: 30),
-          AuthButton(
-            buttonTitle: 'Sign up',
+          MainButton(
+            text: 'Sign up',
             onPressed: () => _signUp(context),
           ),
           const SizedBox(height: 30),

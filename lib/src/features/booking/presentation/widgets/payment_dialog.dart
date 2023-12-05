@@ -8,7 +8,7 @@ import 'package:roome/src/core/utils/app_assets.dart';
 import 'package:roome/src/core/utils/app_colors.dart';
 import 'package:roome/src/core/utils/app_navigator.dart';
 import 'package:roome/src/core/utils/app_text_styles.dart';
-import 'package:roome/src/core/widgets/custom_action_button.dart';
+import 'package:roome/src/core/widgets/main_button.dart';
 import 'package:roome/src/features/booking/data/models/booking_info.dart';
 
 class PaymentDialog extends StatelessWidget {
@@ -96,27 +96,20 @@ class PaymentDialog extends StatelessWidget {
                 textAlign: TextAlign.center,
               ),
               const Spacer(),
-              CustomActionButton(
-                buttonText: 'View Booking Ticket',
+              MainButton(
+                text: 'View Booking Ticket',
                 onPressed: () {
                   context.navigateTo(
                     routeName: Routes.ticketViewRoute,
                     arguments: bookingInfo,
                   );
                 },
-                textStyle: AppTextStyles.textStyle15.copyWith(
-                  color: Colors.white,
-                  fontWeight: FontWeight.w600,
-                ),
-                backgroundColor: AppColors.primaryColor,
               ),
               const SizedBox(height: 8),
-              CustomActionButton(
-                buttonText: 'Cancel',
+              MainButton(
+                text: 'Cancel',
                 onPressed: () => context.getBack(),
-                textStyle: AppTextStyles.textStyle15.copyWith(
-                  fontWeight: FontWeight.w600,
-                ),
+                textColor: Colors.black,
                 backgroundColor: AppColors.grey,
               ),
             ],

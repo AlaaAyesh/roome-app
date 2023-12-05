@@ -6,7 +6,7 @@ import 'package:roome/src/core/utils/app_colors.dart';
 import 'package:roome/src/core/utils/app_navigator.dart';
 import 'package:roome/src/core/utils/app_text_styles.dart';
 import 'package:roome/src/core/widgets/glowing_custom_button.dart';
-import 'package:roome/src/core/widgets/my_custom_button.dart';
+import 'package:roome/src/core/widgets/main_button.dart';
 import 'package:roome/src/features/favorite/presentation/cubit/favorite_cubit.dart';
 import 'package:roome/src/features/favorite/presentation/widgets/favorite_card.dart';
 
@@ -106,22 +106,11 @@ class _FavRemoveBottomSheetState extends State<FavRemoveBottomSheet>
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
-                  MyCustomButton(
-                    height: 50,
-                    width: 148,
-                    borderRadius: const BorderRadius.all(Radius.circular(12)),
+                  MainButton(
                     backgroundColor: AppColors.primaryColor.withOpacity(0.24),
                     onPressed: () => context.getBack(),
-                    hasPrefix: false,
-                    child: Center(
-                      child: Text(
-                        'Cancel',
-                        style: AppTextStyles.textStyle15.copyWith(
-                          color: AppColors.primaryColor,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                    ),
+                    text: 'Cancel',
+                    textColor: AppColors.primaryColor,
                   ),
                   GlowingCustomButton(
                     onPressed: () {

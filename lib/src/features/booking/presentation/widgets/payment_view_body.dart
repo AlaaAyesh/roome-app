@@ -8,10 +8,9 @@ import 'package:roome/src/core/utils/app_colors.dart';
 import 'package:roome/src/core/utils/app_constants.dart';
 import 'package:roome/src/core/utils/app_navigator.dart';
 import 'package:roome/src/core/utils/app_strings.dart';
-import 'package:roome/src/core/utils/app_text_styles.dart';
 import 'package:roome/src/core/widgets/bottom_spacer.dart';
-import 'package:roome/src/core/widgets/custom_action_button.dart';
 import 'package:roome/src/core/widgets/custom_sliver_app_bar.dart';
+import 'package:roome/src/core/widgets/main_button.dart';
 import 'package:roome/src/features/booking/data/models/booking_info.dart';
 import 'package:roome/src/features/booking/presentation/cubits/payment/payment_cubit.dart';
 import 'package:roome/src/features/booking/presentation/widgets/other_payment_method.dart';
@@ -91,41 +90,17 @@ class PaymentViewBody extends StatelessWidget {
                         children: <Widget>[
                           const BottomSpacer(height: 16),
                           const Spacer(),
-                          CustomActionButton(
-                            buttonText: 'Continue',
-                            onPressed: () {
-                              _handleSuccessNotifications(context);
-
-                              showAdaptiveDialog(
-                                context: context,
-                                builder: (context) =>
-                                    PaymentDialog(bookingInfo: bookingInfo),
-                              );
-
-                              BlocProvider.of<PaymentCubit>(context)
-                                  .convertContinue();
-                            },
-                            textStyle: AppTextStyles.textStyle15.copyWith(
-                              color: Colors.white,
-                              fontWeight: FontWeight.w600,
-                            ),
-                            backgroundColor: AppColors.primaryColor,
+                          MainButton(
+                            text: 'Continue',
+                            onPressed: () => _continue(context),
                           ),
                           const SizedBox(height: 15),
                           if (BlocProvider.of<PaymentCubit>(context)
                                   .isContinueTapped ==
                               false)
-                            CustomActionButton(
-                              buttonText: 'Cancel Booking',
-                              onPressed: () {
-                                _handleCancelNotifications(context);
-
-                                context.getBack();
-                              },
-                              textStyle: AppTextStyles.textStyle15.copyWith(
-                                color: Colors.white,
-                                fontWeight: FontWeight.w600,
-                              ),
+                            MainButton(
+                              text: 'Cancel Booking',
+                              onPressed: () => _cancelBooking(context),
                               backgroundColor: Colors.red,
                             ),
                           const BottomSpacer(),
@@ -136,6 +111,23 @@ class PaymentViewBody extends StatelessWidget {
                 ],
               )),
     );
+  }
+
+  void _cancelBooking(BuildContext context) {
+    _handleCancelNotifications(context);
+
+    context.getBack();
+  }
+
+  void _continue(BuildContext context) {
+    _handleSuccessNotifications(context);
+
+    showAdaptiveDialog(
+      context: context,
+      builder: (context) => PaymentDialog(bookingInfo: bookingInfo),
+    );
+
+    BlocProvider.of<PaymentCubit>(context).convertContinue();
   }
 
   void _handleCancelNotifications(BuildContext context) {

@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:roome/src/core/helpers/auth_helper.dart';
 import 'package:roome/src/core/utils/app_text_styles.dart';
+import 'package:roome/src/core/widgets/main_button.dart';
 import 'package:roome/src/features/auth/presentation/cubit/login/login_cubit.dart';
-import 'package:roome/src/features/auth/presentation/widgets/auth_button.dart';
 import 'package:roome/src/features/auth/presentation/widgets/forgot_password_text_button.dart';
 import 'package:roome/src/features/auth/presentation/widgets/reusable_pass_text_form_field.dart';
 import 'package:roome/src/features/auth/presentation/widgets/reusable_text_form_field.dart';
@@ -117,8 +117,8 @@ class _LoginFormState extends State<LoginForm> {
                 ],
               ),
               const SizedBox(height: 34),
-              AuthButton(
-                buttonTitle: 'Log In',
+              MainButton(
+                text: 'Log In',
                 onPressed: () => _login(context),
               ),
               const SizedBox(height: 40),

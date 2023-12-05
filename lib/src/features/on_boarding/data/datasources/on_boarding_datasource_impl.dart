@@ -24,7 +24,7 @@ class OnBoardingDataSourceImpl implements OnBoardingDataSource {
       ),
       OnBoardingModel(
         image: AppAssets.imageOnBoarding3,
-        heading: 'Enjoy The Most Beautiful Places',
+        heading: 'Enjoy Our Beautiful Places',
         subHeading: ' Learn about the most important tourist places',
       ),
     ];

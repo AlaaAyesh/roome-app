@@ -2,10 +2,9 @@ import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:roome/src/core/utils/app_colors.dart';
 import 'package:roome/src/core/utils/app_constants.dart';
-import 'package:roome/src/core/utils/app_text_styles.dart';
 import 'package:roome/src/core/widgets/bottom_spacer.dart';
-import 'package:roome/src/core/widgets/custom_action_button.dart';
 import 'package:roome/src/core/widgets/custom_sliver_app_bar.dart';
+import 'package:roome/src/core/widgets/main_button.dart';
 import 'package:roome/src/features/booking/data/models/booking_info.dart';
 import 'package:roome/src/features/booking/presentation/widgets/booking_info_container.dart';
 
@@ -46,13 +45,9 @@ class TicketView extends StatelessWidget {
                     children: <Widget>[
                       const BottomSpacer(height: 16),
                       const Spacer(),
-                      CustomActionButton(
-                        buttonText: 'Download Ticket',
+                      MainButton(
+                        text: 'Download Ticket',
                         onPressed: () {},
-                        textStyle: AppTextStyles.textStyle15.copyWith(
-                          color: Colors.white,
-                          fontWeight: FontWeight.w600,
-                        ),
                         backgroundColor: AppColors.grey,
                         boxShadow: <BoxShadow>[
                           BoxShadow(

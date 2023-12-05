@@ -4,7 +4,7 @@ import 'package:roome/src/config/router/routes.dart';
 import 'package:roome/src/core/utils/app_colors.dart';
 import 'package:roome/src/core/utils/app_navigator.dart';
 import 'package:roome/src/core/utils/app_text_styles.dart';
-import 'package:roome/src/core/widgets/my_custom_button.dart';
+import 'package:roome/src/core/widgets/main_button.dart';
 
 class LocationViewBody extends StatefulWidget {
   const LocationViewBody({super.key});
@@ -29,8 +29,6 @@ class _LocationViewBodyState extends State<LocationViewBody> {
 
   @override
   Widget build(BuildContext context) {
-    var size = MediaQuery.of(context).size;
-
     return Stack(
       alignment: Alignment.bottomRight,
       children: <Widget>[
@@ -85,24 +83,16 @@ class _LocationViewBodyState extends State<LocationViewBody> {
         ),
         Padding(
           padding: const EdgeInsets.only(right: 8, bottom: 16),
-          child: MyCustomButton(
-            backgroundColor: AppColors.primaryColor,
-            height: 30,
-            width: size.width * 0.3,
-            borderRadius: BorderRadius.circular(16),
-            onPressed: () =>
-                context.navigateTo(routeName: Routes.searchLocationViewRoute),
-            hasPrefix: false,
-            child: Center(
-              child: Text(
-                'Search',
-                style: AppTextStyles.textStyle12.copyWith(
-                  color: Colors.white,
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
-            ),
-          ),
+          child: MainButton(
+              backgroundColor: AppColors.primaryColor,
+              borderRadius: 16,
+              onPressed: () =>
+                  context.navigateTo(routeName: Routes.searchLocationViewRoute),
+              text: 'Search',
+              textStyle: AppTextStyles.textStyle12.copyWith(
+                color: Colors.white,
+                fontWeight: FontWeight.w600,
+              )),
         ),
       ],
     );

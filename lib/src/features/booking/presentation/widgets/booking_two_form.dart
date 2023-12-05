@@ -9,7 +9,7 @@ import 'package:roome/src/core/utils/app_constants.dart';
 import 'package:roome/src/core/utils/app_navigator.dart';
 import 'package:roome/src/core/utils/app_text_styles.dart';
 import 'package:roome/src/core/widgets/bottom_spacer.dart';
-import 'package:roome/src/core/widgets/custom_action_button.dart';
+import 'package:roome/src/core/widgets/main_button.dart';
 import 'package:roome/src/features/booking/data/models/booking_info.dart';
 import 'package:roome/src/features/booking/presentation/widgets/booking_two_text_field.dart';
 import 'package:roome/src/features/booking/presentation/widgets/section_title.dart';
@@ -207,14 +207,9 @@ class _BookingTwoFormState extends State<BookingTwoForm> {
           const SizedBox(height: 35),
           FadeInUp(
             from: AppConstants.fadeInUpValue,
-            child: CustomActionButton(
-              buttonText: 'Continue',
+            child: MainButton(
+              text: 'Continue',
               onPressed: () => _continueToPayment(),
-              textStyle: AppTextStyles.textStyle15.copyWith(
-                color: Colors.white,
-                fontWeight: FontWeight.w600,
-              ),
-              backgroundColor: AppColors.primaryColor,
             ),
           ),
           const BottomSpacer(),
