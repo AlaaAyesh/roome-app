@@ -26,14 +26,12 @@ class Reservation extends Equatable {
         checkOutDate: DateTime.parse(json["checkOutDate"]),
       );
 
-  Map<String, dynamic> toJson() => {
-        "id": id,
-        "hotel": hotel?.toJson(),
-        "roomNumber": roomNumber,
-        "checkInDate": checkInDate?.toIso8601String(),
-        "checkOutDate": checkOutDate?.toIso8601String(),
-      };
-
   @override
-  List<Object?> get props => [id, hotel, roomNumber, checkInDate, checkOutDate];
+  List<Object?> get props => [
+        id,
+        hotel,
+        roomNumber,
+        checkInDate,
+        checkOutDate,
+      ];
 }

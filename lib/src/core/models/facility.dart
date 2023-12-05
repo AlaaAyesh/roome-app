@@ -17,12 +17,6 @@ class Facility extends Equatable {
         icon: json["icon"] as String?,
       );
 
-  Map<String, dynamic> toJson() => {
-        "id": id,
-        "name": name,
-        "icon": icon,
-      };
-
   @override
   List<Object?> get props => [id, name, icon];
 }

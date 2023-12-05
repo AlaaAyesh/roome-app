@@ -64,24 +64,6 @@ class UserModel extends Equatable {
         nationality: json["nationality"] as String?,
       );
 
-  Map<String, dynamic> toJson() => {
-        "id": id,
-        "firstName": firstName,
-        "middleName": middleName,
-        "lastName": lastName,
-        "username": username,
-        "email": email,
-        "password": password,
-        "role": role?.toJson(),
-        "profileImage": profileImage,
-        "reservations":
-            List<dynamic>.from(reservations!.map((x) => x.toJson())),
-        "favorites": List<dynamic>.from(favorites!.map((x) => x.toJson())),
-        "nationality": nationality,
-        "occupation": occupation,
-        "phoneNumber": phoneNumber,
-      };
-
   @override
   List<Object?> get props => [
         id,

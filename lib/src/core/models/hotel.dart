@@ -43,18 +43,6 @@ class Hotel extends Equatable {
             json["images"].map((x) => HotelImage.fromJson(x))),
       );
 
-  Map<String, dynamic> toJson() => {
-        "id": id,
-        "name": name,
-        "description": description,
-        "location": location,
-        "rate": rate,
-        "price": price,
-        "admin": admin,
-        "numberRooms": numberRooms,
-        "facilities": List<dynamic>.from(facilities!.map((x) => x.toJson())),
-      };
-
   @override
   List<Object?> get props => [
         id,
@@ -85,12 +73,6 @@ class HotelImage extends Equatable {
         name: json["name"] as String?,
         path: json["path"] as String?,
       );
-
-  Map<String, dynamic> toJson() => {
-        "id": id,
-        "name": name,
-        "path": path,
-      };
 
   @override
   List<Object?> get props => [id, name, path];
