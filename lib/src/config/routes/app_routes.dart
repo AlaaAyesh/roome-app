@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:roome/src/config/routes/routes.dart';
 import 'package:roome/src/core/models/using_hero_model.dart';
 import 'package:roome/src/core/utils/app_text_styles.dart';
-import 'package:roome/src/core/utils/service_locator.dart';
+import 'package:roome/service_locator.dart';
 import 'package:roome/src/features/auth/presentation/cubit/login/login_cubit.dart';
 import 'package:roome/src/features/auth/presentation/views/login_view.dart';
 import 'package:roome/src/features/auth/presentation/cubit/sign_up/sign_up_cubit.dart';

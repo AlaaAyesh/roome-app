@@ -8,7 +8,7 @@ import 'package:roome/src/core/api/api_consumer.dart';
 import 'package:roome/src/core/api/app_interceptors.dart';
 import 'package:roome/src/core/api/end_points.dart';
 import 'package:roome/src/core/api/status_codes.dart';
-import 'package:roome/src/core/utils/service_locator.dart';
+import 'package:roome/service_locator.dart';
 
 class DioConsumer implements ApiConsumer {
   final Dio client;

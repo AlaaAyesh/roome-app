@@ -87,6 +87,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 final GetIt serviceLocator = GetIt.instance;
 
+class ServiceLocator {
+  
 Future<void> setUpServiceLocator() async {
   await _setUpForExternal();
 
@@ -429,4 +431,6 @@ void _setUpForCubits() {
   );
 
   serviceLocator.registerFactory<PaymentCubit>(() => PaymentCubit());
+}
+
 }

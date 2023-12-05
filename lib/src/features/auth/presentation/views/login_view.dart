@@ -6,7 +6,7 @@ import 'package:roome/src/core/helpers/cache_helper.dart';
 import 'package:roome/src/core/helpers/helper.dart';
 import 'package:roome/src/core/utils/app_navigator.dart';
 import 'package:roome/src/core/utils/app_strings.dart';
-import 'package:roome/src/core/utils/service_locator.dart';
+import 'package:roome/service_locator.dart';
 import 'package:roome/src/features/auth/presentation/widgets/auth_title.dart';
 import 'package:roome/src/core/widgets/bottom_spacer.dart';
 import 'package:roome/src/core/widgets/custom_snack_bar.dart';

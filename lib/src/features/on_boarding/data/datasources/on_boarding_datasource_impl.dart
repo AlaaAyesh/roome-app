@@ -3,7 +3,7 @@ import 'package:roome/src/config/routes/routes.dart';
 import 'package:roome/src/core/helpers/cache_helper.dart';
 import 'package:roome/src/core/utils/app_assets.dart';
 import 'package:roome/src/core/utils/app_navigator.dart';
-import 'package:roome/src/core/utils/service_locator.dart';
+import 'package:roome/service_locator.dart';
 import 'package:roome/src/features/on_boarding/data/datasources/on_boarding_datasource.dart';
 import 'package:roome/src/features/on_boarding/data/models/on_boarding_model.dart';
 import 'package:roome/src/features/on_boarding/domain/entities/on_boarding_entity.dart';
