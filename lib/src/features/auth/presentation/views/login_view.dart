@@ -23,59 +23,61 @@ class LoginView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: BlocConsumer<LoginCubit, LoginState>(
-        listener: (context, state) => controlSignInViewStates(state, context),
-        builder: (context, state) {
-          LoginCubit cubit = BlocProvider.of<LoginCubit>(context);
-          return CustomScrollView(
-            slivers: [
-              SliverPadding(
-                padding: const EdgeInsets.only(left: 38, right: 38),
-                sliver: SliverToBoxAdapter(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      const AuthTitle(
-                        title: 'Log in',
-                        margin: EdgeInsets.only(bottom: 70, top: 140),
-                      ),
-                      LoginForm(cubit: cubit, state: state),
-                      const OrText(),
-                      const SizedBox(height: 14),
-                      LoginWithSocialButtons(
-                        googleOnTap: () => cubit.signInWithGoogle(),
-                        appleOnTap: () {
-                          // TODO: Login with Apple
-                        },
-                      ),
-                    ],
-                  ),
+      body: CustomScrollView(
+        slivers: [
+          SliverPadding(
+            padding: const EdgeInsets.only(left: 38, right: 38),
+            sliver: SliverToBoxAdapter(
+              child: BlocConsumer<LoginCubit, LoginState>(
+                  listener: (context, state) =>
+                      _controlLoginViewStates(state, context),
+                  builder: (context, state) {
+                    return Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        const AuthTitle(
+                          title: 'Log in',
+                          margin: EdgeInsets.only(bottom: 70, top: 140),
+                        ),
+                        const LoginForm(),
+                        const OrText(),
+                        const SizedBox(height: 14),
+                        LoginWithSocialButtons(
+                          googleOnTap: () {
+                            BlocProvider.of<LoginCubit>(context)
+                                .signInWithGoogle();
+                          },
+                          appleOnTap: () {
+                            // TODO: Login with Apple
+                          },
+                        ),
+                      ],
+                    );
+                  }),
+            ),
+          ),
+          SliverFillRemaining(
+            hasScrollBody: false,
+            child: Column(
+              children: <Widget>[
+                const Spacer(),
+                HaveAccountOrNot(
+                  onTap: () {
+                    context.navigateTo(routeName: Routes.signUpViewRoute);
+                  },
+                  buttonText: 'Sign up',
+                  question: "Don't have an account?",
                 ),
-              ),
-              SliverFillRemaining(
-                hasScrollBody: false,
-                child: Column(
-                  children: <Widget>[
-                    const Spacer(),
-                    HaveAccountOrNot(
-                      onTap: () {
-                        context.navigateTo(routeName: Routes.signUpViewRoute);
-                      },
-                      buttonText: 'Sign up',
-                      question: "Don't have an account?",
-                    ),
-                    const BottomSpacer(height: 16),
-                  ],
-                ),
-              ),
-            ],
-          );
-        },
+                const BottomSpacer(height: 16),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }
 
-  void controlSignInViewStates(LoginState state, BuildContext context) {
+  void _controlLoginViewStates(LoginState state, BuildContext context) {
     if (state is SignInLoadingState || state is SignInWithGoogleLoadingState) {
       showAdaptiveDialog<Widget>(
         context: context,
