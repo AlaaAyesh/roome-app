@@ -101,7 +101,6 @@ class _BookingTwoFormState extends State<BookingTwoForm> {
             controller: _emailController,
             textCapitalization: TextCapitalization.none,
             keyboardType: TextInputType.emailAddress,
-            width: double.infinity,
             validating: (String? val) {
               if (val!.isEmpty) {
                 return "Can't be blank!";
@@ -119,7 +118,6 @@ class _BookingTwoFormState extends State<BookingTwoForm> {
             controller: _phoneController,
             textCapitalization: TextCapitalization.none,
             keyboardType: TextInputType.phone,
-            width: double.infinity,
             validating: (String? val) {
               return _validateBlankFields(val);
             },
@@ -155,20 +153,12 @@ class _BookingTwoFormState extends State<BookingTwoForm> {
                 child: BookingTwoTextField(
                   enabled: false,
                   hint: 'Click Here to Upload',
-                  hintStyle: AppTextStyles.textStyle14Medium.copyWith(
-                    color: AppColors.primaryColor,
-                  ),
                   controller: _idController,
                   textCapitalization: TextCapitalization.none,
                   keyboardType: TextInputType.text,
                   validating: (String? val) {
                     return _validateBlankFields(val);
                   },
-                  border: Border.all(color: AppColors.primaryColor),
-                  width: double.infinity,
-                  backgroundColor: state.brightness == Brightness.light
-                      ? Colors.white
-                      : Colors.black,
                   prefixIcon: const Icon(
                     Icons.cloud_upload,
                     color: AppColors.primaryColor,
@@ -199,7 +189,6 @@ class _BookingTwoFormState extends State<BookingTwoForm> {
             controller: _ninCodeNameController,
             textCapitalization: TextCapitalization.none,
             keyboardType: TextInputType.number,
-            width: double.infinity,
             validating: (String? val) {
               return _validateBlankFields(val);
             },

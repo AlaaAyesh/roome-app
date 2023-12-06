@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:roome/src/core/helpers/auth_helper.dart';
+import 'package:roome/src/core/widgets/custom_text_form_field.dart';
 import 'package:roome/src/core/widgets/main_button.dart';
 import 'package:roome/src/features/auth/presentation/widgets/forgot_password_text_button.dart';
-import 'package:roome/src/features/auth/presentation/widgets/reusable_pass_text_form_field.dart';
-import 'package:roome/src/features/auth/presentation/widgets/reusable_text_form_field.dart';
 import 'package:roome/src/features/auth/presentation/cubit/sign_up/sign_up_cubit.dart';
 import 'package:roome/src/features/auth/presentation/widgets/sign_up/name_text_field.dart';
 
@@ -76,11 +75,11 @@ class _SignUpFormState extends State<SignUpForm> {
             ],
           ),
           const SizedBox(height: 20),
-          ReusableTextFormField(
+          CustomTextFormField(
             controller: _usernameController,
-            hint: 'Username',
-            thisFocusNode: _usernameFocusNode,
-            prefixIcon: Icons.person,
+            hintText: 'Username',
+            focusNode: _usernameFocusNode,
+            prefixIcon: const Icon(Icons.person),
             keyboardType: TextInputType.text,
             textCapitalization: TextCapitalization.none,
             validating: (String? value) {
@@ -96,13 +95,13 @@ class _SignUpFormState extends State<SignUpForm> {
             },
           ),
           const SizedBox(height: 20),
-          ReusableTextFormField(
-            hint: 'Email',
+          CustomTextFormField(
+            hintText: 'Email',
             controller: _emailController,
-            thisFocusNode: _emailFocusNode,
+            focusNode: _emailFocusNode,
             textCapitalization: TextCapitalization.none,
             keyboardType: TextInputType.emailAddress,
-            prefixIcon: Icons.email,
+            prefixIcon: const Icon(Icons.email),
             validating: (String? value) {
               AuthHelper.validatingEmailField(
                 context: context,
@@ -115,15 +114,20 @@ class _SignUpFormState extends State<SignUpForm> {
             },
           ),
           const SizedBox(height: 20),
-          ReusablePassTextField(
+          CustomTextFormField(
             controller: _passwordController,
-            thisFocusNode: _passwordFocusNode,
-            hint: 'Password',
-            prefixIcon: Icons.lock,
-            visibilityIcon: widget.cubit.signUpPassVisibility
-                ? Icons.visibility_rounded
-                : Icons.visibility_off_rounded,
-            obscure: widget.cubit.signUpPassVisibility,
+            focusNode: _passwordFocusNode,
+            hintText: 'Password',
+            prefixIcon: const Icon(Icons.lock),
+            suffixIcon: IconButton(
+              onPressed: () => widget.cubit.switchPassVisibility(),
+              icon: Icon(
+                widget.cubit.signUpPassVisibility
+                    ? Icons.visibility_rounded
+                    : Icons.visibility_off_rounded,
+              ),
+            ),
+            obscureText: widget.cubit.signUpPassVisibility,
             validating: (String? value) {
               AuthHelper.validatingPasswordField(
                 context: context,
@@ -132,9 +136,6 @@ class _SignUpFormState extends State<SignUpForm> {
               return null;
             },
             onSubmit: (String value) => _signUp(context),
-            visibilityButtonOnPressed: () {
-              widget.cubit.switchPassVisibility();
-            },
           ),
           const SizedBox(height: 10),
           Align(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:roome/src/core/utils/app_assets.dart';
 import 'package:roome/src/core/utils/app_strings.dart';
 import 'package:roome/src/core/utils/app_text_styles.dart';
@@ -20,11 +21,12 @@ class SplashViewBody extends StatelessWidget {
           ),
         ),
         child: Column(
+          mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             const Spacer(),
             Center(
               child: ClipRRect(
-                borderRadius: const BorderRadius.all(Radius.circular(40)),
+                borderRadius: BorderRadius.all(Radius.circular(40.r)),
                 child: Image.asset(AppAssets.appIcon),
               ),
             ),

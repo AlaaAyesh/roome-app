@@ -54,7 +54,7 @@ class _OnBoardingViewBodyState extends State<OnBoardingViewBody> {
             ),
           ),
           Padding(
-            padding: EdgeInsets.symmetric(vertical: 24.h),
+            padding: EdgeInsets.symmetric(vertical: 24.h, horizontal: 18.w),
             child: MainButton(
               onPressed: () {
                 cubit.navigateBetweenPages(
@@ -64,18 +64,23 @@ class _OnBoardingViewBodyState extends State<OnBoardingViewBody> {
               },
               text: cubit.isLastBoarding ? 'Start' : 'Next',
               textStyle: AppTextStyles.onBoardingButtonStyle,
+              borderRadius: 50,
             ),
           ),
-          MainButton(
-            onPressed: () {
-              cubit.isLastBoarding
-                  ? cubit.previousPage(pageController: pageController)
-                  : cubit.navigateToLoginOrHome(context: context);
-            },
-            text: cubit.isLastBoarding ? 'Return' : 'Skip',
-            backgroundColor: AppColors.lightWightColor,
-            textStyle: AppTextStyles.onBoardingButtonStyle
-                .copyWith(color: Colors.black),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 18.w),
+            child: MainButton(
+              onPressed: () {
+                cubit.isLastBoarding
+                    ? cubit.previousPage(pageController: pageController)
+                    : cubit.navigateToLoginOrHome(context: context);
+              },
+              text: cubit.isLastBoarding ? 'Return' : 'Skip',
+              backgroundColor: AppColors.lightWightColor,
+              textStyle: AppTextStyles.onBoardingButtonStyle
+                  .copyWith(color: Colors.black),
+              borderRadius: 50,
+            ),
           ),
           const BottomSpacer(),
         ],

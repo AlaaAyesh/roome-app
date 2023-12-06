@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:roome/src/config/router/routes.dart';
-import 'package:roome/src/config/services/notification_service.dart';
 import 'package:roome/src/core/helpers/cache_helper.dart';
 import 'package:roome/src/core/helpers/helper.dart';
 import 'package:roome/src/core/utils/app_navigator.dart';
-import 'package:roome/src/core/utils/app_strings.dart';
 import 'package:roome/service_locator.dart';
 import 'package:roome/src/features/auth/presentation/widgets/auth_title.dart';
 import 'package:roome/src/core/widgets/bottom_spacer.dart';
-import 'package:roome/src/core/widgets/custom_snack_bar.dart';
 import 'package:roome/src/features/auth/presentation/widgets/have_account_or_not.dart';
 import 'package:roome/src/features/auth/presentation/widgets/loading_dialog.dart';
 import 'package:roome/src/features/auth/presentation/widgets/login_with_social_buttons.dart';
@@ -26,29 +24,34 @@ class LoginView extends StatelessWidget {
       body: CustomScrollView(
         slivers: [
           SliverPadding(
-            padding: const EdgeInsets.only(left: 38, right: 38),
+            padding: EdgeInsets.symmetric(horizontal: 38.w),
             sliver: SliverToBoxAdapter(
               child: BlocConsumer<LoginCubit, LoginState>(
                   listener: (context, state) =>
-                      _controlLoginViewStates(state, context),
+                      _handleLoginWithGoogleStates(state, context),
                   builder: (context, state) {
                     return Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
-                        const AuthTitle(
+                        AuthTitle(
                           title: 'Log in',
-                          margin: EdgeInsets.only(bottom: 70, top: 140),
+                          margin: EdgeInsets.only(bottom: 70.h, top: 140.h),
                         ),
                         const LoginForm(),
                         const OrText(),
-                        const SizedBox(height: 14),
-                        LoginWithSocialButtons(
-                          googleOnTap: () {
-                            BlocProvider.of<LoginCubit>(context)
-                                .signInWithGoogle();
-                          },
-                          appleOnTap: () {
-                            // TODO: Login with Apple
+                        SizedBox(height: 14.h),
+                        BlocConsumer<LoginCubit, LoginState>(
+                          listener: (context, state) {},
+                          builder: (context, state) {
+                            return LoginWithSocialButtons(
+                              googleOnTap: () {
+                                BlocProvider.of<LoginCubit>(context)
+                                    .signInWithGoogle();
+                              },
+                              appleOnTap: () {
+                                // TODO: Login with Apple
+                              },
+                            );
                           },
                         ),
                       ],
@@ -68,7 +71,7 @@ class LoginView extends StatelessWidget {
                   buttonText: 'Sign up',
                   question: "Don't have an account?",
                 ),
-                const BottomSpacer(height: 16),
+                const BottomSpacer(),
               ],
             ),
           ),
@@ -77,33 +80,17 @@ class LoginView extends StatelessWidget {
     );
   }
 
-  void _controlLoginViewStates(LoginState state, BuildContext context) {
-    if (state is SignInLoadingState || state is SignInWithGoogleLoadingState) {
+  void _handleLoginWithGoogleStates(LoginState state, BuildContext context) {
+    if (state is SignInWithGoogleLoadingState) {
       showAdaptiveDialog<Widget>(
         context: context,
         builder: (context) => const LoadingDialog(),
       );
     }
-    if (state is SignInSuccessState) {
-      _handleSignInSuccessState(context, state);
-    }
 
     if (state is SignInWithGoogleSuccessState) {
       _handleSignInWithGoogleSuccessState(context, state);
     }
-
-    if (state is SignInErrorState) {
-      _handleSignInErrorState(context, state);
-    }
-  }
-
-  void _handleSignInErrorState(BuildContext context, SignInErrorState state) {
-    context.getBack();
-    CustomSnackBar.show(
-      context: context,
-      message: state.error,
-      state: CustomSnackBarState.error,
-    );
   }
 
   void _handleSignInWithGoogleSuccessState(
@@ -121,31 +108,5 @@ class LoginView extends StatelessWidget {
         context.navigateAndReplacement(newRoute: Routes.roomViewRoute);
       }
     });
-  }
-
-  void _handleSignInSuccessState(
-    BuildContext context,
-    SignInSuccessState state,
-  ) {
-    context.getBack();
-    serviceLocator
-        .get<CacheHelper>()
-        .saveData(key: 'uId', value: state.uId)
-        .then((value) {
-      if (value) {
-        Helper.uId = state.uId;
-        Helper.getUserAndFavorites(context);
-        context.navigateAndReplacement(newRoute: Routes.roomViewRoute);
-        _weMissedYouNotification(state);
-      }
-    });
-  }
-
-  void _weMissedYouNotification(SignInSuccessState state) {
-    NotificationService.triggerNotification(
-      title: AppStrings.welcomeBack,
-      body:
-          'We missed you, ${state.userModel.firstName} ${AppStrings.smilingFaceEmoji}',
-    );
   }
 }

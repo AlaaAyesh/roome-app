@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:roome/src/core/helpers/auth_helper.dart';
-import 'package:roome/src/features/auth/presentation/widgets/reusable_text_form_field.dart';
+import 'package:roome/src/core/widgets/custom_text_form_field.dart';
 
 class NameTextField extends StatelessWidget {
   const NameTextField({
@@ -19,11 +19,11 @@ class NameTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Expanded(
-      child: ReusableTextFormField(
+      child: CustomTextFormField(
         controller: controller,
-        thisFocusNode: thisFocusNode,
-        hint: hint,
-        prefixIcon: Icons.person,
+        focusNode: thisFocusNode,
+        hintText: hint,
+        prefixIcon: const Icon(Icons.person),
         keyboardType: TextInputType.text,
         textCapitalization: TextCapitalization.words,
         validating: (String? value) {

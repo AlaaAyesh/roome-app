@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:roome/src/config/themes/cubit/themes_cubit.dart';
 
 class ForgotPasswordTextButton extends StatelessWidget {
@@ -18,7 +19,7 @@ class ForgotPasswordTextButton extends StatelessWidget {
         child: Text(
           'Forgot Password?',
           style: TextStyle(
-            fontSize: 14,
+            fontSize: 14.sp,
             fontWeight: FontWeight.w500,
             color: state.brightness == Brightness.light
                 ? Colors.black

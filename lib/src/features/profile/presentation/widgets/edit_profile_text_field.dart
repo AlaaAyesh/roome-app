@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:roome/src/config/themes/cubit/themes_cubit.dart';
-import 'package:roome/src/core/helpers/helper.dart';
 import 'package:roome/src/core/utils/app_colors.dart';
 import 'package:roome/src/core/utils/app_text_styles.dart';
 import 'package:roome/src/core/widgets/custom_text_form_field.dart';
@@ -46,37 +45,18 @@ class EditProfileTextField extends StatelessWidget {
             ),
             CustomTextFormField(
               errorBorder: InputBorder.none,
-              enabledBorder: Helper.buildUnderlineInputBorder(
-                color: AppColors.grey.withOpacity(0.75),
-              ),
-              focusedBorder: Helper.buildUnderlineInputBorder(
-                color: AppColors.grey.withOpacity(0.75),
-              ),
-              hint: hint,
-              cursorColor: state.brightness == Brightness.light
-                  ? Colors.black
-                  : Colors.white,
+              hintText: hint,
               hintStyle: AppTextStyles.hintStyle,
-              style: _buildTextStyle(state),
               controller: controller,
               textCapitalization: textCapitalization,
               keyboardType: keyboardType,
               validating: validating,
               suffixIcon: suffixIcon,
-              obscure: obscure,
+              obscureText: obscure,
             ),
           ],
         );
       },
-    );
-  }
-
-  TextStyle _buildTextStyle(ThemeData themeState) {
-    return AppTextStyles.hintStyle.copyWith(
-      fontWeight: FontWeight.normal,
-      color: themeState.brightness == Brightness.light
-          ? Colors.black
-          : Colors.white,
     );
   }
 }

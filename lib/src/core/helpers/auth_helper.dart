@@ -1,62 +1,40 @@
 import 'package:flutter/material.dart';
-import 'package:roome/src/core/widgets/custom_snack_bar.dart';
 
 class AuthHelper {
-  static void validatingPasswordField({
+  static String? validatingPasswordField({
     required BuildContext context,
     String? value,
   }) {
     if (value!.isEmpty) {
-      CustomSnackBar.show(
-        context: context,
-        title: "Something went wrong",
-        message: "Password can't be blank!",
-        state: CustomSnackBarState.error,
-      );
+      return "Password can't be blank!";
     } else if (value.length < 8) {
-      CustomSnackBar.show(
-        context: context,
-        title: "Something went wrong",
-        message: "Too short password!",
-        state: CustomSnackBarState.error,
-      );
+      return "Too short password!";
     }
+    return null;
   }
 
-  static void validatingEmailField({
+  static String? validatingEmailField({
     required BuildContext context,
     String? value,
   }) {
     if (value!.isEmpty) {
-      CustomSnackBar.show(
-        context: context,
-        title: "Something went wrong",
-        message: "Email can't be blank!",
-        state: CustomSnackBarState.error,
-      );
+      return "Email can't be blank!";
     } else if (!value.contains('@')) {
-      CustomSnackBar.show(
-        context: context,
-        title: "Something went wrong",
-        message: "Incorrect Email!",
-        state: CustomSnackBarState.error,
-      );
+      return "Incorrect Email!";
     }
+
+    return null;
   }
 
-  static void validatingNameField({
+  static String? validatingNameField({
     required BuildContext context,
     required textName,
     String? value,
   }) {
     if (value!.isEmpty) {
-      CustomSnackBar.show(
-        context: context,
-        title: "Something went wrong",
-        message: "$textName can't be blank!",
-        state: CustomSnackBarState.error,
-      );
+      return "$textName can't be blank!";
     }
+    return null;
   }
 
   static void keyboardUnfocus(BuildContext context) {
