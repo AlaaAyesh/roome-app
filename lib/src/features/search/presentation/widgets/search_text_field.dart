@@ -37,7 +37,7 @@ class _SearchTextFieldState extends State<SearchTextField> {
       hintStyle: AppTextStyles.textStyle14Medium.copyWith(
         color: AppColors.lightGrey.withOpacity(0.24),
       ),
-      suffixIcon: const Icon(Icons.search, size: 22, color: Colors.black),
+      suffix: const Icon(Icons.search, size: 22, color: Colors.black),
       enabledBorder: _buildOutlinedBorder(),
       focusedBorder: _buildOutlinedBorder(),
       onChanged: (String hotelName) {

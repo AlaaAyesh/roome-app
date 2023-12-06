@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:roome/src/config/themes/cubit/themes_cubit.dart';
 import 'package:roome/src/core/utils/app_colors.dart';
@@ -26,16 +27,16 @@ class CustomSocialButton extends StatelessWidget {
           child: BlocBuilder<ThemesCubit, ThemeData>(
             builder: (context, state) {
               return Container(
-                height: 48,
-                width: 48,
+                height: 48.h,
+                width: 48.w,
                 decoration: BoxDecoration(
                   color: state.brightness == Brightness.light
                       ? Colors.white
                       : AppColors.darkHeaderClr,
-                  borderRadius: BorderRadius.circular(10),
+                  borderRadius: BorderRadius.circular(10.r),
                   border: Border.all(
                     color: AppColors.socialIconsBorderColor,
-                    width: 1.94,
+                    width: 1.94.w,
                   ),
                 ),
                 child: Center(
@@ -47,7 +48,7 @@ class CustomSocialButton extends StatelessWidget {
         ),
         Text(
           title,
-          style: AppTextStyles.textStyle15.copyWith(fontSize: 14),
+          style: AppTextStyles.textStyle15.copyWith(fontSize: 14.sp),
         ),
       ],
     );

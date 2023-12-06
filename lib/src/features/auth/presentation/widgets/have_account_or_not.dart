@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:roome/src/core/utils/app_colors.dart';
 import 'package:roome/src/core/utils/app_text_styles.dart';
 
@@ -21,15 +22,14 @@ class HaveAccountOrNot extends StatelessWidget {
       children: <Widget>[
         Text(
           question,
-          style: AppTextStyles.textStyle15.copyWith(fontSize: 14),
+          style: AppTextStyles.textStyle15.copyWith(fontSize: 14.sp),
         ),
-        const SizedBox(width: 5),
         TextButton(
           onPressed: onTap,
           child: Text(
             buttonText,
             style: AppTextStyles.textStyle15.copyWith(
-              fontSize: 14,
+              fontSize: 14.sp,
               fontWeight: FontWeight.w600,
               color: AppColors.primaryColor,
             ),

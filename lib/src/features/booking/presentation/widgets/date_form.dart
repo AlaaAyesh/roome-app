@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:roome/src/config/router/routes.dart';
 import 'package:roome/src/config/themes/cubit/themes_cubit.dart';
 import 'package:roome/src/core/utils/app_colors.dart';
@@ -46,7 +47,7 @@ class DateForm extends StatelessWidget {
               checkInDate: checkInDate,
               checkOutDate: checkOutDate,
             ),
-            const SizedBox(height: 16),
+            SizedBox(height: 16.h),
             const Row(
               // mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
@@ -54,12 +55,12 @@ class DateForm extends StatelessWidget {
                 Expanded(child: SectionTitle(title: 'Number of rooms')),
               ],
             ),
-            const SizedBox(height: 16),
+            SizedBox(height: 16.h),
             Row(
               children: <Widget>[
                 Expanded(
                   child: CustomBorderedContainer(
-                    padding: const EdgeInsets.only(left: 8),
+                    padding: EdgeInsets.only(left: 8.w),
                     child: Row(
                       children: <Widget>[
                         Text(
@@ -110,7 +111,7 @@ class DateForm extends StatelessWidget {
                     ),
                   ),
                 ),
-                const SizedBox(width: 8),
+                SizedBox(width: 8.w),
                 BlocBuilder<BookingOneCubit, BookingOneState>(
                   builder: (BuildContext context, BookingOneState state) {
                     BookingOneCubit cubit =
@@ -128,21 +129,21 @@ class DateForm extends StatelessWidget {
                 ),
               ],
             ),
-            const SizedBox(height: 22),
+            SizedBox(height: 22.h),
             const Align(
               alignment: AlignmentDirectional.center,
               child: SectionTitle(title: 'Guest'),
             ),
-            const SizedBox(height: 16),
+            SizedBox(height: 16.h),
             NumberOfContainer(
-              width: 150,
+              width: 150.w,
               number: cubit.guestNumber,
               reduceOnTap: cubit.guestNumber == 1
                   ? null
                   : () => cubit.decreaseGuestNumber(),
               increaseOnTap: () => cubit.increaseGuestNumber(),
             ),
-            const SizedBox(height: 50),
+            SizedBox(height: 50.h),
             Row(
               children: <Widget>[
                 Text(
@@ -151,7 +152,7 @@ class DateForm extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                const SizedBox(width: 16),
+                SizedBox(width: 16.w),
                 Expanded(
                   child: GlowingCustomButton(
                     onPressed: () => _continueToBookingTwo(

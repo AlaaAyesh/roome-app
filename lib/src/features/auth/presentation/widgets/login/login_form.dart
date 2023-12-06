@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 import 'package:roome/service_locator.dart';
 import 'package:roome/src/config/router/routes.dart';
 import 'package:roome/src/config/services/notification_service.dart';
@@ -73,14 +74,12 @@ class _LoginFormState extends State<LoginForm> {
                 focusNode: _nameOrEmailFocusNode,
                 textCapitalization: TextCapitalization.none,
                 keyboardType: TextInputType.emailAddress,
-                prefixIcon: const Icon(Icons.person),
+                prefixIcon: Icons.person,
                 validating: (String? value) {
-                  AuthHelper.validatingNameField(
-                    textName: 'Username or Email',
-                    context: context,
+                  return AuthHelper.validatingNameField(
+                    textName: 'Name or Email',
                     value: value,
                   );
-                  return null;
                 },
                 onEditingComplete: () {
                   FocusScope.of(context).requestFocus(_passwordFocusNode);
@@ -95,22 +94,20 @@ class _LoginFormState extends State<LoginForm> {
                 controller: _passwordController,
                 focusNode: _passwordFocusNode,
                 hintText: 'Password',
-                prefixIcon: const Icon(Icons.lock),
-                suffixIcon: IconButton(
+                prefixIcon: Icons.lock,
+                suffix: IconButton(
                   onPressed: () => cubit.switchPassVisibility(),
                   icon: Icon(
                     cubit.loginPassVisibility
                         ? Icons.visibility_rounded
                         : Icons.visibility_off_rounded,
+                    size: 24.h,
+                    color: Colors.grey,
                   ),
                 ),
                 obscureText: cubit.loginPassVisibility,
                 validating: (String? value) {
-                  AuthHelper.validatingPasswordField(
-                    context: context,
-                    value: value,
-                  );
-                  return null;
+                  return AuthHelper.validatingPasswordField(value: value);
                 },
                 onSubmit: (String value) => _login(context),
               ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:roome/src/config/themes/cubit/themes_cubit.dart';
 import 'package:roome/src/core/utils/app_colors.dart';
 import 'package:roome/src/core/utils/app_text_styles.dart';
@@ -19,22 +20,22 @@ class OtherPaymentMethod extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 40,
+      height: 40.h,
       width: double.infinity,
-      padding: const EdgeInsets.only(
-        top: 8,
-        bottom: 8,
-        left: 4,
-        right: 15,
+      padding: EdgeInsets.only(
+        top: 8.h,
+        bottom: 8.h,
+        left: 4.w,
+        right: 15.w,
       ),
       decoration: BoxDecoration(
         color: AppColors.primaryColor.withOpacity(0.15),
-        borderRadius: const BorderRadius.all(Radius.circular(10)),
+        borderRadius: BorderRadius.all(Radius.circular(10.r)),
       ),
       child: Row(
         children: <Widget>[
           Image.asset(icon, fit: BoxFit.cover),
-          const SizedBox(width: 19),
+          SizedBox(width: 19.w),
           BlocBuilder<ThemesCubit, ThemeData>(
             builder: (context, state) {
               return Expanded(
@@ -52,7 +53,7 @@ class OtherPaymentMethod extends StatelessWidget {
               );
             },
           ),
-          const SizedBox(width: 8),
+          SizedBox(width: 8.w),
           BlocBuilder<PaymentCubit, PaymentState>(
             builder: (context, state) {
               PaymentCubit cubit = BlocProvider.of<PaymentCubit>(context);

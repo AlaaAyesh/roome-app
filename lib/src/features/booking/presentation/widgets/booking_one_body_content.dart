@@ -1,5 +1,6 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
 import 'package:roome/src/core/utils/app_colors.dart';
 import 'package:roome/src/core/utils/app_constants.dart';
@@ -45,7 +46,7 @@ class _BookingOneBodyContentState extends State<BookingOneBodyContent> {
             width: double.infinity,
             decoration: BoxDecoration(
               color: AppColors.primaryColor.withOpacity(0.15),
-              borderRadius: const BorderRadius.all(Radius.circular(10)),
+              borderRadius: BorderRadius.all(Radius.circular(10.r)),
             ),
             child: SfDateRangePicker(
               controller: _dateRangePickerController,
@@ -53,7 +54,7 @@ class _BookingOneBodyContentState extends State<BookingOneBodyContent> {
               selectionMode: DateRangePickerSelectionMode.range,
               selectionShape: DateRangePickerSelectionShape.circle,
               minDate: DateTime.now(),
-              headerHeight: 50,
+              headerHeight: 50.h,
               headerStyle: DateRangePickerHeaderStyle(
                 textStyle: AppTextStyles.textStyle14Medium,
               ),
@@ -89,7 +90,7 @@ class _BookingOneBodyContentState extends State<BookingOneBodyContent> {
             ),
           ),
         ),
-        const SizedBox(height: 23),
+        SizedBox(height: 23.h),
         FadeInUp(
           from: AppConstants.fadeInUpValue,
           child: DateForm(

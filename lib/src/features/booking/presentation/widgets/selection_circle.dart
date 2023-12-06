@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:roome/src/core/utils/app_colors.dart';
 import 'package:roome/src/features/booking/presentation/cubits/payment/payment_cubit.dart';
 
@@ -20,12 +21,12 @@ class SelectionCircle extends StatelessWidget {
         return GestureDetector(
           onTap: onTap,
           child: Container(
-            height: 20,
-            width: 20,
+            height: 20.h,
+            width: 20.h,
             decoration: BoxDecoration(
               shape: BoxShape.circle,
               color: color,
-              border: Border.all(color: AppColors.primaryColor, width: 2),
+              border: Border.all(color: AppColors.primaryColor, width: 2.w),
             ),
           ),
         );

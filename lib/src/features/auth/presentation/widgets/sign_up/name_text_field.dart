@@ -23,16 +23,14 @@ class NameTextField extends StatelessWidget {
         controller: controller,
         focusNode: thisFocusNode,
         hintText: hint,
-        prefixIcon: const Icon(Icons.person),
+        prefixIcon: Icons.person,
         keyboardType: TextInputType.text,
         textCapitalization: TextCapitalization.words,
         validating: (String? value) {
-          AuthHelper.validatingNameField(
+          return AuthHelper.validatingNameField(
             textName: hint,
-            context: context,
             value: value,
           );
-          return null;
         },
         onEditingComplete: () {
           FocusScope.of(context).requestFocus(toFocusNode);

@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 
 class AuthHelper {
-  static String? validatingPasswordField({
-    required BuildContext context,
-    String? value,
-  }) {
+  static String? validatingPasswordField({String? value}) {
     if (value!.isEmpty) {
       return "Password can't be blank!";
     } else if (value.length < 8) {
@@ -13,10 +10,7 @@ class AuthHelper {
     return null;
   }
 
-  static String? validatingEmailField({
-    required BuildContext context,
-    String? value,
-  }) {
+  static String? validatingEmailField({String? value}) {
     if (value!.isEmpty) {
       return "Email can't be blank!";
     } else if (!value.contains('@')) {
@@ -26,8 +20,9 @@ class AuthHelper {
     return null;
   }
 
+
+
   static String? validatingNameField({
-    required BuildContext context,
     required textName,
     String? value,
   }) {

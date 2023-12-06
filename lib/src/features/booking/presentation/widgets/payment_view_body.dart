@@ -1,6 +1,7 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:roome/src/config/services/notification_service.dart';
 import 'package:roome/src/core/utils/app_assets.dart';
@@ -34,7 +35,7 @@ class PaymentViewBody extends StatelessWidget {
                   const CustomSliverAppBar(
                       titleText: 'Payment', centerTitle: true),
                   SliverPadding(
-                    padding: const EdgeInsets.only(left: 31, right: 31),
+                    padding: EdgeInsets.symmetric(horizontal: 31.w),
                     sliver: SliverToBoxAdapter(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -45,10 +46,10 @@ class PaymentViewBody extends StatelessWidget {
                               const SectionTitle(title: 'My Card'),
                               TextButton(
                                 onPressed: () {},
-                                child: const Text(
+                                child: Text(
                                   'Edit Card',
                                   style: TextStyle(
-                                    fontSize: 16,
+                                    fontSize: 16.sp,
                                     color: AppColors.primaryColor,
                                     fontWeight: FontWeight.normal,
                                   ),
@@ -56,7 +57,7 @@ class PaymentViewBody extends StatelessWidget {
                               ),
                             ],
                           ),
-                          const SizedBox(height: 18),
+                          SizedBox(height: 18.h),
                           ClipRRect(
                             borderRadius: const BorderRadius.all(
                               Radius.circular(20),
@@ -66,14 +67,14 @@ class PaymentViewBody extends StatelessWidget {
                               fit: BoxFit.cover,
                             ),
                           ),
-                          const SizedBox(height: 40),
+                          SizedBox(height: 40.h),
                           const SectionTitle(title: 'Other Payment Method'),
-                          const SizedBox(height: 36),
+                          SizedBox(height: 36.h),
                           const OtherPaymentMethod(
                             icon: AppAssets.iconNewCredit,
                             text: 'New credit/Debit Card',
                           ),
-                          const SizedBox(height: 35),
+                          SizedBox(height: 35.h),
                           const OtherPaymentMethod(
                             icon: AppAssets.iconPaypal,
                             text: 'Paypal',
@@ -83,18 +84,18 @@ class PaymentViewBody extends StatelessWidget {
                     ),
                   ),
                   SliverPadding(
-                    padding: const EdgeInsets.only(left: 31, right: 31),
+                    padding: EdgeInsets.symmetric(horizontal: 31.w),
                     sliver: SliverFillRemaining(
                       hasScrollBody: false,
                       child: Column(
                         children: <Widget>[
-                          const BottomSpacer(height: 16),
+                          const BottomSpacer(),
                           const Spacer(),
                           MainButton(
                             text: 'Continue',
                             onPressed: () => _continue(context),
                           ),
-                          const SizedBox(height: 15),
+                          SizedBox(height: 15.h),
                           if (BlocProvider.of<PaymentCubit>(context)
                                   .isContinueTapped ==
                               false)

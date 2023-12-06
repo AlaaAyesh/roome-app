@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:roome/src/core/helpers/auth_helper.dart';
 import 'package:roome/src/core/widgets/custom_text_form_field.dart';
 import 'package:roome/src/core/widgets/main_button.dart';
@@ -18,7 +19,7 @@ class SignUpForm extends StatefulWidget {
 
 class _SignUpFormState extends State<SignUpForm> {
   late final GlobalKey<FormState> _formKey;
-  late final AutovalidateMode autoValidateMode;
+  late AutovalidateMode autoValidateMode;
 
   final TextEditingController _firstNameController = TextEditingController();
   final TextEditingController _lastNameController = TextEditingController();
@@ -65,7 +66,7 @@ class _SignUpFormState extends State<SignUpForm> {
                 toFocusNode: _lastNameFocusNode,
                 hint: 'First name',
               ),
-              const SizedBox(width: 50),
+              SizedBox(width: 50.h),
               NameTextField(
                 controller: _lastNameController,
                 thisFocusNode: _lastNameFocusNode,
@@ -74,52 +75,48 @@ class _SignUpFormState extends State<SignUpForm> {
               ),
             ],
           ),
-          const SizedBox(height: 20),
+          SizedBox(height: 20.h),
           CustomTextFormField(
             controller: _usernameController,
             hintText: 'Username',
             focusNode: _usernameFocusNode,
-            prefixIcon: const Icon(Icons.person),
+            prefixIcon: Icons.person,
             keyboardType: TextInputType.text,
             textCapitalization: TextCapitalization.none,
             validating: (String? value) {
-              AuthHelper.validatingNameField(
+              return AuthHelper.validatingNameField(
                 textName: 'Username',
-                context: context,
                 value: value,
               );
-              return null;
             },
             onEditingComplete: () {
               FocusScope.of(context).requestFocus(_emailFocusNode);
             },
           ),
-          const SizedBox(height: 20),
+          SizedBox(height: 20.h),
           CustomTextFormField(
             hintText: 'Email',
             controller: _emailController,
             focusNode: _emailFocusNode,
             textCapitalization: TextCapitalization.none,
             keyboardType: TextInputType.emailAddress,
-            prefixIcon: const Icon(Icons.email),
+            prefixIcon: Icons.email,
             validating: (String? value) {
-              AuthHelper.validatingEmailField(
-                context: context,
+              return AuthHelper.validatingEmailField(
                 value: value,
               );
-              return null;
             },
             onEditingComplete: () {
               FocusScope.of(context).requestFocus(_passwordFocusNode);
             },
           ),
-          const SizedBox(height: 20),
+          SizedBox(height: 20.h),
           CustomTextFormField(
             controller: _passwordController,
             focusNode: _passwordFocusNode,
             hintText: 'Password',
-            prefixIcon: const Icon(Icons.lock),
-            suffixIcon: IconButton(
+            prefixIcon: Icons.lock,
+            suffix: IconButton(
               onPressed: () => widget.cubit.switchPassVisibility(),
               icon: Icon(
                 widget.cubit.signUpPassVisibility
@@ -129,27 +126,25 @@ class _SignUpFormState extends State<SignUpForm> {
             ),
             obscureText: widget.cubit.signUpPassVisibility,
             validating: (String? value) {
-              AuthHelper.validatingPasswordField(
-                context: context,
+              return AuthHelper.validatingPasswordField(
                 value: value,
               );
-              return null;
             },
             onSubmit: (String value) => _signUp(context),
           ),
-          const SizedBox(height: 10),
+          SizedBox(height: 10.h),
           Align(
             alignment: AlignmentDirectional.centerEnd,
             child: ForgotPasswordTextButton(
               onTap: () {},
             ),
           ),
-          const SizedBox(height: 30),
+          SizedBox(height: 30.h),
           MainButton(
             text: 'Sign up',
             onPressed: () => _signUp(context),
           ),
-          const SizedBox(height: 30),
+          SizedBox(height: 30.h),
         ],
       ),
     );

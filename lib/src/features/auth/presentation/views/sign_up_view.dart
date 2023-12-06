@@ -1,21 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import 'package:roome/service_locator.dart';
 import 'package:roome/src/config/router/routes.dart';
 import 'package:roome/src/config/services/notification_service.dart';
 import 'package:roome/src/core/helpers/cache_helper.dart';
 import 'package:roome/src/core/helpers/helper.dart';
+import 'package:roome/src/core/utils/app_constants.dart';
 import 'package:roome/src/core/utils/app_navigator.dart';
 import 'package:roome/src/core/utils/app_strings.dart';
-import 'package:roome/service_locator.dart';
 import 'package:roome/src/core/widgets/custom_sliver_app_bar.dart';
-import 'package:roome/src/features/auth/presentation/widgets/auth_title.dart';
-import 'package:roome/src/core/widgets/bottom_spacer.dart';
 import 'package:roome/src/core/widgets/custom_snack_bar.dart';
+import 'package:roome/src/features/auth/presentation/cubit/sign_up/sign_up_cubit.dart';
+import 'package:roome/src/features/auth/presentation/widgets/auth_title.dart';
 import 'package:roome/src/features/auth/presentation/widgets/have_account_or_not.dart';
 import 'package:roome/src/features/auth/presentation/widgets/loading_dialog.dart';
 import 'package:roome/src/features/auth/presentation/widgets/login_with_social_buttons.dart';
 import 'package:roome/src/features/auth/presentation/widgets/or_text.dart';
-import 'package:roome/src/features/auth/presentation/cubit/sign_up/sign_up_cubit.dart';
 import 'package:roome/src/features/auth/presentation/widgets/sign_up/sign_up_form.dart';
 
 class SignUpView extends StatelessWidget {
@@ -33,18 +35,18 @@ class SignUpView extends StatelessWidget {
               slivers: [
                 const CustomSliverAppBar(),
                 SliverPadding(
-                  padding: const EdgeInsets.only(left: 38, right: 38),
+                  padding: AppConstants.authHorizontalPadding,
                   sliver: SliverToBoxAdapter(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
-                        const AuthTitle(
+                        AuthTitle(
                           title: 'Sign up',
-                          margin: EdgeInsets.only(top: 40, bottom: 50),
+                          margin: EdgeInsets.only(top: 40.h, bottom: 50.h),
                         ),
                         SignUpForm(cubit: cubit, state: state),
                         const OrText(),
-                        const SizedBox(height: 16),
+                        SizedBox(height: 16.h),
                         LoginWithSocialButtons(
                           googleOnTap: () {},
                           appleOnTap: () {
@@ -65,7 +67,6 @@ class SignUpView extends StatelessWidget {
                         buttonText: 'Log in',
                         question: 'Already have an account?',
                       ),
-                      const BottomSpacer(height: 16),
                     ],
                   ),
                 ),

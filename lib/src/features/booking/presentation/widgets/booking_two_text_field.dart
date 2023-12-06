@@ -1,5 +1,6 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:roome/src/core/utils/app_constants.dart';
 import 'package:roome/src/core/widgets/custom_text_form_field.dart';
 
@@ -33,11 +34,11 @@ class BookingTwoTextField extends StatelessWidget {
         controller: controller,
         textCapitalization: textCapitalization,
         keyboardType: keyboardType,
-        prefixIcon: prefixIcon,
+        prefix: prefixIcon,
         validating: validating,
-        contentPadding: const EdgeInsets.symmetric(
-          horizontal: 16,
-          vertical: 8,
+        contentPadding: EdgeInsets.symmetric(
+          horizontal: 16.w,
+          vertical: 8.h,
         ),
         errorBorder: InputBorder.none,
         enabledBorder: InputBorder.none,

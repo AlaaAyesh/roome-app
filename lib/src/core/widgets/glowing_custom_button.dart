@@ -18,7 +18,7 @@ class GlowingCustomButton extends StatelessWidget {
     return MainButton(
       onPressed: onPressed,
       backgroundColor: AppColors.primaryColor,
-      boxShadow: [
+      boxShadow: <BoxShadow>[
         Helper.glowingShadow(),
       ],
       text: buttonText,

@@ -2,6 +2,7 @@ import 'package:animate_do/animate_do.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:roome/src/config/router/routes.dart';
 import 'package:roome/src/config/themes/cubit/themes_cubit.dart';
 import 'package:roome/src/core/utils/app_colors.dart';
@@ -64,11 +65,11 @@ class _BookingTwoFormState extends State<BookingTwoForm> {
           Row(
             children: <Widget>[
               Expanded(child: _buildFadeInSectionTitle(title: 'First Name')),
-              const SizedBox(width: 35),
+              SizedBox(width: 35.w),
               Expanded(child: _buildFadeInSectionTitle(title: 'Surname')),
             ],
           ),
-          const SizedBox(height: 14),
+          SizedBox(height: 14.h),
           Row(
             children: <Widget>[
               Expanded(
@@ -81,7 +82,7 @@ class _BookingTwoFormState extends State<BookingTwoForm> {
                   },
                 ),
               ),
-              const SizedBox(width: 35),
+              SizedBox(width: 35.w),
               Expanded(
                 child: BookingTwoTextField(
                   controller: _surnameController,
@@ -94,9 +95,9 @@ class _BookingTwoFormState extends State<BookingTwoForm> {
               ),
             ],
           ),
-          const SizedBox(height: 26),
+          SizedBox(height: 26.h),
           _buildFadeInSectionTitle(title: 'Email'),
-          const SizedBox(height: 14),
+          SizedBox(height: 14.h),
           BookingTwoTextField(
             controller: _emailController,
             textCapitalization: TextCapitalization.none,
@@ -111,9 +112,9 @@ class _BookingTwoFormState extends State<BookingTwoForm> {
               return null;
             },
           ),
-          const SizedBox(height: 26),
+          SizedBox(height: 26.h),
           _buildFadeInSectionTitle(title: 'Phone'),
-          const SizedBox(height: 14),
+          SizedBox(height: 14.h),
           BookingTwoTextField(
             controller: _phoneController,
             textCapitalization: TextCapitalization.none,
@@ -122,9 +123,9 @@ class _BookingTwoFormState extends State<BookingTwoForm> {
               return _validateBlankFields(val);
             },
           ),
-          const SizedBox(height: 21),
+          SizedBox(height: 21.h),
           _buildFadeInSectionTitle(title: 'Kindly upload any valid ID'),
-          const SizedBox(height: 17),
+          SizedBox(height: 17.h),
           Row(
             children: <Widget>[
               FadeInRight(
@@ -137,15 +138,15 @@ class _BookingTwoFormState extends State<BookingTwoForm> {
                   ),
                 ),
               ),
-              const SizedBox(width: 12),
-              const Icon(
+              SizedBox(width: 12.w),
+              Icon(
                 Icons.attach_file,
                 color: AppColors.darkGrey,
-                size: 22,
+                size: 22.h,
               ),
             ],
           ),
-          const SizedBox(height: 13),
+          SizedBox(height: 13.h),
           BlocBuilder<ThemesCubit, ThemeData>(
             builder: (context, state) {
               return GestureDetector(
@@ -159,16 +160,16 @@ class _BookingTwoFormState extends State<BookingTwoForm> {
                   validating: (String? val) {
                     return _validateBlankFields(val);
                   },
-                  prefixIcon: const Icon(
+                  prefixIcon: Icon(
                     Icons.cloud_upload,
                     color: AppColors.primaryColor,
-                    size: 24,
+                    size: 24.h,
                   ),
                 ),
               );
             },
           ),
-          const SizedBox(height: 19),
+          SizedBox(height: 19.h),
           FadeInRight(
             from: AppConstants.fadeInHorizontalValue,
             child: Align(
@@ -182,9 +183,9 @@ class _BookingTwoFormState extends State<BookingTwoForm> {
               ),
             ),
           ),
-          const SizedBox(height: 8),
+          SizedBox(height: 8.h),
           _buildFadeInSectionTitle(title: 'Input your NIN Code'),
-          const SizedBox(height: 14),
+          SizedBox(height: 14.h),
           BookingTwoTextField(
             controller: _ninCodeNameController,
             textCapitalization: TextCapitalization.none,
@@ -193,7 +194,7 @@ class _BookingTwoFormState extends State<BookingTwoForm> {
               return _validateBlankFields(val);
             },
           ),
-          const SizedBox(height: 35),
+          SizedBox(height: 35.h),
           FadeInUp(
             from: AppConstants.fadeInUpValue,
             child: MainButton(

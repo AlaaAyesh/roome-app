@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:roome/src/config/themes/cubit/themes_cubit.dart';
 import 'package:roome/src/core/helpers/hex_color_handler.dart';
 import 'package:roome/src/core/utils/app_colors.dart';
@@ -28,7 +29,7 @@ class CustomBorderedContainer extends StatelessWidget {
             color: state.brightness == Brightness.light
                 ? Colors.white
                 : AppColors.darkGreyColor,
-            borderRadius: const BorderRadius.all(Radius.circular(10)),
+            borderRadius: BorderRadius.all(Radius.circular(10.r)),
             border: Border.all(
               color: HexColorHandler('E5E5E5'),
             ),

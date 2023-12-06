@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:roome/src/core/utils/app_colors.dart';
 
 class StarIcon extends StatelessWidget {
@@ -6,10 +7,10 @@ class StarIcon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Icon(
+    return Icon(
       Icons.star,
       color: AppColors.starColor,
-      size: 16,
+      size: 16.h,
     );
   }
 }

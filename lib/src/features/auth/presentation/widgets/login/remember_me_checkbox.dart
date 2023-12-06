@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:roome/src/core/utils/app_colors.dart';
 import 'package:roome/src/features/auth/presentation/cubit/login/login_cubit.dart';
 
@@ -12,22 +13,22 @@ class RememberMeCheckBox extends StatelessWidget {
     return GestureDetector(
       onTap: () => cubit.switchRemembered(),
       child: Container(
-        height: 15,
-        width: 15,
+        height: 15.h,
+        width: 15.h,
         decoration: BoxDecoration(
           color: Colors.white,
-          borderRadius: const BorderRadius.all(Radius.circular(4)),
+          borderRadius: BorderRadius.all(Radius.circular(4.r)),
           border: Border.all(
             color: AppColors.primaryColor,
-            width: 0.56,
+            width: 0.56.w,
           ),
         ),
         child: Center(
           child: cubit.remembered
-              ? const Icon(
+              ? Icon(
                   Icons.check,
                   color: AppColors.primaryColor,
-                  size: 13,
+                  size: 13.h,
                 )
               : null,
         ),

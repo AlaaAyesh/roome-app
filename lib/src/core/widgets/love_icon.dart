@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:roome/src/core/models/hotel.dart';
 import 'package:roome/src/features/favorite/presentation/cubit/favorite_cubit.dart';
 
@@ -25,7 +26,7 @@ class LoveIcon extends StatelessWidget {
             color: cubit.favoriteHotels.contains(hotel)
                 ? Colors.red
                 : Colors.white,
-            size: 18,
+            size: 18.h,
           ),
         );
       },
