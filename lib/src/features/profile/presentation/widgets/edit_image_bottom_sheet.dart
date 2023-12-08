@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:roome/src/config/themes/cubit/themes_cubit.dart';
 import 'package:roome/src/core/utils/app_assets.dart';
 import 'package:roome/src/core/utils/app_navigator.dart';
@@ -7,7 +8,7 @@ import 'package:roome/src/core/utils/app_text_styles.dart';
 import 'package:roome/src/features/profile/presentation/widgets/image_circle_button.dart';
 
 class EditProfileImageBottomSheet {
-  static void buildBottomSheet({
+  static void show({
     required BuildContext context,
     required void Function()? onPressedGallery,
     required void Function()? onPressedCamera,
@@ -42,46 +43,43 @@ class ProfileImageEditBottomSheet extends StatelessWidget {
       builder: (context, state) => BottomSheet(
         backgroundColor:
             state.brightness == Brightness.light ? Colors.white : Colors.black,
-        shape: const RoundedRectangleBorder(
+        shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.vertical(
-            top: Radius.circular(50.0),
+            top: Radius.circular(50.0.r),
           ),
         ),
         enableDrag: true,
         onClosing: () => context.getBack(),
         builder: (context) {
-          return ListView(
-            shrinkWrap: true,
-            padding: const EdgeInsets.only(
-              top: 10,
-              left: 10,
-              right: 10,
-              bottom: 20,
+          return Padding(
+            padding: EdgeInsets.only(bottom: 25.h, top: 20.h),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                Text(
+                  "Pick a profile picture",
+                  style: state.brightness == Brightness.light
+                      ? AppTextStyles.snackBarTitle
+                          .copyWith(color: Colors.black)
+                      : AppTextStyles.snackBarTitle,
+                  textAlign: TextAlign.center,
+                ),
+                SizedBox(height: 10.h),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: <Widget>[
+                    ImageCircleButton(
+                      onPressed: onPressedGallery,
+                      icon: AppAssets.imageAddImage,
+                    ),
+                    ImageCircleButton(
+                      onPressed: onPressedCamera,
+                      icon: AppAssets.imageCamera,
+                    ),
+                  ],
+                ),
+              ],
             ),
-            children: <Widget>[
-              const SizedBox(height: 4),
-              Text(
-                "Pick a profile picture",
-                style: state.brightness == Brightness.light
-                    ? AppTextStyles.snackBarTitle.copyWith(color: Colors.black)
-                    : AppTextStyles.snackBarTitle,
-                textAlign: TextAlign.center,
-              ),
-              const SizedBox(height: 10),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: <Widget>[
-                  ImageCircleButton(
-                    onPressed: onPressedGallery,
-                    icon: AppAssets.imageAddImage,
-                  ),
-                  ImageCircleButton(
-                    onPressed: onPressedCamera,
-                    icon: AppAssets.imageCamera,
-                  ),
-                ],
-              ),
-            ],
           );
         },
       ),

@@ -58,6 +58,7 @@ class _BookingTwoFormState extends State<BookingTwoForm> {
   Widget build(BuildContext context) {
     return Form(
       key: _formKey,
+      autovalidateMode: autoValidateMode,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[

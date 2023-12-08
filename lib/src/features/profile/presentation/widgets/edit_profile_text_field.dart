@@ -44,9 +44,7 @@ class EditProfileTextField extends StatelessWidget {
               ),
             ),
             CustomTextFormField(
-              errorBorder: InputBorder.none,
               hintText: hint,
-              hintStyle: AppTextStyles.hintStyle,
               controller: controller,
               textCapitalization: textCapitalization,
               keyboardType: keyboardType,

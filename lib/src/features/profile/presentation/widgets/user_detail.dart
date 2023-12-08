@@ -3,8 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:roome/src/config/themes/cubit/themes_cubit.dart';
 import 'package:roome/src/core/utils/app_text_styles.dart';
 
-class UserInfo extends StatelessWidget {
-  const UserInfo({
+class UserDetail extends StatelessWidget {
+  const UserDetail({
     super.key,
     required this.title,
     required this.info,

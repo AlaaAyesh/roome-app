@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:roome/src/core/helpers/helper.dart';
 import 'package:roome/src/core/utils/app_colors.dart';
@@ -20,41 +21,39 @@ class ProfileImage extends StatelessWidget {
             alignment: AlignmentDirectional.bottomEnd,
             children: <Widget>[
               CircleAvatar(
-                radius: 80,
+                radius: 80.r,
                 backgroundColor: AppColors.primaryColor.withOpacity(0.24),
                 child: CircleAvatar(
                   backgroundImage: (cubit.profileImage == null
                       ? NetworkImage(Helper.currentUser!.profileImage!)
                       : FileImage(cubit.profileImage!)) as ImageProvider,
-                  radius: 65,
+                  radius: 65.r,
                   backgroundColor: AppColors.primaryColor,
                 ),
               ),
               Positioned(
-                right: 30,
+                right: 30.w,
                 child: Container(
-                  height: 24,
-                  width: 24,
+                  height: 24.h,
+                  width: 24.h,
                   decoration: const BoxDecoration(
                     shape: BoxShape.circle,
                     color: AppColors.primaryColor,
                   ),
-                  child: Center(
-                    child: InkWell(
-                      onTap: () => EditProfileImageBottomSheet.buildBottomSheet(
-                        context: context,
-                        onPressedGallery: () {
-                          cubit.getProfileImage(source: ImageSource.gallery);
-                        },
-                        onPressedCamera: () {
-                          cubit.getProfileImage(source: ImageSource.camera);
-                        },
-                      ),
-                      child: const Icon(
-                        Icons.edit,
-                        color: Colors.white,
-                        size: 17,
-                      ),
+                  child: InkWell(
+                    onTap: () => EditProfileImageBottomSheet.show(
+                      context: context,
+                      onPressedGallery: () {
+                        cubit.getProfileImage(source: ImageSource.gallery);
+                      },
+                      onPressedCamera: () {
+                        cubit.getProfileImage(source: ImageSource.camera);
+                      },
+                    ),
+                    child: Icon(
+                      Icons.edit,
+                      color: Colors.white,
+                      size: 17.h,
                     ),
                   ),
                 ),

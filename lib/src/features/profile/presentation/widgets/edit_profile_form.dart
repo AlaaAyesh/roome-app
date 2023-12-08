@@ -1,14 +1,12 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:roome/src/config/themes/cubit/themes_cubit.dart';
 import 'package:roome/src/core/helpers/auth_helper.dart';
 import 'package:roome/src/core/helpers/helper.dart';
 import 'package:roome/src/core/utils/app_constants.dart';
-import 'package:roome/src/core/utils/app_navigator.dart';
 import 'package:roome/src/core/utils/app_text_styles.dart';
-import 'package:roome/src/core/widgets/bottom_spacer.dart';
-import 'package:roome/src/core/widgets/custom_loading_dialog.dart';
 import 'package:roome/src/core/widgets/custom_snack_bar.dart';
 import 'package:roome/src/core/widgets/main_button.dart';
 import 'package:roome/src/core/widgets/visibility_icon_button.dart';
@@ -26,7 +24,6 @@ class EditProfileForm extends StatefulWidget {
 
 class _EditProfileFormState extends State<EditProfileForm> {
   late final GlobalKey<FormState> _formKey;
-  late final AutovalidateMode autoValidateMode;
 
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _usernameController = TextEditingController();
@@ -41,7 +38,6 @@ class _EditProfileFormState extends State<EditProfileForm> {
 
   void _initFormAttributes() {
     _formKey = GlobalKey<FormState>();
-    autoValidateMode = AutovalidateMode.disabled;
   }
 
   @override
@@ -74,13 +70,13 @@ class _EditProfileFormState extends State<EditProfileForm> {
                   themeState: themeState,
                 ),
               ),
-              const SizedBox(height: 10),
+              SizedBox(height: 10.h),
               FadeInRight(
                 from: AppConstants.fadeInHorizontalValue,
                 child: InfoContainer(
                   isPersonalValidateError: _isPersonalValidateError,
-                  height: 400,
-                  personalErrorHeight: 500,
+                  height: 400.h,
+                  personalErrorHeight: 500.h,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -186,7 +182,7 @@ class _EditProfileFormState extends State<EditProfileForm> {
                   ),
                 ),
               ),
-              const SizedBox(height: 25),
+              SizedBox(height: 25.h),
               FadeInRight(
                 from: AppConstants.fadeInHorizontalValue,
                 child: ProfileSectionTitle(
@@ -195,13 +191,13 @@ class _EditProfileFormState extends State<EditProfileForm> {
                   themeState: themeState,
                 ),
               ),
-              const SizedBox(height: 10),
+              SizedBox(height: 10.h),
               FadeInRight(
                 from: AppConstants.fadeInHorizontalValue,
                 child: InfoContainer(
                   isContactValidateError: _isContactValidateError,
-                  height: 170,
-                  contactErrorHeight: 250,
+                  height: 200.h,
+                  contactErrorHeight: 250.h,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -248,11 +244,11 @@ class _EditProfileFormState extends State<EditProfileForm> {
                 ),
               ),
               const SizedBox(height: 44),
-              BlocListener<RoomeCubit, RoomeState>(
+              BlocConsumer<RoomeCubit, RoomeState>(
                 listener: (context, state) {
                   _controlUpdateUserStates(state, context);
                 },
-                child: FadeInLeft(
+                builder: (context, state) => FadeInLeft(
                   from: AppConstants.fadeInHorizontalValue,
                   child: MainButton(
                     onPressed: () {
@@ -260,15 +256,22 @@ class _EditProfileFormState extends State<EditProfileForm> {
                           ? _validateAndUpdate(context)
                           : _validateAndUpdateUserWithProfileImage(context);
                     },
-                    text: 'Save Edit',
-                    textStyle:
-                        AppTextStyles.onBoardingHeadingTextStyle.copyWith(
-                      color: Colors.white,
-                    ),
+                    child: state is UpdateUserLoadingState
+                        ? const Center(
+                            child: CircularProgressIndicator(
+                              color: Colors.white,
+                            ),
+                          )
+                        : Text(
+                            'Save Edits',
+                            style: AppTextStyles.onBoardingHeadingTextStyle
+                                .copyWith(
+                              color: Colors.white,
+                            ),
+                          ),
                   ),
                 ),
               ),
-              const BottomSpacer(),
             ],
           ),
         );
@@ -280,10 +283,6 @@ class _EditProfileFormState extends State<EditProfileForm> {
     if (_formKey.currentState!.validate()) {
       AuthHelper.keyboardUnfocus(context);
       _updateUser(context);
-    } else {
-      setState(() {
-        autoValidateMode = AutovalidateMode.always;
-      });
     }
   }
 
@@ -291,10 +290,6 @@ class _EditProfileFormState extends State<EditProfileForm> {
     if (_formKey.currentState!.validate()) {
       AuthHelper.keyboardUnfocus(context);
       _updateUserAndProfileImage(context);
-    } else {
-      setState(() {
-        autoValidateMode = AutovalidateMode.always;
-      });
     }
   }
 
@@ -339,12 +334,10 @@ class _EditProfileFormState extends State<EditProfileForm> {
 
   void _controlUpdateUserStates(RoomeState state, BuildContext context) {
     if (state is UpdateUserLoadingState) {
-      CustomLoadingDialog.show(context);
       _forceConditionsToFalse();
     }
 
     if (state is UpdateUserSuccessState) {
-      context.getBack();
       CustomSnackBar.show(
         context: context,
         message: 'User updated successfully',
@@ -353,7 +346,6 @@ class _EditProfileFormState extends State<EditProfileForm> {
     }
 
     if (state is UpdateUserErrorState) {
-      context.getBack();
       CustomSnackBar.show(
         context: context,
         message: state.error,
