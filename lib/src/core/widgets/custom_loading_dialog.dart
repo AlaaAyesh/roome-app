@@ -4,8 +4,17 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:roome/src/config/themes/cubit/themes_cubit.dart';
 import 'package:roome/src/core/utils/app_colors.dart';
 
-class LoadingDialog extends StatelessWidget {
-  const LoadingDialog({super.key});
+class CustomLoadingDialog {
+  static void show(BuildContext context) {
+    showAdaptiveDialog<Widget>(
+      context: context,
+      builder: (context) => const Loading(),
+    );
+  }
+}
+
+class Loading extends StatelessWidget {
+  const Loading({super.key});
 
   @override
   Widget build(BuildContext context) {

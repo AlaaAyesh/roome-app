@@ -11,12 +11,12 @@ import 'package:roome/src/core/helpers/helper.dart';
 import 'package:roome/src/core/utils/app_navigator.dart';
 import 'package:roome/src/core/utils/app_strings.dart';
 import 'package:roome/src/core/utils/app_text_styles.dart';
+import 'package:roome/src/core/widgets/custom_loading_dialog.dart';
 import 'package:roome/src/core/widgets/custom_snack_bar.dart';
 import 'package:roome/src/core/widgets/custom_text_form_field.dart';
 import 'package:roome/src/core/widgets/main_button.dart';
 import 'package:roome/src/features/auth/presentation/cubit/login/login_cubit.dart';
 import 'package:roome/src/features/auth/presentation/widgets/forgot_password_text_button.dart';
-import 'package:roome/src/features/auth/presentation/widgets/loading_dialog.dart';
 import 'package:roome/src/features/auth/presentation/widgets/login/remember_me_checkbox.dart';
 
 class LoginForm extends StatefulWidget {
@@ -167,10 +167,7 @@ class _LoginFormState extends State<LoginForm> {
 
   void _handleLoginStates(LoginState state) {
     if (state is SignInLoadingState) {
-      showAdaptiveDialog<Widget>(
-        context: context,
-        builder: (context) => const LoadingDialog(),
-      );
+      CustomLoadingDialog.show(context);
     }
 
     if (state is SignInSuccessState) {

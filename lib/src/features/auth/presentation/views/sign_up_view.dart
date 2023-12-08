@@ -10,12 +10,12 @@ import 'package:roome/src/core/helpers/helper.dart';
 import 'package:roome/src/core/utils/app_constants.dart';
 import 'package:roome/src/core/utils/app_navigator.dart';
 import 'package:roome/src/core/utils/app_strings.dart';
+import 'package:roome/src/core/widgets/custom_loading_dialog.dart';
 import 'package:roome/src/core/widgets/custom_sliver_app_bar.dart';
 import 'package:roome/src/core/widgets/custom_snack_bar.dart';
 import 'package:roome/src/features/auth/presentation/cubit/sign_up/sign_up_cubit.dart';
 import 'package:roome/src/features/auth/presentation/widgets/auth_title.dart';
 import 'package:roome/src/features/auth/presentation/widgets/have_account_or_not.dart';
-import 'package:roome/src/features/auth/presentation/widgets/loading_dialog.dart';
 import 'package:roome/src/features/auth/presentation/widgets/login_with_social_buttons.dart';
 import 'package:roome/src/features/auth/presentation/widgets/or_text.dart';
 import 'package:roome/src/features/auth/presentation/widgets/sign_up/sign_up_form.dart';
@@ -80,10 +80,7 @@ class SignUpView extends StatelessWidget {
 
   void controlSignUpViewStates(SignUpState state, BuildContext context) {
     if (state is SignUpLoadingState || state is SignUpWithGoogleLoadingState) {
-      showAdaptiveDialog<Widget>(
-        context: context,
-        builder: (context) => const LoadingDialog(),
-      );
+      CustomLoadingDialog.show(context);
     }
 
     if (state is SignUpErrorState) {

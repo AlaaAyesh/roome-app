@@ -8,10 +8,10 @@ import 'package:roome/src/core/helpers/cache_helper.dart';
 import 'package:roome/src/core/helpers/helper.dart';
 import 'package:roome/src/core/utils/app_constants.dart';
 import 'package:roome/src/core/utils/app_navigator.dart';
+import 'package:roome/src/core/widgets/custom_loading_dialog.dart';
 import 'package:roome/src/features/auth/presentation/cubit/login/login_cubit.dart';
 import 'package:roome/src/features/auth/presentation/widgets/auth_title.dart';
 import 'package:roome/src/features/auth/presentation/widgets/have_account_or_not.dart';
-import 'package:roome/src/features/auth/presentation/widgets/loading_dialog.dart';
 import 'package:roome/src/features/auth/presentation/widgets/login/login_form.dart';
 import 'package:roome/src/features/auth/presentation/widgets/login_with_social_buttons.dart';
 import 'package:roome/src/features/auth/presentation/widgets/or_text.dart';
@@ -83,10 +83,7 @@ class LoginView extends StatelessWidget {
 
   void _handleLoginWithGoogleStates(LoginState state, BuildContext context) {
     if (state is SignInWithGoogleLoadingState) {
-      showAdaptiveDialog<Widget>(
-        context: context,
-        builder: (context) => const LoadingDialog(),
-      );
+      CustomLoadingDialog.show(context);
     }
 
     if (state is SignInWithGoogleSuccessState) {

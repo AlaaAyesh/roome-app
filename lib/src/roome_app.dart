@@ -43,7 +43,9 @@ class RoomeApp extends StatelessWidget {
             create: (context) =>
                 serviceLocator.get<FavoriteCubit>()..getFavorites(),
           ),
-          BlocProvider(create: (context) => serviceLocator.get<ThemesCubit>()),
+          BlocProvider(
+            create: (context) => serviceLocator.get<ThemesCubit>(),
+          ),
           BlocProvider(
             create: (context) => serviceLocator.get<NotificationsCubit>(),
           ),
@@ -54,7 +56,7 @@ class RoomeApp extends StatelessWidget {
               title: AppStrings.appTitle,
               debugShowCheckedModeBanner: false,
               theme: themeState,
-              onGenerateRoute: AppRoutes.onGenerateRoute,
+              onGenerateRoute: AppRouter.onGenerateRoute,
             );
           },
         ),
