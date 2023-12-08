@@ -39,6 +39,7 @@ class CustomTextFormField extends StatelessWidget {
     this.hintStyle,
     this.autofocus = false,
     this.prefixIcon,
+    this.disabledBorder,
   });
 
   final TextEditingController? controller;
@@ -68,6 +69,7 @@ class CustomTextFormField extends StatelessWidget {
   final InputBorder? focusedBorder;
   final InputBorder? focusedErrorBorder;
   final InputBorder? errorBorder;
+  final InputBorder? disabledBorder;
   final InputBorder? border;
   final Color? fillColor;
   final TextStyle? hintStyle;
@@ -122,6 +124,7 @@ class CustomTextFormField extends StatelessWidget {
             focusedErrorBorder:
                 focusedErrorBorder ?? _buildUnderlineInputBorder(),
             border: border ?? _buildUnderlineInputBorder(),
+            disabledBorder: disabledBorder,
           ),
           validator: validating,
           onEditingComplete: onEditingComplete,

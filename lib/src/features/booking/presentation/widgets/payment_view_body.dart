@@ -29,88 +29,88 @@ class PaymentViewBody extends StatelessWidget {
     return FadeInUp(
       from: AppConstants.fadeInUpValue,
       child: BlocBuilder<PaymentCubit, PaymentState>(
-          builder: (context, state) => CustomScrollView(
-                physics: AppConstants.physics,
-                slivers: [
-                  const CustomSliverAppBar(
-                      titleText: 'Payment', centerTitle: true),
-                  SliverPadding(
-                    padding: EdgeInsets.symmetric(horizontal: 31.w),
-                    sliver: SliverToBoxAdapter(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: <Widget>[
-                              const SectionTitle(title: 'My Card'),
-                              TextButton(
-                                onPressed: () {},
-                                child: Text(
-                                  'Edit Card',
-                                  style: TextStyle(
-                                    fontSize: 16.sp,
-                                    color: AppColors.primaryColor,
-                                    fontWeight: FontWeight.normal,
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                          SizedBox(height: 18.h),
-                          ClipRRect(
-                            borderRadius: const BorderRadius.all(
-                              Radius.circular(20),
-                            ),
-                            child: SvgPicture.asset(
-                              AppAssets.imageCreditCard,
-                              fit: BoxFit.cover,
+        builder: (context, state) => CustomScrollView(
+          physics: AppConstants.physics,
+          slivers: [
+            const CustomSliverAppBar(
+              titleText: 'Payment',
+              centerTitle: true,
+            ),
+            SliverPadding(
+              padding: EdgeInsets.symmetric(horizontal: 31.w),
+              sliver: SliverToBoxAdapter(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        const SectionTitle(title: 'My Card'),
+                        TextButton(
+                          onPressed: () {},
+                          child: Text(
+                            'Edit Card',
+                            style: TextStyle(
+                              fontSize: 16.sp,
+                              color: AppColors.primaryColor,
+                              fontWeight: FontWeight.normal,
                             ),
                           ),
-                          SizedBox(height: 40.h),
-                          const SectionTitle(title: 'Other Payment Method'),
-                          SizedBox(height: 36.h),
-                          const OtherPaymentMethod(
-                            icon: AppAssets.iconNewCredit,
-                            text: 'New credit/Debit Card',
-                          ),
-                          SizedBox(height: 35.h),
-                          const OtherPaymentMethod(
-                            icon: AppAssets.iconPaypal,
-                            text: 'Paypal',
-                          ),
-                        ],
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: 18.h),
+                    ClipRRect(
+                      borderRadius: const BorderRadius.all(Radius.circular(20)),
+                      child: SvgPicture.asset(
+                        AppAssets.imageCreditCard,
+                        fit: BoxFit.cover,
                       ),
                     ),
-                  ),
-                  SliverPadding(
-                    padding: EdgeInsets.symmetric(horizontal: 31.w),
-                    sliver: SliverFillRemaining(
-                      hasScrollBody: false,
-                      child: Column(
-                        children: <Widget>[
-                          const BottomSpacer(),
-                          const Spacer(),
-                          MainButton(
-                            text: 'Continue',
-                            onPressed: () => _continue(context),
-                          ),
-                          SizedBox(height: 15.h),
-                          if (BlocProvider.of<PaymentCubit>(context)
-                                  .isContinueTapped ==
-                              false)
-                            MainButton(
-                              text: 'Cancel Booking',
-                              onPressed: () => _cancelBooking(context),
-                              backgroundColor: Colors.red,
-                            ),
-                          const BottomSpacer(),
-                        ],
-                      ),
+                    SizedBox(height: 40.h),
+                    const SectionTitle(title: 'Other Payment Method'),
+                    SizedBox(height: 36.h),
+                    const OtherPaymentMethod(
+                      icon: AppAssets.iconNewCredit,
+                      text: 'New credit/Debit Card',
                     ),
-                  ),
-                ],
-              )),
+                    SizedBox(height: 35.h),
+                    const OtherPaymentMethod(
+                      icon: AppAssets.iconPaypal,
+                      text: 'Paypal',
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            SliverPadding(
+              padding: EdgeInsets.symmetric(horizontal: 31.w),
+              sliver: SliverFillRemaining(
+                hasScrollBody: false,
+                child: Column(
+                  children: <Widget>[
+                    const BottomSpacer(),
+                    const Spacer(),
+                    MainButton(
+                      text: 'Continue',
+                      onPressed: () => _continue(context),
+                    ),
+                    SizedBox(height: 15.h),
+                    if (BlocProvider.of<PaymentCubit>(context)
+                            .isContinueTapped ==
+                        false)
+                      MainButton(
+                        text: 'Cancel Booking',
+                        onPressed: () => _cancelBooking(context),
+                        backgroundColor: Colors.red,
+                      ),
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 
@@ -123,7 +123,7 @@ class PaymentViewBody extends StatelessWidget {
   void _continue(BuildContext context) {
     _handleSuccessNotifications(context);
 
-    showAdaptiveDialog(
+    showAdaptiveDialog<Widget>(
       context: context,
       builder: (context) => PaymentDialog(bookingInfo: bookingInfo),
     );

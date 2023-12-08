@@ -6,7 +6,6 @@ import 'package:roome/src/config/themes/cubit/themes_cubit.dart';
 import 'package:roome/src/core/utils/app_colors.dart';
 import 'package:roome/src/core/utils/app_navigator.dart';
 import 'package:roome/src/core/utils/app_text_styles.dart';
-import 'package:roome/src/core/widgets/bottom_spacer.dart';
 import 'package:roome/src/core/widgets/custom_snack_bar.dart';
 import 'package:roome/src/core/widgets/glowing_custom_button.dart';
 import 'package:roome/src/features/booking/data/models/booked_hotel_info.dart';
@@ -49,10 +48,10 @@ class DateForm extends StatelessWidget {
             ),
             SizedBox(height: 16.h),
             const Row(
-              // mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 Expanded(child: SectionTitle(title: 'Room Type')),
-                Expanded(child: SectionTitle(title: 'Number of rooms')),
+                Spacer(),
+                Expanded(child: SectionTitle(title: 'Rooms')),
               ],
             ),
             SizedBox(height: 16.h),
@@ -63,11 +62,13 @@ class DateForm extends StatelessWidget {
                     padding: EdgeInsets.only(left: 8.w),
                     child: Row(
                       children: <Widget>[
-                        Text(
-                          cubit.selectedRoomType,
-                          style: AppTextStyles.textStyle14Medium.copyWith(
-                            fontWeight: FontWeight.bold,
-                            color: AppColors.primaryColor.withOpacity(0.94),
+                        Expanded(
+                          child: Text(
+                            cubit.selectedRoomType,
+                            style: AppTextStyles.textStyle14Medium.copyWith(
+                              fontWeight: FontWeight.bold,
+                              color: AppColors.primaryColor.withOpacity(0.94),
+                            ),
                           ),
                         ),
                         Expanded(
@@ -103,7 +104,7 @@ class DateForm extends StatelessWidget {
                                 );
                               },
                             ),
-                            elevation: 4.toInt(),
+                            elevation: 4,
                             underline: Container(height: 0),
                           ),
                         ),
@@ -111,7 +112,7 @@ class DateForm extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(width: 8.w),
+                const Spacer(),
                 BlocBuilder<BookingOneCubit, BookingOneState>(
                   builder: (BuildContext context, BookingOneState state) {
                     BookingOneCubit cubit =
@@ -129,7 +130,7 @@ class DateForm extends StatelessWidget {
                 ),
               ],
             ),
-            SizedBox(height: 22.h),
+            SizedBox(height: 16.h),
             const Align(
               alignment: AlignmentDirectional.center,
               child: SectionTitle(title: 'Guest'),
@@ -164,7 +165,6 @@ class DateForm extends StatelessWidget {
                 ),
               ],
             ),
-            const BottomSpacer(),
           ],
         );
       },

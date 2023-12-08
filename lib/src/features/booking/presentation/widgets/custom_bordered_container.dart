@@ -22,7 +22,7 @@ class CustomBorderedContainer extends StatelessWidget {
     return BlocBuilder<ThemesCubit, ThemeData>(
       builder: (context, state) {
         return Container(
-          constraints: const BoxConstraints(minHeight: 0),
+          constraints: const BoxConstraints(minHeight: 0, minWidth: 0),
           width: width,
           padding: padding,
           decoration: BoxDecoration(

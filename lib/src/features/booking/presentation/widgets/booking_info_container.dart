@@ -87,7 +87,7 @@ class BookingInfoContainer extends StatelessWidget {
                           : AppColors.white60,
                     ),
                   ),
-                  SizedBox(width: 20.w),
+                  SizedBox(width: 5.w),
                   Text(
                     _generateRandomString(),
                     style: AppTextStyles.textStyle15.copyWith(

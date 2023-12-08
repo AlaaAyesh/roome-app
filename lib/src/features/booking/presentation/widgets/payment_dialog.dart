@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:roome/src/config/router/routes.dart';
 import 'package:roome/src/config/themes/cubit/themes_cubit.dart';
@@ -23,96 +24,94 @@ class PaymentDialog extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<ThemesCubit, ThemeData>(
       builder: (context, state) {
-        var size = MediaQuery.of(context).size;
-
-        return Container(
-          width: double.infinity,
-          margin: EdgeInsets.only(
-            left: 32,
-            right: 32,
-            top: size.height * 0.2,
-            bottom: 50,
-          ),
-          padding: const EdgeInsets.only(
-            left: 10,
-            right: 10,
-            top: 42,
-            bottom: 16,
-          ),
-          decoration: BoxDecoration(
-            color: state.brightness == Brightness.light
-                ? Colors.white
-                : AppColors.darkGreyColor,
-            borderRadius: const BorderRadius.all(Radius.circular(20)),
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[
-              Stack(
-                alignment: Alignment.center,
-                children: <Widget>[
-                  SvgPicture.asset(
-                    AppAssets.imageGreyCircles,
-                    fit: BoxFit.contain,
-                  ),
-                  Container(
-                    height: 110,
-                    width: 110,
-                    decoration: const BoxDecoration(
-                      color: AppColors.grey,
-                      shape: BoxShape.circle,
+        return Center(
+          child: Container(
+            width: double.infinity,
+            margin: EdgeInsets.symmetric(horizontal: 31.w),
+            padding: EdgeInsets.only(top: 50.h, bottom: 20.h),
+            decoration: BoxDecoration(
+              color: state.brightness == Brightness.light
+                  ? Colors.white
+                  : AppColors.darkGreyColor,
+              borderRadius: BorderRadius.all(Radius.circular(20.r)),
+            ),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                Stack(
+                  alignment: Alignment.center,
+                  children: <Widget>[
+                    SvgPicture.asset(
+                      AppAssets.imageGreyCircles,
+                      fit: BoxFit.contain,
                     ),
-                    child: Center(
-                      child: Container(
-                        height: 30,
-                        width: 40,
-                        decoration: const BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.all(Radius.circular(10)),
+                    Container(
+                      height: 110.h,
+                      width: 110.h,
+                      decoration: const BoxDecoration(
+                        color: AppColors.grey,
+                        shape: BoxShape.circle,
+                      ),
+                      child: Center(
+                        child: Container(
+                          height: 30.h,
+                          width: 40.w,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(10.r)),
+                          ),
                         ),
                       ),
                     ),
+                  ],
+                ),
+                SizedBox(height: 33.h),
+                Text(
+                  'Payment successful !',
+                  style: AppTextStyles.appBarTextStyle.copyWith(
+                    color: state.brightness == Brightness.light
+                        ? Colors.black
+                        : Colors.white,
                   ),
-                ],
-              ),
-              const Spacer(),
-              Text(
-                'Payment successful !',
-                style: AppTextStyles.appBarTextStyle.copyWith(
-                  color: state.brightness == Brightness.light
-                      ? Colors.black
-                      : Colors.white,
+                  textAlign: TextAlign.center,
                 ),
-              ),
-              const SizedBox(height: 8),
-              Text(
-                'Hi ${Helper.currentUser!.firstName}, Your booking was successful',
-                style: AppTextStyles.textStyle15.copyWith(
-                  color: state.brightness == Brightness.light
-                      ? AppColors.lightGrey.withOpacity(0.62)
-                      : AppColors.white60,
-                  fontWeight: FontWeight.w600,
+                SizedBox(height: 8.h),
+                Text(
+                  'Hi ${Helper.currentUser!.firstName}, Your booking was successful',
+                  style: AppTextStyles.textStyle15.copyWith(
+                    color: state.brightness == Brightness.light
+                        ? AppColors.lightGrey.withOpacity(0.62)
+                        : AppColors.white60,
+                    fontWeight: FontWeight.w600,
+                  ),
+                  textAlign: TextAlign.center,
                 ),
-                textAlign: TextAlign.center,
-              ),
-              const Spacer(),
-              MainButton(
-                text: 'View Booking Ticket',
-                onPressed: () {
-                  context.navigateTo(
-                    routeName: Routes.ticketViewRoute,
-                    arguments: bookingInfo,
-                  );
-                },
-              ),
-              const SizedBox(height: 8),
-              MainButton(
-                text: 'Cancel',
-                onPressed: () => context.getBack(),
-                textColor: Colors.black,
-                backgroundColor: AppColors.grey,
-              ),
-            ],
+                SizedBox(height: 20.h),
+                Container(
+                  margin: EdgeInsets.symmetric(horizontal: 65.w),
+                  child: MainButton(
+                    text: 'View Booking Ticket',
+                    onPressed: () {
+                      context.navigateTo(
+                        routeName: Routes.ticketViewRoute,
+                        arguments: bookingInfo,
+                      );
+                    },
+                  ),
+                ),
+                SizedBox(height: 8.h),
+                Container(
+                  margin: EdgeInsets.symmetric(horizontal: 65.w),
+                  child: MainButton(
+                    text: 'Cancel',
+                    onPressed: () => context.getBack(),
+                    textColor: Colors.black,
+                    backgroundColor: AppColors.grey,
+                  ),
+                ),
+              ],
+            ),
           ),
         );
       },

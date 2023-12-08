@@ -20,7 +20,7 @@ class OtherPaymentMethod extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 40.h,
+      constraints: const BoxConstraints(minHeight: 0),
       width: double.infinity,
       padding: EdgeInsets.only(
         top: 8.h,

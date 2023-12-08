@@ -25,14 +25,14 @@ class _BookingOneBodyContentState extends State<BookingOneBodyContent> {
   String _checkInDate = '';
   String _checkOutDate = '';
 
-  DateTime? startDate;
-  DateTime? endDate;
+  DateTime? _startDate;
+  DateTime? _endDate;
 
-  late PickerDateRange selectedRange;
+  late PickerDateRange _selectedRange;
 
   @override
   void initState() {
-    selectedRange = PickerDateRange(startDate, endDate);
+    _selectedRange = PickerDateRange(_startDate, _endDate);
     super.initState();
   }
 
@@ -70,20 +70,20 @@ class _BookingOneBodyContentState extends State<BookingOneBodyContent> {
               navigationMode: DateRangePickerNavigationMode.snap,
               allowViewNavigation: true,
               onSelectionChanged: (args) {
-                selectedRange = args.value;
+                _selectedRange = args.value;
                 setState(() {
                   _checkInDate =
-                      DateFormat.MMMd().format(selectedRange.startDate!);
+                      DateFormat.MMMd().format(_selectedRange.startDate!);
 
-                  if (selectedRange.endDate == null) {
-                    endDate = selectedRange.startDate;
+                  if (_selectedRange.endDate == null) {
+                    _endDate = _selectedRange.startDate;
 
                     setState(() {
-                      _checkOutDate = DateFormat.MMMd().format(endDate!);
+                      _checkOutDate = DateFormat.MMMd().format(_endDate!);
                     });
                   } else {
                     _checkOutDate =
-                        DateFormat.MMMd().format(selectedRange.endDate!);
+                        DateFormat.MMMd().format(_selectedRange.endDate!);
                   }
                 });
               },

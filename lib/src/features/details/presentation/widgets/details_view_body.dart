@@ -1,6 +1,7 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:roome/src/config/router/routes.dart';
 import 'package:roome/src/config/themes/cubit/themes_cubit.dart';
 import 'package:roome/src/core/models/hotel.dart';
@@ -36,7 +37,9 @@ class DetailsViewBody extends StatelessWidget {
           physics: AppConstants.physics,
           slivers: [
             SliverPadding(
-              padding: const EdgeInsets.symmetric(horizontal: 22),
+              padding: EdgeInsets.symmetric(
+                horizontal: AppConstants.horizontalViewPaddingValue,
+              ),
               sliver: SliverToBoxAdapter(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -44,9 +47,9 @@ class DetailsViewBody extends StatelessWidget {
                     usingHero
                         ? DetailsImageWithHero(hotel: hotel)
                         : DetailsImage(hotel: hotel),
-                    const SizedBox(height: 30),
+                    SizedBox(height: 30.h),
                     Padding(
-                      padding: const EdgeInsets.only(left: 9),
+                      padding: EdgeInsets.only(left: 9.w),
                       child: FadeInUp(
                         from: AppConstants.fadeInUpValue,
                         duration: const Duration(milliseconds: 500),
@@ -62,23 +65,23 @@ class DetailsViewBody extends StatelessWidget {
                                     : Colors.white,
                               ),
                             ),
-                            const SizedBox(height: 14),
+                            SizedBox(height: 14.h),
                             LocationText(location: hotel.location!),
-                            const SizedBox(height: 14),
+                            SizedBox(height: 14.h),
                             const DetailsSectionTitle(title: 'Description'),
-                            const SizedBox(height: 14),
+                            SizedBox(height: 14.h),
                             Text(
                               hotel.description!,
                               style: AppTextStyles.textStyle14Medium.copyWith(
-                                fontSize: 13,
+                                fontSize: 13.sp,
                                 color: state.brightness == Brightness.light
                                     ? AppColors.lightGrey.withOpacity(0.49)
                                     : AppColors.white38,
                               ),
                             ),
-                            const SizedBox(height: 20),
+                            SizedBox(height: 20.h),
                             const DetailsSectionTitle(title: 'Facilities'),
-                            const SizedBox(height: 20),
+                            SizedBox(height: 20.h),
                             Facilities(facilities: hotel.facilities!),
                           ],
                         ),
@@ -89,11 +92,14 @@ class DetailsViewBody extends StatelessWidget {
               ),
             ),
             SliverPadding(
-              padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 22),
+              padding: EdgeInsets.symmetric(
+                horizontal: AppConstants.horizontalViewPaddingValue,
+              ),
               sliver: SliverFillRemaining(
                 hasScrollBody: false,
                 child: Column(
                   children: <Widget>[
+                    const BottomSpacer(),
                     const Spacer(),
                     Row(
                       children: <Widget>[
@@ -102,7 +108,7 @@ class DetailsViewBody extends StatelessWidget {
                           fontSize: 20,
                           mainAxisAlignment: MainAxisAlignment.start,
                         ),
-                        const SizedBox(width: 16),
+                        SizedBox(width: 16.w),
                         Expanded(
                           child: GlowingCustomButton(
                             onPressed: () => context.navigateTo(
@@ -117,7 +123,6 @@ class DetailsViewBody extends StatelessWidget {
                         ),
                       ],
                     ),
-                    const BottomSpacer(),
                   ],
                 ),
               ),

@@ -8,8 +8,9 @@ import 'package:roome/src/features/booking/presentation/widgets/booking_one_form
 import 'package:roome/src/features/booking/presentation/widgets/booking_two_form.dart';
 
 class BookingTwoView extends StatelessWidget {
-  final BookingInfo bookingInfo;
   const BookingTwoView({super.key, required this.bookingInfo});
+
+  final BookingInfo bookingInfo;
 
   @override
   Widget build(BuildContext context) {

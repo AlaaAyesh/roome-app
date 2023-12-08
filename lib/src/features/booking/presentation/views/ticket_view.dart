@@ -53,12 +53,11 @@ class TicketView extends StatelessWidget {
                         boxShadow: <BoxShadow>[
                           BoxShadow(
                             offset: Offset(0, 4.h),
-                            blurRadius: 4,
+                            blurRadius: 4.h,
                             color: AppColors.primaryColor.withOpacity(0.15),
                           ),
                         ],
                       ),
-                      const BottomSpacer(),
                     ],
                   ),
                 ),
