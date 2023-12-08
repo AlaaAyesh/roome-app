@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:roome/src/core/widgets/custom_snack_bar.dart';
 
 class AuthHelper {
   static String? validatingPasswordField({String? value}) {
@@ -20,8 +21,6 @@ class AuthHelper {
     return null;
   }
 
-
-
   static String? validatingNameField({
     required textName,
     String? value,
@@ -34,5 +33,13 @@ class AuthHelper {
 
   static void keyboardUnfocus(BuildContext context) {
     FocusScope.of(context).unfocus();
+  }
+
+  static void accountCreatedSnackBar(BuildContext context) {
+    CustomSnackBar.show(
+      context: context,
+      message: "Account Created Successfully",
+      state: CustomSnackBarState.success,
+    );
   }
 }
