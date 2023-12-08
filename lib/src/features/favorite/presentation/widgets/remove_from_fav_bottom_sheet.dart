@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:roome/src/config/themes/cubit/themes_cubit.dart';
 import 'package:roome/src/core/models/hotel.dart';
 import 'package:roome/src/core/utils/app_colors.dart';
@@ -16,16 +17,16 @@ class RemoveFromFavBottomSheet {
     required Hotel hotel,
     required FavoriteCubit cubit,
   }) {
-    showModalBottomSheet(
+    showModalBottomSheet<Widget>(
       context: context,
       backgroundColor: Colors.transparent,
-      builder: (context) => FavRemoveBottomSheet(hotel: hotel, cubit: cubit),
+      builder: (context) => FavBottomSheet(hotel: hotel, cubit: cubit),
     );
   }
 }
 
-class FavRemoveBottomSheet extends StatefulWidget {
-  const FavRemoveBottomSheet({
+class FavBottomSheet extends StatefulWidget {
+  const FavBottomSheet({
     super.key,
     required this.hotel,
     required this.cubit,
@@ -35,10 +36,10 @@ class FavRemoveBottomSheet extends StatefulWidget {
   final FavoriteCubit cubit;
 
   @override
-  State<FavRemoveBottomSheet> createState() => _FavRemoveBottomSheetState();
+  State<FavBottomSheet> createState() => _FavBottomSheetState();
 }
 
-class _FavRemoveBottomSheetState extends State<FavRemoveBottomSheet>
+class _FavBottomSheetState extends State<FavBottomSheet>
     with SingleTickerProviderStateMixin {
   late AnimationController _animationController;
 
@@ -71,9 +72,9 @@ class _FavRemoveBottomSheetState extends State<FavRemoveBottomSheet>
         onDragStart: (_) {
           _animationController.forward();
         },
-        shape: const RoundedRectangleBorder(
+        shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.vertical(
-            top: Radius.circular(50.0),
+            top: Radius.circular(50.0.r),
           ),
         ),
         backgroundColor:
@@ -81,10 +82,14 @@ class _FavRemoveBottomSheetState extends State<FavRemoveBottomSheet>
         dragHandleColor: state.brightness == Brightness.light
             ? AppColors.darkGrey.withOpacity(0.49)
             : AppColors.white60,
-        dragHandleSize: const Size(50, 3),
+        dragHandleSize: Size(50.w, 3.h),
         onClosing: () => context.getBack(),
         builder: (context) => Padding(
-          padding: const EdgeInsets.only(right: 15, left: 15, bottom: 30),
+          padding: EdgeInsets.only(
+            right: 15.w,
+            left: 15.w,
+            bottom: 30.h,
+          ),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
@@ -97,12 +102,12 @@ class _FavRemoveBottomSheetState extends State<FavRemoveBottomSheet>
                 ),
                 textAlign: TextAlign.center,
               ),
-              const SizedBox(height: 16),
+              SizedBox(height: 16.h),
               FavoriteCard(
                 cubit: widget.cubit,
                 hotel: widget.hotel,
               ),
-              const SizedBox(height: 32),
+              SizedBox(height: 32.h),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[

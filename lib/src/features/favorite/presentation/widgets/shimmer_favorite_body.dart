@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:roome/src/config/themes/cubit/themes_cubit.dart';
 import 'package:roome/src/core/helpers/helper.dart';
 import 'package:roome/src/core/utils/app_colors.dart';
@@ -25,40 +26,39 @@ class ShimmerFavoriteBody extends StatelessWidget {
           child: SingleChildScrollView(
             physics: AppConstants.physics,
             child: Padding(
-              padding: const EdgeInsets.only(
-                top: 40,
-                bottom: 16,
-                right: 27,
-                left: 14,
+              padding: EdgeInsets.only(
+                top: 20.h,
+                bottom: 16.h,
+                right: 27.w,
+                left: 14.w,
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Container(
-                    height: 15,
-                    width: 110,
+                    height: 15.h,
+                    width: 110.w,
                     decoration: Helper.buildShimmerDecoration(state),
                   ),
-                  const SizedBox(height: 47),
+                  SizedBox(height: 47.h),
                   ListView.separated(
                     shrinkWrap: true,
                     padding: EdgeInsets.zero,
                     physics: const NeverScrollableScrollPhysics(),
                     itemBuilder: (context, index) => Container(
-                      height: 120,
+                      height: 120.h,
                       width: double.infinity,
                       decoration: BoxDecoration(
                         color: AppColors.shimmerContainerColor,
-                        borderRadius:
-                            const BorderRadius.all(Radius.circular(10)),
+                        borderRadius: BorderRadius.all(Radius.circular(10.r)),
                         border: Border.all(
                           color: AppColors.borderColor,
-                          width: 1,
+                          width: 1.w,
                         ),
                       ),
                     ),
                     separatorBuilder: (context, index) =>
-                        const SeparatorWidget(height: 33),
+                        SeparatorWidget(height: 33.h),
                     itemCount: 8,
                   ),
                 ],

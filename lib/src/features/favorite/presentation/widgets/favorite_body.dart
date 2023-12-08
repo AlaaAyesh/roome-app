@@ -1,6 +1,7 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:roome/src/core/utils/app_assets.dart';
 import 'package:roome/src/core/utils/app_constants.dart';
@@ -20,7 +21,7 @@ class FavoriteBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocConsumer<FavoriteCubit, FavoriteState>(
       listener: (BuildContext context, FavoriteState state) =>
-          controlFavoriteStates(state, context),
+          _controlFavoriteStates(state, context),
       builder: (context, state) {
         FavoriteCubit cubit = BlocProvider.of<FavoriteCubit>(context);
 
@@ -42,10 +43,10 @@ class FavoriteBody extends StatelessWidget {
                         },
                       ),
                       SliverPadding(
-                        padding: const EdgeInsets.only(
-                          bottom: 16,
-                          right: 27,
-                          left: 14,
+                        padding: EdgeInsets.only(
+                          bottom: 16.h,
+                          right: 27.w,
+                          left: 14.w,
                         ),
                         sliver: SliverToBoxAdapter(
                           child: ListView.separated(
@@ -58,7 +59,7 @@ class FavoriteBody extends StatelessWidget {
                               hotel: state.favorites[index],
                             ),
                             separatorBuilder: (context, index) =>
-                                const SeparatorWidget(height: 33),
+                                SeparatorWidget(height: 33.h),
                           ),
                         ),
                       ),
@@ -69,7 +70,7 @@ class FavoriteBody extends StatelessWidget {
                   from: AppConstants.fadeInUpValue,
                   child: Center(
                     child: Padding(
-                      padding: const EdgeInsets.only(right: 27, left: 14),
+                      padding: EdgeInsets.only(right: 27.w, left: 14.w),
                       child: SvgPicture.asset(
                         AppAssets.imageNoFavorite,
                         fit: BoxFit.contain,
@@ -90,7 +91,7 @@ class FavoriteBody extends StatelessWidget {
     );
   }
 
-  void controlFavoriteStates(FavoriteState state, BuildContext context) {
+  void _controlFavoriteStates(FavoriteState state, BuildContext context) {
     if (state is RemoveFromFavSuccessState) {
       CustomSnackBar.show(
         context: context,

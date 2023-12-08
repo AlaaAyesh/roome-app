@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:roome/src/config/router/routes.dart';
 import 'package:roome/src/config/themes/cubit/themes_cubit.dart';
 import 'package:roome/src/core/models/hotel.dart';
@@ -34,30 +35,30 @@ class FavoriteCard extends StatelessWidget {
       child: BlocBuilder<ThemesCubit, ThemeData>(
         builder: (context, state) {
           return Container(
-            height: 110,
+            height: 110.h,
             width: double.infinity,
             decoration: BoxDecoration(
               color: state.brightness == Brightness.light
                   ? Colors.white
                   : AppColors.darkGreyColor,
-              borderRadius: const BorderRadius.all(Radius.circular(10)),
+              borderRadius: BorderRadius.all(Radius.circular(10.r)),
               border: Border.all(
                 color: AppColors.borderColor,
-                width: 1,
+                width: 1.w,
               ),
             ),
             child: Row(
               children: <Widget>[
                 Expanded(
                   child: Padding(
-                    padding: const EdgeInsets.only(
-                      right: 10,
-                      left: 5,
-                      top: 5,
-                      bottom: 5,
+                    padding: EdgeInsets.only(
+                      right: 10.w,
+                      left: 5.w,
+                      top: 5.h,
+                      bottom: 5.w,
                     ),
                     child: ClipRRect(
-                      borderRadius: const BorderRadius.all(Radius.circular(19)),
+                      borderRadius: BorderRadius.all(Radius.circular(19.r)),
                       child: Hero(
                         tag: hotel.id!,
                         child: CachedNetworkImage(
