@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_osm_plugin/flutter_osm_plugin.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:roome/src/config/router/routes.dart';
 import 'package:roome/src/core/utils/app_colors.dart';
 import 'package:roome/src/core/utils/app_navigator.dart';
-import 'package:roome/src/core/utils/app_text_styles.dart';
 import 'package:roome/src/core/widgets/main_button.dart';
 
 class LocationViewBody extends StatefulWidget {
@@ -82,17 +82,12 @@ class _LocationViewBodyState extends State<LocationViewBody> {
           },
         ),
         Padding(
-          padding: const EdgeInsets.only(right: 8, bottom: 16),
+          padding: EdgeInsets.only(right: 16.w, left: 16.w, bottom: 16.h),
           child: MainButton(
-              backgroundColor: AppColors.primaryColor,
-              borderRadius: 16,
-              onPressed: () =>
-                  context.navigateTo(routeName: Routes.searchLocationViewRoute),
-              text: 'Search',
-              textStyle: AppTextStyles.textStyle12.copyWith(
-                color: Colors.white,
-                fontWeight: FontWeight.w600,
-              )),
+            onPressed: () =>
+                context.navigateTo(routeName: Routes.searchLocationViewRoute),
+            text: 'Search',
+          ),
         ),
       ],
     );

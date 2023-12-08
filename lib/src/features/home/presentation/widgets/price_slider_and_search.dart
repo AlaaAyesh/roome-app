@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:roome/src/config/themes/cubit/themes_cubit.dart';
 import 'package:roome/src/core/utils/app_colors.dart';
@@ -14,13 +15,11 @@ class PriceSliderAndSearch extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      constraints: const BoxConstraints(
-        minHeight: 0,
-      ),
-      padding: const EdgeInsets.only(top: 11, left: 13, bottom: 11),
-      margin: const EdgeInsets.only(right: 26),
+      constraints: const BoxConstraints(minHeight: 0),
+      padding: EdgeInsets.only(top: 11.h, left: 13.w, bottom: 11.h),
+      margin: EdgeInsets.only(right: 26.w),
       decoration: BoxDecoration(
-        borderRadius: const BorderRadius.all(Radius.circular(20)),
+        borderRadius: BorderRadius.all(Radius.circular(20.r)),
         border: Border.all(color: AppColors.borderColor),
       ),
       child: Column(
@@ -29,23 +28,23 @@ class PriceSliderAndSearch extends StatelessWidget {
           Text(
             'Price Range Per Night',
             style: AppTextStyles.textStyle14Medium.copyWith(
-              fontSize: 13,
+              fontSize: 13.sp,
             ),
           ),
-          const SizedBox(height: 50),
+          SizedBox(height: 50.h),
           const PriceSlider(),
-          const SizedBox(height: 5),
+          SizedBox(height: 5.h),
           BlocBuilder<ThemesCubit, ThemeData>(
             builder: (context, state) {
               return Padding(
-                padding: const EdgeInsets.only(right: 16),
+                padding: EdgeInsets.only(right: 16.w),
                 child: Row(
                   children: <Widget>[
                     Expanded(child: DisabledSearchField(state: state)),
-                    const SizedBox(width: 10),
+                    SizedBox(width: 10.w),
                     Container(
-                      height: 38,
-                      width: 38,
+                      height: 38.h,
+                      width: 38.h,
                       decoration: BoxDecoration(
                         color: state.brightness == Brightness.light
                             ? Colors.white
@@ -57,9 +56,9 @@ class PriceSliderAndSearch extends StatelessWidget {
                       child: Center(
                         child: GestureDetector(
                           onTap: () {}, // TODO: Filtering Logic
-                          child: const Icon(
+                          child: Icon(
                             Icons.filter_list,
-                            size: 22,
+                            size: 22.w,
                             color: AppColors.primaryColor,
                           ),
                         ),

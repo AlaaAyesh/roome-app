@@ -52,7 +52,7 @@ class EditProfileTextField extends StatelessWidget {
               keyboardType: keyboardType,
               validating: validating,
               suffix: suffixIcon,
-              obscureText: obscure,
+              obscureText: obscure ?? false,
             ),
           ],
         );

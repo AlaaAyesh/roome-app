@@ -12,16 +12,15 @@ class CustomTextFormField extends StatelessWidget {
     this.keyboardType,
     this.prefix,
     this.suffix,
-    this.obscureText,
+    this.obscureText = false,
     this.label,
     this.hintText,
     this.onSubmit,
     this.borderRadius,
-    this.enableBorderColor,
     this.onSaved,
     this.autofillHints,
     this.isEmail = false,
-    this.enabled,
+    this.enabled = true,
     this.textAlign,
     this.maxLength,
     this.onChanged,
@@ -47,7 +46,7 @@ class CustomTextFormField extends StatelessWidget {
   final Widget? prefix;
   final IconData? prefixIcon;
   final Widget? suffix;
-  final bool? obscureText;
+  final bool obscureText;
   final bool isEmail;
   final bool? enabled;
   final String? label;
@@ -60,7 +59,6 @@ class CustomTextFormField extends StatelessWidget {
   final TextAlign? textAlign;
   final double? borderRadius;
   final EdgeInsetsGeometry? contentPadding;
-  final Color? enableBorderColor;
   final int? maxLength;
   final Function(String)? onChanged;
   final FocusNode? focusNode;
@@ -82,12 +80,12 @@ class CustomTextFormField extends StatelessWidget {
         return TextFormField(
           controller: controller,
           focusNode: focusNode,
-          enabled: enabled ?? true,
+          enabled: enabled,
           autofocus: autofocus,
           textCapitalization: textCapitalization,
           textAlign: textAlign ?? TextAlign.start,
           keyboardType: keyboardType ?? TextInputType.text,
-          obscureText: obscureText ?? false,
+          obscureText: obscureText,
           maxLength: maxLength,
           onSaved: onSaved,
           onTap: onTap,

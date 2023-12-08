@@ -1,7 +1,9 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
+import 'package:roome/src/core/utils/app_constants.dart';
 import 'package:roome/src/core/widgets/hotel_card.dart';
 import 'package:roome/src/core/widgets/try_again_button.dart';
 import 'package:roome/src/features/home/presentation/cubits/recommended/recommended_cubit.dart';
@@ -18,7 +20,10 @@ class Recommended extends StatelessWidget {
           return const ShimmerRecommended();
         } else if (state is GetRecommendedHotelsSuccessState) {
           return Padding(
-            padding: const EdgeInsets.only(top: 15, right: 26),
+            padding: EdgeInsets.only(
+              top: 15.h,
+              right: AppConstants.horizontalViewPaddingValue,
+            ),
             child: GridView.builder(
               itemBuilder: (context, index) =>
                   AnimationConfiguration.staggeredGrid(
@@ -44,16 +49,21 @@ class Recommended extends StatelessWidget {
               gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
                 maxCrossAxisExtent: 200,
                 mainAxisExtent: 200,
-                mainAxisSpacing: 20,
+                mainAxisSpacing: 15,
                 crossAxisSpacing: 15,
                 childAspectRatio: 3 / 2,
               ),
             ),
           );
         } else if (state is GetRecommendedHotelsErrorState) {
-          return TryAgainButton(
-            onPressed: () => BlocProvider.of<RecommendedCubit>(context)
-                .getRecommendedHotels(),
+          return Padding(
+            padding: EdgeInsets.only(
+              right: AppConstants.horizontalViewPaddingValue,
+            ),
+            child: TryAgainButton(
+              onPressed: () => BlocProvider.of<RecommendedCubit>(context)
+                  .getRecommendedHotels(),
+            ),
           );
         } else {
           return const ShimmerRecommended();

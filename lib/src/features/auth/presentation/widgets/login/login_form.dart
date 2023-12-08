@@ -106,6 +106,7 @@ class _LoginFormState extends State<LoginForm> {
                   ),
                 ),
                 obscureText: cubit.loginPassVisibility,
+                autofillHints: const <String>[AutofillHints.password],
                 validating: (String? value) {
                   return AuthHelper.validatingPasswordField(value: value);
                 },

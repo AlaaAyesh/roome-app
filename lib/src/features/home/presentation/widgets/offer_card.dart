@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:roome/src/core/utils/app_text_styles.dart';
 import 'package:roome/src/core/widgets/custom_error_icon.dart';
 import 'package:roome/src/features/home/data/models/offer_model.dart';
@@ -19,12 +20,12 @@ class OfferCard extends StatelessWidget {
     return Stack(
       children: <Widget>[
         ClipRRect(
-          borderRadius: const BorderRadius.all(Radius.circular(10)),
+          borderRadius: BorderRadius.all(Radius.circular(10.r)),
           child: CachedNetworkImage(
             imageUrl: offerModel.imageUrl,
             fit: BoxFit.cover,
-            height: 130,
-            width: 300,
+            height: 130.h,
+            width: 300.w,
             errorWidget: (context, url, error) => const CustomErrorIcon(),
           ),
         ),
@@ -36,7 +37,7 @@ class OfferCard extends StatelessWidget {
               Text(
                 'Get',
                 style: AppTextStyles.onBoardingButtonStyle.copyWith(
-                  fontSize: 20,
+                  fontSize: 20.sp,
                 ),
               ),
               Row(
@@ -44,15 +45,15 @@ class OfferCard extends StatelessWidget {
                   Text(
                     '${offerModel.offer} OFF',
                     style: AppTextStyles.onBoardingButtonStyle.copyWith(
-                      fontSize: 22,
+                      fontSize: 22.sp,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  const SizedBox(width: 3),
+                  SizedBox(width: 3.w),
                   Text(
                     'on your',
                     style: AppTextStyles.onBoardingButtonStyle.copyWith(
-                      fontSize: 20,
+                      fontSize: 20.sp,
                       fontWeight: FontWeight.w500,
                     ),
                   ),
@@ -61,7 +62,7 @@ class OfferCard extends StatelessWidget {
               Text(
                 'first booking',
                 style: AppTextStyles.onBoardingButtonStyle.copyWith(
-                  fontSize: 20,
+                  fontSize: 20.sp,
                   fontWeight: FontWeight.w500,
                 ),
               ),

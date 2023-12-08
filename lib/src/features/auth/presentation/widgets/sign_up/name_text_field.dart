@@ -26,6 +26,7 @@ class NameTextField extends StatelessWidget {
         prefixIcon: Icons.person,
         keyboardType: TextInputType.text,
         textCapitalization: TextCapitalization.words,
+        autofillHints: const <String>[AutofillHints.name],
         validating: (String? value) {
           return AuthHelper.validatingNameField(
             textName: hint,

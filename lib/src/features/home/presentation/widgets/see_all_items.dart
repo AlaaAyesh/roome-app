@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:roome/src/core/models/hotel.dart';
 import 'package:roome/src/core/widgets/separator_widget.dart';
@@ -13,13 +14,18 @@ class SeeAllItems extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView.separated(
       physics: const NeverScrollableScrollPhysics(),
-      padding: const EdgeInsets.only(right: 27, left: 14, top: 15, bottom: 24),
+      padding: EdgeInsets.only(
+        right: 27.w,
+        left: 14.w,
+        top: 15.h,
+        bottom: 15.h,
+      ),
       shrinkWrap: true,
       itemBuilder: (context, index) => AnimationConfiguration.staggeredList(
         position: index,
         duration: const Duration(milliseconds: 700),
         child: SlideAnimation(
-          horizontalOffset: -150,
+          horizontalOffset: -150.w,
           curve: Curves.fastLinearToSlowEaseIn,
           child: FadeInAnimation(
             child: PopularCard(
@@ -28,7 +34,7 @@ class SeeAllItems extends StatelessWidget {
           ),
         ),
       ),
-      separatorBuilder: (context, index) => const SeparatorWidget(height: 33),
+      separatorBuilder: (context, index) => SeparatorWidget(height: 33.h),
       itemCount: hotels.length,
     );
   }

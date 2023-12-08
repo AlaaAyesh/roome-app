@@ -8,4 +8,6 @@ class AppConstants {
   static const ScrollPhysics physics = BouncingScrollPhysics();
   static EdgeInsetsGeometry get authHorizontalPadding =>
       EdgeInsets.symmetric(horizontal: 38.w);
+
+  static double get horizontalViewPaddingValue => 21.w;
 }

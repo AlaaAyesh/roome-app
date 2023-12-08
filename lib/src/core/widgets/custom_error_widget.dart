@@ -25,12 +25,10 @@ class CustomErrorWidget extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             const Spacer(),
-            Center(
-              child: Icon(
-                Icons.refresh,
-                color: AppColors.primaryColor,
-                size: 150.h,
-              ),
+            Icon(
+              Icons.refresh,
+              color: AppColors.primaryColor,
+              size: 150.h,
             ),
             Container(
               margin: EdgeInsets.symmetric(vertical: 12.h),
@@ -47,15 +45,17 @@ class CustomErrorWidget extends StatelessWidget {
                 ),
               ),
             ),
-            if (error == AppStrings.noInternet) ...[
+            if (error == AppStrings.noInternet)
               Text(
                 'Connect to the internet and try again.',
                 style: AppTextStyles.textStyle12,
                 textAlign: TextAlign.center,
               ),
-            ],
             const Spacer(),
-            TryAgainButton(onPressed: onPressed),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 16.w),
+              child: TryAgainButton(onPressed: onPressed),
+            ),
             const Spacer(),
           ],
         );

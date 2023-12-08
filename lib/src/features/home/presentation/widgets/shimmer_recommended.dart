@@ -1,8 +1,10 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:roome/src/config/themes/cubit/themes_cubit.dart';
 import 'package:roome/src/core/utils/app_colors.dart';
+import 'package:roome/src/core/utils/app_constants.dart';
 import 'package:roome/src/core/widgets/shimmer_hotel_card.dart';
 import 'package:shimmer/shimmer.dart';
 
@@ -22,7 +24,10 @@ class ShimmerRecommended extends StatelessWidget {
               : AppColors.darkShimmerHighlightColor,
           enabled: true,
           child: Padding(
-            padding: const EdgeInsets.only(top: 15, right: 26),
+            padding: EdgeInsets.only(
+              top: 15.h,
+              right: AppConstants.horizontalViewPaddingValue,
+            ),
             child: GridView.builder(
               itemBuilder: (context, index) => const ShimmerHotelCard(),
               itemCount: 8,
@@ -36,7 +41,7 @@ class ShimmerRecommended extends StatelessWidget {
               gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
                 maxCrossAxisExtent: 200,
                 mainAxisExtent: 200,
-                mainAxisSpacing: 20,
+                mainAxisSpacing: 15,
                 crossAxisSpacing: 15,
                 childAspectRatio: 3 / 2,
               ),

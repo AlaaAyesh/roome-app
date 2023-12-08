@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:roome/src/core/utils/app_colors.dart';
 
 class SeeAllTextButton extends StatelessWidget {
@@ -13,10 +14,10 @@ class SeeAllTextButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextButton(
       onPressed: onTap,
-      child: const Text(
+      child: Text(
         'See all',
         style: TextStyle(
-          fontSize: 15,
+          fontSize: 15.sp,
           color: AppColors.primaryColor,
           fontWeight: FontWeight.w500,
         ),

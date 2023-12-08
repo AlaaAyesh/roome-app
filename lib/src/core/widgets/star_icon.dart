@@ -10,7 +10,7 @@ class StarIcon extends StatelessWidget {
     return Icon(
       Icons.star,
       color: AppColors.starColor,
-      size: 16.h,
+      size: 16.w,
     );
   }
 }

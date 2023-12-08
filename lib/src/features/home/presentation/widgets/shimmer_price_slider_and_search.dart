@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:roome/src/config/themes/cubit/themes_cubit.dart';
 import 'package:roome/src/core/utils/app_colors.dart';
+import 'package:roome/src/core/utils/app_constants.dart';
 import 'package:shimmer/shimmer.dart';
 
 class ShimmerPriceSliderAndSearch extends StatelessWidget {
@@ -20,13 +22,15 @@ class ShimmerPriceSliderAndSearch extends StatelessWidget {
               : AppColors.darkShimmerHighlightColor,
           enabled: true,
           child: Container(
-            height: 150,
+            height: 150.h,
             width: double.infinity,
-            padding: const EdgeInsets.only(top: 11, left: 13, bottom: 11),
-            margin: const EdgeInsets.only(right: 26),
+            padding: EdgeInsets.only(top: 11.h, left: 13.w, bottom: 11.h),
+            margin: EdgeInsets.only(
+              right: AppConstants.horizontalViewPaddingValue,
+            ),
             decoration: BoxDecoration(
               color: AppColors.shimmerContainerColor,
-              borderRadius: const BorderRadius.all(Radius.circular(20)),
+              borderRadius: BorderRadius.all(Radius.circular(20.r)),
               border: Border.all(
                 color: AppColors.borderColor,
               ),

@@ -28,11 +28,11 @@ class ShimmerHotelCard extends StatelessWidget {
               : AppColors.darkShimmerHighlightColor,
           enabled: true,
           child: Container(
-            height: cardHeight,
-            width: cardWidth,
+            height: cardHeight?.h,
+            width: cardWidth?.w,
             decoration: BoxDecoration(
               color: AppColors.shimmerContainerColor,
-              borderRadius: const BorderRadius.all(Radius.circular(13)),
+              borderRadius: BorderRadius.all(Radius.circular(13.r)),
               boxShadow: <BoxShadow>[
                 BoxShadow(
                   offset: Offset(0, 1.73.h),

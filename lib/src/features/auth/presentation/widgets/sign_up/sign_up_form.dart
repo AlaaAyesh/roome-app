@@ -112,6 +112,7 @@ class _SignUpFormState extends State<SignUpForm> {
                 prefixIcon: Icons.person,
                 keyboardType: TextInputType.text,
                 textCapitalization: TextCapitalization.none,
+                autofillHints: const <String>[AutofillHints.username],
                 validating: (String? value) {
                   return AuthHelper.validatingNameField(
                     textName: 'Username',
@@ -130,6 +131,7 @@ class _SignUpFormState extends State<SignUpForm> {
                 textCapitalization: TextCapitalization.none,
                 keyboardType: TextInputType.emailAddress,
                 prefixIcon: Icons.email,
+                autofillHints: const <String>[AutofillHints.email],
                 validating: (String? value) {
                   return AuthHelper.validatingEmailField(
                     value: value,
@@ -145,6 +147,7 @@ class _SignUpFormState extends State<SignUpForm> {
                 focusNode: _passwordFocusNode,
                 hintText: 'Password',
                 prefixIcon: Icons.lock,
+                autofillHints: const <String>[AutofillHints.password],
                 suffix: IconButton(
                   onPressed: () => cubit.switchPassVisibility(),
                   icon: Icon(

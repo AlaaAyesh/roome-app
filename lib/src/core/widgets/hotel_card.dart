@@ -37,8 +37,8 @@ class HotelCard extends StatelessWidget {
       child: BlocBuilder<ThemesCubit, ThemeData>(
         builder: (context, state) {
           return Container(
-            height: cardHeight,
-            width: cardWidth,
+            height: cardHeight?.h,
+            width: cardWidth?.w,
             decoration: BoxDecoration(
               color: state.brightness == Brightness.light
                   ? Colors.white
@@ -55,31 +55,34 @@ class HotelCard extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                Stack(
-                  alignment: AlignmentDirectional.bottomStart,
-                  children: <Widget>[
-                    Padding(
-                      padding: EdgeInsets.all(4.h),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.all(Radius.circular(18.r)),
-                        child: Hero(
-                          tag: hotel.id!,
-                          child: CachedNetworkImage(
-                            imageUrl: hotel.images![0].path!,
-                            height: 89.h,
-                            width: double.infinity,
-                            fit: BoxFit.cover,
-                            errorWidget: (context, url, error) =>
-                                const CustomErrorIcon(),
+                Expanded(
+                  child: Stack(
+                    alignment: AlignmentDirectional.bottomStart,
+                    children: <Widget>[
+                      Padding(
+                        padding: EdgeInsets.all(4.h),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.all(Radius.circular(18.r)),
+                          child: Hero(
+                            tag: hotel.id!,
+                            child: CachedNetworkImage(
+                              imageUrl: hotel.images![0].path!,
+                              // height: 89.h,
+                              width: double.infinity,
+                              fit: BoxFit.cover,
+                              errorWidget: (context, url, error) =>
+                                  const CustomErrorIcon(),
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                    LoveIcon(hotel: hotel),
-                  ],
+                      LoveIcon(hotel: hotel),
+                    ],
+                  ),
                 ),
                 Padding(
-                  padding: EdgeInsets.only(top: 1.h, right: 10.w, left: 10.w),
+                  padding:
+                      EdgeInsets.symmetric(vertical: 5.h, horizontal: 10.w),
                   child: Row(
                     children: <Widget>[
                       Flexible(
@@ -92,7 +95,7 @@ class HotelCard extends StatelessWidget {
                           overflow: TextOverflow.ellipsis,
                         ),
                       ),
-                      const Spacer(),
+                      SizedBox(width: 3.w),
                       const StarIcon(),
                       SizedBox(width: 3.w),
                       Text(
@@ -105,11 +108,11 @@ class HotelCard extends StatelessWidget {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.only(left: 10.w, top: 7.h),
+                  padding: EdgeInsets.only(left: 10.w),
                   child: LocationText(location: hotel.location!),
                 ),
                 Padding(
-                  padding: EdgeInsets.only(right: 10.w, top: 7.h),
+                  padding: EdgeInsets.only(right: 10.w, top: 7.h, bottom: 7.h),
                   child: PricePerNightText(price: hotel.price!),
                 ),
               ],

@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:roome/src/config/router/routes.dart';
 import 'package:roome/src/config/themes/cubit/themes_cubit.dart';
@@ -27,16 +28,16 @@ class ExploreCard extends StatelessWidget {
       child: BlocBuilder<ThemesCubit, ThemeData>(
         builder: (context, state) {
           return Container(
-            width: 130,
+            width: 130.w,
             decoration: BoxDecoration(
               color: state.brightness == Brightness.light
                   ? Colors.white
                   : AppColors.darkGreyColor,
-              borderRadius: const BorderRadius.all(Radius.circular(12)),
-              boxShadow: [
+              borderRadius: BorderRadius.all(Radius.circular(12.r)),
+              boxShadow: <BoxShadow>[
                 BoxShadow(
-                  offset: const Offset(0, 1.15),
-                  blurRadius: 6.89,
+                  offset: Offset(0, 1.15.h),
+                  blurRadius: 6.89.h,
                   color: AppColors.shadowColor,
                 ),
               ],
@@ -46,12 +47,12 @@ class ExploreCard extends StatelessWidget {
               children: <Widget>[
                 Expanded(
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                      vertical: 3,
-                      horizontal: 5,
+                    padding: EdgeInsets.symmetric(
+                      vertical: 3.h,
+                      horizontal: 5.w,
                     ),
                     child: ClipRRect(
-                      borderRadius: const BorderRadius.all(Radius.circular(10)),
+                      borderRadius: BorderRadius.all(Radius.circular(10.r)),
                       child: CachedNetworkImage(
                         imageUrl: hotel.images![0].path!,
                         fit: BoxFit.cover,
@@ -66,21 +67,19 @@ class ExploreCard extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: <Widget>[
-                      Flexible(
-                        child: Text(
-                          hotel.name!,
-                          style: AppTextStyles.bottomNavTextStyle.copyWith(
-                            fontSize: 12,
-                          ),
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
+                      Text(
+                        hotel.name!,
+                        style: AppTextStyles.bottomNavTextStyle.copyWith(
+                          fontSize: 12.sp,
                         ),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
                           const StarIcon(),
-                          const SizedBox(width: 3),
+                          SizedBox(width: 3.w),
                           Text(
                             hotel.rate!.toString(),
                             style: AppTextStyles.bottomNavTextStyle.copyWith(
