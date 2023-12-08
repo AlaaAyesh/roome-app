@@ -40,13 +40,10 @@ class Helper {
     return hotelImages.length >= 4 ? 3 : hotelImages.length;
   }
 
-  static OutlineInputBorder buildOutlineInputBorder({
-    required Color borderColor,
-    required double borderRadius,
-  }) {
+  static OutlineInputBorder buildOutlineInputBorder() {
     return OutlineInputBorder(
-      borderRadius: BorderRadius.all(Radius.circular(borderRadius.r)),
-      borderSide: BorderSide(color: borderColor),
+      borderRadius: BorderRadius.all(Radius.circular(10.r)),
+      borderSide: BorderSide(color: AppColors.darkGrey.withOpacity(0.63)),
     );
   }
 }

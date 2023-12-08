@@ -13,7 +13,10 @@ class LoginRepoImpl implements LoginRepo {
   final NetworkInfo networkInfo;
   final LoginDataSource loginDataSource;
 
-  LoginRepoImpl({required this.loginDataSource, required this.networkInfo});
+  const LoginRepoImpl({
+    required this.loginDataSource,
+    required this.networkInfo,
+  });
 
   @override
   Future<Either<Failure, UserCredential>> signInWithGoogle() async {

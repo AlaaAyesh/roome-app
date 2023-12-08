@@ -47,7 +47,7 @@ class HotelCard extends StatelessWidget {
               boxShadow: <BoxShadow>[
                 BoxShadow(
                   offset: Offset(0, 1.73.h),
-                  blurRadius: 10,
+                  blurRadius: 10.h,
                   color: AppColors.shadowColor,
                 ),
               ],
@@ -67,7 +67,6 @@ class HotelCard extends StatelessWidget {
                             tag: hotel.id!,
                             child: CachedNetworkImage(
                               imageUrl: hotel.images![0].path!,
-                              // height: 89.h,
                               width: double.infinity,
                               fit: BoxFit.cover,
                               errorWidget: (context, url, error) =>
@@ -81,8 +80,10 @@ class HotelCard extends StatelessWidget {
                   ),
                 ),
                 Padding(
-                  padding:
-                      EdgeInsets.symmetric(vertical: 5.h, horizontal: 10.w),
+                  padding: EdgeInsets.symmetric(
+                    vertical: 5.h,
+                    horizontal: 10.w,
+                  ),
                   child: Row(
                     children: <Widget>[
                       Flexible(
@@ -95,7 +96,7 @@ class HotelCard extends StatelessWidget {
                           overflow: TextOverflow.ellipsis,
                         ),
                       ),
-                      SizedBox(width: 3.w),
+                      const Spacer(),
                       const StarIcon(),
                       SizedBox(width: 3.w),
                       Text(

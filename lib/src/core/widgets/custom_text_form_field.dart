@@ -38,14 +38,12 @@ class CustomTextFormField extends StatelessWidget {
     this.fillColor,
     this.hintStyle,
     this.autofocus = false,
-    this.prefixIcon,
     this.disabledBorder,
   });
 
   final TextEditingController? controller;
   final TextInputType? keyboardType;
   final Widget? prefix;
-  final IconData? prefixIcon;
   final Widget? suffix;
   final bool obscureText;
   final bool isEmail;
@@ -108,16 +106,15 @@ class CustomTextFormField extends StatelessWidget {
             hintText: hintText,
             hintStyle: hintStyle ?? _customTextFieldTextStyle(),
             errorMaxLines: null,
-            prefixIcon: prefix ??
-                Icon(
-                  prefixIcon,
-                  color: Colors.grey,
-                  size: 24.h,
-                ),
+            prefixIcon: prefix,
             suffixIcon: suffix,
             labelText: label,
             labelStyle: Theme.of(context).textTheme.titleSmall,
-            contentPadding: contentPadding,
+            contentPadding: contentPadding ??
+                EdgeInsets.symmetric(
+                  vertical: 8.h,
+                  horizontal: 12.w,
+                ),
             enabledBorder: enabledBorder ?? _buildUnderlineInputBorder(),
             focusedBorder: focusedBorder ?? _buildUnderlineInputBorder(),
             errorBorder: errorBorder ?? _buildUnderlineInputBorder(),

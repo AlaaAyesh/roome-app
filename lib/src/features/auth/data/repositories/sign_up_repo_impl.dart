@@ -8,11 +8,14 @@ import 'package:roome/src/core/utils/app_strings.dart';
 import 'package:roome/src/features/auth/data/datasources/sign_up/sign_up_datasource.dart';
 import 'package:roome/src/features/auth/domain/repositories/sign_up_repo.dart';
 
-class SignUpRepoImpl extends SignUpRepo {
+class SignUpRepoImpl implements SignUpRepo {
   final NetworkInfo networkInfo;
   final SignUpDataSource signUpDataSource;
 
-  SignUpRepoImpl({required this.networkInfo, required this.signUpDataSource});
+  const SignUpRepoImpl({
+    required this.networkInfo,
+    required this.signUpDataSource,
+  });
 
   @override
   Future<Either<Failure, UserModel>> userSignUp({

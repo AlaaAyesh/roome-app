@@ -12,7 +12,7 @@ class RecommendedRepoImpl implements RecommendedRepo {
   final NetworkInfo networkInfo;
   final RecommendedDataSource recommendedDataSource;
 
-  RecommendedRepoImpl({
+  const RecommendedRepoImpl({
     required this.networkInfo,
     required this.recommendedDataSource,
   });

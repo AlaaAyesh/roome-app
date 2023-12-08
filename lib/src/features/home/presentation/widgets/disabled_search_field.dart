@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:roome/src/config/router/routes.dart';
-import 'package:roome/src/core/helpers/helper.dart';
 import 'package:roome/src/core/utils/app_colors.dart';
 import 'package:roome/src/core/utils/app_navigator.dart';
 import 'package:roome/src/core/utils/app_strings.dart';
@@ -26,11 +25,12 @@ class DisabledSearchField extends StatelessWidget {
         hintStyle: AppTextStyles.textStyle14Medium.copyWith(
           color: AppColors.lightGrey.withOpacity(0.24),
         ),
-        contentPadding: EdgeInsets.zero,
         suffix: Icon(Icons.search, size: 22.w, color: Colors.black),
-        disabledBorder: Helper.buildOutlineInputBorder(
-          borderColor: AppColors.darkGrey.withOpacity(0.65),
-          borderRadius: 10,
+        disabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.all(Radius.circular(10.r)),
+          borderSide: BorderSide(
+            color: AppColors.darkGrey.withOpacity(0.65),
+          ),
         ),
       ),
     );

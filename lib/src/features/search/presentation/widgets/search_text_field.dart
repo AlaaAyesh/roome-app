@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:roome/src/core/helpers/helper.dart';
 import 'package:roome/src/core/utils/app_colors.dart';
 import 'package:roome/src/core/utils/app_strings.dart';
 import 'package:roome/src/core/utils/app_text_styles.dart';
@@ -30,25 +31,19 @@ class _SearchTextFieldState extends State<SearchTextField> {
       keyboardType: TextInputType.text,
       textCapitalization: TextCapitalization.none,
       autofocus: true,
-      fillColor: AppColors.darkGrey.withOpacity(0.65),
-      contentPadding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+      fillColor: AppColors.primaryColor.withOpacity(0.03),
       controller: _searchTextFieldController,
       hintText: AppStrings.searchHint,
       hintStyle: AppTextStyles.textStyle14Medium.copyWith(
         color: AppColors.lightGrey.withOpacity(0.24),
       ),
-      suffix: const Icon(Icons.search, size: 22, color: Colors.black),
-      enabledBorder: _buildOutlinedBorder(),
-      focusedBorder: _buildOutlinedBorder(),
+      suffix: Icon(Icons.search, size: 22.h, color: AppColors.primaryColor),
+      enabledBorder: Helper.buildOutlineInputBorder(),
+      focusedBorder: Helper.buildOutlineInputBorder(),
       onChanged: (String hotelName) {
         BlocProvider.of<SearchCubit>(context)
             .searchHotels(hotelName: hotelName);
       },
     );
-  }
-
-  OutlineInputBorder _buildOutlinedBorder() {
-    return OutlineInputBorder(
-        borderRadius: BorderRadius.all(Radius.circular(10.r)));
   }
 }

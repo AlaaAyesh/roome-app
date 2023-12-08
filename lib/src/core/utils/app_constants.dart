@@ -10,4 +10,6 @@ class AppConstants {
       EdgeInsets.symmetric(horizontal: 38.w);
 
   static double get horizontalViewPaddingValue => 21.w;
+  static Color get authPrefixIconColor => Colors.grey;
+  static double get authPrefixIconSize => 24.h;
 }

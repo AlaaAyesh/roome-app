@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:roome/src/core/helpers/auth_helper.dart';
+import 'package:roome/src/core/utils/app_constants.dart';
 import 'package:roome/src/core/widgets/custom_text_form_field.dart';
 
 class NameTextField extends StatelessWidget {
@@ -23,7 +24,11 @@ class NameTextField extends StatelessWidget {
         controller: controller,
         focusNode: thisFocusNode,
         hintText: hint,
-        prefixIcon: Icons.person,
+        prefix: Icon(
+          Icons.person,
+          size: AppConstants.authPrefixIconSize,
+          color: AppConstants.authPrefixIconColor,
+        ),
         keyboardType: TextInputType.text,
         textCapitalization: TextCapitalization.words,
         autofillHints: const <String>[AutofillHints.name],

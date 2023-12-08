@@ -12,7 +12,10 @@ class HotelsRepoImpl implements HotelsRepo {
   final NetworkInfo networkInfo;
   final HotelsDataSource hotelsDataSource;
 
-  HotelsRepoImpl({required this.networkInfo, required this.hotelsDataSource});
+  const HotelsRepoImpl({
+    required this.networkInfo,
+    required this.hotelsDataSource,
+  });
 
   @override
   Future<Either<Failure, dynamic>> getHotels() async {

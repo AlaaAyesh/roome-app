@@ -12,7 +12,7 @@ class SearchRepoImpl implements SearchRepo {
   final NetworkInfo networkInfo;
   final SearchDatasource searchDatasource;
 
-  SearchRepoImpl({
+  const SearchRepoImpl({
     required this.networkInfo,
     required this.searchDatasource,
   });
@@ -40,7 +40,7 @@ class SearchRepoImpl implements SearchRepo {
         return Left(ServerFailure(errorMessage: e.toString()));
       }
     } else {
-      return Left(ServerFailure(errorMessage: AppStrings.opps));
+      return Left(ServerFailure(errorMessage: AppStrings.noInternet));
     }
   }
 }

@@ -18,7 +18,10 @@ class RoomeRepoImpl implements RoomeRepo {
 
   final RoomeDataSource roomeDataSource;
 
-  RoomeRepoImpl({required this.roomeDataSource, required this.networkInfo});
+  const RoomeRepoImpl({
+    required this.roomeDataSource,
+    required this.networkInfo,
+  });
 
   @override
   void changeBottomNavIndex({

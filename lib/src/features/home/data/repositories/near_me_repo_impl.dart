@@ -12,7 +12,10 @@ class NearMeRepoImpl implements NearMeRepo {
   final NetworkInfo networkInfo;
   final NearMeDataSource nearMeDataSource;
 
-  NearMeRepoImpl({required this.networkInfo, required this.nearMeDataSource});
+  const NearMeRepoImpl({
+    required this.networkInfo,
+    required this.nearMeDataSource,
+  });
 
   @override
   Future<Either<Failure, dynamic>> getNearMeHotels({

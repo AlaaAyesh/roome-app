@@ -8,6 +8,7 @@ import 'package:roome/src/config/services/notification_service.dart';
 import 'package:roome/src/core/helpers/auth_helper.dart';
 import 'package:roome/src/core/helpers/cache_helper.dart';
 import 'package:roome/src/core/helpers/helper.dart';
+import 'package:roome/src/core/utils/app_constants.dart';
 import 'package:roome/src/core/utils/app_navigator.dart';
 import 'package:roome/src/core/utils/app_strings.dart';
 import 'package:roome/src/core/utils/app_text_styles.dart';
@@ -74,7 +75,11 @@ class _LoginFormState extends State<LoginForm> {
                 focusNode: _nameOrEmailFocusNode,
                 textCapitalization: TextCapitalization.none,
                 keyboardType: TextInputType.emailAddress,
-                prefixIcon: Icons.person,
+                prefix: Icon(
+                  Icons.person,
+                  size: AppConstants.authPrefixIconSize,
+                  color: AppConstants.authPrefixIconColor,
+                ),
                 validating: (String? value) {
                   return AuthHelper.validatingNameField(
                     textName: 'Name or Email',
@@ -94,7 +99,11 @@ class _LoginFormState extends State<LoginForm> {
                 controller: _passwordController,
                 focusNode: _passwordFocusNode,
                 hintText: 'Password',
-                prefixIcon: Icons.lock,
+                prefix: Icon(
+                  Icons.lock,
+                  size: AppConstants.authPrefixIconSize,
+                  color: AppConstants.authPrefixIconColor,
+                ),
                 suffix: IconButton(
                   onPressed: () => cubit.switchPassVisibility(),
                   icon: Icon(

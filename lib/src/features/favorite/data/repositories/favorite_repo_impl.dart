@@ -12,7 +12,7 @@ class FavoriteRepoImpl implements FavoriteRepo {
   final NetworkInfo networkInfo;
   final FavoriteDataSource favoriteDataSource;
 
-  FavoriteRepoImpl({
+  const FavoriteRepoImpl({
     required this.networkInfo,
     required this.favoriteDataSource,
   });

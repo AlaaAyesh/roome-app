@@ -7,6 +7,7 @@ import 'package:roome/src/config/services/notification_service.dart';
 import 'package:roome/src/core/helpers/auth_helper.dart';
 import 'package:roome/src/core/helpers/cache_helper.dart';
 import 'package:roome/src/core/helpers/helper.dart';
+import 'package:roome/src/core/utils/app_constants.dart';
 import 'package:roome/src/core/utils/app_navigator.dart';
 import 'package:roome/src/core/utils/app_strings.dart';
 import 'package:roome/src/core/widgets/custom_loading_dialog.dart';
@@ -109,7 +110,11 @@ class _SignUpFormState extends State<SignUpForm> {
                 controller: _usernameController,
                 hintText: 'Username',
                 focusNode: _usernameFocusNode,
-                prefixIcon: Icons.person,
+                prefix: Icon(
+                  Icons.person,
+                  size: AppConstants.authPrefixIconSize,
+                  color: AppConstants.authPrefixIconColor,
+                ),
                 keyboardType: TextInputType.text,
                 textCapitalization: TextCapitalization.none,
                 autofillHints: const <String>[AutofillHints.username],
@@ -130,7 +135,11 @@ class _SignUpFormState extends State<SignUpForm> {
                 focusNode: _emailFocusNode,
                 textCapitalization: TextCapitalization.none,
                 keyboardType: TextInputType.emailAddress,
-                prefixIcon: Icons.email,
+                prefix: Icon(
+                  Icons.email,
+                  size: AppConstants.authPrefixIconSize,
+                  color: AppConstants.authPrefixIconColor,
+                ),
                 autofillHints: const <String>[AutofillHints.email],
                 validating: (String? value) {
                   return AuthHelper.validatingEmailField(
@@ -146,7 +155,11 @@ class _SignUpFormState extends State<SignUpForm> {
                 controller: _passwordController,
                 focusNode: _passwordFocusNode,
                 hintText: 'Password',
-                prefixIcon: Icons.lock,
+                prefix: Icon(
+                  Icons.lock,
+                  size: AppConstants.authPrefixIconSize,
+                  color: AppConstants.authPrefixIconColor,
+                ),
                 autofillHints: const <String>[AutofillHints.password],
                 suffix: IconButton(
                   onPressed: () => cubit.switchPassVisibility(),

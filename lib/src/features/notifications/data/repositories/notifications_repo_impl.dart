@@ -9,7 +9,7 @@ import 'package:roome/src/features/notifications/domain/repositories/notificatio
 class NotificationsRepoImpl implements NotificationsRepo {
   final NotificationsDataSource notificationsDataSource;
 
-  NotificationsRepoImpl({required this.notificationsDataSource});
+  const NotificationsRepoImpl({required this.notificationsDataSource});
 
   @override
   Future<Either<Failure, NotificationsModel>> addToNotifications({
