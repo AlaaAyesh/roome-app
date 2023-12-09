@@ -1,13 +1,15 @@
 part of 'notifications_cubit.dart';
 
-sealed class NotificationsState extends Equatable {
+abstract class NotificationsState extends Equatable {
   const NotificationsState();
 
   @override
   List<Object> get props => [];
 }
 
-final class NotificationsInitial extends NotificationsState {}
+class NotificationsInitial extends NotificationsState {
+  const NotificationsInitial();
+}
 
 class GetNotificationsState extends NotificationsState {
   final List<NotificationsModel> notifications;

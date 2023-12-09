@@ -1,4 +1,4 @@
-part of '../../../presentation/cubit/login/login_cubit.dart';
+part of 'login_cubit.dart';
 
 abstract class LoginState extends Equatable {
   const LoginState();
@@ -7,9 +7,13 @@ abstract class LoginState extends Equatable {
   List<Object> get props => [];
 }
 
-class LoginInitial extends LoginState {}
+class LoginInitial extends LoginState {
+  const LoginInitial();
+}
 
-class SignInLoadingState extends LoginState {}
+class SignInLoadingState extends LoginState {
+  const SignInLoadingState();
+}
 
 class SignInSuccessState extends LoginState {
   final int uId;
@@ -28,7 +32,9 @@ class SignInErrorState extends LoginState {
   List<Object> get props => [error];
 }
 
-class SignInWithGoogleLoadingState extends LoginState {}
+class SignInWithGoogleLoadingState extends LoginState {
+  const SignInWithGoogleLoadingState();
+}
 
 class SignInWithGoogleSuccessState extends LoginState {
   final String uId;

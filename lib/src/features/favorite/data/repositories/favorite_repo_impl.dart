@@ -6,6 +6,7 @@ import 'package:roome/src/core/models/hotel.dart';
 import 'package:roome/src/core/network/network_info.dart';
 import 'package:roome/src/core/utils/app_strings.dart';
 import 'package:roome/src/features/favorite/data/datasources/favorite_datasource.dart';
+import 'package:roome/src/features/favorite/domain/entities/fav_params.dart';
 import 'package:roome/src/features/favorite/domain/repositories/favorite_repo.dart';
 
 class FavoriteRepoImpl implements FavoriteRepo {
@@ -44,15 +45,12 @@ class FavoriteRepoImpl implements FavoriteRepo {
 
   @override
   Future<Either<Failure, dynamic>> addToFav({
-    required int uId,
-    required int hotelId,
+    required FavParams favParams,
   }) async {
     if (await networkInfo.isConnected) {
       try {
-        final response = await favoriteDataSource.addToFav(
-          uId: uId,
-          hotelId: hotelId,
-        );
+        final response =
+            await favoriteDataSource.addToFav(favParams: favParams);
 
         final message = response['message'];
 
@@ -70,15 +68,12 @@ class FavoriteRepoImpl implements FavoriteRepo {
 
   @override
   Future<Either<Failure, dynamic>> removeFromFav({
-    required int uId,
-    required int hotelId,
+    required FavParams favParams,
   }) async {
     if (await networkInfo.isConnected) {
       try {
-        final response = await favoriteDataSource.removeFromFav(
-          uId: uId,
-          hotelId: hotelId,
-        );
+        final response =
+            await favoriteDataSource.removeFromFav(favParams: favParams);
 
         final message = response['message'];
 

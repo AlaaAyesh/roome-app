@@ -6,6 +6,7 @@ import 'package:roome/src/core/models/user_model.dart';
 import 'package:roome/src/core/network/network_info.dart';
 import 'package:roome/src/core/utils/app_strings.dart';
 import 'package:roome/src/features/auth/data/datasources/sign_up/sign_up_datasource.dart';
+import 'package:roome/src/features/auth/domain/entities/sign_up/sign_up_parameters.dart';
 import 'package:roome/src/features/auth/domain/repositories/sign_up_repo.dart';
 
 class SignUpRepoImpl implements SignUpRepo {
@@ -19,19 +20,11 @@ class SignUpRepoImpl implements SignUpRepo {
 
   @override
   Future<Either<Failure, UserModel>> userSignUp({
-    required String firstName,
-    required String lastName,
-    required String username,
-    required String email,
-    required String password,
+    required SignUpParameters signUpParams,
   }) async {
     if (await networkInfo.isConnected) {
       final response = await signUpDataSource.userSignUp(
-        firstName: firstName,
-        lastName: lastName,
-        username: username,
-        email: email,
-        password: password,
+        signUpParams: signUpParams,
       );
 
       if (response.containsKey('message')) {

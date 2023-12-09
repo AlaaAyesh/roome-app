@@ -45,7 +45,7 @@ class RoomeCubit extends Cubit<RoomeState> {
     required this.getProfileImageUseCase,
     required this.uploadProfileImageUseCase,
     required this.signOutUseCase,
-  }) : super(RoomeInitial());
+  }) : super(const RoomeInitial());
 
   static RoomeCubit getObject(context) => BlocProvider.of<RoomeCubit>(context);
 
@@ -80,11 +80,11 @@ class RoomeCubit extends Cubit<RoomeState> {
   void changeBottomNavToHome(BuildContext context) {
     changeBottomNavToHomeUseCase(ChangeIndexParams(context: context));
 
-    emit(ChangeBottomNavToHome());
+    emit(const ChangeBottomNavToHome());
   }
 
   void getUserData() {
-    emit(GetUserDataLoadingState());
+    emit(const GetUserDataLoadingState());
 
     getUserDataUseCase(Helper.uId).then((value) {
       value.fold(
@@ -111,7 +111,7 @@ class RoomeCubit extends Cubit<RoomeState> {
     String? nationality,
     String? password,
   }) {
-    emit(UpdateUserLoadingState());
+    emit(const UpdateUserLoadingState());
 
     updateUserUseCase(UpdateUserParams(
       userId: uId,
@@ -141,13 +141,13 @@ class RoomeCubit extends Cubit<RoomeState> {
   void getProfileImage({required ImageSource source}) {
     getProfileImageUseCase(source).then((value) {
       value.fold(
-        (failure) => emit(ProfileImagePickedErrorState()),
+        (failure) => emit(const ProfileImagePickedErrorState()),
         (pickedImage) {
           if (pickedImage != null) {
             profileImage = File(pickedImage.path);
-            emit(ProfileImagePickedSuccessState());
+            emit(const ProfileImagePickedSuccessState());
           } else {
-            ProfileImagePickedErrorState();
+            const ProfileImagePickedErrorState();
           }
         },
       );
@@ -164,7 +164,7 @@ class RoomeCubit extends Cubit<RoomeState> {
     String? nationality,
     String? password,
   }) {
-    emit(UploadingProfileImageLoadingState());
+    emit(const UploadingProfileImageLoadingState());
 
     uploadProfileImageUseCase(profileImage).then((value) {
       value.fold(

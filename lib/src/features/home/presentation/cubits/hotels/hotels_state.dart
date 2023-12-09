@@ -1,15 +1,19 @@
-part of '../../../../home/presentation/cubits/hotels/hotels_cubit.dart';
+part of 'hotels_cubit.dart';
 
-sealed class HotelsState extends Equatable {
+abstract class HotelsState extends Equatable {
   const HotelsState();
 
   @override
   List<Object> get props => [];
 }
 
-final class HotelsInitial extends HotelsState {}
+class HotelsInitial extends HotelsState {
+  const HotelsInitial();
+}
 
-class GetHotelsLoadingState extends HotelsState {}
+class GetHotelsLoadingState extends HotelsState {
+  const GetHotelsLoadingState();
+}
 
 class GetHotelsSuccessState extends HotelsState {
   final List<Hotel> hotels;

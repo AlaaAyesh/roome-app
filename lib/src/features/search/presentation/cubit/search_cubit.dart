@@ -10,10 +10,11 @@ part 'search_state.dart';
 class SearchCubit extends Cubit<SearchState> {
   final SearchHotelsUseCase searchHotelsUseCase;
 
-  SearchCubit({required this.searchHotelsUseCase}) : super(SearchInitial());
+  SearchCubit({required this.searchHotelsUseCase})
+      : super(const SearchInitial());
 
   void searchHotels({required String hotelName}) {
-    emit(SearchLoadingState());
+    emit(const SearchLoadingState());
 
     searchHotelsUseCase(hotelName).then((value) {
       value.fold(

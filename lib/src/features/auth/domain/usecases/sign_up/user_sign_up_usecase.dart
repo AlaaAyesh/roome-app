@@ -12,12 +12,6 @@ class UserSignUpUseCase implements BaseUseCases<UserModel, SignUpParameters> {
 
   @override
   Future<Either<Failure, UserModel>> call(SignUpParameters params) {
-    return signUpRepo.userSignUp(
-      firstName: params.firstName,
-      lastName: params.lastName,
-      username: params.username,
-      email: params.email,
-      password: params.password,
-    );
+    return signUpRepo.userSignUp(signUpParams: params);
   }
 }

@@ -11,12 +11,12 @@ class NearMeCubit extends Cubit<NearMeState> {
 
   NearMeCubit({
     required this.getNearMeHotelsUseCase,
-  }) : super(NearMeInitial());
+  }) : super(const NearMeInitial());
 
   List<Hotel> resultNearMe = <Hotel>[];
 
   void getNearMeHotels() {
-    emit(GetNearMeHotelsLoadingState());
+    emit(const GetNearMeHotelsLoadingState());
 
     getNearMeHotelsUseCase(Helper.uId).then((value) {
       value.fold(

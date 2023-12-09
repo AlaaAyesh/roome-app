@@ -12,9 +12,6 @@ class UserLoginUseCase implements BaseUseCases<UserModel, LoginParameters> {
 
   @override
   Future<Either<Failure, UserModel>> call(LoginParameters parameters) {
-    return loginRepo.userLogin(
-      usernameOrEmail: parameters.usernameOrEmail,
-      password: parameters.password,
-    );
+    return loginRepo.userLogin(loginParams: parameters);
   }
 }

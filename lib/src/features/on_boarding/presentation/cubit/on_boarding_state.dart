@@ -7,7 +7,9 @@ abstract class OnBoardingState extends Equatable {
   List<Object> get props => [];
 }
 
-class OnBoardingInitial extends OnBoardingState {}
+class OnBoardingInitial extends OnBoardingState {
+  const OnBoardingInitial();
+}
 
 class PageViewIndexChangedState extends OnBoardingState {
   final int index;
@@ -18,8 +20,14 @@ class PageViewIndexChangedState extends OnBoardingState {
   List<Object> get props => [index];
 }
 
-class SkipToSignInOrHome extends OnBoardingState {}
+class SkipToSignInOrHome extends OnBoardingState {
+  const SkipToSignInOrHome();
+}
 
-class NavigateBetweenPages extends OnBoardingState {}
+class NavigateBetweenPages extends OnBoardingState {
+  const NavigateBetweenPages();
+}
 
-class MoveToPreviousPage extends OnBoardingState {}
+class MoveToPreviousPage extends OnBoardingState {
+  const MoveToPreviousPage();
+}

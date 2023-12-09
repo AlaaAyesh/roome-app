@@ -9,7 +9,8 @@ part 'on_boarding_state.dart';
 class OnBoardingCubit extends Cubit<OnBoardingState> {
   final OnBoardingRepo onBoardingRepo;
 
-  OnBoardingCubit({required this.onBoardingRepo}) : super(OnBoardingInitial());
+  OnBoardingCubit({required this.onBoardingRepo})
+      : super(const OnBoardingInitial());
 
   bool isLastBoarding = false;
 
@@ -36,18 +37,18 @@ class OnBoardingCubit extends Cubit<OnBoardingState> {
       isLastBoarding: isLastBoarding,
     );
 
-    emit(NavigateBetweenPages());
+    emit(const NavigateBetweenPages());
   }
 
   void navigateToLoginOrHome({required BuildContext context}) {
     onBoardingRepo.navigateToLoginOrHome(context: context);
 
-    emit(SkipToSignInOrHome());
+    emit(const SkipToSignInOrHome());
   }
 
   void previousPage({required PageController pageController}) {
     onBoardingRepo.previousPage(pageController: pageController);
 
-    emit(MoveToPreviousPage());
+    emit(const MoveToPreviousPage());
   }
 }

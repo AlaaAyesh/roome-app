@@ -16,7 +16,7 @@ class NotificationsCubit extends Cubit<NotificationsState> {
   NotificationsCubit({
     required this.addToNotificationsUseCase,
     required this.removeFromNotificationsUseCase,
-  }) : super(NotificationsInitial());
+  }) : super(const NotificationsInitial());
 
   List<NotificationsModel> notifications = <NotificationsModel>[];
 

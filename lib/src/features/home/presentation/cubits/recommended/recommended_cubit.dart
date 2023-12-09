@@ -10,10 +10,10 @@ class RecommendedCubit extends Cubit<RecommendedState> {
   final GetRecommendedHotelsUseCase getRecommendedHotelsUseCase;
 
   RecommendedCubit({required this.getRecommendedHotelsUseCase})
-      : super(RecommendedInitial());
+      : super(const RecommendedInitial());
 
   void getRecommendedHotels() {
-    emit(GetRecommendedHotelsLoadingState());
+    emit(const GetRecommendedHotelsLoadingState());
 
     getRecommendedHotelsUseCase(Helper.uId).then((value) {
       value.fold(
@@ -23,7 +23,8 @@ class RecommendedCubit extends Cubit<RecommendedState> {
         },
         (recommendedHotels) {
           emit(GetRecommendedHotelsSuccessState(
-              recommendedHotels: recommendedHotels));
+            recommendedHotels: recommendedHotels,
+          ));
         },
       );
     });

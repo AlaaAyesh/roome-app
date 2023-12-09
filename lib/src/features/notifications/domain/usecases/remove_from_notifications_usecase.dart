@@ -15,9 +15,6 @@ class RemoveFromNotificationsUseCase
   Future<Either<Failure, NotificationsModel>> call(
     RemoveFromNotificationsParams params,
   ) async {
-    return await notificationsRepo.removeFromNotifications(
-      notification: params.notification,
-      context: params.context,
-    );
+    return await notificationsRepo.removeFromNotifications(params: params);
   }
 }

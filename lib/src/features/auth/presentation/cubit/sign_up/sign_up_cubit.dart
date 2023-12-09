@@ -16,7 +16,7 @@ class SignUpCubit extends Cubit<SignUpState> {
   SignUpCubit({
     required this.signUpUseCase,
     required this.signUpWithGoogleUseCase,
-  }) : super(SignUpInitial());
+  }) : super(const SignUpInitial());
 
   bool signUpPassVisibility = true;
 
@@ -27,7 +27,7 @@ class SignUpCubit extends Cubit<SignUpState> {
     required String email,
     required String password,
   }) {
-    emit(SignUpLoadingState());
+    emit(const SignUpLoadingState());
 
     signUpUseCase(SignUpParameters(
       firstName: firstName,
@@ -54,7 +54,7 @@ class SignUpCubit extends Cubit<SignUpState> {
   }
 
   void signUpWithGoogle() {
-    emit(SignUpWithGoogleLoadingState());
+    emit(const SignUpWithGoogleLoadingState());
 
     signUpWithGoogleUseCase(const NoParams()).then((value) {
       value.fold(

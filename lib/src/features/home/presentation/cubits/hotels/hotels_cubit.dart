@@ -9,12 +9,12 @@ part 'hotels_state.dart';
 class HotelsCubit extends Cubit<HotelsState> {
   final GetHotelsUseCase getHotelsUseCase;
 
-  HotelsCubit({required this.getHotelsUseCase}) : super(HotelsInitial());
+  HotelsCubit({required this.getHotelsUseCase}) : super(const HotelsInitial());
 
   List<Hotel> resultHotels = <Hotel>[];
 
   Future<void> getHotels() async {
-    emit(GetHotelsLoadingState());
+    emit(const GetHotelsLoadingState());
 
     await getHotelsUseCase(const NoParams()).then((value) {
       value.fold(

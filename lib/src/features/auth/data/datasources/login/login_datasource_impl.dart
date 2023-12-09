@@ -3,6 +3,7 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:roome/src/core/api/api_consumer.dart';
 import 'package:roome/src/core/api/end_points.dart';
 import 'package:roome/src/features/auth/data/datasources/login/login_datasource.dart';
+import 'package:roome/src/features/auth/domain/entities/login/login_parameters.dart';
 
 class LoginDataSourceImpl implements LoginDataSource {
   final ApiConsumer apiConsumer;
@@ -26,14 +27,13 @@ class LoginDataSourceImpl implements LoginDataSource {
 
   @override
   Future<Map<String, dynamic>> userLogin({
-    required String usernameOrEmail,
-    required String password,
+    required LoginParameters loginParams,
   }) async {
     final response = await apiConsumer.post(
       EndPoints.login,
       body: {
-        'username': usernameOrEmail,
-        'password': password,
+        'username': loginParams.usernameOrEmail,
+        'password': loginParams.password,
       },
     );
 

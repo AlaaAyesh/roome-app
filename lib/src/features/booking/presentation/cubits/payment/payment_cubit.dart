@@ -6,7 +6,7 @@ import 'package:roome/src/core/utils/app_colors.dart';
 part 'payment_state.dart';
 
 class PaymentCubit extends Cubit<PaymentState> {
-  PaymentCubit() : super(PaymentInitial());
+  PaymentCubit() : super(const PaymentInitial());
 
   bool isContinueTapped = false;
 

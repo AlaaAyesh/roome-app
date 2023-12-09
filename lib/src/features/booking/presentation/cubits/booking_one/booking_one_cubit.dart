@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 part 'booking_one_state.dart';
 
 class BookingOneCubit extends Cubit<BookingOneState> {
-  BookingOneCubit() : super(BookingOneInitial());
+  BookingOneCubit() : super(const BookingOneInitial());
 
   int roomNumber = 1;
 

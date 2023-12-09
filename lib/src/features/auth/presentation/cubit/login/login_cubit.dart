@@ -15,7 +15,7 @@ class LoginCubit extends Cubit<LoginState> {
   LoginCubit({
     required this.loginUseCase,
     required this.loginWithGoogleUseCase,
-  }) : super(LoginInitial());
+  }) : super(const LoginInitial());
 
   bool loginPassVisibility = true;
 
@@ -23,7 +23,7 @@ class LoginCubit extends Cubit<LoginState> {
     required String usernameOrEmail,
     required String password,
   }) {
-    emit(SignInLoadingState());
+    emit(const SignInLoadingState());
 
     loginUseCase(LoginParameters(
       usernameOrEmail: usernameOrEmail,
@@ -43,7 +43,7 @@ class LoginCubit extends Cubit<LoginState> {
   }
 
   void signInWithGoogle() {
-    emit(SignInWithGoogleLoadingState());
+    emit(const SignInWithGoogleLoadingState());
 
     loginWithGoogleUseCase(const NoParams()).then((value) {
       value.fold(

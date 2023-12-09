@@ -18,12 +18,12 @@ class FavoriteCubit extends Cubit<FavoriteState> {
     required this.getFavoritesUseCase,
     required this.addToFavUseCase,
     required this.removeFromFavUseCase,
-  }) : super(FavoriteInitial());
+  }) : super(const FavoriteInitial());
 
   List<Hotel> favoriteHotels = <Hotel>[];
 
   void getFavorites() {
-    emit(GetFavoritesLoadingState());
+    emit(const GetFavoritesLoadingState());
 
     getFavoritesUseCase(Helper.uId).then((value) {
       value.fold(
@@ -39,7 +39,7 @@ class FavoriteCubit extends Cubit<FavoriteState> {
   }
 
   void addToFav({required int hotelId}) {
-    emit(AddToFavLoadingState());
+    emit(const AddToFavLoadingState());
 
     addToFavUseCase(FavParams(uId: Helper.uId!, hotelId: hotelId))
         .then((value) {
@@ -58,7 +58,7 @@ class FavoriteCubit extends Cubit<FavoriteState> {
   void removeFromFav({
     required int hotelId,
   }) {
-    emit(RemoveFromFavLoadingState());
+    emit(const RemoveFromFavLoadingState());
 
     removeFromFavUseCase(FavParams(uId: Helper.uId!, hotelId: hotelId))
         .then((value) {
