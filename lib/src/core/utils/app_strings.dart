@@ -20,4 +20,5 @@ class AppStrings {
   static const String smilingFaceEmoji = '\u{1F60A}';
   static const String uId = 'uId';
   static const String onboarding = 'onboarding';
+  static const String theme = 'theme';
 }
