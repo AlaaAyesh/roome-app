@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:roome/src/config/router/routes.dart';
 import 'package:roome/src/config/themes/cubit/themes_cubit.dart';
-import 'package:roome/src/core/models/hotel.dart';
+import 'package:roome/src/core/models/user/hotel.dart';
 import 'package:roome/src/core/models/using_hero_model.dart';
 import 'package:roome/src/core/utils/app_colors.dart';
 import 'package:roome/src/core/utils/app_navigator.dart';
@@ -12,17 +12,14 @@ import 'package:roome/src/core/utils/app_text_styles.dart';
 import 'package:roome/src/core/widgets/custom_error_icon.dart';
 import 'package:roome/src/core/widgets/price_per_night_text.dart';
 import 'package:roome/src/core/widgets/star_icon.dart';
-import 'package:roome/src/features/favorite/presentation/cubit/favorite_cubit.dart';
 import 'package:roome/src/features/favorite/presentation/widgets/remove_from_fav_bottom_sheet.dart';
 
 class FavoriteCard extends StatelessWidget {
   const FavoriteCard({
     super.key,
     required this.hotel,
-    required this.cubit,
   });
 
-  final FavoriteCubit cubit;
   final Hotel hotel;
 
   @override
@@ -36,7 +33,7 @@ class FavoriteCard extends StatelessWidget {
         builder: (context, state) {
           return Container(
             height: 110.h,
-            width: double.infinity,
+            // width: double.infinity,
             decoration: BoxDecoration(
               color: state.brightness == Brightness.light
                   ? Colors.white
@@ -75,53 +72,71 @@ class FavoriteCard extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.only(right: 5, top: 7),
                     child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
-                        Row(
-                          children: <Widget>[
-                            Flexible(
-                              child: Text(
-                                hotel.name!,
-                                style: AppTextStyles.textStyle15.copyWith(
-                                  fontWeight: FontWeight.w500,
+                        Expanded(
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              Flexible(
+                                flex: 6,
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: <Widget>[
+                                    Flexible(
+                                      child: Text(
+                                        hotel.name!,
+                                        style:
+                                            AppTextStyles.textStyle15.copyWith(
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                        maxLines: 1,
+                                        overflow: TextOverflow.ellipsis,
+                                      ),
+                                    ),
+                                    Flexible(
+                                      child: Text(
+                                        hotel.location!,
+                                        style: AppTextStyles.textStyle14Medium
+                                            .copyWith(
+                                          color: state.brightness ==
+                                                  Brightness.light
+                                              ? AppColors.lightGrey
+                                                  .withOpacity(0.49)
+                                              : AppColors.white60,
+                                        ),
+                                        maxLines: 1,
+                                        overflow: TextOverflow.ellipsis,
+                                      ),
+                                    ),
+                                    PricePerNightText(
+                                      price: hotel.price,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                    ),
+                                  ],
                                 ),
-                                maxLines: 1,
-                                overflow: TextOverflow.ellipsis,
                               ),
-                            ),
-                            const SizedBox(width: 8),
-                            InkWell(
-                              onTap: () {
-                                RemoveFromFavBottomSheet.show(
-                                  cubit: cubit,
-                                  context: context,
-                                  hotel: hotel,
-                                );
-                              },
-                              child: const Icon(
-                                Icons.favorite,
-                                color: AppColors.primaryColor,
-                                size: 17,
+                              const SizedBox(width: 8),
+                              Flexible(
+                                child: InkWell(
+                                  onTap: () {
+                                    RemoveFromFavBottomSheet.show(
+                                      context: context,
+                                      hotel: hotel,
+                                    );
+                                  },
+                                  child: const Icon(
+                                    Icons.favorite,
+                                    color: AppColors.primaryColor,
+                                    size: 17,
+                                  ),
+                                ),
                               ),
-                            ),
-                          ],
-                        ),
-                        Flexible(
-                          child: Text(
-                            hotel.location!,
-                            style: AppTextStyles.textStyle14Medium.copyWith(
-                              color: state.brightness == Brightness.light
-                                  ? AppColors.lightGrey.withOpacity(0.49)
-                                  : AppColors.white60,
-                            ),
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
+                            ],
                           ),
-                        ),
-                        PricePerNightText(
-                          price: hotel.price,
-                          mainAxisAlignment: MainAxisAlignment.start,
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.end,

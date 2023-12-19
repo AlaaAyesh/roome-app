@@ -55,7 +55,6 @@ class FavoriteBody extends StatelessWidget {
                             physics: const NeverScrollableScrollPhysics(),
                             itemCount: state.favorites.length,
                             itemBuilder: (context, index) => FavoriteCard(
-                              cubit: cubit,
                               hotel: state.favorites[index],
                             ),
                             separatorBuilder: (context, index) =>

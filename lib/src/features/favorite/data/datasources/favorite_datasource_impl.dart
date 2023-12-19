@@ -23,7 +23,7 @@ class FavoriteDataSourceImpl implements FavoriteDataSource {
   @override
   Future addToFav({required FavParams favParams}) async {
     final response = await apiConsumer.post(
-      '${EndPoints.user}/add-to-fav/${favParams.uId}/hotel/${favParams.hotelId}',
+      '${EndPoints.user}add-to-fav/${favParams.uId}/hotel/${favParams.hotelId}',
       queryParameters: {
         'userId': favParams.uId,
         'hotelId': favParams.hotelId,
@@ -36,7 +36,7 @@ class FavoriteDataSourceImpl implements FavoriteDataSource {
   @override
   Future<dynamic> removeFromFav({required FavParams favParams}) async {
     final response = await apiConsumer.post(
-      '${EndPoints.user}/remove-from-fav/${favParams.uId}/hotel/${favParams.hotelId}',
+      '${EndPoints.user}remove-from-fav/${favParams.uId}/hotel/${favParams.hotelId}',
       queryParameters: {
         'userId': favParams.uId,
         'hotelId': favParams.hotelId,
