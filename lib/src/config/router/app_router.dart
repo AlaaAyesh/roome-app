@@ -21,8 +21,8 @@ import 'package:roome/src/features/home/presentation/views/explore_see_all_view.
 import 'package:roome/src/features/home/presentation/views/location_map_view.dart';
 import 'package:roome/src/features/home/presentation/views/near_me_see_all_view.dart';
 import 'package:roome/src/features/home/presentation/views/search_location_view_.dart';
-import 'package:roome/src/features/on_boarding/presentation/cubit/on_boarding_cubit.dart';
-import 'package:roome/src/features/on_boarding/presentation/views/on_boarding_view.dart';
+import 'package:roome/src/features/onboarding/presentation/cubit/on_boarding_cubit.dart';
+import 'package:roome/src/features/onboarding/presentation/views/on_boarding_view.dart';
 import 'package:roome/src/features/profile/presentation/cubits/edit_profile/edit_profile_cubit.dart';
 import 'package:roome/src/features/profile/presentation/views/edit_profile_view.dart';
 import 'package:roome/src/features/roome/presentation/views/roome_view.dart';

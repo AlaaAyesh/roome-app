@@ -1,5 +1,4 @@
 import 'package:equatable/equatable.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:roome/src/features/notifications/data/models/notification_model.dart';
 import 'package:roome/src/features/notifications/domain/entities/add_to_notifications_params.dart';
@@ -25,21 +24,9 @@ class NotificationsCubit extends Cubit<NotificationsState> {
   }
 
   void addToNotifications({
-    required String circles,
-    required String icon,
-    required Color color,
-    required String title,
-    required String body,
-    required BuildContext context,
+    required AddToNotificationsParams params,
   }) {
-    addToNotificationsUseCase(AddToNotificationsParams(
-      circles: circles,
-      color: color,
-      icon: icon,
-      title: title,
-      body: body,
-      context: context,
-    )).then((value) {
+    addToNotificationsUseCase(params).then((value) {
       value.fold(
         (failure) => emit(
           AddToNotificationsErrorState(error: failure.errorMessage.toString()),
@@ -53,15 +40,9 @@ class NotificationsCubit extends Cubit<NotificationsState> {
   }
 
   void removeFromNotifications({
-    required NotificationsModel notification,
-    required BuildContext context,
+    required RemoveFromNotificationsParams params,
   }) {
-    removeFromNotificationsUseCase(
-      RemoveFromNotificationsParams(
-        notification: notification,
-        context: context,
-      ),
-    ).then((value) {
+    removeFromNotificationsUseCase(params).then((value) {
       value.fold(
         (failure) => emit(
           RemoveFromNotificationsErrorState(

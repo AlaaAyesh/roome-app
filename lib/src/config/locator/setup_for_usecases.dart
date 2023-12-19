@@ -18,11 +18,11 @@ import 'package:roome/src/features/home/domain/usecases/recommended/get_recommen
 import 'package:roome/src/features/notifications/domain/repositories/notifications_repo.dart';
 import 'package:roome/src/features/notifications/domain/usecases/add_to_notifications_usecase.dart';
 import 'package:roome/src/features/notifications/domain/usecases/remove_from_notifications_usecase.dart';
-import 'package:roome/src/features/on_boarding/domain/repositories/on_boarding_repo.dart';
-import 'package:roome/src/features/on_boarding/domain/usecases/get_onboarding_pages_usecase.dart';
-import 'package:roome/src/features/on_boarding/domain/usecases/navigate_between_pages_usecase.dart';
-import 'package:roome/src/features/on_boarding/domain/usecases/previous_page_usecase.dart';
-import 'package:roome/src/features/on_boarding/domain/usecases/skip_to_login_usecase.dart';
+import 'package:roome/src/features/onboarding/domain/repositories/on_boarding_repo.dart';
+import 'package:roome/src/features/onboarding/domain/usecases/get_onboarding_pages_usecase.dart';
+import 'package:roome/src/features/onboarding/domain/usecases/navigate_between_pages_usecase.dart';
+import 'package:roome/src/features/onboarding/domain/usecases/previous_page_usecase.dart';
+import 'package:roome/src/features/onboarding/domain/usecases/skip_to_login_usecase.dart';
 import 'package:roome/src/features/profile/domain/repositories/edit_profile_repo.dart';
 import 'package:roome/src/features/profile/domain/repositories/profile_repo.dart';
 import 'package:roome/src/features/profile/domain/usecases/edit_profile_usecases/get_profile_image_usecase.dart';

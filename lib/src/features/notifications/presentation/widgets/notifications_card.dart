@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:roome/src/config/themes/cubit/themes_cubit.dart';
-import 'package:roome/src/core/helpers/hex_color_handler.dart';
 import 'package:roome/src/core/utils/app_colors.dart';
 import 'package:roome/src/core/utils/app_text_styles.dart';
 import 'package:roome/src/features/notifications/data/models/notification_model.dart';
+import 'package:roome/src/features/notifications/domain/entities/remove_from_notifications_params.dart';
 import 'package:roome/src/features/notifications/presentation/cubit/notifications_cubit.dart';
 import 'package:roome/src/features/notifications/presentation/widgets/notification_status_container.dart';
 
@@ -33,7 +33,7 @@ class NotificationCard extends StatelessWidget {
           decoration: BoxDecoration(
             borderRadius: BorderRadius.all(Radius.circular(12.r)),
             color: state.brightness == Brightness.light
-                ? HexColorHandler('E4E4E4')
+                ? Colors.white
                 : AppColors.darkGreyColor,
             boxShadow: <BoxShadow>[
               BoxShadow(
@@ -58,38 +58,20 @@ class NotificationCard extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: <Widget>[
-                          Flexible(
-                            child: Text(
-                              notification.title,
-                              style: AppTextStyles.textStyle15.copyWith(
-                                fontWeight: FontWeight.w600,
-                              ),
-                              maxLines: 1,
-                              overflow: TextOverflow.ellipsis,
-                            ),
+                      Flexible(
+                        child: Text(
+                          notification.title,
+                          style: AppTextStyles.textStyle15.copyWith(
+                            fontWeight: FontWeight.w600,
                           ),
-                          GestureDetector(
-                            onTap: () =>
-                                BlocProvider.of<NotificationsCubit>(context)
-                                    .removeFromNotifications(
-                              notification: notification,
-                              context: context,
-                            ),
-                            child: Icon(
-                              Icons.delete,
-                              color: Colors.red,
-                              size: 22.h,
-                            ),
-                          ),
-                        ],
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                        ),
                       ),
                       SizedBox(height: 10.h),
-                      Container(
-                        margin: EdgeInsets.only(right: 30.w),
-                        child: Flexible(
+                      Flexible(
+                        child: Container(
+                          margin: EdgeInsets.only(right: 30.w),
                           child: Text(
                             notification.body,
                             style: AppTextStyles.textStyle12.copyWith(
@@ -104,6 +86,20 @@ class NotificationCard extends StatelessWidget {
                       ),
                     ],
                   ),
+                ),
+              ),
+              IconButton(
+                onPressed: () => BlocProvider.of<NotificationsCubit>(context)
+                    .removeFromNotifications(
+                  params: RemoveFromNotificationsParams(
+                    notification: notification,
+                    context: context,
+                  ),
+                ),
+                icon: Icon(
+                  Icons.delete,
+                  color: Colors.red,
+                  size: 22.h,
                 ),
               ),
             ],

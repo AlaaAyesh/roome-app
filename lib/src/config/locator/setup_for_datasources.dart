@@ -14,8 +14,8 @@ import 'package:roome/src/features/home/data/datasources/recommended/recommended
 import 'package:roome/src/features/home/data/datasources/recommended/recommended_datasource_impl.dart';
 import 'package:roome/src/features/notifications/data/datasources/notifications_datasource.dart';
 import 'package:roome/src/features/notifications/data/datasources/notifications_datasource_impl.dart';
-import 'package:roome/src/features/on_boarding/data/datasources/on_boarding_datasource.dart';
-import 'package:roome/src/features/on_boarding/data/datasources/on_boarding_datasource_impl.dart';
+import 'package:roome/src/features/onboarding/data/datasources/on_boarding_datasource.dart';
+import 'package:roome/src/features/onboarding/data/datasources/on_boarding_datasource_impl.dart';
 import 'package:roome/src/features/profile/data/datasources/edit_profile/edit_profile_datasource.dart';
 import 'package:roome/src/features/profile/data/datasources/edit_profile/edit_profile_datasource_impl.dart';
 import 'package:roome/src/features/profile/data/datasources/profile/profile_datasource.dart';

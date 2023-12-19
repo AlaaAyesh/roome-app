@@ -21,9 +21,9 @@ import 'package:roome/src/features/home/domain/repositories/recommended_repo.dar
 import 'package:roome/src/features/notifications/data/datasources/notifications_datasource.dart';
 import 'package:roome/src/features/notifications/data/repositories/notifications_repo_impl.dart';
 import 'package:roome/src/features/notifications/domain/repositories/notifications_repo.dart';
-import 'package:roome/src/features/on_boarding/data/datasources/on_boarding_datasource.dart';
-import 'package:roome/src/features/on_boarding/data/repositories/on_boarding_repo_impl.dart';
-import 'package:roome/src/features/on_boarding/domain/repositories/on_boarding_repo.dart';
+import 'package:roome/src/features/onboarding/data/datasources/on_boarding_datasource.dart';
+import 'package:roome/src/features/onboarding/data/repositories/on_boarding_repo_impl.dart';
+import 'package:roome/src/features/onboarding/domain/repositories/on_boarding_repo.dart';
 import 'package:roome/src/features/profile/data/datasources/edit_profile/edit_profile_datasource.dart';
 import 'package:roome/src/features/profile/data/datasources/profile/profile_datasource.dart';
 import 'package:roome/src/features/profile/data/repositories/edit_profile_repo_impl.dart';
