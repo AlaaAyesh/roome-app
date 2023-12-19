@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:dio/dio.dart';
 import 'package:roome/src/core/api/status_codes.dart';
 import 'package:roome/src/core/errors/failure.dart';
@@ -46,14 +44,12 @@ class ServerFailure extends Failure {
   }
 
   factory ServerFailure.fromResponse(int statusCode, dynamic response) {
-    final parsedResponse = jsonDecode(response);
-
     if (statusCode == StatusCodes.badRequest ||
         statusCode == StatusCodes.unAuthorized ||
         statusCode == StatusCodes.forbidden) {
-      return ServerFailure(errorMessage: parsedResponse['message']);
+      return ServerFailure(errorMessage: response['message']);
     } else if (statusCode == StatusCodes.internalServerError) {
-      return ServerFailure(errorMessage: parsedResponse['error']);
+      return ServerFailure(errorMessage: response['error']);
     }
     return ServerFailure(errorMessage: AppStrings.opps);
   }
