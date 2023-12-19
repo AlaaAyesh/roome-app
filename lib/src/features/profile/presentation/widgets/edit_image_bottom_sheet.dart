@@ -41,14 +41,8 @@ class ProfileImageEditBottomSheet extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<ThemesCubit, ThemeData>(
       builder: (context, state) => BottomSheet(
-        backgroundColor:
-            state.brightness == Brightness.light ? Colors.white : Colors.black,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.vertical(
-            top: Radius.circular(50.0.r),
-          ),
-        ),
-        enableDrag: true,
+        enableDrag: false,
+        showDragHandle: false,
         onClosing: () => context.getBack(),
         builder: (context) {
           return Padding(

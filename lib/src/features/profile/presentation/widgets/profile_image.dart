@@ -4,17 +4,18 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:roome/src/core/helpers/helper.dart';
 import 'package:roome/src/core/utils/app_colors.dart';
+import 'package:roome/src/core/utils/app_strings.dart';
+import 'package:roome/src/features/profile/presentation/cubits/edit_profile/edit_profile_cubit.dart';
 import 'package:roome/src/features/profile/presentation/widgets/edit_image_bottom_sheet.dart';
-import 'package:roome/src/features/roome/presentation/cubit/roome_cubit.dart';
 
 class ProfileImage extends StatelessWidget {
   const ProfileImage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<RoomeCubit, RoomeState>(
+    return BlocBuilder<EditProfileCubit, EditProfileState>(
       builder: (context, state) {
-        RoomeCubit cubit = RoomeCubit.getObject(context);
+        EditProfileCubit cubit = BlocProvider.of<EditProfileCubit>(context);
         return Align(
           alignment: Alignment.center,
           child: Stack(
@@ -25,7 +26,8 @@ class ProfileImage extends StatelessWidget {
                 backgroundColor: AppColors.primaryColor.withOpacity(0.24),
                 child: CircleAvatar(
                   backgroundImage: (cubit.profileImage == null
-                      ? NetworkImage(Helper.currentUser!.profileImage!)
+                      ? NetworkImage(Helper.currentUser!.profileImage ??
+                          AppStrings.defaultImageUrl)
                       : FileImage(cubit.profileImage!)) as ImageProvider,
                   radius: 65.r,
                   backgroundColor: AppColors.primaryColor,

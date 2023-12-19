@@ -6,16 +6,16 @@ import 'package:roome/src/core/helpers/helper.dart';
 import 'package:roome/src/core/utils/app_colors.dart';
 import 'package:roome/src/core/utils/app_constants.dart';
 import 'package:roome/src/core/widgets/main_button.dart';
-import 'package:roome/src/features/roome/presentation/cubit/roome_cubit.dart';
+import 'package:roome/src/features/profile/presentation/cubits/edit_profile/edit_profile_cubit.dart';
 
 class UpdateImageButtonAndLoading extends StatelessWidget {
   const UpdateImageButtonAndLoading({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<RoomeCubit, RoomeState>(
+    return BlocBuilder<EditProfileCubit, EditProfileState>(
       builder: (context, state) {
-        RoomeCubit cubit = RoomeCubit.getObject(context);
+        EditProfileCubit cubit = BlocProvider.of<EditProfileCubit>(context);
         var size = MediaQuery.of(context).size;
         return Align(
           alignment: Alignment.center,
@@ -29,7 +29,7 @@ class UpdateImageButtonAndLoading extends StatelessWidget {
                   MainButton(
                     text: 'Update profile Image',
                     onPressed: () {
-                      BlocProvider.of<RoomeCubit>(context).uploadProfileImage();
+                      cubit.uploadProfileImage(context: context);
                     },
                     boxShadow: <BoxShadow>[
                       Helper.glowingShadow(),

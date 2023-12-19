@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:roome/src/core/helpers/helper.dart';
+import 'package:roome/src/core/widgets/bottom_spacer.dart';
 import 'package:roome/src/features/profile/presentation/widgets/info_container.dart';
 import 'package:roome/src/features/profile/presentation/widgets/user_detail.dart';
 
@@ -19,14 +19,14 @@ class ContactInfo extends StatelessWidget {
       builder: (context, _) => SlideTransition(
         position: rightSlideAnimation,
         child: InfoContainer(
-          height: 85.h,
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
               UserDetail(
                 title: 'Phone number',
                 info: Helper.currentUser!.phoneNumber,
               ),
+              const BottomSpacer(),
               UserDetail(
                 title: 'Email',
                 info: Helper.currentUser!.email,

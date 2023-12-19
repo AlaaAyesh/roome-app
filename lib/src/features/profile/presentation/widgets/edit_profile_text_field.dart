@@ -51,6 +51,9 @@ class EditProfileTextField extends StatelessWidget {
               validating: validating,
               suffix: suffixIcon,
               obscureText: obscure ?? false,
+              fillColor: state.brightness == Brightness.light
+                  ? Colors.white
+                  : AppColors.darkGreyColor,
             ),
           ],
         );

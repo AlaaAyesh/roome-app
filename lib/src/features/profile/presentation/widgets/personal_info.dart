@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:roome/src/core/helpers/helper.dart';
+import 'package:roome/src/core/widgets/bottom_spacer.dart';
 import 'package:roome/src/features/profile/presentation/widgets/info_container.dart';
 import 'package:roome/src/features/profile/presentation/widgets/user_detail.dart';
 
@@ -19,23 +19,24 @@ class PersonalInfo extends StatelessWidget {
       builder: (context, _) => SlideTransition(
         position: rightSlideAnimation,
         child: InfoContainer(
-          height: 170.h,
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
               UserDetail(
                 title: 'Your name',
                 info:
                     '${Helper.currentUser!.firstName} ${Helper.currentUser!.lastName}',
               ),
+              const BottomSpacer(),
               UserDetail(
                 title: 'username',
                 info: '${Helper.currentUser!.username}',
               ),
+              const BottomSpacer(),
               UserDetail(
                 title: 'Occupation',
                 info: Helper.currentUser!.occupation,
               ),
+              const BottomSpacer(),
               UserDetail(
                 title: 'Nationality',
                 info: Helper.currentUser!.nationality,

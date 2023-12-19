@@ -9,6 +9,7 @@ import 'package:roome/src/core/helpers/helper.dart';
 import 'package:roome/src/core/utils/app_colors.dart';
 import 'package:roome/src/core/utils/app_constants.dart';
 import 'package:roome/src/core/utils/app_navigator.dart';
+import 'package:roome/src/core/utils/app_strings.dart';
 import 'package:roome/src/core/utils/app_text_styles.dart';
 import 'package:roome/src/core/widgets/bottom_spacer.dart';
 import 'package:roome/src/features/profile/presentation/widgets/contact_info.dart';
@@ -87,7 +88,8 @@ class _ProfileBodyContentState extends State<ProfileBodyContent>
                           position: _leftSlideAnimation,
                           child: Center(
                             child: CachedNetworkImage(
-                              imageUrl: Helper.currentUser!.profileImage!,
+                              imageUrl: Helper.currentUser!.profileImage ??
+                                  AppStrings.defaultImageUrl,
                               imageBuilder: (_, image) {
                                 return CircleAvatar(
                                   radius: 80.r,
