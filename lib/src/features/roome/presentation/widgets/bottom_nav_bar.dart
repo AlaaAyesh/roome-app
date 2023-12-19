@@ -22,6 +22,7 @@ class BottomNavBar extends StatelessWidget {
               items: cubit.getBottomNavItems(),
               showSelectedLabels: true,
               showUnselectedLabels: true,
+              type: BottomNavigationBarType.fixed,
               selectedItemColor: AppColors.primaryColor,
               unselectedItemColor: AppColors.grey,
               selectedIconTheme: IconThemeData(size: 20.h),
