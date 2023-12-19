@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:roome/src/config/router/routes.dart';
 import 'package:roome/src/config/themes/cubit/themes_cubit.dart';
-import 'package:roome/src/core/models/hotel.dart';
+import 'package:roome/src/core/models/user/hotel.dart';
 import 'package:roome/src/core/models/using_hero_model.dart';
 import 'package:roome/src/core/utils/app_colors.dart';
 import 'package:roome/src/core/utils/app_navigator.dart';

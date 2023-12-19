@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:roome/src/core/models/hotel.dart';
+import 'package:roome/src/core/models/user/hotel.dart';
 
 class Reservation extends Equatable {
   final int? id;

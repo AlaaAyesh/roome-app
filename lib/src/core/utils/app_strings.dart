@@ -18,4 +18,6 @@ class AppStrings {
   static const String welcomeBack = 'Welcome back';
   static const String waveEmoji = '\u{1F44B}';
   static const String smilingFaceEmoji = '\u{1F60A}';
+  static const String uId = 'uId';
+  static const String onboarding = 'onboarding';
 }

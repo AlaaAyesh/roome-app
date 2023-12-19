@@ -1,10 +1,10 @@
 import 'package:internet_connection_checker/internet_connection_checker.dart';
-import 'package:roome/src/core/network/network_info.dart';
+import 'package:roome/src/core/internet/internet_checker.dart';
 
-class NetworkInfoImpl implements NetworkInfo {
+class InternetCheckerImpl implements InternetChecker {
   final InternetConnectionChecker connectionChecker;
 
-  const NetworkInfoImpl({required this.connectionChecker});
+  const InternetCheckerImpl({required this.connectionChecker});
 
   @override
   Future<bool> get isConnected async => await connectionChecker.hasConnection;

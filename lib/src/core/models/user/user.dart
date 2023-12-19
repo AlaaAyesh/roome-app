@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
-import 'package:roome/src/core/models/hotel.dart';
-import 'package:roome/src/core/models/reservation.dart';
-import 'package:roome/src/core/models/role.dart';
+import 'package:roome/src/core/models/user/hotel.dart';
+import 'package:roome/src/core/models/user/reservation.dart';
+import 'package:roome/src/core/models/user/role.dart';
 
 class UserModel extends Equatable {
   final int? id;
