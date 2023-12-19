@@ -11,6 +11,7 @@ import 'package:roome/src/features/home/presentation/cubits/hotels/hotels_cubit.
 import 'package:roome/src/features/home/presentation/cubits/near_me/near_me_cubit.dart';
 import 'package:roome/src/features/home/presentation/cubits/recommended/recommended_cubit.dart';
 import 'package:roome/src/features/notifications/presentation/cubit/notifications_cubit.dart';
+import 'package:roome/src/features/profile/presentation/cubits/profile/profile_cubit.dart';
 import 'package:roome/src/features/roome/presentation/cubit/roome_cubit.dart';
 
 class RoomeApp extends StatelessWidget {
@@ -28,6 +29,9 @@ class RoomeApp extends StatelessWidget {
             create: (context) => getIt.get<RoomeCubit>()..getUserData(),
           ),
           BlocProvider(
+            create: (context) => getIt.get<FavoriteCubit>()..getFavorites(),
+          ),
+          BlocProvider(
             create: (context) => getIt.get<HotelsCubit>()..getHotels(),
           ),
           BlocProvider(
@@ -38,13 +42,13 @@ class RoomeApp extends StatelessWidget {
                 getIt.get<RecommendedCubit>()..getRecommendedHotels(),
           ),
           BlocProvider(
-            create: (context) => getIt.get<FavoriteCubit>()..getFavorites(),
+            create: (context) => getIt.get<NotificationsCubit>(),
+          ),
+          BlocProvider(
+            create: (context) => getIt.get<ProfileCubit>(),
           ),
           BlocProvider(
             create: (context) => getIt.get<ThemesCubit>(),
-          ),
-          BlocProvider(
-            create: (context) => getIt.get<NotificationsCubit>(),
           ),
         ],
         child: BlocBuilder<ThemesCubit, ThemeData>(

@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'dart:io';
 
 import 'package:dio/dio.dart';
@@ -9,6 +8,7 @@ import 'package:roome/src/core/api/app_interceptors.dart';
 import 'package:roome/src/core/api/end_points.dart';
 import 'package:roome/src/core/api/status_codes.dart';
 import 'package:roome/service_locator.dart';
+import 'package:roome/src/core/utils/app_strings.dart';
 
 class DioConsumer implements ApiConsumer {
   final Dio client;
@@ -23,7 +23,8 @@ class DioConsumer implements ApiConsumer {
 
     client.options
       ..baseUrl = EndPoints.baseUrl
-      ..responseType = ResponseType.plain
+      ..headers = {AppStrings.contentType: AppStrings.applicationJson}
+      ..responseType = ResponseType.json
       ..followRedirects = false
       ..validateStatus = (status) {
         return status! < StatusCodes.internalServerError;
@@ -46,7 +47,7 @@ class DioConsumer implements ApiConsumer {
       queryParameters: queryParameters,
     );
 
-    return jsonDecode(response.data);
+    return response.data;
   }
 
   @override
@@ -62,7 +63,7 @@ class DioConsumer implements ApiConsumer {
       data: formDataIsEnabled ? FormData.fromMap(body!) : body,
     );
 
-    return jsonDecode(response.data);
+    return response.data;
   }
 
   @override
@@ -77,6 +78,6 @@ class DioConsumer implements ApiConsumer {
       data: body,
     );
 
-    return jsonDecode(response.data);
+    return response.data;
   }
 }

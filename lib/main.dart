@@ -17,11 +17,11 @@ Future<void> main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
+  Bloc.observer = MyBlocObserver();
+
   await ServiceLocator().setUpServiceLocator();
 
   NotificationService.initAwesomeNotifications();
-
-  Bloc.observer = MyBlocObserver();
 
   runApp(const RoomeApp());
 }
