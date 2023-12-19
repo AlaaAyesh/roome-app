@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
-import 'package:roome/src/core/models/hotel.dart';
+import 'package:roome/src/core/models/user/hotel.dart';
 import 'package:roome/src/core/widgets/separator_widget.dart';
 import 'package:roome/src/features/home/presentation/widgets/popular_card.dart';
 

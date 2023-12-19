@@ -14,6 +14,7 @@ import 'package:roome/src/core/widgets/custom_loading_dialog.dart';
 import 'package:roome/src/core/widgets/custom_snack_bar.dart';
 import 'package:roome/src/core/widgets/custom_text_form_field.dart';
 import 'package:roome/src/core/widgets/main_button.dart';
+import 'package:roome/src/features/auth/domain/entities/sign_up/sign_up_parameters.dart';
 import 'package:roome/src/features/auth/presentation/cubit/sign_up/sign_up_cubit.dart';
 import 'package:roome/src/features/auth/presentation/widgets/forgot_password_text_button.dart';
 import 'package:roome/src/features/auth/presentation/widgets/sign_up/name_text_field.dart';
@@ -202,11 +203,13 @@ class _SignUpFormState extends State<SignUpForm> {
       AuthHelper.keyboardUnfocus(context);
 
       BlocProvider.of<SignUpCubit>(context).userSignUp(
-        firstName: _firstNameController.text.trim(),
-        lastName: _lastNameController.text.trim(),
-        username: _usernameController.text.trim(),
-        email: _emailController.text.trim(),
-        password: _passwordController.text,
+        signUpParameters: SignUpParameters(
+          firstName: _firstNameController.text.trim(),
+          lastName: _lastNameController.text.trim(),
+          username: _usernameController.text.trim(),
+          email: _emailController.text.trim(),
+          password: _passwordController.text,
+        ),
       );
     } else {
       setState(() {
@@ -236,7 +239,7 @@ class _SignUpFormState extends State<SignUpForm> {
     context.getBack();
     getIt
         .get<CacheHelper>()
-        .saveData(key: 'uId', value: state.uId)
+        .saveData(key: AppStrings.uId, value: state.uId)
         .then((value) {
       if (value) {
         Helper.uId = state.uId;

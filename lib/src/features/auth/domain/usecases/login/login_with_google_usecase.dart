@@ -11,7 +11,7 @@ class LoginWithGoogleUseCase implements BaseUseCases<UserCredential, NoParams> {
   const LoginWithGoogleUseCase({required this.loginRepo});
 
   @override
-  Future<Either<Failure, UserCredential>> call(NoParams params) {
-    return loginRepo.signInWithGoogle();
+  Future<Either<Failure, UserCredential>> call(NoParams params) async {
+    return await loginRepo.signInWithGoogle();
   }
 }

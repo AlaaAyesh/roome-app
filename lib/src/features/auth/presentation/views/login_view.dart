@@ -8,6 +8,7 @@ import 'package:roome/src/core/helpers/cache_helper.dart';
 import 'package:roome/src/core/helpers/helper.dart';
 import 'package:roome/src/core/utils/app_constants.dart';
 import 'package:roome/src/core/utils/app_navigator.dart';
+import 'package:roome/src/core/utils/app_strings.dart';
 import 'package:roome/src/features/auth/presentation/cubit/login/login_cubit.dart';
 import 'package:roome/src/features/auth/presentation/widgets/auth_title.dart';
 import 'package:roome/src/features/auth/presentation/widgets/have_account_or_not.dart';
@@ -90,7 +91,7 @@ class LoginView extends StatelessWidget {
     context.getBack();
     getIt
         .get<CacheHelper>()
-        .saveData(key: 'uId', value: state.uId)
+        .saveData(key: AppStrings.uId, value: state.uId)
         .then((value) {
       if (value) {
         Helper.uId = int.parse(state.uId);

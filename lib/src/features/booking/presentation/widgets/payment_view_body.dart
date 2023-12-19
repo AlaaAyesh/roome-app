@@ -17,6 +17,7 @@ import 'package:roome/src/features/booking/presentation/cubits/payment/payment_c
 import 'package:roome/src/features/booking/presentation/widgets/other_payment_method.dart';
 import 'package:roome/src/features/booking/presentation/widgets/payment_dialog.dart';
 import 'package:roome/src/features/booking/presentation/widgets/section_title.dart';
+import 'package:roome/src/features/notifications/domain/entities/add_to_notifications_params.dart';
 import 'package:roome/src/features/notifications/presentation/cubit/notifications_cubit.dart';
 
 class PaymentViewBody extends StatelessWidget {
@@ -138,12 +139,14 @@ class PaymentViewBody extends StatelessWidget {
     );
 
     BlocProvider.of<NotificationsCubit>(context).addToNotifications(
-      context: context,
-      circles: AppAssets.imageRedCircles,
-      icon: AppAssets.iconHotelBookingCanceledIcon,
-      color: Colors.red,
-      title: AppStrings.hotelBookingCanceled,
-      body: 'You have canceled ${bookingInfo.hotelName} booking',
+      params: AddToNotificationsParams(
+        context: context,
+        circles: AppAssets.imageRedCircles,
+        icon: AppAssets.iconHotelBookingCanceledIcon,
+        color: Colors.red,
+        title: AppStrings.hotelBookingCanceled,
+        body: 'You have canceled ${bookingInfo.hotelName} booking',
+      ),
     );
   }
 
@@ -154,12 +157,14 @@ class PaymentViewBody extends StatelessWidget {
     );
 
     BlocProvider.of<NotificationsCubit>(context).addToNotifications(
-      context: context,
-      circles: AppAssets.imageGreenCircles,
-      icon: AppAssets.iconPaymentSuccessfulIcon,
-      color: Colors.green,
-      title: AppStrings.paymentSuccessful,
-      body: '${bookingInfo.hotelName} was booking successfully',
+      params: AddToNotificationsParams(
+        context: context,
+        circles: AppAssets.imageGreenCircles,
+        icon: AppAssets.iconPaymentSuccessfulIcon,
+        color: Colors.green,
+        title: AppStrings.paymentSuccessful,
+        body: '${bookingInfo.hotelName} was booking successfully',
+      ),
     );
   }
 }

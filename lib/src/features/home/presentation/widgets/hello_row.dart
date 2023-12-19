@@ -16,7 +16,8 @@ class HelloRow extends StatelessWidget {
     return Row(
       children: <Widget>[
         CachedNetworkImage(
-          imageUrl: Helper.currentUser!.profileImage!,
+          imageUrl:
+              Helper.currentUser!.profileImage ?? AppStrings.defaultImageUrl,
           imageBuilder: (_, image) {
             return CircleAvatar(
               backgroundImage: image,

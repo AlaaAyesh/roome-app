@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:roome/src/core/helpers/hex_color_handler.dart';
-import 'package:roome/src/core/models/hotel.dart';
+import 'package:roome/src/core/models/user/hotel.dart';
 import 'package:roome/src/core/utils/app_navigator.dart';
 import 'package:roome/src/core/widgets/love_border_icon.dart';
 

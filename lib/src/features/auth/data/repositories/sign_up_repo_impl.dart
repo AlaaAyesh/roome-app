@@ -2,19 +2,19 @@ import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:roome/src/core/errors/failure.dart';
 import 'package:roome/src/core/errors/server_failure.dart';
-import 'package:roome/src/core/models/user_model.dart';
-import 'package:roome/src/core/network/network_info.dart';
+import 'package:roome/src/core/models/user/user.dart';
+import 'package:roome/src/core/internet/internet_checker.dart';
 import 'package:roome/src/core/utils/app_strings.dart';
 import 'package:roome/src/features/auth/data/datasources/sign_up/sign_up_datasource.dart';
 import 'package:roome/src/features/auth/domain/entities/sign_up/sign_up_parameters.dart';
 import 'package:roome/src/features/auth/domain/repositories/sign_up_repo.dart';
 
 class SignUpRepoImpl implements SignUpRepo {
-  final NetworkInfo networkInfo;
+  final InternetChecker internetChecker;
   final SignUpDataSource signUpDataSource;
 
   const SignUpRepoImpl({
-    required this.networkInfo,
+    required this.internetChecker,
     required this.signUpDataSource,
   });
 
@@ -22,7 +22,7 @@ class SignUpRepoImpl implements SignUpRepo {
   Future<Either<Failure, UserModel>> userSignUp({
     required SignUpParameters signUpParams,
   }) async {
-    if (await networkInfo.isConnected) {
+    if (await internetChecker.isConnected) {
       final response = await signUpDataSource.userSignUp(
         signUpParams: signUpParams,
       );
@@ -41,7 +41,7 @@ class SignUpRepoImpl implements SignUpRepo {
 
   @override
   Future<Either<Failure, UserCredential>> signUpWithGoogle() async {
-    if (await networkInfo.isConnected) {
+    if (await internetChecker.isConnected) {
       try {
         final user = await signUpDataSource.signUpWithGoogle();
         return Right(user);

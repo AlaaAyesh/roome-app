@@ -16,6 +16,7 @@ import 'package:roome/src/core/widgets/custom_loading_dialog.dart';
 import 'package:roome/src/core/widgets/custom_snack_bar.dart';
 import 'package:roome/src/core/widgets/custom_text_form_field.dart';
 import 'package:roome/src/core/widgets/main_button.dart';
+import 'package:roome/src/features/auth/domain/entities/login/login_parameters.dart';
 import 'package:roome/src/features/auth/presentation/cubit/login/login_cubit.dart';
 import 'package:roome/src/features/auth/presentation/widgets/forgot_password_text_button.dart';
 import 'package:roome/src/features/auth/presentation/widgets/login/remember_me_checkbox.dart';
@@ -130,11 +131,9 @@ class _LoginFormState extends State<LoginForm> {
                     'Remember Me',
                     style: AppTextStyles.textStyle14Medium,
                   ),
-                  SizedBox(width: 16.w),
-                  Expanded(
-                    child: ForgotPasswordTextButton(
-                      onTap: () {},
-                    ),
+                  const Spacer(),
+                  ForgotPasswordTextButton(
+                    onTap: () {},
                   ),
                 ],
               ),
@@ -155,8 +154,10 @@ class _LoginFormState extends State<LoginForm> {
     if (_formKey.currentState!.validate()) {
       AuthHelper.keyboardUnfocus(context);
       BlocProvider.of<LoginCubit>(context).userSignIn(
-        usernameOrEmail: _nameOrEmailController.text.trim(),
-        password: _passwordController.text,
+        loginParameters: LoginParameters(
+          usernameOrEmail: _nameOrEmailController.text.trim(),
+          password: _passwordController.text,
+        ),
       );
     } else {
       setState(() {
@@ -176,27 +177,27 @@ class _LoginFormState extends State<LoginForm> {
   }
 
   void _handleLoginStates(LoginState state) {
-    if (state is SignInLoadingState) {
+    if (state is LoginLoadingState) {
       CustomLoadingDialog.show(context);
     }
 
-    if (state is SignInSuccessState) {
+    if (state is LoginSuccessState) {
       _handleSignInSuccessState(context, state);
     }
 
-    if (state is SignInErrorState) {
+    if (state is LoginErrorState) {
       _handleSignInErrorState(context, state);
     }
   }
 
   void _handleSignInSuccessState(
     BuildContext context,
-    SignInSuccessState state,
+    LoginSuccessState state,
   ) {
     context.getBack();
     getIt
         .get<CacheHelper>()
-        .saveData(key: 'uId', value: state.uId)
+        .saveData(key: AppStrings.uId, value: state.uId)
         .then((value) {
       if (value) {
         Helper.uId = state.uId;
@@ -207,7 +208,7 @@ class _LoginFormState extends State<LoginForm> {
     });
   }
 
-  void _weMissedYouNotification(SignInSuccessState state) {
+  void _weMissedYouNotification(LoginSuccessState state) {
     NotificationService.triggerNotification(
       title: AppStrings.welcomeBack,
       body:
@@ -215,7 +216,7 @@ class _LoginFormState extends State<LoginForm> {
     );
   }
 
-  void _handleSignInErrorState(BuildContext context, SignInErrorState state) {
+  void _handleSignInErrorState(BuildContext context, LoginErrorState state) {
     context.getBack();
     CustomSnackBar.show(
       context: context,

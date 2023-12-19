@@ -32,6 +32,7 @@ class DisabledSearchField extends StatelessWidget {
             color: AppColors.darkGrey.withOpacity(0.65),
           ),
         ),
+        contentPadding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 8.h),
       ),
     );
   }
