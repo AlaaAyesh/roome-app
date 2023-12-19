@@ -2,7 +2,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:roome/src/core/models/hotel.dart';
+import 'package:roome/src/core/models/user/hotel.dart';
 import 'package:roome/src/features/search/domain/usecases/search_hotels_usecase.dart';
 
 part 'search_state.dart';

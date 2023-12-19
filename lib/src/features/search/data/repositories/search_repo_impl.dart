@@ -2,18 +2,18 @@ import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:roome/src/core/errors/failure.dart';
 import 'package:roome/src/core/errors/server_failure.dart';
-import 'package:roome/src/core/models/hotel.dart';
-import 'package:roome/src/core/network/network_info.dart';
+import 'package:roome/src/core/models/user/hotel.dart';
+import 'package:roome/src/core/internet/internet_checker.dart';
 import 'package:roome/src/core/utils/app_strings.dart';
 import 'package:roome/src/features/search/data/datasources/search_datasource.dart';
 import 'package:roome/src/features/search/domain/repositories/search_repo.dart';
 
 class SearchRepoImpl implements SearchRepo {
-  final NetworkInfo networkInfo;
+  final InternetChecker internetChecker;
   final SearchDatasource searchDatasource;
 
   const SearchRepoImpl({
-    required this.networkInfo,
+    required this.internetChecker,
     required this.searchDatasource,
   });
 
@@ -21,7 +21,7 @@ class SearchRepoImpl implements SearchRepo {
   Future<Either<Failure, List<Hotel>>> searchHotels({
     required String hotelName,
   }) async {
-    if (await networkInfo.isConnected) {
+    if (await internetChecker.isConnected) {
       try {
         final response =
             await searchDatasource.searchHotels(hotelName: hotelName);

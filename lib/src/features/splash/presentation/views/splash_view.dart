@@ -7,6 +7,7 @@ import 'package:roome/src/core/helpers/cache_helper.dart';
 import 'package:roome/src/core/helpers/helper.dart';
 import 'package:roome/src/core/utils/app_navigator.dart';
 import 'package:roome/service_locator.dart';
+import 'package:roome/src/core/utils/app_strings.dart';
 import 'package:roome/src/features/splash/presentation/widgets/splash_view_body.dart';
 
 class SplashView extends StatefulWidget {
@@ -42,8 +43,9 @@ class _SplashViewState extends State<SplashView> {
   }
 
   void _goToNext() {
-    Helper.uId = getIt.get<CacheHelper>().getIntData(key: 'uId');
-    bool? onBoarding = getIt.get<CacheHelper>().getBoolData(key: 'onBoarding');
+    Helper.uId = getIt.get<CacheHelper>().getIntData(key: AppStrings.uId);
+    bool? onBoarding =
+        getIt.get<CacheHelper>().getBoolData(key: AppStrings.onboarding);
 
     if (onBoarding != null) {
       if (Helper.uId != null) {
