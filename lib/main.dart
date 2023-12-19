@@ -8,8 +8,6 @@ import 'package:roome/bloc_observer.dart';
 import 'package:roome/firebase_options.dart';
 import 'package:roome/service_locator.dart';
 
-// TODO: Delete VisibilityIconButton Widget from core widgets
-
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
