@@ -23,6 +23,7 @@ import 'package:roome/src/features/home/presentation/views/near_me_see_all_view.
 import 'package:roome/src/features/home/presentation/views/search_location_view_.dart';
 import 'package:roome/src/features/on_boarding/presentation/cubit/on_boarding_cubit.dart';
 import 'package:roome/src/features/on_boarding/presentation/views/on_boarding_view.dart';
+import 'package:roome/src/features/profile/presentation/cubits/edit_profile/edit_profile_cubit.dart';
 import 'package:roome/src/features/profile/presentation/views/edit_profile_view.dart';
 import 'package:roome/src/features/roome/presentation/views/roome_view.dart';
 import 'package:roome/src/features/search/presentation/cubit/search_cubit.dart';
@@ -122,7 +123,12 @@ class AppRouter {
         );
 
       case Routes.editProfileViewRoute:
-        return MaterialPageRoute(builder: (context) => const EditProfileView());
+        return MaterialPageRoute(
+          builder: (context) => BlocProvider(
+            create: (context) => getIt.get<EditProfileCubit>(),
+            child: const EditProfileView(),
+          ),
+        );
 
       case Routes.locationMapViewRoute:
         return MaterialPageRoute(builder: (context) => const LocationMapView());
