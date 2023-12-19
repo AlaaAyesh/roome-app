@@ -88,7 +88,7 @@ class LoginView extends StatelessWidget {
     SignInWithGoogleSuccessState state,
   ) {
     context.getBack();
-    serviceLocator
+    getIt
         .get<CacheHelper>()
         .saveData(key: 'uId', value: state.uId)
         .then((value) {

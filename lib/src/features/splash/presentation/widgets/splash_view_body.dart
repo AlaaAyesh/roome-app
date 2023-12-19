@@ -35,7 +35,7 @@ class SplashViewBody extends StatelessWidget {
               style: AppTextStyles.splashTextStyle,
               textAlign: TextAlign.center,
             ),
-            const Spacer(flex: 5),
+            const Spacer(flex: 10),
           ],
         ),
       ),

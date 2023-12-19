@@ -20,8 +20,8 @@ class PageViewIndexChangedState extends OnBoardingState {
   List<Object> get props => [index];
 }
 
-class SkipToSignInOrHome extends OnBoardingState {
-  const SkipToSignInOrHome();
+class SkipToLogin extends OnBoardingState {
+  const SkipToLogin();
 }
 
 class NavigateBetweenPages extends OnBoardingState {

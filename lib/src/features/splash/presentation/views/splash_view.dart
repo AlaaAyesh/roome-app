@@ -42,9 +42,8 @@ class _SplashViewState extends State<SplashView> {
   }
 
   void _goToNext() {
-    Helper.uId = serviceLocator.get<CacheHelper>().getIntData(key: 'uId');
-    bool? onBoarding =
-        serviceLocator.get<CacheHelper>().getBoolData(key: 'onBoarding');
+    Helper.uId = getIt.get<CacheHelper>().getIntData(key: 'uId');
+    bool? onBoarding = getIt.get<CacheHelper>().getBoolData(key: 'onBoarding');
 
     if (onBoarding != null) {
       if (Helper.uId != null) {

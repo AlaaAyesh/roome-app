@@ -73,7 +73,7 @@ class _OnBoardingViewBodyState extends State<OnBoardingViewBody> {
               onPressed: () {
                 cubit.isLastBoarding
                     ? cubit.previousPage(pageController: pageController)
-                    : cubit.navigateToLoginOrHome(context: context);
+                    : cubit.skipToLogin(context: context);
               },
               text: cubit.isLastBoarding ? 'Return' : 'Skip',
               backgroundColor: AppColors.lightWightColor,
@@ -82,7 +82,7 @@ class _OnBoardingViewBodyState extends State<OnBoardingViewBody> {
               borderRadius: 50,
             ),
           ),
-          const BottomSpacer(),
+          const BottomSpacer(height: 24),
         ],
       );
     });

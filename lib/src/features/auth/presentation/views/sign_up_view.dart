@@ -87,7 +87,7 @@ class SignUpView extends StatelessWidget {
     SignUpWithGoogleSuccessState state,
   ) {
     context.getBack();
-    serviceLocator
+    getIt
         .get<CacheHelper>()
         .saveData(key: 'uId', value: state.uId)
         .then((value) {

@@ -6,6 +6,7 @@ import 'package:roome/src/core/utils/app_navigator.dart';
 import 'package:roome/service_locator.dart';
 import 'package:roome/src/features/on_boarding/data/datasources/on_boarding_datasource.dart';
 import 'package:roome/src/features/on_boarding/data/models/on_boarding_model.dart';
+import 'package:roome/src/features/on_boarding/domain/entities/navigate_between_pages_params.dart';
 import 'package:roome/src/features/on_boarding/domain/entities/on_boarding_entity.dart';
 
 class OnBoardingDataSourceImpl implements OnBoardingDataSource {
@@ -32,21 +33,19 @@ class OnBoardingDataSourceImpl implements OnBoardingDataSource {
 
   @override
   void navigateBetweenPages({
-    required BuildContext context,
-    required PageController pageController,
-    required bool isLastBoarding,
+    required NavigateBetweenPagesParams params,
   }) {
-    if (isLastBoarding) navigateToLoginOrHome(context: context);
+    if (params.isLastBoarding) skipToLogin(context: params.context);
 
-    pageController.nextPage(
+    params.pageController.nextPage(
       duration: const Duration(seconds: 1),
       curve: Curves.fastEaseInToSlowEaseOut,
     );
   }
 
   @override
-  void navigateToLoginOrHome({required BuildContext context}) {
-    serviceLocator
+  void skipToLogin({required BuildContext context}) {
+    getIt
         .get<CacheHelper>()
         .saveData(key: 'onBoarding', value: true)
         .then((value) {

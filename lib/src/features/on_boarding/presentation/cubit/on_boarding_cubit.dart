@@ -1,21 +1,33 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:roome/src/core/entities/no_params.dart';
+import 'package:roome/src/features/on_boarding/domain/entities/navigate_between_pages_params.dart';
 import 'package:roome/src/features/on_boarding/domain/entities/on_boarding_entity.dart';
-import 'package:roome/src/features/on_boarding/domain/repositories/on_boarding_repo.dart';
+import 'package:roome/src/features/on_boarding/domain/usecases/get_onboarding_pages_usecase.dart';
+import 'package:roome/src/features/on_boarding/domain/usecases/navigate_between_pages_usecase.dart';
+import 'package:roome/src/features/on_boarding/domain/usecases/previous_page_usecase.dart';
+import 'package:roome/src/features/on_boarding/domain/usecases/skip_to_login_usecase.dart';
 
 part 'on_boarding_state.dart';
 
 class OnBoardingCubit extends Cubit<OnBoardingState> {
-  final OnBoardingRepo onBoardingRepo;
+  final GetOnboardingPagesUseCase getPagesUseCase;
+  final NavigateBetweenPagesUseCase navigateBetweenPagesUseCase;
+  final SkipToLoginUseCase skipToLoginUseCase;
+  final PreviousPageUseCase previousPageUseCase;
 
-  OnBoardingCubit({required this.onBoardingRepo})
-      : super(const OnBoardingInitial());
+  OnBoardingCubit({
+    required this.getPagesUseCase,
+    required this.navigateBetweenPagesUseCase,
+    required this.skipToLoginUseCase,
+    required this.previousPageUseCase,
+  }) : super(const OnBoardingInitial());
 
   bool isLastBoarding = false;
 
   List<OnBoardingEntity> getPages() {
-    return onBoardingRepo.getPages();
+    return getPagesUseCase.call(const NoParams());
   }
 
   void onChangePageIndex(int index) {
@@ -31,23 +43,25 @@ class OnBoardingCubit extends Cubit<OnBoardingState> {
     required BuildContext context,
     required PageController pageController,
   }) {
-    onBoardingRepo.navigateBetweenPages(
-      context: context,
-      pageController: pageController,
-      isLastBoarding: isLastBoarding,
+    navigateBetweenPagesUseCase(
+      NavigateBetweenPagesParams(
+        context: context,
+        pageController: pageController,
+        isLastBoarding: isLastBoarding,
+      ),
     );
 
     emit(const NavigateBetweenPages());
   }
 
-  void navigateToLoginOrHome({required BuildContext context}) {
-    onBoardingRepo.navigateToLoginOrHome(context: context);
+  void skipToLogin({required BuildContext context}) {
+    skipToLoginUseCase(context);
 
-    emit(const SkipToSignInOrHome());
+    emit(const SkipToLogin());
   }
 
   void previousPage({required PageController pageController}) {
-    onBoardingRepo.previousPage(pageController: pageController);
+    previousPageUseCase(pageController);
 
     emit(const MoveToPreviousPage());
   }

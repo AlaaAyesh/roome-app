@@ -110,11 +110,7 @@ class CustomTextFormField extends StatelessWidget {
             suffixIcon: suffix,
             labelText: label,
             labelStyle: Theme.of(context).textTheme.titleSmall,
-            contentPadding: contentPadding ??
-                EdgeInsets.symmetric(
-                  vertical: 8.h,
-                  horizontal: 12.w,
-                ),
+            contentPadding: contentPadding,
             enabledBorder: enabledBorder ?? _buildUnderlineInputBorder(),
             focusedBorder: focusedBorder ?? _buildUnderlineInputBorder(),
             errorBorder: errorBorder ?? _buildUnderlineInputBorder(),

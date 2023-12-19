@@ -38,7 +38,7 @@ class AppRouter {
       case Routes.onBoardingViewRoute:
         return MaterialPageRoute(
           builder: (context) => BlocProvider(
-            create: (context) => serviceLocator.get<OnBoardingCubit>(),
+            create: (context) => getIt.get<OnBoardingCubit>(),
             child: const OnBoardingView(),
           ),
         );
@@ -46,7 +46,7 @@ class AppRouter {
       case Routes.loginViewRoute:
         return MaterialPageRoute(
           builder: (context) => BlocProvider(
-            create: (context) => serviceLocator.get<LoginCubit>(),
+            create: (context) => getIt.get<LoginCubit>(),
             child: const LoginView(),
           ),
         );
@@ -54,7 +54,7 @@ class AppRouter {
       case Routes.signUpViewRoute:
         return MaterialPageRoute(
           builder: (context) => BlocProvider(
-            create: (context) => serviceLocator.get<SignUpCubit>(),
+            create: (context) => getIt.get<SignUpCubit>(),
             child: const SignUpView(),
           ),
         );
@@ -67,7 +67,7 @@ class AppRouter {
       case Routes.searchViewRoute:
         return MaterialPageRoute(
           builder: (context) => BlocProvider(
-            create: (context) => serviceLocator.get<SearchCubit>(),
+            create: (context) => getIt.get<SearchCubit>(),
             child: const SearchView(),
           ),
         );
@@ -95,7 +95,7 @@ class AppRouter {
         final args = routeSettings.arguments as BookedHotelInfo;
         return MaterialPageRoute(
           builder: (context) => BlocProvider(
-            create: (context) => serviceLocator.get<BookingOneCubit>(),
+            create: (context) => getIt.get<BookingOneCubit>(),
             child: BookingOneView(bookedHotelInfo: args),
           ),
         );
@@ -110,7 +110,7 @@ class AppRouter {
         final args = routeSettings.arguments as BookingInfo;
         return MaterialPageRoute(
           builder: (context) => BlocProvider(
-            create: (context) => serviceLocator.get<PaymentCubit>(),
+            create: (context) => getIt.get<PaymentCubit>(),
             child: PaymentView(bookingInfo: args),
           ),
         );

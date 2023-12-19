@@ -25,29 +25,26 @@ class RoomeApp extends StatelessWidget {
       child: MultiBlocProvider(
         providers: [
           BlocProvider(
-            create: (context) =>
-                serviceLocator.get<RoomeCubit>()..getUserData(),
+            create: (context) => getIt.get<RoomeCubit>()..getUserData(),
           ),
           BlocProvider(
-            create: (context) => serviceLocator.get<HotelsCubit>()..getHotels(),
+            create: (context) => getIt.get<HotelsCubit>()..getHotels(),
           ),
           BlocProvider(
-            create: (context) =>
-                serviceLocator.get<NearMeCubit>()..getNearMeHotels(),
-          ),
-          BlocProvider(
-            create: (context) =>
-                serviceLocator.get<RecommendedCubit>()..getRecommendedHotels(),
+            create: (context) => getIt.get<NearMeCubit>()..getNearMeHotels(),
           ),
           BlocProvider(
             create: (context) =>
-                serviceLocator.get<FavoriteCubit>()..getFavorites(),
+                getIt.get<RecommendedCubit>()..getRecommendedHotels(),
           ),
           BlocProvider(
-            create: (context) => serviceLocator.get<ThemesCubit>(),
+            create: (context) => getIt.get<FavoriteCubit>()..getFavorites(),
           ),
           BlocProvider(
-            create: (context) => serviceLocator.get<NotificationsCubit>(),
+            create: (context) => getIt.get<ThemesCubit>(),
+          ),
+          BlocProvider(
+            create: (context) => getIt.get<NotificationsCubit>(),
           ),
         ],
         child: BlocBuilder<ThemesCubit, ThemeData>(

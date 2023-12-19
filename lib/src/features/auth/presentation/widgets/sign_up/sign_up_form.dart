@@ -234,7 +234,7 @@ class _SignUpFormState extends State<SignUpForm> {
     SignUpSuccessState state,
   ) {
     context.getBack();
-    serviceLocator
+    getIt
         .get<CacheHelper>()
         .saveData(key: 'uId', value: state.uId)
         .then((value) {

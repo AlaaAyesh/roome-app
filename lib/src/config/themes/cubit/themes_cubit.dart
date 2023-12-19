@@ -12,14 +12,12 @@ class ThemesCubit extends Cubit<ThemeData> {
   Future<void> _saveThemeToPrefs({required ThemeData theme}) async {
     final themeIndex = theme == AppTheme.lightTheme ? 0 : 1;
 
-    await serviceLocator
-        .get<CacheHelper>()
-        .saveData(key: 'theme', value: themeIndex);
+    await getIt.get<CacheHelper>().saveData(key: 'theme', value: themeIndex);
   }
 
   Future<void> _getThemeFromPrefs() async {
     final savedThemeIndex =
-        serviceLocator.get<CacheHelper>().getIntData(key: 'theme') ?? 0;
+        getIt.get<CacheHelper>().getIntData(key: 'theme') ?? 0;
 
     final savedTheme =
         savedThemeIndex == 0 ? AppTheme.lightTheme : AppTheme.darkTheme;

@@ -194,7 +194,7 @@ class _LoginFormState extends State<LoginForm> {
     SignInSuccessState state,
   ) {
     context.getBack();
-    serviceLocator
+    getIt
         .get<CacheHelper>()
         .saveData(key: 'uId', value: state.uId)
         .then((value) {

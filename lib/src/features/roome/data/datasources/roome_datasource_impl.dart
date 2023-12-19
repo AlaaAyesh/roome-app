@@ -120,6 +120,6 @@ class RoomeDataSourceImpl implements RoomeDataSource {
 
   @override
   Future<bool> signOut({required BuildContext context}) async {
-    return await serviceLocator.get<CacheHelper>().removeData(key: 'uId');
+    return await getIt.get<CacheHelper>().removeData(key: 'uId');
   }
 }
