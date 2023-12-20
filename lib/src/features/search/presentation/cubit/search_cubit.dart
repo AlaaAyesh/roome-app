@@ -19,8 +19,8 @@ class SearchCubit extends Cubit<SearchState> {
     searchHotelsUseCase(hotelName).then((value) {
       value.fold(
         (failure) {
-          debugPrint('ERROR: ${failure.errorMessage.toString()}');
-          emit(SearchErrorState(errorMessage: failure.errorMessage.toString()));
+          debugPrint('ERROR: ${failure.failureMsg.toString()}');
+          emit(SearchErrorState(errorMessage: failure.failureMsg.toString()));
         },
         (hotels) => emit(SearchSuccessState(hotels: hotels)),
       );

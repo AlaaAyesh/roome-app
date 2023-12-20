@@ -48,14 +48,14 @@ class RoomeRepoImpl implements RoomeRepo {
       final response = await roomeDataSource.getUserData(userId: userId);
 
       if (response.containsKey('message')) {
-        return Left(ServerFailure(errorMessage: response['message']));
+        return Left(ServerFailure(failureMsg: response['message']));
       } else {
         final UserModel user = UserModel.fromJson(response);
 
         return Right(user);
       }
     } else {
-      return Left(ServerFailure(errorMessage: AppStrings.noInternet));
+      return Left(ServerFailure(failureMsg: AppStrings.noInternet));
     }
   }
 }

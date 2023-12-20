@@ -15,7 +15,7 @@ class ProfileRepoImpl implements ProfileRepo {
       final result = await profileDataSource.signOut();
       return Right(result);
     } catch (e) {
-      return Left(ServerFailure(errorMessage: e.toString()));
+      return Left(ServerFailure(failureMsg: e.toString()));
     }
   }
 }

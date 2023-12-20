@@ -19,7 +19,7 @@ class RecommendedCubit extends Cubit<RecommendedState> {
       value.fold(
         (failure) {
           emit(GetRecommendedHotelsErrorState(
-              error: failure.errorMessage.toString()));
+              error: failure.failureMsg.toString()));
         },
         (recommendedHotels) {
           emit(GetRecommendedHotelsSuccessState(

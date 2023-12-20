@@ -17,7 +17,7 @@ class ProfileCubit extends Cubit<ProfileState> {
     signOutUseCase(const NoParams()).then((value) {
       value.fold(
         (failure) =>
-            emit(SignOutErrorState(error: failure.errorMessage.toString())),
+            emit(SignOutErrorState(error: failure.failureMsg.toString())),
         (success) => emit(SignOutSuccessState(uId: Helper.uId)),
       );
     });

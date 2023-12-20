@@ -19,7 +19,7 @@ class HotelsCubit extends Cubit<HotelsState> {
     await getHotelsUseCase(const NoParams()).then((value) {
       value.fold(
         (failure) {
-          emit(GetHotelsErrorState(error: failure.errorMessage.toString()));
+          emit(GetHotelsErrorState(error: failure.failureMsg.toString()));
         },
         (hotels) {
           resultHotels = hotels;

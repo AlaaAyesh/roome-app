@@ -34,7 +34,7 @@ class EditProfileCubit extends Cubit<EditProfileState> {
     updateUserUseCase(updateUserParams).then((value) {
       value.fold(
         (failure) =>
-            emit(UpdateUserErrorState(error: failure.errorMessage.toString())),
+            emit(UpdateUserErrorState(error: failure.failureMsg.toString())),
         (user) {
           BlocProvider.of<RoomeCubit>(context).getUserData();
           emit(UpdateUserSuccessState(user: user));
@@ -77,7 +77,7 @@ class EditProfileCubit extends Cubit<EditProfileState> {
     uploadProfileImageUseCase(profileImage).then((value) {
       value.fold(
         (failure) => emit(
-          UploadProfileImageErrorState(error: failure.errorMessage.toString()),
+          UploadProfileImageErrorState(error: failure.failureMsg.toString()),
         ),
         (taskSnapshot) {
           taskSnapshot.ref.getDownloadURL().then((value) {

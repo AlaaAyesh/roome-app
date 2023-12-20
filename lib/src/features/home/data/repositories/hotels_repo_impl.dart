@@ -23,7 +23,7 @@ class HotelsRepoImpl implements HotelsRepo {
       try {
         final response = await hotelsDataSource.getHotels();
 
-        List<Hotel> hotels = <Hotel>[];
+        final List<Hotel> hotels = <Hotel>[];
 
         for (var hotel in response) {
           hotels.add(Hotel.fromJson(hotel));
@@ -34,10 +34,10 @@ class HotelsRepoImpl implements HotelsRepo {
         if (e is DioException) {
           return Left(ServerFailure.fromDioException(e));
         }
-        return Left(ServerFailure(errorMessage: e.toString()));
+        return Left(ServerFailure(failureMsg: e.toString()));
       }
     } else {
-      return Left(ServerFailure(errorMessage: AppStrings.noInternet));
+      return Left(ServerFailure(failureMsg: AppStrings.noInternet));
     }
   }
 }

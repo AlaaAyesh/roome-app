@@ -29,7 +29,7 @@ class NotificationsCubit extends Cubit<NotificationsState> {
     addToNotificationsUseCase(params).then((value) {
       value.fold(
         (failure) => emit(
-          AddToNotificationsErrorState(error: failure.errorMessage.toString()),
+          AddToNotificationsErrorState(error: failure.failureMsg.toString()),
         ),
         (notification) {
           getNotifications();
@@ -46,7 +46,7 @@ class NotificationsCubit extends Cubit<NotificationsState> {
       value.fold(
         (failure) => emit(
           RemoveFromNotificationsErrorState(
-              error: failure.errorMessage.toString()),
+              error: failure.failureMsg.toString()),
         ),
         (notification) {
           getNotifications();

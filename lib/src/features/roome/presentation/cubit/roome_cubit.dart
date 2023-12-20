@@ -71,7 +71,7 @@ class RoomeCubit extends Cubit<RoomeState> {
     getUserDataUseCase(Helper.uId).then((value) {
       value.fold(
         (failure) {
-          emit(GetUserDataErrorState(error: failure.errorMessage.toString()));
+          emit(GetUserDataErrorState(error: failure.failureMsg.toString()));
         },
         (user) {
           Helper.currentUser = user;

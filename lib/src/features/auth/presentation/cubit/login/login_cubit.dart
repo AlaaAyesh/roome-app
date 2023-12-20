@@ -27,7 +27,7 @@ class LoginCubit extends Cubit<LoginState> {
     loginUseCase(loginParameters).then((value) {
       value.fold(
         (failure) =>
-            emit(LoginErrorState(error: failure.errorMessage.toString())),
+            emit(LoginErrorState(error: failure.failureMsg.toString())),
         (user) {
           emit(LoginSuccessState(
             uId: user.id!,
@@ -44,7 +44,7 @@ class LoginCubit extends Cubit<LoginState> {
     loginWithGoogleUseCase(const NoParams()).then((value) {
       value.fold(
         (failure) => emit(
-          SignInWithGoogleErrorState(error: failure.errorMessage.toString()),
+          SignInWithGoogleErrorState(error: failure.failureMsg.toString()),
         ),
         (user) => emit(SignInWithGoogleSuccessState(uId: user.user!.uid)),
       );

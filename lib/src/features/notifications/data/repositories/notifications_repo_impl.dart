@@ -22,7 +22,7 @@ class NotificationsRepoImpl implements NotificationsRepo {
 
       return Right(notification);
     } catch (e) {
-      return Left(ServerFailure(errorMessage: e.toString()));
+      return Left(ServerFailure(failureMsg: e.toString()));
     }
   }
 
@@ -36,7 +36,7 @@ class NotificationsRepoImpl implements NotificationsRepo {
 
       return Right(removedNotification);
     } catch (e) {
-      return Left(ServerFailure(errorMessage: e.toString()));
+      return Left(ServerFailure(failureMsg: e.toString()));
     }
   }
 }

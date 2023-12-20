@@ -28,7 +28,7 @@ class FavoriteCubit extends Cubit<FavoriteState> {
     getFavoritesUseCase(Helper.uId).then((value) {
       value.fold(
         (failure) {
-          emit(GetFavoritesErrorState(error: failure.errorMessage.toString()));
+          emit(GetFavoritesErrorState(error: failure.failureMsg.toString()));
         },
         (favorites) {
           favoriteHotels = favorites;
@@ -45,7 +45,7 @@ class FavoriteCubit extends Cubit<FavoriteState> {
         .then((value) {
       value.fold(
         (failure) {
-          emit(AddToFavErrorState(error: failure.errorMessage.toString()));
+          emit(AddToFavErrorState(error: failure.failureMsg.toString()));
         },
         (message) {
           getFavorites();
@@ -64,7 +64,7 @@ class FavoriteCubit extends Cubit<FavoriteState> {
         .then((value) {
       value.fold(
         (failure) {
-          emit(RemoveFromFavErrorState(error: failure.errorMessage.toString()));
+          emit(RemoveFromFavErrorState(error: failure.failureMsg.toString()));
         },
         (message) {
           getFavorites();

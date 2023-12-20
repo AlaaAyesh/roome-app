@@ -29,7 +29,7 @@ class SignUpCubit extends Cubit<SignUpState> {
       (value) {
         value.fold(
           (failure) =>
-              emit(SignUpErrorState(error: failure.errorMessage.toString())),
+              emit(SignUpErrorState(error: failure.failureMsg.toString())),
           (user) {
             emit(
               SignUpSuccessState(
@@ -50,7 +50,7 @@ class SignUpCubit extends Cubit<SignUpState> {
       value.fold(
         (failure) => emit(
           SignUpWithGoogleErrorState(
-            error: failure.errorMessage.toString(),
+            error: failure.failureMsg.toString(),
           ),
         ),
         (user) => emit(SignUpWithGoogleSuccessState(uId: user.user!.uid)),

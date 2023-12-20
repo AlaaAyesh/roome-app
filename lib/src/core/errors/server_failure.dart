@@ -4,22 +4,22 @@ import 'package:roome/src/core/errors/failure.dart';
 import 'package:roome/src/core/utils/app_strings.dart';
 
 class ServerFailure extends Failure {
-  ServerFailure({String? errorMessage}) : super(errorMessage: errorMessage);
+  ServerFailure({String? failureMsg}) : super(failureMsg: failureMsg);
 
   factory ServerFailure.fromDioException(DioException dioException) {
     switch (dioException.type) {
       case DioExceptionType.connectionTimeout:
-        return ServerFailure(errorMessage: 'Connection Timeout With ApiServer');
+        return ServerFailure(failureMsg: 'Connection Timeout With ApiServer');
 
       case DioExceptionType.sendTimeout:
-        return ServerFailure(errorMessage: 'Send Timeout With ApiServer');
+        return ServerFailure(failureMsg: 'Send Timeout With ApiServer');
 
       case DioExceptionType.receiveTimeout:
-        return ServerFailure(errorMessage: 'Receive Timeout With ApiServer');
+        return ServerFailure(failureMsg: 'Receive Timeout With ApiServer');
 
       case DioExceptionType.badCertificate:
         return ServerFailure(
-            errorMessage: 'Your request not found, please try again later!');
+            failureMsg: 'Your request not found, please try again later!');
 
       case DioExceptionType.badResponse:
         return ServerFailure.fromResponse(
@@ -28,18 +28,18 @@ class ServerFailure extends Failure {
         );
 
       case DioExceptionType.cancel:
-        return ServerFailure(errorMessage: 'Request to ApiServer was canceled');
+        return ServerFailure(failureMsg: 'Request to ApiServer was canceled');
 
       case DioExceptionType.connectionError:
-        return ServerFailure(errorMessage: AppStrings.noInternet);
+        return ServerFailure(failureMsg: AppStrings.noInternet);
 
       case DioExceptionType.unknown:
         return ServerFailure(
-          errorMessage: "Unexpected Error, please try again!",
+          failureMsg: "Unexpected Error, please try again!",
         );
 
       default:
-        return ServerFailure(errorMessage: AppStrings.opps);
+        return ServerFailure(failureMsg: AppStrings.opps);
     }
   }
 
@@ -47,10 +47,10 @@ class ServerFailure extends Failure {
     if (statusCode == StatusCodes.badRequest ||
         statusCode == StatusCodes.unAuthorized ||
         statusCode == StatusCodes.forbidden) {
-      return ServerFailure(errorMessage: response['message']);
+      return ServerFailure(failureMsg: response['message']);
     } else if (statusCode == StatusCodes.internalServerError) {
-      return ServerFailure(errorMessage: response['error']);
+      return ServerFailure(failureMsg: response['error']);
     }
-    return ServerFailure(errorMessage: AppStrings.opps);
+    return ServerFailure(failureMsg: AppStrings.opps);
   }
 }

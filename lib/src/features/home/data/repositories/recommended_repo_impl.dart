@@ -37,10 +37,10 @@ class RecommendedRepoImpl implements RecommendedRepo {
         if (e is DioException) {
           return Left(ServerFailure.fromDioException(e));
         }
-        return Left(ServerFailure(errorMessage: e.toString()));
+        return Left(ServerFailure(failureMsg: e.toString()));
       }
     } else {
-      return Left(ServerFailure(errorMessage: AppStrings.noInternet));
+      return Left(ServerFailure(failureMsg: AppStrings.noInternet));
     }
   }
 }

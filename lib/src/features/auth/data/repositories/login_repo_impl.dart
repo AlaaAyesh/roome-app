@@ -25,10 +25,10 @@ class LoginRepoImpl implements LoginRepo {
         final user = await loginDataSource.signInWithGoogle();
         return Right(user);
       } catch (e) {
-        return Left(ServerFailure(errorMessage: e.toString()));
+        return Left(ServerFailure(failureMsg: e.toString()));
       }
     } else {
-      return Left(ServerFailure(errorMessage: AppStrings.noInternet));
+      return Left(ServerFailure(failureMsg: AppStrings.noInternet));
     }
   }
 
@@ -41,14 +41,14 @@ class LoginRepoImpl implements LoginRepo {
           await loginDataSource.userLogin(loginParams: loginParams);
 
       if (response.containsKey('message')) {
-        return Left(ServerFailure(errorMessage: response['message']));
+        return Left(ServerFailure(failureMsg: response['message']));
       } else {
         final UserModel user = UserModel.fromJson(response);
 
         return Right(user);
       }
     } else {
-      return Left(ServerFailure(errorMessage: AppStrings.noInternet));
+      return Left(ServerFailure(failureMsg: AppStrings.noInternet));
     }
   }
 }

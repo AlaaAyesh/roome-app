@@ -21,8 +21,7 @@ class NearMeCubit extends Cubit<NearMeState> {
     getNearMeHotelsUseCase(Helper.uId).then((value) {
       value.fold(
         (failure) {
-          emit(GetNearMeHotelsErrorState(
-              error: failure.errorMessage.toString()));
+          emit(GetNearMeHotelsErrorState(error: failure.failureMsg.toString()));
         },
         (nearMeHotels) {
           resultNearMe = nearMeHotels;
