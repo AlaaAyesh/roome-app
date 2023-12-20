@@ -1,9 +1,10 @@
 import 'package:dio/dio.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
 import 'package:roome/service_locator.dart';
 import 'package:roome/src/core/api/app_interceptors.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class SetupForExternal {
   Future<void> setUpForExternal() async {

@@ -10,7 +10,7 @@ import 'package:roome/src/core/helpers/helper.dart';
 import 'package:roome/src/core/utils/app_constants.dart';
 import 'package:roome/src/core/utils/app_navigator.dart';
 import 'package:roome/src/core/utils/app_strings.dart';
-import 'package:roome/src/core/widgets/custom_loading_dialog.dart';
+import 'package:roome/src/features/auth/presentation/widgets/custom_loading_dialog.dart';
 import 'package:roome/src/core/widgets/custom_snack_bar.dart';
 import 'package:roome/src/core/widgets/custom_text_form_field.dart';
 import 'package:roome/src/core/widgets/main_button.dart';

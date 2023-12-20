@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import 'package:roome/service_locator.dart';
 import 'package:roome/src/config/router/app_router.dart';
 import 'package:roome/src/config/themes/cubit/themes_cubit.dart';
 import 'package:roome/src/core/utils/app_strings.dart';
-import 'package:roome/service_locator.dart';
 import 'package:roome/src/features/favorite/presentation/cubit/favorite_cubit.dart';
 import 'package:roome/src/features/home/presentation/cubits/hotels/hotels_cubit.dart';
 import 'package:roome/src/features/home/presentation/cubits/near_me/near_me_cubit.dart';

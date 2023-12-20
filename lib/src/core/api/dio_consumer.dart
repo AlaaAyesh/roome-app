@@ -3,11 +3,12 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:dio/io.dart';
 import 'package:flutter/foundation.dart';
+
+import 'package:roome/service_locator.dart';
 import 'package:roome/src/core/api/api_consumer.dart';
 import 'package:roome/src/core/api/app_interceptors.dart';
 import 'package:roome/src/core/api/end_points.dart';
 import 'package:roome/src/core/api/status_codes.dart';
-import 'package:roome/service_locator.dart';
 import 'package:roome/src/core/utils/app_strings.dart';
 
 class DioConsumer implements ApiConsumer {

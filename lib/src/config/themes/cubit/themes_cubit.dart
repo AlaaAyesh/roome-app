@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import 'package:roome/service_locator.dart';
 import 'package:roome/src/config/themes/app_theme.dart';
 import 'package:roome/src/core/helpers/cache_helper.dart';
-import 'package:roome/service_locator.dart';
 import 'package:roome/src/core/utils/app_strings.dart';
 
 class ThemesCubit extends Cubit<ThemeData> {

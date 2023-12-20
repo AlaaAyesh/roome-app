@@ -9,7 +9,7 @@ class AppTextStyles {
     decoration: TextDecoration.underline,
     decorationColor: AppColors.primaryColor,
     decorationStyle: TextDecorationStyle.solid,
-    decorationThickness: 2,
+    decorationThickness: 2.w,
     color: Colors.black,
   );
 
