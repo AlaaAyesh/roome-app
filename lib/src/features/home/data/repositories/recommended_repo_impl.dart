@@ -2,18 +2,18 @@ import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:roome/src/core/errors/failure.dart';
 import 'package:roome/src/core/errors/server_failure.dart';
-import 'package:roome/src/core/models/hotel.dart';
-import 'package:roome/src/core/network/network_info.dart';
+import 'package:roome/src/core/models/user/hotel.dart';
+import 'package:roome/src/core/internet/internet_checker.dart';
 import 'package:roome/src/core/utils/app_strings.dart';
 import 'package:roome/src/features/home/data/datasources/recommended/recommended_datasource.dart';
 import 'package:roome/src/features/home/domain/repositories/recommended_repo.dart';
 
 class RecommendedRepoImpl implements RecommendedRepo {
-  final NetworkInfo networkInfo;
+  final InternetChecker internetChecker;
   final RecommendedDataSource recommendedDataSource;
 
-  RecommendedRepoImpl({
-    required this.networkInfo,
+  const RecommendedRepoImpl({
+    required this.internetChecker,
     required this.recommendedDataSource,
   });
 
@@ -21,7 +21,7 @@ class RecommendedRepoImpl implements RecommendedRepo {
   Future<Either<Failure, dynamic>> getRecommendedMeHotels({
     required int userId,
   }) async {
-    if (await networkInfo.isConnected) {
+    if (await internetChecker.isConnected) {
       try {
         final response =
             await recommendedDataSource.getRecommendedMeHotels(userId: userId);
@@ -37,10 +37,10 @@ class RecommendedRepoImpl implements RecommendedRepo {
         if (e is DioException) {
           return Left(ServerFailure.fromDioException(e));
         }
-        return Left(ServerFailure(errorMessage: e.toString()));
+        return Left(ServerFailure(failureMsg: e.toString()));
       }
     } else {
-      return Left(ServerFailure(errorMessage: AppStrings.noInternet));
+      return Left(ServerFailure(failureMsg: AppStrings.noInternet));
     }
   }
 }

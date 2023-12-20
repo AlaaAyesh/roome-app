@@ -10,6 +10,6 @@ class ChangeBottomNavToHomeUseCase
 
   @override
   void call(ChangeIndexParams params) {
-    roomRepo.changeBottomNavToHome(context: params.context!);
+    roomRepo.changeBottomNavToHome(changeIndexParams: params);
   }
 }

@@ -2,23 +2,26 @@ import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:roome/src/core/errors/failure.dart';
 import 'package:roome/src/core/errors/server_failure.dart';
-import 'package:roome/src/core/models/hotel.dart';
-import 'package:roome/src/core/network/network_info.dart';
+import 'package:roome/src/core/models/user/hotel.dart';
+import 'package:roome/src/core/internet/internet_checker.dart';
 import 'package:roome/src/core/utils/app_strings.dart';
 import 'package:roome/src/features/home/data/datasources/near_me/near_me_datasource.dart';
 import 'package:roome/src/features/home/domain/repositories/near_me_repo.dart';
 
 class NearMeRepoImpl implements NearMeRepo {
-  final NetworkInfo networkInfo;
+  final InternetChecker internetChecker;
   final NearMeDataSource nearMeDataSource;
 
-  NearMeRepoImpl({required this.networkInfo, required this.nearMeDataSource});
+  const NearMeRepoImpl({
+    required this.internetChecker,
+    required this.nearMeDataSource,
+  });
 
   @override
   Future<Either<Failure, dynamic>> getNearMeHotels({
     required int userId,
   }) async {
-    if (await networkInfo.isConnected) {
+    if (await internetChecker.isConnected) {
       try {
         final response = await nearMeDataSource.getNearMeHotels(userId: userId);
 
@@ -33,10 +36,10 @@ class NearMeRepoImpl implements NearMeRepo {
         if (e is DioException) {
           return Left(ServerFailure.fromDioException(e));
         }
-        return Left(ServerFailure(errorMessage: e.toString()));
+        return Left(ServerFailure(failureMsg: e.toString()));
       }
     } else {
-      return Left(ServerFailure(errorMessage: AppStrings.noInternet));
+      return Left(ServerFailure(failureMsg: AppStrings.noInternet));
     }
   }
 }

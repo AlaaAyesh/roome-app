@@ -1,13 +1,15 @@
 part of 'payment_cubit.dart';
 
-sealed class PaymentState extends Equatable {
+abstract class PaymentState extends Equatable {
   const PaymentState();
 
   @override
   List<Object> get props => [];
 }
 
-final class PaymentInitial extends PaymentState {}
+class PaymentInitial extends PaymentState {
+  const PaymentInitial();
+}
 
 class ContinueTappedState extends PaymentState {
   final bool isContinueTapped;

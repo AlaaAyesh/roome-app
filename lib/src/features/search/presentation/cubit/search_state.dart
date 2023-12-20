@@ -7,12 +7,17 @@ abstract class SearchState extends Equatable {
   List<Object> get props => [];
 }
 
-class SearchInitial extends SearchState {}
+class SearchInitial extends SearchState {
+  const SearchInitial();
+}
 
-class SearchLoadingState extends SearchState {}
+class SearchLoadingState extends SearchState {
+  const SearchLoadingState();
+}
 
 class SearchSuccessState extends SearchState {
   final List<Hotel> hotels;
+
   const SearchSuccessState({required this.hotels});
 
   @override
@@ -21,6 +26,7 @@ class SearchSuccessState extends SearchState {
 
 class SearchErrorState extends SearchState {
   final String errorMessage;
+
   const SearchErrorState({required this.errorMessage});
 
   @override

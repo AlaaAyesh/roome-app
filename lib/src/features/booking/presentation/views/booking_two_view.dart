@@ -1,5 +1,6 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:roome/src/core/utils/app_constants.dart';
 import 'package:roome/src/core/widgets/custom_sliver_app_bar.dart';
 import 'package:roome/src/features/booking/data/models/booking_info.dart';
@@ -7,8 +8,9 @@ import 'package:roome/src/features/booking/presentation/widgets/booking_one_form
 import 'package:roome/src/features/booking/presentation/widgets/booking_two_form.dart';
 
 class BookingTwoView extends StatelessWidget {
-  final BookingInfo bookingInfo;
   const BookingTwoView({super.key, required this.bookingInfo});
+
+  final BookingInfo bookingInfo;
 
   @override
   Widget build(BuildContext context) {
@@ -18,9 +20,11 @@ class BookingTwoView extends StatelessWidget {
           physics: AppConstants.physics,
           slivers: [
             const CustomSliverAppBar(
-                titleText: 'Booking Form', centerTitle: true),
+              titleText: 'Booking Form',
+              centerTitle: true,
+            ),
             SliverPadding(
-              padding: const EdgeInsets.only(left: 31, right: 31),
+              padding: EdgeInsets.symmetric(horizontal: 31.w),
               sliver: SliverToBoxAdapter(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -29,7 +33,7 @@ class BookingTwoView extends StatelessWidget {
                       from: AppConstants.fadeInHorizontalValue,
                       child: const BookingOneFormNumbers(isBookingOne: false),
                     ),
-                    const SizedBox(height: 46),
+                    SizedBox(height: 46.h),
                     BookingTwoForm(bookingInfo: bookingInfo),
                   ],
                 ),

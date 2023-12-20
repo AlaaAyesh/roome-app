@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:roome/src/core/entities/no_params.dart';
-import 'package:roome/src/core/models/hotel.dart';
+import 'package:roome/src/core/models/user/hotel.dart';
 import 'package:roome/src/features/home/domain/usecases/hotels/get_hotels_usecase.dart';
 
 part 'hotels_state.dart';
@@ -9,17 +9,17 @@ part 'hotels_state.dart';
 class HotelsCubit extends Cubit<HotelsState> {
   final GetHotelsUseCase getHotelsUseCase;
 
-  HotelsCubit({required this.getHotelsUseCase}) : super(HotelsInitial());
+  HotelsCubit({required this.getHotelsUseCase}) : super(const HotelsInitial());
 
   List<Hotel> resultHotels = <Hotel>[];
 
   Future<void> getHotels() async {
-    emit(GetHotelsLoadingState());
+    emit(const GetHotelsLoadingState());
 
     await getHotelsUseCase(const NoParams()).then((value) {
       value.fold(
         (failure) {
-          emit(GetHotelsErrorState(error: failure.errorMessage.toString()));
+          emit(GetHotelsErrorState(error: failure.failureMsg.toString()));
         },
         (hotels) {
           resultHotels = hotels;

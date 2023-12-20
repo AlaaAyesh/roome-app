@@ -1,5 +1,8 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:roome/src/features/profile/presentation/widgets/profile_shimmer_section_title.dart';
+import 'package:roome/src/features/profile/presentation/widgets/shimmer_profile_app_bar_icon.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:roome/src/config/themes/cubit/themes_cubit.dart';
@@ -18,7 +21,7 @@ class ShimmerProfileBody extends StatelessWidget {
       return FadeInUp(
         from: AppConstants.fadeInUpValue,
         child: Shimmer.fromColors(
-                    baseColor: state.brightness == Brightness.light
+          baseColor: state.brightness == Brightness.light
               ? AppColors.shimmerBaseColor
               : AppColors.darkShimmerBaseColor,
           highlightColor: state.brightness == Brightness.light
@@ -29,23 +32,23 @@ class ShimmerProfileBody extends StatelessWidget {
             physics: AppConstants.physics,
             slivers: [
               SliverPadding(
-                padding: const EdgeInsets.symmetric(horizontal: 44),
+                padding: EdgeInsets.symmetric(horizontal: 44.w),
                 sliver: CustomSliverAppBar(
                   leading: ShimmerProfileAppBarIcon(state: state),
                   actions: <Widget>[ShimmerProfileAppBarIcon(state: state)],
                 ),
               ),
               SliverPadding(
-                padding: const EdgeInsets.symmetric(horizontal: 44),
+                padding: EdgeInsets.symmetric(horizontal: 44.w),
                 sliver: SliverToBoxAdapter(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       ProfileShimmerSectionTitle(state: state),
-                      const SizedBox(height: 19),
+                      SizedBox(height: 19.h),
                       Container(
-                        height: 160,
-                        width: 160,
+                        height: 160.h,
+                        width: 160.w,
                         alignment: AlignmentDirectional.center,
                         decoration: BoxDecoration(
                           color: state.brightness == Brightness.light
@@ -54,25 +57,25 @@ class ShimmerProfileBody extends StatelessWidget {
                           shape: BoxShape.circle,
                         ),
                       ),
-                      const SizedBox(height: 29),
+                      SizedBox(height: 29.h),
                       ProfileShimmerSectionTitle(state: state),
-                      const SizedBox(height: 10),
+                      SizedBox(height: 10.h),
                       Container(
                         height: 170,
                         width: double.infinity,
                         decoration: Helper.buildShimmerDecoration(state),
                       ),
-                      const SizedBox(height: 29),
+                      SizedBox(height: 29.h),
                       ProfileShimmerSectionTitle(state: state),
-                      const SizedBox(height: 10),
+                      SizedBox(height: 10.h),
                       Container(
-                        height: 85,
+                        height: 85.h,
                         width: double.infinity,
                         decoration: Helper.buildShimmerDecoration(state),
                       ),
-                      const SizedBox(height: 25),
+                      SizedBox(height: 25.h),
                       Container(
-                        height: 50,
+                        height: 50.h,
                         width: double.infinity,
                         decoration: Helper.buildShimmerDecoration(state),
                       ),
@@ -86,41 +89,5 @@ class ShimmerProfileBody extends StatelessWidget {
         ),
       );
     });
-  }
-}
-
-class ProfileShimmerSectionTitle extends StatelessWidget {
-  const ProfileShimmerSectionTitle({
-    super.key,
-    required this.state,
-  });
-
-  final ThemeData state;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: 32,
-      width: 100,
-      decoration: Helper.buildShimmerDecoration(state),
-    );
-  }
-}
-
-class ShimmerProfileAppBarIcon extends StatelessWidget {
-  const ShimmerProfileAppBarIcon({
-    super.key,
-    required this.state,
-  });
-
-  final ThemeData state;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: 24,
-      width: 24,
-      decoration: Helper.buildShimmerDecoration(state),
-    );
   }
 }

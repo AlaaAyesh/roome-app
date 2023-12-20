@@ -1,159 +1,141 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:roome/src/config/themes/cubit/themes_cubit.dart';
+import 'package:roome/src/core/utils/app_colors.dart';
+import 'package:roome/src/core/utils/app_text_styles.dart';
 
 class CustomTextFormField extends StatelessWidget {
   const CustomTextFormField({
-    Key? key,
-    required this.hint,
-    required this.controller,
-    required this.textCapitalization,
-    required this.keyboardType,
-    this.autofocus = false,
-    this.enabled,
-    this.backgroundColor,
-    this.suffixIcon,
-    this.focusNode,
-    this.hintStyle,
-    this.obscure,
-    this.validating,
+    super.key,
+    this.controller,
+    this.keyboardType,
+    this.prefix,
+    this.suffix,
+    this.obscureText = false,
+    this.label,
+    this.hintText,
     this.onSubmit,
-    this.onEditingComplete,
-    this.onChanged,
-    this.prefixIcon,
-    this.height,
-    this.width,
-    this.contentPadding,
-    this.boxShadow,
-    this.suffixIconColor,
-    this.prefixIconColor,
-    this.border,
-    this.focusedBorderColor,
-    this.enabledBorderColor,
-    this.errorBorderColor,
-    this.style,
-    this.cursorColor,
-    this.focusedBorderWidth,
-    this.enabledBorderWidth,
-    this.errorBorderWidth,
-    this.focusedBorder,
-    this.enabledBorder,
-    this.errorBorder,
     this.borderRadius,
-    this.textFieldBorder,
-    this.focusedErrorBorder = InputBorder.none,
+    this.onSaved,
     this.autofillHints,
-  }) : super(key: key);
+    this.isEmail = false,
+    this.enabled = true,
+    this.textAlign,
+    this.maxLength,
+    this.onChanged,
+    this.contentPadding,
+    this.onTap,
+    this.focusNode,
+    this.onEditingComplete,
+    this.textCapitalization = TextCapitalization.none,
+    this.validating,
+    this.enabledBorder,
+    this.focusedBorder,
+    this.focusedErrorBorder,
+    this.errorBorder,
+    this.border,
+    this.fillColor,
+    this.hintStyle,
+    this.autofocus = false,
+    this.disabledBorder,
+  });
 
-  final bool autofocus;
+  final TextEditingController? controller;
+  final TextInputType? keyboardType;
+  final Widget? prefix;
+  final Widget? suffix;
+  final bool obscureText;
+  final bool isEmail;
   final bool? enabled;
-  final FocusNode? focusNode;
-  final String hint;
-  final TextStyle? hintStyle;
-  final TextStyle? style;
-  final bool? obscure;
-  final Widget? suffixIcon;
-  final Color? suffixIconColor;
-  final Widget? prefixIcon;
-  final Color? prefixIconColor;
-  final TextEditingController controller;
-  final TextCapitalization textCapitalization;
-  final String? Function(String?)? validating;
-  final TextInputType keyboardType;
-  final void Function(String)? onSubmit;
-  final void Function()? onEditingComplete;
-  final void Function(String)? onChanged;
-  final double? height;
-  final double? width;
-  final BorderRadius? borderRadius;
-  final Color? backgroundColor;
-  final BoxBorder? border;
-  final InputBorder? focusedBorder;
-  final Color? focusedBorderColor;
-  final double? focusedBorderWidth;
-  final InputBorder? enabledBorder;
-  final Color? enabledBorderColor;
-  final double? enabledBorderWidth;
-  final InputBorder? errorBorder;
-  final Color? errorBorderColor;
-  final double? errorBorderWidth;
-  final Color? cursorColor;
-  final EdgeInsetsGeometry? contentPadding;
-  final List<BoxShadow>? boxShadow;
-  final InputBorder? textFieldBorder;
-  final InputBorder? focusedErrorBorder;
+  final String? label;
   final List<String>? autofillHints;
+  final TextCapitalization textCapitalization;
+  final Function(String submittedText)? onSubmit;
+  final Function(String? value)? onSaved;
+  final void Function()? onTap;
+  final String? hintText;
+  final TextAlign? textAlign;
+  final double? borderRadius;
+  final EdgeInsetsGeometry? contentPadding;
+  final int? maxLength;
+  final Function(String)? onChanged;
+  final FocusNode? focusNode;
+  final void Function()? onEditingComplete;
+  final String? Function(String?)? validating;
+  final InputBorder? enabledBorder;
+  final InputBorder? focusedBorder;
+  final InputBorder? focusedErrorBorder;
+  final InputBorder? errorBorder;
+  final InputBorder? disabledBorder;
+  final InputBorder? border;
+  final Color? fillColor;
+  final TextStyle? hintStyle;
+  final bool autofocus;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: height,
-      width: width,
-      decoration: BoxDecoration(
-        color: backgroundColor,
-        borderRadius: borderRadius,
-        boxShadow: boxShadow,
-        border: border,
-      ),
-      child: TextFormField(
-        autofocus: autofocus,
-        enabled: enabled,
-        controller: controller,
-        focusNode: focusNode,
-        autofillHints: autofillHints,
-        decoration: InputDecoration(
-          isDense: true,
-          border: textFieldBorder,
-          suffixIcon: suffixIcon,
-          suffixIconColor: suffixIconColor,
-          prefixIcon: prefixIcon,
-          prefixIconColor: prefixIconColor,
-          hintText: hint,
-          hintStyle: hintStyle,
-          contentPadding: contentPadding,
-          enabledBorder: enabledBorder ??
-              buildOutlineInputBorder(
-                enabledBorderColor ?? Colors.white,
-                enabledBorderWidth ?? 0,
-              ),
-          focusedBorder: focusedBorder ??
-              buildOutlineInputBorder(
-                focusedBorderColor ?? Colors.blue,
-                focusedBorderWidth ?? 2,
-              ),
-          errorBorder: errorBorder ??
-              buildOutlineInputBorder(
-                errorBorderColor ?? Colors.red,
-                errorBorderWidth ?? 0,
-              ),
-          focusedErrorBorder: focusedErrorBorder,
-        ),
-        style: style ??
-            const TextStyle(
-              color: Colors.black,
-              fontSize: 16,
-              fontWeight: FontWeight.w400,
-            ),
-        cursorColor: cursorColor,
-        obscureText: obscure ?? false,
-        keyboardType: keyboardType,
-        textCapitalization: textCapitalization,
-        validator: validating,
-        onFieldSubmitted: onSubmit,
-        onEditingComplete: onEditingComplete,
-        onChanged: onChanged,
-        onTapOutside: (event) {
-          FocusManager.instance.primaryFocus?.unfocus();
-        },
-      ),
+    return BlocBuilder<ThemesCubit, ThemeData>(
+      builder: (context, state) {
+        return TextFormField(
+          controller: controller,
+          focusNode: focusNode,
+          enabled: enabled,
+          autofocus: autofocus,
+          textCapitalization: textCapitalization,
+          textAlign: textAlign ?? TextAlign.start,
+          keyboardType: keyboardType ?? TextInputType.text,
+          obscureText: obscureText,
+          maxLength: maxLength,
+          onSaved: onSaved,
+          onTap: onTap,
+          autofillHints: autofillHints,
+          onFieldSubmitted: onSubmit,
+          onChanged: onChanged,
+          style: _customTextFieldTextStyle(),
+          cursorColor: state.brightness == Brightness.light
+              ? Colors.black
+              : Colors.white,
+          decoration: InputDecoration(
+            filled: true,
+            fillColor: fillColor ??
+                (state.brightness == Brightness.light
+                    ? AppColors.scaffoldBackgroundColor
+                    : Colors.black),
+            errorStyle: TextStyle(fontSize: 13.sp, color: Colors.red),
+            hintText: hintText,
+            hintStyle: hintStyle ?? _customTextFieldTextStyle(),
+            errorMaxLines: null,
+            prefixIcon: prefix,
+            suffixIcon: suffix,
+            labelText: label,
+            labelStyle: Theme.of(context).textTheme.titleSmall,
+            contentPadding: contentPadding,
+            enabledBorder: enabledBorder ?? _buildUnderlineInputBorder(),
+            focusedBorder: focusedBorder ?? _buildUnderlineInputBorder(),
+            errorBorder: errorBorder ?? _buildUnderlineInputBorder(),
+            focusedErrorBorder:
+                focusedErrorBorder ?? _buildUnderlineInputBorder(),
+            border: border ?? _buildUnderlineInputBorder(),
+            disabledBorder: disabledBorder,
+          ),
+          validator: validating,
+          onEditingComplete: onEditingComplete,
+        );
+      },
     );
   }
 
-  OutlineInputBorder buildOutlineInputBorder(Color color, double width) {
-    return OutlineInputBorder(
+  TextStyle _customTextFieldTextStyle() {
+    return AppTextStyles.textStyle15;
+  }
+
+  UnderlineInputBorder _buildUnderlineInputBorder({Color? borderColor}) {
+    return UnderlineInputBorder(
       borderSide: BorderSide(
-        color: color,
-        width: width,
+        color: borderColor ?? AppColors.primaryColor,
+        width: 0.75,
       ),
-      borderRadius: borderRadius ?? const BorderRadius.all(Radius.circular(10)),
     );
   }
 }

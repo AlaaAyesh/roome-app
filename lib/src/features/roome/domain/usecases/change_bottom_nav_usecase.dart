@@ -10,9 +10,6 @@ class ChangeBottomNavUseCase
 
   @override
   void call(ChangeIndexParams params) {
-    roomRepo.changeBottomNavIndex(
-      context: params.context!,
-      index: params.index!,
-    );
+    roomRepo.changeBottomNavIndex(changeIndexParams: params);
   }
 }

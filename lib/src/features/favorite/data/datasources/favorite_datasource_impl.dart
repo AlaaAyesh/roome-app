@@ -1,6 +1,7 @@
 import 'package:roome/src/core/api/api_consumer.dart';
 import 'package:roome/src/core/api/end_points.dart';
 import 'package:roome/src/features/favorite/data/datasources/favorite_datasource.dart';
+import 'package:roome/src/features/favorite/domain/entities/fav_params.dart';
 
 class FavoriteDataSourceImpl implements FavoriteDataSource {
   final ApiConsumer apiConsumer;
@@ -20,15 +21,12 @@ class FavoriteDataSourceImpl implements FavoriteDataSource {
   }
 
   @override
-  Future addToFav({
-    required int uId,
-    required int hotelId,
-  }) async {
+  Future addToFav({required FavParams favParams}) async {
     final response = await apiConsumer.post(
-      '${EndPoints.user}/add-to-fav/$uId/hotel/$hotelId',
+      '${EndPoints.user}add-to-fav/${favParams.uId}/hotel/${favParams.hotelId}',
       queryParameters: {
-        'userId': uId,
-        'hotelId': hotelId,
+        'userId': favParams.uId,
+        'hotelId': favParams.hotelId,
       },
     );
 
@@ -36,15 +34,12 @@ class FavoriteDataSourceImpl implements FavoriteDataSource {
   }
 
   @override
-  Future<dynamic> removeFromFav({
-    required int uId,
-    required int hotelId,
-  }) async {
+  Future<dynamic> removeFromFav({required FavParams favParams}) async {
     final response = await apiConsumer.post(
-      '${EndPoints.user}/remove-from-fav/$uId/hotel/$hotelId',
+      '${EndPoints.user}remove-from-fav/${favParams.uId}/hotel/${favParams.hotelId}',
       queryParameters: {
-        'userId': uId,
-        'hotelId': hotelId,
+        'userId': favParams.uId,
+        'hotelId': favParams.hotelId,
       },
     );
 

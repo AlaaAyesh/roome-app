@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:roome/src/core/helpers/helper.dart';
 import 'package:roome/src/core/utils/app_colors.dart';
@@ -15,18 +16,19 @@ class HelloRow extends StatelessWidget {
     return Row(
       children: <Widget>[
         CachedNetworkImage(
-          imageUrl: Helper.currentUser!.profileImage!,
+          imageUrl:
+              Helper.currentUser!.profileImage ?? AppStrings.defaultImageUrl,
           imageBuilder: (_, image) {
             return CircleAvatar(
               backgroundImage: image,
-              radius: 19,
+              radius: 19.r,
               backgroundColor: AppColors.primaryColor,
             );
           },
         ),
-        const SizedBox(width: 16),
+        SizedBox(width: 16.w),
         const Text(AppStrings.waveEmoji),
-        const SizedBox(width: 5),
+        SizedBox(width: 5.w),
         Text(
           'Hello, ${Helper.currentUser!.firstName}',
           style: AppTextStyles.textStyle15.copyWith(

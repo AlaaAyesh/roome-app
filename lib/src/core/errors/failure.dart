@@ -1,5 +1,5 @@
 abstract class Failure {
-  final String? errorMessage;
+  final String? failureMsg;
 
-  const Failure({this.errorMessage});
+  const Failure({this.failureMsg});
 }

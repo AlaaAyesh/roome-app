@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:roome/src/core/entities/no_params.dart';
-import 'package:roome/src/core/models/user_model.dart';
+import 'package:roome/src/core/models/user/user.dart';
 import 'package:roome/src/features/auth/domain/entities/sign_up/sign_up_parameters.dart';
 import 'package:roome/src/features/auth/domain/usecases/sign_up/user_sign_up_usecase.dart';
 import 'package:roome/src/features/auth/domain/usecases/sign_up/sign_up_with_google_usecase.dart';
@@ -16,30 +16,20 @@ class SignUpCubit extends Cubit<SignUpState> {
   SignUpCubit({
     required this.signUpUseCase,
     required this.signUpWithGoogleUseCase,
-  }) : super(SignUpInitial());
+  }) : super(const SignUpInitial());
 
   bool signUpPassVisibility = true;
 
   void userSignUp({
-    required String firstName,
-    required String lastName,
-    required String username,
-    required String email,
-    required String password,
+    required SignUpParameters signUpParameters,
   }) {
-    emit(SignUpLoadingState());
+    emit(const SignUpLoadingState());
 
-    signUpUseCase(SignUpParameters(
-      firstName: firstName,
-      lastName: lastName,
-      username: username,
-      email: email,
-      password: password,
-    )).then(
+    signUpUseCase(signUpParameters).then(
       (value) {
         value.fold(
           (failure) =>
-              emit(SignUpErrorState(error: failure.errorMessage.toString())),
+              emit(SignUpErrorState(error: failure.failureMsg.toString())),
           (user) {
             emit(
               SignUpSuccessState(
@@ -54,13 +44,13 @@ class SignUpCubit extends Cubit<SignUpState> {
   }
 
   void signUpWithGoogle() {
-    emit(SignUpWithGoogleLoadingState());
+    emit(const SignUpWithGoogleLoadingState());
 
     signUpWithGoogleUseCase(const NoParams()).then((value) {
       value.fold(
         (failure) => emit(
           SignUpWithGoogleErrorState(
-            error: failure.errorMessage.toString(),
+            error: failure.failureMsg.toString(),
           ),
         ),
         (user) => emit(SignUpWithGoogleSuccessState(uId: user.user!.uid)),

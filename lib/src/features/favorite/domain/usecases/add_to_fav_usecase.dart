@@ -11,9 +11,6 @@ class AddToFavUseCase implements BaseUseCases<dynamic, FavParams> {
 
   @override
   Future<Either<Failure, dynamic>> call(FavParams params) async {
-    return await favoriteRepo.addToFav(
-      uId: params.uId,
-      hotelId: params.hotelId,
-    );
+    return await favoriteRepo.addToFav(favParams: params);
   }
 }

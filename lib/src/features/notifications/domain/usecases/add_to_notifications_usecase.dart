@@ -13,13 +13,6 @@ class AddToNotificationsUseCase
   @override
   Future<Either<Failure, NotificationsModel>> call(
       AddToNotificationsParams params) async {
-    return await notificationsRepo.addToNotifications(
-      circles: params.circles,
-      icon: params.icon,
-      color: params.color,
-      title: params.title,
-      body: params.body,
-      context: params.context,
-    );
+    return await notificationsRepo.addToNotifications(params: params);
   }
 }

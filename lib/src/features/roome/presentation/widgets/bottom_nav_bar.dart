@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:roome/src/config/themes/cubit/themes_cubit.dart';
 import 'package:roome/src/core/utils/app_colors.dart';
 import 'package:roome/src/core/utils/app_text_styles.dart';
@@ -21,10 +22,11 @@ class BottomNavBar extends StatelessWidget {
               items: cubit.getBottomNavItems(),
               showSelectedLabels: true,
               showUnselectedLabels: true,
+              type: BottomNavigationBarType.fixed,
               selectedItemColor: AppColors.primaryColor,
               unselectedItemColor: AppColors.grey,
-              selectedIconTheme: const IconThemeData(size: 20),
-              unselectedIconTheme: const IconThemeData(size: 18),
+              selectedIconTheme: IconThemeData(size: 20.h),
+              unselectedIconTheme: IconThemeData(size: 18.h),
               selectedLabelStyle: AppTextStyles.bottomNavTextStyle
                   .copyWith(color: AppColors.primaryColor),
               unselectedLabelStyle: AppTextStyles.bottomNavTextStyle.copyWith(

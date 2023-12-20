@@ -1,15 +1,19 @@
 part of 'favorite_cubit.dart';
 
-sealed class FavoriteState extends Equatable {
+abstract class FavoriteState extends Equatable {
   const FavoriteState();
 
   @override
   List<Object> get props => [];
 }
 
-final class FavoriteInitial extends FavoriteState {}
+class FavoriteInitial extends FavoriteState {
+  const FavoriteInitial();
+}
 
-class GetFavoritesLoadingState extends FavoriteState {}
+class GetFavoritesLoadingState extends FavoriteState {
+  const GetFavoritesLoadingState();
+}
 
 class GetFavoritesSuccessState extends FavoriteState {
   final List<Hotel> favorites;
@@ -29,7 +33,9 @@ class GetFavoritesErrorState extends FavoriteState {
   List<Object> get props => [error];
 }
 
-class AddToFavLoadingState extends FavoriteState {}
+class AddToFavLoadingState extends FavoriteState {
+  const AddToFavLoadingState();
+}
 
 class AddToFavSuccessState extends FavoriteState {
   final String message;
@@ -49,7 +55,9 @@ class AddToFavErrorState extends FavoriteState {
   List<Object> get props => [error];
 }
 
-class RemoveFromFavLoadingState extends FavoriteState {}
+class RemoveFromFavLoadingState extends FavoriteState {
+  const RemoveFromFavLoadingState();
+}
 
 class RemoveFromFavSuccessState extends FavoriteState {
   final String message;

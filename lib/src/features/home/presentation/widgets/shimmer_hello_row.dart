@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:roome/src/config/themes/cubit/themes_cubit.dart';
 import 'package:roome/src/core/helpers/helper.dart';
 import 'package:roome/src/core/utils/app_colors.dart';
+import 'package:roome/src/core/utils/app_constants.dart';
 import 'package:shimmer/shimmer.dart';
 
 class ShimmerHelloRow extends StatelessWidget {
@@ -22,29 +24,25 @@ class ShimmerHelloRow extends StatelessWidget {
               : AppColors.darkShimmerHighlightColor,
           enabled: true,
           child: Padding(
-            padding: const EdgeInsets.only(right: 26),
+            padding: EdgeInsets.only(
+              right: AppConstants.horizontalViewPaddingValue,
+            ),
             child: Row(
               children: <Widget>[
-                Container(
-                  height: 25,
-                  width: 25,
-                  decoration: Helper.buildShimmerDecoration(state),
-                ),
-                const SizedBox(width: 16),
-                const CircleAvatar(
-                  radius: 19,
+                CircleAvatar(
+                  radius: 19.r,
                   backgroundColor: AppColors.shimmerContainerColor,
                 ),
-                const SizedBox(width: 5),
+                SizedBox(width: 5.w),
                 Container(
-                  height: 10,
-                  width: 120,
+                  height: 12.h,
+                  width: 120.w,
                   decoration: Helper.buildShimmerDecoration(state),
                 ),
                 const Spacer(),
                 Container(
-                  height: 10,
-                  width: 90,
+                  height: 10.h,
+                  width: 90.w,
                   decoration: Helper.buildShimmerDecoration(state),
                 ),
               ],

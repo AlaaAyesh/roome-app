@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:roome/src/core/utils/app_text_styles.dart';
 
 class FormNumber extends StatelessWidget {
@@ -14,8 +15,8 @@ class FormNumber extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 16,
-      width: 16,
+      height: 16.h,
+      width: 16.h,
       decoration: BoxDecoration(
         shape: BoxShape.circle,
         color: backgroundColor,

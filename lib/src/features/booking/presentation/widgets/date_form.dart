@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:roome/src/config/routes/routes.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:roome/src/config/router/routes.dart';
 import 'package:roome/src/config/themes/cubit/themes_cubit.dart';
 import 'package:roome/src/core/utils/app_colors.dart';
 import 'package:roome/src/core/utils/app_navigator.dart';
 import 'package:roome/src/core/utils/app_text_styles.dart';
-import 'package:roome/src/core/widgets/bottom_spacer.dart';
 import 'package:roome/src/core/widgets/custom_snack_bar.dart';
 import 'package:roome/src/core/widgets/glowing_custom_button.dart';
 import 'package:roome/src/features/booking/data/models/booked_hotel_info.dart';
@@ -46,27 +46,29 @@ class DateForm extends StatelessWidget {
               checkInDate: checkInDate,
               checkOutDate: checkOutDate,
             ),
-            const SizedBox(height: 16),
+            SizedBox(height: 16.h),
             const Row(
-              // mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 Expanded(child: SectionTitle(title: 'Room Type')),
-                Expanded(child: SectionTitle(title: 'Number of rooms')),
+                Spacer(),
+                Expanded(child: SectionTitle(title: 'Rooms')),
               ],
             ),
-            const SizedBox(height: 16),
+            SizedBox(height: 16.h),
             Row(
               children: <Widget>[
                 Expanded(
                   child: CustomBorderedContainer(
-                    padding: const EdgeInsets.only(left: 8),
+                    padding: EdgeInsets.only(left: 8.w),
                     child: Row(
                       children: <Widget>[
-                        Text(
-                          cubit.selectedRoomType,
-                          style: AppTextStyles.textStyle14Medium.copyWith(
-                            fontWeight: FontWeight.bold,
-                            color: AppColors.primaryColor.withOpacity(0.94),
+                        Expanded(
+                          child: Text(
+                            cubit.selectedRoomType,
+                            style: AppTextStyles.textStyle14Medium.copyWith(
+                              fontWeight: FontWeight.bold,
+                              color: AppColors.primaryColor.withOpacity(0.94),
+                            ),
                           ),
                         ),
                         Expanded(
@@ -102,7 +104,7 @@ class DateForm extends StatelessWidget {
                                 );
                               },
                             ),
-                            elevation: 4.toInt(),
+                            elevation: 4,
                             underline: Container(height: 0),
                           ),
                         ),
@@ -110,7 +112,7 @@ class DateForm extends StatelessWidget {
                     ),
                   ),
                 ),
-                const SizedBox(width: 8),
+                const Spacer(),
                 BlocBuilder<BookingOneCubit, BookingOneState>(
                   builder: (BuildContext context, BookingOneState state) {
                     BookingOneCubit cubit =
@@ -128,21 +130,21 @@ class DateForm extends StatelessWidget {
                 ),
               ],
             ),
-            const SizedBox(height: 22),
+            SizedBox(height: 16.h),
             const Align(
               alignment: AlignmentDirectional.center,
               child: SectionTitle(title: 'Guest'),
             ),
-            const SizedBox(height: 16),
+            SizedBox(height: 16.h),
             NumberOfContainer(
-              width: 150,
+              width: 150.w,
               number: cubit.guestNumber,
               reduceOnTap: cubit.guestNumber == 1
                   ? null
                   : () => cubit.decreaseGuestNumber(),
               increaseOnTap: () => cubit.increaseGuestNumber(),
             ),
-            const SizedBox(height: 50),
+            SizedBox(height: 50.h),
             Row(
               children: <Widget>[
                 Text(
@@ -151,7 +153,7 @@ class DateForm extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                const SizedBox(width: 16),
+                SizedBox(width: 16.w),
                 Expanded(
                   child: GlowingCustomButton(
                     onPressed: () => _continueToBookingTwo(
@@ -163,7 +165,6 @@ class DateForm extends StatelessWidget {
                 ),
               ],
             ),
-            const BottomSpacer(),
           ],
         );
       },
@@ -190,7 +191,7 @@ class DateForm extends StatelessWidget {
       CustomSnackBar.show(
         context: context,
         message: "Check In or Check Out can't be blank!",
-        title: 'Warning',
+        state: CustomSnackBarState.error,
       );
     }
   }

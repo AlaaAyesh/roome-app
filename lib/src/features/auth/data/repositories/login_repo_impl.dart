@@ -1,57 +1,54 @@
 import 'package:dartz/dartz.dart';
-import 'package:dio/dio.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:roome/src/core/errors/failure.dart';
 import 'package:roome/src/core/errors/server_failure.dart';
-import 'package:roome/src/core/models/user_model.dart';
-import 'package:roome/src/core/network/network_info.dart';
+import 'package:roome/src/core/models/user/user.dart';
+import 'package:roome/src/core/internet/internet_checker.dart';
 import 'package:roome/src/core/utils/app_strings.dart';
 import 'package:roome/src/features/auth/data/datasources/login/login_datasource.dart';
+import 'package:roome/src/features/auth/domain/entities/login/login_parameters.dart';
 import 'package:roome/src/features/auth/domain/repositories/login_repo.dart';
 
 class LoginRepoImpl implements LoginRepo {
-  final NetworkInfo networkInfo;
+  final InternetChecker internetChecker;
   final LoginDataSource loginDataSource;
 
-  LoginRepoImpl({required this.loginDataSource, required this.networkInfo});
+  const LoginRepoImpl({
+    required this.loginDataSource,
+    required this.internetChecker,
+  });
 
   @override
   Future<Either<Failure, UserCredential>> signInWithGoogle() async {
-    if (await networkInfo.isConnected) {
+    if (await internetChecker.isConnected) {
       try {
         final user = await loginDataSource.signInWithGoogle();
         return Right(user);
       } catch (e) {
-        if (e is DioException) {
-          return Left(ServerFailure.fromDioException(e));
-        }
-        return Left(ServerFailure(errorMessage: e.toString()));
+        return Left(ServerFailure(failureMsg: e.toString()));
       }
     } else {
-      return Left(ServerFailure(errorMessage: AppStrings.noInternet));
+      return Left(ServerFailure(failureMsg: AppStrings.noInternet));
     }
   }
 
   @override
   Future<Either<Failure, UserModel>> userLogin({
-    required String usernameOrEmail,
-    required String password,
+    required LoginParameters loginParams,
   }) async {
-    if (await networkInfo.isConnected) {
-      final response = await loginDataSource.userLogin(
-        usernameOrEmail: usernameOrEmail,
-        password: password,
-      );
+    if (await internetChecker.isConnected) {
+      final response =
+          await loginDataSource.userLogin(loginParams: loginParams);
 
       if (response.containsKey('message')) {
-        return Left(ServerFailure(errorMessage: response['message']));
+        return Left(ServerFailure(failureMsg: response['message']));
       } else {
         final UserModel user = UserModel.fromJson(response);
 
         return Right(user);
       }
     } else {
-      return Left(ServerFailure(errorMessage: AppStrings.noInternet));
+      return Left(ServerFailure(failureMsg: AppStrings.noInternet));
     }
   }
 }

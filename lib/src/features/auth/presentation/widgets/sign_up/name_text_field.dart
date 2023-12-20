@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:roome/src/core/helpers/helper.dart';
-import 'package:roome/src/features/auth/presentation/widgets/reusable_text_form_field.dart';
+import 'package:roome/src/core/helpers/auth_helper.dart';
+import 'package:roome/src/core/utils/app_constants.dart';
+import 'package:roome/src/core/widgets/custom_text_form_field.dart';
 
 class NameTextField extends StatelessWidget {
   const NameTextField({
@@ -19,20 +20,23 @@ class NameTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Expanded(
-      child: ReusableTextFormField(
+      child: CustomTextFormField(
         controller: controller,
-        thisFocusNode: thisFocusNode,
-        hint: hint,
-        prefixIcon: Icons.person,
+        focusNode: thisFocusNode,
+        hintText: hint,
+        prefix: Icon(
+          Icons.person,
+          size: AppConstants.authPrefixIconSize,
+          color: AppConstants.authPrefixIconColor,
+        ),
         keyboardType: TextInputType.text,
         textCapitalization: TextCapitalization.words,
+        autofillHints: const <String>[AutofillHints.name],
         validating: (String? value) {
-          Helper.validatingNameField(
+          return AuthHelper.validatingNameField(
             textName: hint,
-            context: context,
             value: value,
           );
-          return null;
         },
         onEditingComplete: () {
           FocusScope.of(context).requestFocus(toFocusNode);

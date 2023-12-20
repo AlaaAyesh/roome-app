@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:roome/src/config/routes/routes.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:roome/src/config/router/routes.dart';
 import 'package:roome/src/config/themes/cubit/themes_cubit.dart';
 import 'package:roome/src/core/utils/app_colors.dart';
 import 'package:roome/src/core/utils/app_navigator.dart';
@@ -31,17 +32,17 @@ class _LocationTextButtonState extends State<LocationTextButton> {
           });
         });
       },
-      icon: const Icon(
+      icon: Icon(
         Icons.location_on_outlined,
         color: AppColors.primaryColor,
-        size: 19,
+        size: 19.w,
       ),
       label: BlocBuilder<ThemesCubit, ThemeData>(
         builder: (context, state) {
           return Text(
             'Location',
             style: AppTextStyles.textStyle14Medium.copyWith(
-              fontSize: 13,
+              fontSize: 13.sp,
               color: isLocationTapped
                   ? AppColors.primaryColor
                   : state.brightness == Brightness.light

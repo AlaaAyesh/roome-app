@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:roome/src/config/themes/cubit/themes_cubit.dart';
 import 'package:roome/src/core/utils/app_colors.dart';
 import 'package:roome/src/core/utils/app_strings.dart';
@@ -24,15 +25,13 @@ class CustomErrorWidget extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             const Spacer(),
-            const Center(
-              child: Icon(
-                Icons.refresh,
-                color: AppColors.primaryColor,
-                size: 150,
-              ),
+            Icon(
+              Icons.refresh,
+              color: AppColors.primaryColor,
+              size: 150.h,
             ),
             Container(
-              margin: const EdgeInsets.symmetric(vertical: 12),
+              margin: EdgeInsets.symmetric(vertical: 12.h),
               child: Flexible(
                 child: Text(
                   error == AppStrings.noInternet ? '$error. Tap to try' : error,
@@ -46,15 +45,17 @@ class CustomErrorWidget extends StatelessWidget {
                 ),
               ),
             ),
-            if (error == AppStrings.noInternet) ...[
+            if (error == AppStrings.noInternet)
               Text(
                 'Connect to the internet and try again.',
                 style: AppTextStyles.textStyle12,
                 textAlign: TextAlign.center,
               ),
-            ],
             const Spacer(),
-            TryAgainButton(onPressed: onPressed),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 16.w),
+              child: TryAgainButton(onPressed: onPressed),
+            ),
             const Spacer(),
           ],
         );

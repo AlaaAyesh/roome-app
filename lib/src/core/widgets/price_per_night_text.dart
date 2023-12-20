@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:roome/src/config/themes/cubit/themes_cubit.dart';
 import 'package:roome/src/core/helpers/hex_color_handler.dart';
 import 'package:roome/src/core/utils/app_colors.dart';
@@ -27,7 +28,7 @@ class PricePerNightText extends StatelessWidget {
             Text(
               price!.toStringAsFixed(1),
               style: AppTextStyles.bottomNavTextStyle.copyWith(
-                fontSize: fontSize,
+                fontSize: fontSize?.sp,
                 fontWeight: FontWeight.w900,
                 color: state.brightness == Brightness.light
                     ? Colors.black.withOpacity(0.6)
@@ -37,7 +38,7 @@ class PricePerNightText extends StatelessWidget {
             Text(
               '/night',
               style: AppTextStyles.bottomNavTextStyle.copyWith(
-                fontSize: fontSize,
+                fontSize: fontSize?.sp,
                 fontWeight: FontWeight.w900,
                 color: state.brightness == Brightness.light
                     ? HexColorHandler('4E4C4C').withOpacity(0.53)

@@ -1,15 +1,19 @@
 part of 'near_me_cubit.dart';
 
-sealed class NearMeState extends Equatable {
+abstract class NearMeState extends Equatable {
   const NearMeState();
 
   @override
   List<Object> get props => [];
 }
 
-final class NearMeInitial extends NearMeState {}
+class NearMeInitial extends NearMeState {
+  const NearMeInitial();
+}
 
-class GetNearMeHotelsLoadingState extends NearMeState {}
+class GetNearMeHotelsLoadingState extends NearMeState {
+  const GetNearMeHotelsLoadingState();
+}
 
 class GetNearMeHotelsSuccessState extends NearMeState {
   final List<Hotel> nearMeHotels;

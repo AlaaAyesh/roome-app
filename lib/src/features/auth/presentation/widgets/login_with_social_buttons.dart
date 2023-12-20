@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:roome/src/core/utils/app_assets.dart';
 import 'package:roome/src/features/auth/presentation/widgets/custom_social_button.dart';
 
@@ -22,7 +23,7 @@ class LoginWithSocialButtons extends StatelessWidget {
           title: 'Google',
           icon: AppAssets.iconGoogleIcon,
         ),
-        const SizedBox(width: 45),
+        SizedBox(width: 45.w),
         CustomSocialButton(
           onTap: appleOnTap,
           title: 'Apple',

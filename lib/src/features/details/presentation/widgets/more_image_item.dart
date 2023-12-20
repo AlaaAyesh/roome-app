@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:roome/src/core/widgets/custom_error_icon.dart';
 
@@ -14,13 +15,13 @@ class MoreImageItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.only(bottom: 15),
+      margin: EdgeInsets.only(bottom: 15.h),
       child: ClipRRect(
-        borderRadius: const BorderRadius.all(Radius.circular(10)),
+        borderRadius: BorderRadius.all(Radius.circular(10.r)),
         child: CachedNetworkImage(
           imageUrl: image,
-          height: 64,
-          width: 64,
+          height: 64.h,
+          width: 64.h,
           fit: BoxFit.cover,
           errorWidget: (context, url, error) => const CustomErrorIcon(),
         ),

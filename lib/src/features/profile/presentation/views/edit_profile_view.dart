@@ -1,10 +1,10 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:roome/src/config/themes/cubit/themes_cubit.dart';
 import 'package:roome/src/core/utils/app_constants.dart';
 import 'package:roome/src/core/utils/app_text_styles.dart';
-import 'package:roome/src/core/widgets/bottom_spacer.dart';
 import 'package:roome/src/core/widgets/custom_sliver_app_bar.dart';
 import 'package:roome/src/features/profile/presentation/widgets/edit_profile_form.dart';
 import 'package:roome/src/features/profile/presentation/widgets/profile_image.dart';
@@ -34,7 +34,7 @@ class EditProfileView extends StatelessWidget {
                 ),
               ),
               SliverPadding(
-                padding: const EdgeInsets.symmetric(horizontal: 44),
+                padding: EdgeInsets.symmetric(horizontal: 44.w),
                 sliver: SliverToBoxAdapter(
                   child: Column(
                     children: <Widget>[
@@ -42,9 +42,8 @@ class EditProfileView extends StatelessWidget {
                         from: AppConstants.fadeInHorizontalValue,
                         child: const ProfileImage(),
                       ),
-                      const SizedBox(height: 49),
+                      SizedBox(height: 49.h),
                       const EditProfileForm(),
-                      const BottomSpacer(),
                     ],
                   ),
                 ),

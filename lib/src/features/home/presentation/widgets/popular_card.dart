@@ -1,10 +1,11 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import 'package:roome/src/config/routes/routes.dart';
+import 'package:roome/src/config/router/routes.dart';
 import 'package:roome/src/config/themes/cubit/themes_cubit.dart';
-import 'package:roome/src/core/models/hotel.dart';
+import 'package:roome/src/core/models/user/hotel.dart';
 import 'package:roome/src/core/models/using_hero_model.dart';
 import 'package:roome/src/core/utils/app_colors.dart';
 import 'package:roome/src/core/utils/app_navigator.dart';
@@ -38,7 +39,7 @@ class PopularCard extends StatelessWidget {
               color: state.brightness == Brightness.light
                   ? Colors.white
                   : AppColors.darkGreyColor,
-              borderRadius: const BorderRadius.all(Radius.circular(10)),
+              borderRadius: BorderRadius.all(Radius.circular(10.r)),
               border: Border.all(
                 color: AppColors.borderColor,
                 width: 1,
@@ -48,14 +49,14 @@ class PopularCard extends StatelessWidget {
               children: <Widget>[
                 Expanded(
                   child: Padding(
-                    padding: const EdgeInsets.only(
-                      right: 10,
-                      left: 5,
-                      top: 5,
-                      bottom: 5,
+                    padding: EdgeInsets.only(
+                      right: 10.w,
+                      left: 5.w,
+                      top: 5.h,
+                      bottom: 5.h,
                     ),
                     child: ClipRRect(
-                      borderRadius: const BorderRadius.all(Radius.circular(19)),
+                      borderRadius: BorderRadius.all(Radius.circular(19.r)),
                       child: Hero(
                         tag: hotel.id!,
                         child: CachedNetworkImage(
@@ -70,13 +71,12 @@ class PopularCard extends StatelessWidget {
                 ),
                 Expanded(
                   child: Padding(
-                    padding: const EdgeInsets.only(right: 5, top: 7),
+                    padding: EdgeInsets.only(right: 5.w, top: 7.h),
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: <Widget>[
                             Flexible(
                               child: Text(
@@ -97,36 +97,34 @@ class PopularCard extends StatelessWidget {
                             ),
                           ],
                         ),
-                        Flexible(
-                          child: Text(
-                            hotel.location!,
-                            style: AppTextStyles.textStyle14Medium.copyWith(
-                              color: state.brightness == Brightness.light
-                                  ? AppColors.lightGrey.withOpacity(0.49)
-                                  : AppColors.white38,
-                            ),
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
+                        Text(
+                          hotel.location!,
+                          style: AppTextStyles.textStyle14Medium.copyWith(
+                            color: state.brightness == Brightness.light
+                                ? AppColors.lightGrey.withOpacity(0.49)
+                                : AppColors.white38,
                           ),
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
                         ),
-                        const SizedBox(height: 12),
+                        SizedBox(height: 12.h),
                         PricePerNightText(
                           price: hotel.price,
                           mainAxisAlignment: MainAxisAlignment.start,
                         ),
-                        const SizedBox(height: 6),
+                        SizedBox(height: 6.h),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: <Widget>[
                             const StarIcon(),
-                            const SizedBox(width: 7),
+                            SizedBox(width: 7.w),
                             Text(
                               hotel.rate!.toString(),
                               style: AppTextStyles.appBarTextStyle.copyWith(
                                 color: state.brightness == Brightness.light
                                     ? Colors.black.withOpacity(0.53)
                                     : Colors.white,
-                                fontSize: 17,
+                                fontSize: 17.sp,
                               ),
                             ),
                           ],

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:roome/src/core/models/hotel.dart';
+import 'package:roome/src/core/models/user/hotel.dart';
 import 'package:roome/src/features/details/presentation/widgets/details_view_body.dart';
 
 class DetailsView extends StatelessWidget {

@@ -1,6 +1,7 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:roome/src/core/utils/app_constants.dart';
 import 'package:roome/src/core/widgets/hotel_card.dart';
@@ -25,14 +26,13 @@ class SearchResultListView extends StatelessWidget {
               return FadeInRight(
                 from: AppConstants.fadeInHorizontalValue,
                 child: HotelCard(
-                  // cardHeight: 240,
+                  cardHeight: 200.h,
                   cardWidth: double.infinity,
                   hotel: state.hotels[index],
                 ),
               );
             },
-            separatorBuilder: (context, index) =>
-                const SeparatorWidget(height: 15),
+            separatorBuilder: (context, index) => SeparatorWidget(height: 15.h),
             itemCount: state.hotels.length,
           );
         } else if (state is SearchLoadingState) {

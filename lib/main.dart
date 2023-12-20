@@ -2,11 +2,11 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:roome/app.dart';
+import 'package:roome/src/roome_app.dart';
 import 'package:roome/src/config/services/notification_service.dart';
-import 'package:roome/src/core/utils/bloc_observer.dart';
-import 'package:roome/src/core/utils/firebase_options.dart';
-import 'package:roome/src/core/utils/service_locator.dart';
+import 'package:roome/bloc_observer.dart';
+import 'package:roome/firebase_options.dart';
+import 'package:roome/service_locator.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -15,11 +15,11 @@ Future<void> main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
-  await setUpServiceLocator();
+  Bloc.observer = MyBlocObserver();
+
+  await ServiceLocator().setUpServiceLocator();
 
   NotificationService.initAwesomeNotifications();
-
-  Bloc.observer = MyBlocObserver();
 
   runApp(const RoomeApp());
 }

@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:roome/src/core/entities/no_params.dart';
-import 'package:roome/src/core/models/user_model.dart';
+import 'package:roome/src/core/models/user/user.dart';
 import 'package:roome/src/features/auth/domain/entities/login/login_parameters.dart';
 import 'package:roome/src/features/auth/domain/usecases/login/user_login_usecase.dart';
 import 'package:roome/src/features/auth/domain/usecases/login/login_with_google_usecase.dart';
@@ -15,25 +15,21 @@ class LoginCubit extends Cubit<LoginState> {
   LoginCubit({
     required this.loginUseCase,
     required this.loginWithGoogleUseCase,
-  }) : super(LoginInitial());
+  }) : super(const LoginInitial());
 
   bool loginPassVisibility = true;
 
   void userSignIn({
-    required String usernameOrEmail,
-    required String password,
+    required LoginParameters loginParameters,
   }) {
-    emit(SignInLoadingState());
+    emit(const LoginLoadingState());
 
-    loginUseCase(LoginParameters(
-      usernameOrEmail: usernameOrEmail,
-      password: password,
-    )).then((value) {
+    loginUseCase(loginParameters).then((value) {
       value.fold(
         (failure) =>
-            emit(SignInErrorState(error: failure.errorMessage.toString())),
+            emit(LoginErrorState(error: failure.failureMsg.toString())),
         (user) {
-          emit(SignInSuccessState(
+          emit(LoginSuccessState(
             uId: user.id!,
             userModel: user,
           ));
@@ -43,12 +39,12 @@ class LoginCubit extends Cubit<LoginState> {
   }
 
   void signInWithGoogle() {
-    emit(SignInWithGoogleLoadingState());
+    emit(const SignInWithGoogleLoadingState());
 
     loginWithGoogleUseCase(const NoParams()).then((value) {
       value.fold(
         (failure) => emit(
-          SignInWithGoogleErrorState(error: failure.errorMessage.toString()),
+          SignInWithGoogleErrorState(error: failure.failureMsg.toString()),
         ),
         (user) => emit(SignInWithGoogleSuccessState(uId: user.user!.uid)),
       );

@@ -1,19 +1,21 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:roome/src/core/helpers/helper.dart';
 import 'package:roome/src/core/utils/app_colors.dart';
 import 'package:roome/src/core/utils/app_constants.dart';
-import 'package:roome/src/features/profile/presentation/widgets/confirm_update_image_button.dart';
-import 'package:roome/src/features/roome/presentation/cubit/roome_cubit.dart';
+import 'package:roome/src/core/widgets/main_button.dart';
+import 'package:roome/src/features/profile/presentation/cubits/edit_profile/edit_profile_cubit.dart';
 
 class UpdateImageButtonAndLoading extends StatelessWidget {
   const UpdateImageButtonAndLoading({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<RoomeCubit, RoomeState>(
+    return BlocBuilder<EditProfileCubit, EditProfileState>(
       builder: (context, state) {
-        RoomeCubit cubit = RoomeCubit.getObject(context);
+        EditProfileCubit cubit = BlocProvider.of<EditProfileCubit>(context);
         var size = MediaQuery.of(context).size;
         return Align(
           alignment: Alignment.center,
@@ -23,11 +25,19 @@ class UpdateImageButtonAndLoading extends StatelessWidget {
               children: <Widget>[
                 if (cubit.profileImage != null &&
                     state is! UploadProfileImageSuccessState) ...[
-                  const SizedBox(height: 15),
-                  const ConfirmUpdateImageButton(),
+                  SizedBox(height: 15.h),
+                  MainButton(
+                    text: 'Update profile Image',
+                    onPressed: () {
+                      cubit.uploadProfileImage(context: context);
+                    },
+                    boxShadow: <BoxShadow>[
+                      Helper.glowingShadow(),
+                    ],
+                  ),
                 ],
                 if (state is UploadingProfileImageLoadingState)
-                  const SizedBox(height: 10),
+                  SizedBox(height: 10.h),
                 if (state is UploadingProfileImageLoadingState)
                   SizedBox(
                     width: size.width * 0.4,

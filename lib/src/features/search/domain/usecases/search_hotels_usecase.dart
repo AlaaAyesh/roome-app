@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:roome/src/core/errors/failure.dart';
-import 'package:roome/src/core/models/hotel.dart';
+import 'package:roome/src/core/models/user/hotel.dart';
 import 'package:roome/src/core/usecases/base_usecase.dart';
 import 'package:roome/src/features/search/domain/repositories/search_repo.dart';
 

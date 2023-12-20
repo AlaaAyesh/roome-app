@@ -1,11 +1,11 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:roome/src/core/utils/app_colors.dart';
 import 'package:roome/src/core/utils/app_constants.dart';
-import 'package:roome/src/core/utils/app_text_styles.dart';
 import 'package:roome/src/core/widgets/bottom_spacer.dart';
-import 'package:roome/src/core/widgets/custom_action_button.dart';
 import 'package:roome/src/core/widgets/custom_sliver_app_bar.dart';
+import 'package:roome/src/core/widgets/main_button.dart';
 import 'package:roome/src/features/booking/data/models/booking_info.dart';
 import 'package:roome/src/features/booking/presentation/widgets/booking_info_container.dart';
 
@@ -27,42 +27,37 @@ class TicketView extends StatelessWidget {
                 centerTitle: true,
               ),
               SliverPadding(
-                padding: const EdgeInsets.symmetric(horizontal: 31),
+                padding: EdgeInsets.symmetric(horizontal: 31.w),
                 sliver: SliverToBoxAdapter(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
-                      const SizedBox(height: 35),
+                      SizedBox(height: 35.h),
                       BookingInfoContainer(bookingInfo: bookingInfo),
                     ],
                   ),
                 ),
               ),
               SliverPadding(
-                padding: const EdgeInsets.symmetric(horizontal: 31),
+                padding: EdgeInsets.symmetric(horizontal: 31.w),
                 sliver: SliverFillRemaining(
                   hasScrollBody: false,
                   child: Column(
                     children: <Widget>[
-                      const BottomSpacer(height: 16),
+                      const BottomSpacer(),
                       const Spacer(),
-                      CustomActionButton(
-                        buttonText: 'Download Ticket',
+                      MainButton(
+                        text: 'Download Ticket',
                         onPressed: () {},
-                        textStyle: AppTextStyles.textStyle15.copyWith(
-                          color: Colors.white,
-                          fontWeight: FontWeight.w600,
-                        ),
                         backgroundColor: AppColors.grey,
                         boxShadow: <BoxShadow>[
                           BoxShadow(
-                            offset: const Offset(0, 4),
-                            blurRadius: 4,
+                            offset: Offset(0, 4.h),
+                            blurRadius: 4.h,
                             color: AppColors.primaryColor.withOpacity(0.15),
                           ),
                         ],
                       ),
-                      const BottomSpacer(),
                     ],
                   ),
                 ),

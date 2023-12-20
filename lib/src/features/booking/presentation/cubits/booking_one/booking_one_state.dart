@@ -1,13 +1,15 @@
 part of 'booking_one_cubit.dart';
 
-sealed class BookingOneState extends Equatable {
+abstract class BookingOneState extends Equatable {
   const BookingOneState();
 
   @override
   List<Object> get props => [];
 }
 
-final class BookingOneInitial extends BookingOneState {}
+class BookingOneInitial extends BookingOneState {
+  const BookingOneInitial();
+}
 
 class IncreaseRoomNumberState extends BookingOneState {
   final int number;

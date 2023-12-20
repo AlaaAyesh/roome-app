@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:roome/src/config/themes/cubit/themes_cubit.dart';
 import 'package:roome/src/core/helpers/hex_color_handler.dart';
 import 'package:roome/src/core/utils/app_colors.dart';
@@ -23,7 +24,7 @@ class BookingOneFormNumbers extends StatelessWidget {
                   ? AppColors.primaryColor.withOpacity(0.47)
                   : HexColorHandler('CFC4C4'),
             ),
-            const SizedBox(width: 50),
+            SizedBox(width: 50.h),
             FormNumber(
               number: 2,
               backgroundColor: isBookingOne

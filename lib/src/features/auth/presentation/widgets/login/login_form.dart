@@ -1,18 +1,28 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import 'package:roome/service_locator.dart';
+import 'package:roome/src/config/router/routes.dart';
+import 'package:roome/src/config/services/notification_service.dart';
+import 'package:roome/src/core/helpers/auth_helper.dart';
+import 'package:roome/src/core/helpers/cache_helper.dart';
 import 'package:roome/src/core/helpers/helper.dart';
+import 'package:roome/src/core/utils/app_constants.dart';
+import 'package:roome/src/core/utils/app_navigator.dart';
+import 'package:roome/src/core/utils/app_strings.dart';
 import 'package:roome/src/core/utils/app_text_styles.dart';
-import 'package:roome/src/features/auth/presentation/widgets/auth_button.dart';
-import 'package:roome/src/features/auth/presentation/widgets/forgot_password_text_button.dart';
-import 'package:roome/src/features/auth/presentation/widgets/reusable_pass_text_form_field.dart';
-import 'package:roome/src/features/auth/presentation/widgets/reusable_text_form_field.dart';
+import 'package:roome/src/features/auth/presentation/widgets/custom_loading_dialog.dart';
+import 'package:roome/src/core/widgets/custom_snack_bar.dart';
+import 'package:roome/src/core/widgets/custom_text_form_field.dart';
+import 'package:roome/src/core/widgets/main_button.dart';
+import 'package:roome/src/features/auth/domain/entities/login/login_parameters.dart';
 import 'package:roome/src/features/auth/presentation/cubit/login/login_cubit.dart';
+import 'package:roome/src/features/auth/presentation/widgets/forgot_password_text_button.dart';
 import 'package:roome/src/features/auth/presentation/widgets/login/remember_me_checkbox.dart';
 
 class LoginForm extends StatefulWidget {
-  const LoginForm({super.key, required this.cubit, required this.state});
-
-  final LoginCubit cubit;
-  final LoginState state;
+  const LoginForm({super.key});
 
   @override
   State<LoginForm> createState() => _LoginFormState();
@@ -20,7 +30,7 @@ class LoginForm extends StatefulWidget {
 
 class _LoginFormState extends State<LoginForm> {
   late final GlobalKey<FormState> _formKey;
-  late final AutovalidateMode autoValidateMode;
+  late AutovalidateMode autoValidateMode;
 
   final TextEditingController _nameOrEmailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
@@ -50,88 +60,104 @@ class _LoginFormState extends State<LoginForm> {
 
   @override
   Widget build(BuildContext context) {
-    return Form(
-      key: _formKey,
-      child: Column(
-        children: <Widget>[
-          ReusableTextFormField(
-            hint: 'Username or Email',
-            controller: _nameOrEmailController,
-            thisFocusNode: _nameOrEmailFocusNode,
-            textCapitalization: TextCapitalization.none,
-            keyboardType: TextInputType.emailAddress,
-            prefixIcon: Icons.person,
-            validating: (String? value) {
-              Helper.validatingNameField(
-                textName: 'Username or Email',
-                context: context,
-                value: value,
-              );
-              return null;
-            },
-            onEditingComplete: () {
-              FocusScope.of(context).requestFocus(_passwordFocusNode);
-            },
-            autoFillHints: const <String>[
-              AutofillHints.email,
-              AutofillHints.name,
-            ],
-          ),
-          const SizedBox(height: 56),
-          ReusablePassTextField(
-            controller: _passwordController,
-            thisFocusNode: _passwordFocusNode,
-            hint: 'Password',
-            prefixIcon: Icons.lock,
-            visibilityIcon: widget.cubit.loginPassVisibility
-                ? Icons.visibility_rounded
-                : Icons.visibility_off_rounded,
-            visibilityButtonOnPressed: () =>
-                widget.cubit.switchPassVisibility(),
-            obscure: widget.cubit.loginPassVisibility,
-            validating: (String? value) {
-              Helper.validatingPasswordField(
-                context: context,
-                value: value,
-              );
-              return null;
-            },
-            onSubmit: (String value) => _login(context),
-          ),
-          const SizedBox(height: 34),
-          Row(
+    return BlocConsumer<LoginCubit, LoginState>(
+      listener: (context, state) => _handleLoginStates(state),
+      builder: (context, state) {
+        LoginCubit cubit = BlocProvider.of<LoginCubit>(context);
+
+        return Form(
+          key: _formKey,
+          autovalidateMode: autoValidateMode,
+          child: Column(
             children: <Widget>[
-              RememberMeCheckBox(cubit: widget.cubit),
-              const SizedBox(width: 8),
-              Text(
-                'Remember Me',
-                style: AppTextStyles.textStyle14Medium,
-              ),
-              const SizedBox(width: 16),
-              Expanded(
-                child: ForgotPasswordTextButton(
-                  onTap: () {},
+              CustomTextFormField(
+                hintText: 'Username or Email',
+                controller: _nameOrEmailController,
+                focusNode: _nameOrEmailFocusNode,
+                textCapitalization: TextCapitalization.none,
+                keyboardType: TextInputType.emailAddress,
+                prefix: Icon(
+                  Icons.person,
+                  size: AppConstants.authPrefixIconSize,
+                  color: AppConstants.authPrefixIconColor,
                 ),
+                validating: (String? value) {
+                  return AuthHelper.validatingNameField(
+                    textName: 'Name or Email',
+                    value: value,
+                  );
+                },
+                onEditingComplete: () {
+                  FocusScope.of(context).requestFocus(_passwordFocusNode);
+                },
+                autofillHints: const <String>[
+                  AutofillHints.email,
+                  AutofillHints.name,
+                ],
               ),
+              SizedBox(height: 56.h),
+              CustomTextFormField(
+                controller: _passwordController,
+                focusNode: _passwordFocusNode,
+                hintText: 'Password',
+                prefix: Icon(
+                  Icons.lock,
+                  size: AppConstants.authPrefixIconSize,
+                  color: AppConstants.authPrefixIconColor,
+                ),
+                suffix: IconButton(
+                  onPressed: () => cubit.switchPassVisibility(),
+                  icon: Icon(
+                    cubit.loginPassVisibility
+                        ? Icons.visibility_rounded
+                        : Icons.visibility_off_rounded,
+                    size: 24.h,
+                    color: Colors.grey,
+                  ),
+                ),
+                obscureText: cubit.loginPassVisibility,
+                autofillHints: const <String>[AutofillHints.password],
+                validating: (String? value) {
+                  return AuthHelper.validatingPasswordField(value: value);
+                },
+                onSubmit: (String value) => _login(context),
+              ),
+              SizedBox(height: 34.h),
+              Row(
+                children: <Widget>[
+                  RememberMeCheckBox(cubit: cubit),
+                  SizedBox(width: 8.w),
+                  Text(
+                    'Remember Me',
+                    style: AppTextStyles.textStyle14Medium,
+                  ),
+                  const Spacer(),
+                  ForgotPasswordTextButton(
+                    onTap: () {},
+                  ),
+                ],
+              ),
+              SizedBox(height: 34.h),
+              MainButton(
+                text: 'Log In',
+                onPressed: () => _login(context),
+              ),
+              SizedBox(height: 40.h),
             ],
           ),
-          const SizedBox(height: 34),
-          AuthButton(
-            buttonTitle: 'Log In',
-            onPressed: () => _login(context),
-          ),
-          const SizedBox(height: 40),
-        ],
-      ),
+        );
+      },
     );
   }
 
   void _login(BuildContext context) {
     if (_formKey.currentState!.validate()) {
-      Helper.keyboardUnfocus(context);
-      widget.cubit.userSignIn(
-        usernameOrEmail: _nameOrEmailController.text.trim(),
-        password: _passwordController.text,
+      AuthHelper.keyboardUnfocus(context);
+      BlocProvider.of<LoginCubit>(context).userSignIn(
+        loginParameters: LoginParameters(
+          usernameOrEmail: _nameOrEmailController.text.trim(),
+          password: _passwordController.text,
+        ),
       );
     } else {
       setState(() {
@@ -148,5 +174,54 @@ class _LoginFormState extends State<LoginForm> {
   void _disposeControllers() {
     _nameOrEmailController.dispose();
     _passwordController.dispose();
+  }
+
+  void _handleLoginStates(LoginState state) {
+    if (state is LoginLoadingState) {
+      CustomLoadingDialog.show(context);
+    }
+
+    if (state is LoginSuccessState) {
+      _handleSignInSuccessState(context, state);
+    }
+
+    if (state is LoginErrorState) {
+      _handleSignInErrorState(context, state);
+    }
+  }
+
+  void _handleSignInSuccessState(
+    BuildContext context,
+    LoginSuccessState state,
+  ) {
+    context.getBack();
+    getIt
+        .get<CacheHelper>()
+        .saveData(key: AppStrings.uId, value: state.uId)
+        .then((value) {
+      if (value) {
+        Helper.uId = state.uId;
+        Helper.getUserAndFavorites(context);
+        context.navigateAndReplacement(newRoute: Routes.roomViewRoute);
+        _weMissedYouNotification(state);
+      }
+    });
+  }
+
+  void _weMissedYouNotification(LoginSuccessState state) {
+    NotificationService.triggerNotification(
+      title: AppStrings.welcomeBack,
+      body:
+          'We missed you, ${state.userModel.firstName} ${AppStrings.smilingFaceEmoji}',
+    );
+  }
+
+  void _handleSignInErrorState(BuildContext context, LoginErrorState state) {
+    context.getBack();
+    CustomSnackBar.show(
+      context: context,
+      message: state.error,
+      state: CustomSnackBarState.error,
+    );
   }
 }

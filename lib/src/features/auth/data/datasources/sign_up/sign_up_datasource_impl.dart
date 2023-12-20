@@ -4,6 +4,7 @@ import 'package:roome/src/core/api/api_consumer.dart';
 import 'package:roome/src/core/api/end_points.dart';
 import 'package:roome/src/core/utils/app_strings.dart';
 import 'package:roome/src/features/auth/data/datasources/sign_up/sign_up_datasource.dart';
+import 'package:roome/src/features/auth/domain/entities/sign_up/sign_up_parameters.dart';
 
 class SignUpDataSourceImpl implements SignUpDataSource {
   final ApiConsumer apiConsumer;
@@ -12,20 +13,16 @@ class SignUpDataSourceImpl implements SignUpDataSource {
 
   @override
   Future<Map<String, dynamic>> userSignUp({
-    required String firstName,
-    required String lastName,
-    required String username,
-    required String email,
-    required String password,
+    required SignUpParameters signUpParams,
   }) async {
     final response = await apiConsumer.post(
       EndPoints.register,
       body: {
-        'firstName': firstName,
-        'lastName': lastName,
-        'username': username,
-        'email': email,
-        'password': password,
+        'firstName': signUpParams.firstName,
+        'lastName': signUpParams.lastName,
+        'username': signUpParams.username,
+        'email': signUpParams.email,
+        'password': signUpParams.password,
         'profileImage': AppStrings.defaultImageUrl,
         'phoneNumber': 'Unknown',
         'occupation': 'Unknown',

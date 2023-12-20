@@ -1,18 +1,13 @@
-import 'package:flutter/material.dart';
 import 'package:roome/src/features/notifications/data/models/notification_model.dart';
+import 'package:roome/src/features/notifications/domain/entities/add_to_notifications_params.dart';
+import 'package:roome/src/features/notifications/domain/entities/remove_from_notifications_params.dart';
 
 abstract class NotificationsDataSource {
   Future<NotificationsModel> addToNotifications({
-    required String circles,
-    required String icon,
-    required Color color,
-    required String title,
-    required String body,
-    required BuildContext context,
+    required AddToNotificationsParams params,
   });
 
   Future<NotificationsModel> removeFromNotifications({
-    required NotificationsModel notification,
-    required BuildContext context,
+    required RemoveFromNotificationsParams params,
   });
 }

@@ -2,14 +2,14 @@ import 'package:animate_do/animate_do.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:roome/src/config/routes/routes.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:roome/src/config/router/routes.dart';
 import 'package:roome/src/config/themes/cubit/themes_cubit.dart';
 import 'package:roome/src/core/utils/app_colors.dart';
 import 'package:roome/src/core/utils/app_constants.dart';
 import 'package:roome/src/core/utils/app_navigator.dart';
 import 'package:roome/src/core/utils/app_text_styles.dart';
-import 'package:roome/src/core/widgets/bottom_spacer.dart';
-import 'package:roome/src/core/widgets/custom_action_button.dart';
+import 'package:roome/src/core/widgets/main_button.dart';
 import 'package:roome/src/features/booking/data/models/booking_info.dart';
 import 'package:roome/src/features/booking/presentation/widgets/booking_two_text_field.dart';
 import 'package:roome/src/features/booking/presentation/widgets/section_title.dart';
@@ -28,7 +28,7 @@ class BookingTwoForm extends StatefulWidget {
 
 class _BookingTwoFormState extends State<BookingTwoForm> {
   late final GlobalKey<FormState> _formKey;
-  late final AutovalidateMode autoValidateMode;
+  late AutovalidateMode autoValidateMode;
 
   final TextEditingController _firstNameController = TextEditingController();
   final TextEditingController _surnameController = TextEditingController();
@@ -58,50 +58,38 @@ class _BookingTwoFormState extends State<BookingTwoForm> {
   Widget build(BuildContext context) {
     return Form(
       key: _formKey,
+      autovalidateMode: autoValidateMode,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          Row(
-            children: <Widget>[
-              Expanded(child: _buildFadeInSectionTitle(title: 'First Name')),
-              const SizedBox(width: 35),
-              Expanded(child: _buildFadeInSectionTitle(title: 'Surname')),
-            ],
+          _buildFadeInSectionTitle(title: 'First Name'),
+          SizedBox(height: 14.h),
+          BookingTwoTextField(
+            controller: _firstNameController,
+            textCapitalization: TextCapitalization.words,
+            keyboardType: TextInputType.text,
+            validating: (String? val) {
+              return _validateBlankFields(val);
+            },
           ),
-          const SizedBox(height: 14),
-          Row(
-            children: <Widget>[
-              Expanded(
-                child: BookingTwoTextField(
-                  controller: _firstNameController,
-                  textCapitalization: TextCapitalization.words,
-                  keyboardType: TextInputType.text,
-                  validating: (String? val) {
-                    return _validateBlankFields(val);
-                  },
-                ),
-              ),
-              const SizedBox(width: 35),
-              Expanded(
-                child: BookingTwoTextField(
-                  controller: _surnameController,
-                  textCapitalization: TextCapitalization.words,
-                  keyboardType: TextInputType.text,
-                  validating: (String? val) {
-                    return _validateBlankFields(val);
-                  },
-                ),
-              ),
-            ],
+          SizedBox(height: 26.h),
+          _buildFadeInSectionTitle(title: 'Surname'),
+          SizedBox(height: 14.h),
+          BookingTwoTextField(
+            controller: _surnameController,
+            textCapitalization: TextCapitalization.words,
+            keyboardType: TextInputType.text,
+            validating: (String? val) {
+              return _validateBlankFields(val);
+            },
           ),
-          const SizedBox(height: 26),
+          SizedBox(height: 26.h),
           _buildFadeInSectionTitle(title: 'Email'),
-          const SizedBox(height: 14),
+          SizedBox(height: 14.h),
           BookingTwoTextField(
             controller: _emailController,
             textCapitalization: TextCapitalization.none,
             keyboardType: TextInputType.emailAddress,
-            width: double.infinity,
             validating: (String? val) {
               if (val!.isEmpty) {
                 return "Can't be blank!";
@@ -112,21 +100,20 @@ class _BookingTwoFormState extends State<BookingTwoForm> {
               return null;
             },
           ),
-          const SizedBox(height: 26),
+          SizedBox(height: 26.h),
           _buildFadeInSectionTitle(title: 'Phone'),
-          const SizedBox(height: 14),
+          SizedBox(height: 14.h),
           BookingTwoTextField(
             controller: _phoneController,
             textCapitalization: TextCapitalization.none,
             keyboardType: TextInputType.phone,
-            width: double.infinity,
             validating: (String? val) {
               return _validateBlankFields(val);
             },
           ),
-          const SizedBox(height: 21),
+          SizedBox(height: 21.h),
           _buildFadeInSectionTitle(title: 'Kindly upload any valid ID'),
-          const SizedBox(height: 17),
+          SizedBox(height: 17.h),
           Row(
             children: <Widget>[
               FadeInRight(
@@ -139,15 +126,18 @@ class _BookingTwoFormState extends State<BookingTwoForm> {
                   ),
                 ),
               ),
-              const SizedBox(width: 12),
-              const Icon(
-                Icons.attach_file,
-                color: AppColors.darkGrey,
-                size: 22,
+              SizedBox(width: 12.w),
+              FadeInRight(
+                from: AppConstants.fadeInHorizontalValue,
+                child: Icon(
+                  Icons.attach_file,
+                  color: AppColors.darkGrey,
+                  size: 22.h,
+                ),
               ),
             ],
           ),
-          const SizedBox(height: 13),
+          SizedBox(height: 13.h),
           BlocBuilder<ThemesCubit, ThemeData>(
             builder: (context, state) {
               return GestureDetector(
@@ -155,34 +145,25 @@ class _BookingTwoFormState extends State<BookingTwoForm> {
                 child: BookingTwoTextField(
                   enabled: false,
                   hint: 'Click Here to Upload',
-                  hintStyle: AppTextStyles.textStyle14Medium.copyWith(
-                    color: AppColors.primaryColor,
-                  ),
                   controller: _idController,
                   textCapitalization: TextCapitalization.none,
                   keyboardType: TextInputType.text,
                   validating: (String? val) {
                     return _validateBlankFields(val);
                   },
-                  border: Border.all(color: AppColors.primaryColor),
-                  width: double.infinity,
-                  backgroundColor: state.brightness == Brightness.light
-                      ? Colors.white
-                      : Colors.black,
-                  prefixIcon: const Icon(
+                  prefixIcon: Icon(
                     Icons.cloud_upload,
                     color: AppColors.primaryColor,
-                    size: 24,
+                    size: 24.h,
                   ),
                 ),
               );
             },
           ),
-          const SizedBox(height: 19),
+          SizedBox(height: 19.h),
           FadeInRight(
             from: AppConstants.fadeInHorizontalValue,
-            child: Align(
-              alignment: Alignment.center,
+            child: Center(
               child: Text(
                 'Or',
                 style: AppTextStyles.textStyle14Medium.copyWith(
@@ -192,32 +173,25 @@ class _BookingTwoFormState extends State<BookingTwoForm> {
               ),
             ),
           ),
-          const SizedBox(height: 8),
+          SizedBox(height: 8.h),
           _buildFadeInSectionTitle(title: 'Input your NIN Code'),
-          const SizedBox(height: 14),
+          SizedBox(height: 14.h),
           BookingTwoTextField(
             controller: _ninCodeNameController,
             textCapitalization: TextCapitalization.none,
             keyboardType: TextInputType.number,
-            width: double.infinity,
             validating: (String? val) {
               return _validateBlankFields(val);
             },
           ),
-          const SizedBox(height: 35),
+          SizedBox(height: 35.h),
           FadeInUp(
             from: AppConstants.fadeInUpValue,
-            child: CustomActionButton(
-              buttonText: 'Continue',
+            child: MainButton(
+              text: 'Continue',
               onPressed: () => _continueToPayment(),
-              textStyle: AppTextStyles.textStyle15.copyWith(
-                color: Colors.white,
-                fontWeight: FontWeight.w600,
-              ),
-              backgroundColor: AppColors.primaryColor,
             ),
           ),
-          const BottomSpacer(),
         ],
       ),
     );
@@ -239,28 +213,43 @@ class _BookingTwoFormState extends State<BookingTwoForm> {
   }
 
   void _continueToPayment() {
-    if (_formKey.currentState!.validate()) {
-      context.navigateTo(
-        routeName: Routes.paymentViewRoute,
-        arguments: BookingInfo(
-          firstName: _firstNameController.text.trim(),
-          surname: _surnameController.text.trim(),
-          email: _emailController.text,
-          phoneNumber: _phoneController.text,
-          checkInDate: widget.bookingInfo.checkInDate,
-          checkOutDate: widget.bookingInfo.checkOutDate,
-          roomType: widget.bookingInfo.roomType,
-          roomNumber: widget.bookingInfo.roomNumber,
-          guestNumber: widget.bookingInfo.guestNumber,
-          hotelName: widget.bookingInfo.hotelName,
-        ),
-      );
-      _clearTextFields();
-    } else {
-      setState(() {
-        autoValidateMode = AutovalidateMode.always;
-      });
-    }
+    context.navigateTo(
+      routeName: Routes.paymentViewRoute,
+      arguments: BookingInfo(
+        firstName: _firstNameController.text.trim(),
+        surname: _surnameController.text.trim(),
+        email: _emailController.text,
+        phoneNumber: _phoneController.text,
+        checkInDate: widget.bookingInfo.checkInDate,
+        checkOutDate: widget.bookingInfo.checkOutDate,
+        roomType: widget.bookingInfo.roomType,
+        roomNumber: widget.bookingInfo.roomNumber,
+        guestNumber: widget.bookingInfo.guestNumber,
+        hotelName: widget.bookingInfo.hotelName,
+      ),
+    );
+    // if (_formKey.currentState!.validate()) {
+    //   context.navigateTo(
+    //     routeName: Routes.paymentViewRoute,
+    //     arguments: BookingInfo(
+    //       firstName: _firstNameController.text.trim(),
+    //       surname: _surnameController.text.trim(),
+    //       email: _emailController.text,
+    //       phoneNumber: _phoneController.text,
+    //       checkInDate: widget.bookingInfo.checkInDate,
+    //       checkOutDate: widget.bookingInfo.checkOutDate,
+    //       roomType: widget.bookingInfo.roomType,
+    //       roomNumber: widget.bookingInfo.roomNumber,
+    //       guestNumber: widget.bookingInfo.guestNumber,
+    //       hotelName: widget.bookingInfo.hotelName,
+    //     ),
+    //   );
+    //   _clearTextFields();
+    // } else {
+    //   setState(() {
+    //     autoValidateMode = AutovalidateMode.always;
+    //   });
+    // }
   }
 
   String? _validateBlankFields(String? val) {

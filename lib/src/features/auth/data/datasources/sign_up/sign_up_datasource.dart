@@ -1,12 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:roome/src/features/auth/domain/entities/sign_up/sign_up_parameters.dart';
 
 abstract class SignUpDataSource {
   Future<Map<String, dynamic>> userSignUp({
-    required String firstName,
-    required String lastName,
-    required String username,
-    required String email,
-    required String password,
+    required SignUpParameters signUpParams,
   });
 
   Future<UserCredential> signUpWithGoogle();

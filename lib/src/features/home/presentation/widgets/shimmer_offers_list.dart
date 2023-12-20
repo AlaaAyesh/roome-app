@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:roome/src/config/themes/cubit/themes_cubit.dart';
 import 'package:roome/src/core/helpers/helper.dart';
 import 'package:roome/src/core/utils/app_colors.dart';
+import 'package:roome/src/core/utils/app_constants.dart';
 import 'package:roome/src/core/widgets/separator_widget.dart';
 import 'package:shimmer/shimmer.dart';
 
@@ -12,10 +14,10 @@ class ShimmerOffersList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 150,
+      height: 150.h,
       width: double.infinity,
       child: ListView.separated(
-        physics: const BouncingScrollPhysics(),
+        physics: AppConstants.physics,
         scrollDirection: Axis.horizontal,
         itemCount: 3,
         padding: EdgeInsets.zero,
@@ -29,8 +31,8 @@ class ShimmerOffersList extends StatelessWidget {
                 : AppColors.darkShimmerHighlightColor,
             enabled: true,
             child: Container(
-              height: 130,
-              width: 300,
+              height: 130.h,
+              width: 300.w,
               decoration: Helper.buildShimmerDecoration(state),
             ),
           ),

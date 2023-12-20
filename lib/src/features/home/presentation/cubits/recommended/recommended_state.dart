@@ -1,15 +1,19 @@
 part of 'recommended_cubit.dart';
 
-sealed class RecommendedState extends Equatable {
+abstract class RecommendedState extends Equatable {
   const RecommendedState();
 
   @override
   List<Object> get props => [];
 }
 
-final class RecommendedInitial extends RecommendedState {}
+class RecommendedInitial extends RecommendedState {
+  const RecommendedInitial();
+}
 
-class GetRecommendedHotelsLoadingState extends RecommendedState {}
+class GetRecommendedHotelsLoadingState extends RecommendedState {
+  const GetRecommendedHotelsLoadingState();
+}
 
 class GetRecommendedHotelsSuccessState extends RecommendedState {
   final List<Hotel> recommendedHotels;

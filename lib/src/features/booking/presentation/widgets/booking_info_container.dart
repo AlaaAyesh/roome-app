@@ -3,6 +3,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pretty_qr_code/pretty_qr_code.dart';
 import 'package:roome/src/config/themes/cubit/themes_cubit.dart';
 import 'package:roome/src/core/helpers/hex_color_handler.dart';
@@ -27,20 +28,20 @@ class BookingInfoContainer extends StatelessWidget {
         return Container(
           constraints: const BoxConstraints(minHeight: 0),
           width: double.infinity,
-          padding: const EdgeInsets.symmetric(vertical: 17, horizontal: 27),
+          padding: EdgeInsets.symmetric(vertical: 17.h, horizontal: 27.w),
           decoration: BoxDecoration(
             color: state.brightness == Brightness.light
                 ? Colors.white
                 : const Color.fromARGB(255, 73, 73, 73),
-            borderRadius: const BorderRadius.all(Radius.circular(10)),
+            borderRadius: BorderRadius.all(Radius.circular(10.r)),
             border: Border.all(
               color: HexColorHandler('E3E3E4'),
-              width: 1,
+              width: 1.w,
             ),
             boxShadow: <BoxShadow>[
               BoxShadow(
-                offset: const Offset(0, 1.73),
-                blurRadius: 10,
+                offset: Offset(0, 1.73.h),
+                blurRadius: 10.h,
                 color: AppColors.shadowColor,
               ),
             ],
@@ -59,9 +60,9 @@ class BookingInfoContainer extends StatelessWidget {
                 overflow: TextOverflow.ellipsis,
                 textAlign: TextAlign.start,
               ),
-              const SizedBox(height: 14),
+              SizedBox(height: 14.h),
               SizedBox(
-                height: 150,
+                height: 150.h,
                 child: PrettyQrView.data(
                   data: jsonEncode(bookingInfo.toJson()),
                   decoration: PrettyQrDecoration(
@@ -73,7 +74,7 @@ class BookingInfoContainer extends StatelessWidget {
                   ),
                 ),
               ),
-              const SizedBox(height: 14),
+              SizedBox(height: 14.h),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
@@ -86,7 +87,7 @@ class BookingInfoContainer extends StatelessWidget {
                           : AppColors.white60,
                     ),
                   ),
-                  const SizedBox(width: 20),
+                  SizedBox(width: 5.w),
                   Text(
                     _generateRandomString(),
                     style: AppTextStyles.textStyle15.copyWith(
@@ -95,38 +96,38 @@ class BookingInfoContainer extends StatelessWidget {
                   ),
                 ],
               ),
-              const SizedBox(height: 30),
+              SizedBox(height: 30.h),
               InfoRow(
                 title: 'Name',
                 info: '${bookingInfo.firstName} ${bookingInfo.surname}',
               ),
-              const SizedBox(height: 15),
+              SizedBox(height: 15.h),
               InfoRow(
                 title: 'Email',
                 info: bookingInfo.email!,
               ),
-              const SizedBox(height: 15),
+              SizedBox(height: 15.h),
               InfoRow(
                 title: 'Phone',
                 info: bookingInfo.phoneNumber!,
               ),
-              const SizedBox(height: 20),
+              SizedBox(height: 20.h),
               CheckInAndOut(
                 checkInDate: bookingInfo.checkInDate!,
                 checkOutDate: bookingInfo.checkOutDate!,
               ),
-              const SizedBox(height: 20),
+              SizedBox(height: 20.h),
               InfoRow(
                 title: 'Room Type',
                 info: bookingInfo.roomType!,
                 isRoomType: true,
               ),
-              const SizedBox(height: 15),
+              SizedBox(height: 15.h),
               InfoRow(
                 title: 'Guest',
                 info: bookingInfo.guestNumber!.toString(),
               ),
-              const SizedBox(height: 15),
+              SizedBox(height: 15.h),
               InfoRow(
                 title: 'Number of rooms',
                 info: bookingInfo.roomNumber!.toString(),

@@ -1,4 +1,4 @@
-part of '../../../presentation/cubit/sign_up/sign_up_cubit.dart';
+part of 'sign_up_cubit.dart';
 
 abstract class SignUpState extends Equatable {
   const SignUpState();
@@ -7,9 +7,13 @@ abstract class SignUpState extends Equatable {
   List<Object> get props => [];
 }
 
-class SignUpInitial extends SignUpState {}
+class SignUpInitial extends SignUpState {
+  const SignUpInitial();
+}
 
-class SignUpLoadingState extends SignUpState {}
+class SignUpLoadingState extends SignUpState {
+  const SignUpLoadingState();
+}
 
 class SignUpSuccessState extends SignUpState {
   final int uId;
@@ -39,7 +43,9 @@ class SwitchSignUpPassVisibleState extends SignUpState {
   List<Object> get props => [signUpPassVisibility];
 }
 
-class SignUpWithGoogleLoadingState extends SignUpState {}
+class SignUpWithGoogleLoadingState extends SignUpState {
+  const SignUpWithGoogleLoadingState();
+}
 
 class SignUpWithGoogleSuccessState extends SignUpState {
   final String uId;

@@ -1,5 +1,6 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:roome/src/core/utils/app_constants.dart';
 import 'package:roome/src/core/widgets/custom_sliver_app_bar.dart';
 import 'package:roome/src/features/booking/data/models/booked_hotel_info.dart';
@@ -24,10 +25,10 @@ class BookingOneView extends StatelessWidget {
               centerTitle: true,
             ),
             SliverPadding(
-              padding: const EdgeInsets.only(
-                left: 31,
-                right: 31,
-                bottom: 14,
+              padding: EdgeInsets.only(
+                left: 31.w,
+                right: 31.w,
+                bottom: 14.h,
               ),
               sliver: SliverToBoxAdapter(
                 child: Column(
@@ -37,12 +38,12 @@ class BookingOneView extends StatelessWidget {
                       from: AppConstants.fadeInHorizontalValue,
                       child: const BookingOneFormNumbers(isBookingOne: true),
                     ),
-                    const SizedBox(height: 23),
+                    SizedBox(height: 23.h),
                     FadeInLeft(
                       from: AppConstants.fadeInHorizontalValue,
                       child: const SectionTitle(title: 'Select Date'),
                     ),
-                    const SizedBox(height: 12),
+                    SizedBox(height: 12.h),
                     BookingOneBodyContent(bookedHotelInfo: bookedHotelInfo),
                   ],
                 ),

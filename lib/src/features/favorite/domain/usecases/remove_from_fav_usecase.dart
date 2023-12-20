@@ -11,9 +11,6 @@ class RemoveFromFavUseCase implements BaseUseCases<dynamic, FavParams> {
 
   @override
   Future<Either<Failure, dynamic>> call(FavParams params) async {
-    return await favoriteRepo.removeFromFav(
-      uId: params.uId,
-      hotelId: params.hotelId,
-    );
+    return await favoriteRepo.removeFromFav(favParams: params);
   }
 }

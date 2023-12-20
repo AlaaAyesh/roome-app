@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:roome/src/config/themes/cubit/themes_cubit.dart';
 import 'package:roome/src/core/utils/app_colors.dart';
@@ -26,19 +27,18 @@ class ShimmerPopular extends StatelessWidget {
             padding: EdgeInsets.zero,
             physics: const NeverScrollableScrollPhysics(),
             itemBuilder: (context, index) => Container(
-              height: 150,
+              height: 150.h,
               width: double.infinity,
               decoration: BoxDecoration(
                 color: AppColors.shimmerContainerColor,
-                borderRadius: const BorderRadius.all(Radius.circular(10)),
+                borderRadius: BorderRadius.all(Radius.circular(10.r)),
                 border: Border.all(
                   color: AppColors.borderColor,
                   width: 1,
                 ),
               ),
             ),
-            separatorBuilder: (context, index) =>
-                const SeparatorWidget(height: 33),
+            separatorBuilder: (context, index) => SeparatorWidget(height: 33.h),
             itemCount: 8,
           ),
         );

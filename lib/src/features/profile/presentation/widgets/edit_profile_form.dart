@@ -1,21 +1,20 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:roome/src/config/themes/cubit/themes_cubit.dart';
+import 'package:roome/src/core/helpers/auth_helper.dart';
 import 'package:roome/src/core/helpers/helper.dart';
-import 'package:roome/src/core/utils/app_colors.dart';
 import 'package:roome/src/core/utils/app_constants.dart';
-import 'package:roome/src/core/utils/app_navigator.dart';
 import 'package:roome/src/core/utils/app_text_styles.dart';
 import 'package:roome/src/core/widgets/bottom_spacer.dart';
 import 'package:roome/src/core/widgets/custom_snack_bar.dart';
-import 'package:roome/src/core/widgets/my_custom_button.dart';
-import 'package:roome/src/features/auth/presentation/widgets/loading_dialog.dart';
-import 'package:roome/src/core/widgets/visibility_icon_button.dart';
+import 'package:roome/src/core/widgets/main_button.dart';
+import 'package:roome/src/features/profile/presentation/cubits/edit_profile/edit_profile_cubit.dart';
 import 'package:roome/src/features/profile/presentation/widgets/edit_profile_text_field.dart';
 import 'package:roome/src/features/profile/presentation/widgets/info_container.dart';
 import 'package:roome/src/features/profile/presentation/widgets/profile_section_title.dart';
-import 'package:roome/src/features/roome/presentation/cubit/roome_cubit.dart';
+import 'package:roome/src/features/profile/domain/entities/update_user_params.dart';
 
 class EditProfileForm extends StatefulWidget {
   const EditProfileForm({super.key});
@@ -26,7 +25,6 @@ class EditProfileForm extends StatefulWidget {
 
 class _EditProfileFormState extends State<EditProfileForm> {
   late final GlobalKey<FormState> _formKey;
-  late final AutovalidateMode autoValidateMode;
 
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _usernameController = TextEditingController();
@@ -36,12 +34,8 @@ class _EditProfileFormState extends State<EditProfileForm> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
-  bool _isPersonalValidateError = false;
-  bool _isContactValidateError = false;
-
   void _initFormAttributes() {
     _formKey = GlobalKey<FormState>();
-    autoValidateMode = AutovalidateMode.disabled;
   }
 
   @override
@@ -74,15 +68,11 @@ class _EditProfileFormState extends State<EditProfileForm> {
                   themeState: themeState,
                 ),
               ),
-              const SizedBox(height: 10),
+              SizedBox(height: 10.h),
               FadeInRight(
                 from: AppConstants.fadeInHorizontalValue,
                 child: InfoContainer(
-                  isPersonalValidateError: _isPersonalValidateError,
-                  height: 400,
-                  personalErrorHeight: 500,
                   child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       EditProfileTextField(
@@ -93,14 +83,12 @@ class _EditProfileFormState extends State<EditProfileForm> {
                         keyboardType: TextInputType.name,
                         validating: (String? val) {
                           if (val!.isEmpty) {
-                            setState(() {
-                              _isPersonalValidateError = true;
-                            });
                             return "Can't be empty";
                           }
                           return null;
                         },
                       ),
+                      const BottomSpacer(),
                       EditProfileTextField(
                         title: 'Username',
                         controller: _usernameController,
@@ -109,17 +97,16 @@ class _EditProfileFormState extends State<EditProfileForm> {
                         keyboardType: TextInputType.text,
                         validating: (String? val) {
                           if (val!.isEmpty) {
-                            setState(() {
-                              _isPersonalValidateError = true;
-                            });
                             return "Can't be empty";
                           }
                           return null;
                         },
                       ),
-                      BlocBuilder<RoomeCubit, RoomeState>(
+                      const BottomSpacer(),
+                      BlocBuilder<EditProfileCubit, EditProfileState>(
                         builder: (context, state) {
-                          RoomeCubit cubit = RoomeCubit.getObject(context);
+                          EditProfileCubit cubit =
+                              BlocProvider.of<EditProfileCubit>(context);
                           return EditProfileTextField(
                             title: 'Password',
                             controller: _passwordController,
@@ -129,27 +116,22 @@ class _EditProfileFormState extends State<EditProfileForm> {
                             obscure: cubit.passVisible,
                             validating: (String? val) {
                               if (val!.isEmpty) {
-                                setState(() {
-                                  _isPersonalValidateError = true;
-                                });
                                 return "Can't be empty";
                               } else if (val.length < 8) {
-                                setState(() {
-                                  _isPersonalValidateError = true;
-                                });
                                 return 'Week password';
                               }
                               return null;
                             },
-                            suffixIcon: VisibilityIconButton(
-                              icon: cubit.passVisible
+                            suffixIcon: IconButton(
+                              icon: Icon(cubit.passVisible
                                   ? Icons.visibility_rounded
-                                  : Icons.visibility_off_rounded,
+                                  : Icons.visibility_off_rounded),
                               onPressed: () => cubit.switchPassVisibility(),
                             ),
                           );
                         },
                       ),
+                      const BottomSpacer(),
                       EditProfileTextField(
                         title: 'Occupation',
                         controller: _occupationController,
@@ -158,14 +140,12 @@ class _EditProfileFormState extends State<EditProfileForm> {
                         keyboardType: TextInputType.text,
                         validating: (String? val) {
                           if (val!.isEmpty) {
-                            setState(() {
-                              _isPersonalValidateError = true;
-                            });
                             return "Can't be empty";
                           }
                           return null;
                         },
                       ),
+                      const BottomSpacer(),
                       EditProfileTextField(
                         title: 'Nationality',
                         controller: _nationalityController,
@@ -174,9 +154,6 @@ class _EditProfileFormState extends State<EditProfileForm> {
                         keyboardType: TextInputType.text,
                         validating: (String? val) {
                           if (val!.isEmpty) {
-                            setState(() {
-                              _isPersonalValidateError = true;
-                            });
                             return "Can't be empty";
                           }
                           return null;
@@ -186,7 +163,7 @@ class _EditProfileFormState extends State<EditProfileForm> {
                   ),
                 ),
               ),
-              const SizedBox(height: 25),
+              SizedBox(height: 25.h),
               FadeInRight(
                 from: AppConstants.fadeInHorizontalValue,
                 child: ProfileSectionTitle(
@@ -195,16 +172,12 @@ class _EditProfileFormState extends State<EditProfileForm> {
                   themeState: themeState,
                 ),
               ),
-              const SizedBox(height: 10),
+              SizedBox(height: 10.h),
               FadeInRight(
                 from: AppConstants.fadeInHorizontalValue,
                 child: InfoContainer(
-                  isContactValidateError: _isContactValidateError,
-                  height: 170,
-                  contactErrorHeight: 250,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
                       EditProfileTextField(
                         title: 'Phone number',
@@ -214,14 +187,12 @@ class _EditProfileFormState extends State<EditProfileForm> {
                         keyboardType: TextInputType.phone,
                         validating: (String? val) {
                           if (val!.isEmpty) {
-                            setState(() {
-                              _isContactValidateError = true;
-                            });
                             return "Can't be empty";
                           }
                           return null;
                         },
                       ),
+                      const BottomSpacer(),
                       EditProfileTextField(
                         title: 'Email',
                         controller: _emailController,
@@ -230,14 +201,8 @@ class _EditProfileFormState extends State<EditProfileForm> {
                         keyboardType: TextInputType.emailAddress,
                         validating: (String? val) {
                           if (val!.isEmpty) {
-                            setState(() {
-                              _isContactValidateError = true;
-                            });
                             return "Can't be empty";
                           } else if (!val.contains('@')) {
-                            setState(() {
-                              _isContactValidateError = true;
-                            });
                             return "Incorrect Email";
                           }
                           return null;
@@ -248,36 +213,35 @@ class _EditProfileFormState extends State<EditProfileForm> {
                 ),
               ),
               const SizedBox(height: 44),
-              BlocListener<RoomeCubit, RoomeState>(
+              BlocConsumer<EditProfileCubit, EditProfileState>(
                 listener: (context, state) {
                   _controlUpdateUserStates(state, context);
                 },
-                child: FadeInLeft(
+                builder: (context, state) => FadeInLeft(
                   from: AppConstants.fadeInHorizontalValue,
-                  child: MyCustomButton(
-                    height: 50,
-                    width: double.infinity,
-                    backgroundColor: AppColors.primaryColor,
-                    borderRadius: const BorderRadius.all(Radius.circular(12)),
+                  child: MainButton(
                     onPressed: () {
-                      RoomeCubit.getObject(context).profileImage == null
+                      BlocProvider.of<EditProfileCubit>(context).profileImage ==
+                              null
                           ? _validateAndUpdate(context)
                           : _validateAndUpdateUserWithProfileImage(context);
                     },
-                    hasPrefix: false,
-                    child: Center(
-                      child: Text(
-                        'Save Edit',
-                        style:
-                            AppTextStyles.onBoardingHeadingTextStyle.copyWith(
-                          color: Colors.white,
-                        ),
-                      ),
-                    ),
+                    child: state is UpdateUserLoadingState
+                        ? const Center(
+                            child: CircularProgressIndicator(
+                              color: Colors.white,
+                            ),
+                          )
+                        : Text(
+                            'Save Edits',
+                            style: AppTextStyles.onBoardingHeadingTextStyle
+                                .copyWith(
+                              color: Colors.white,
+                            ),
+                          ),
                   ),
                 ),
               ),
-              const BottomSpacer(),
             ],
           ),
         );
@@ -287,42 +251,38 @@ class _EditProfileFormState extends State<EditProfileForm> {
 
   void _validateAndUpdate(BuildContext context) {
     if (_formKey.currentState!.validate()) {
-      Helper.keyboardUnfocus(context);
+      AuthHelper.keyboardUnfocus(context);
       _updateUser(context);
-    } else {
-      setState(() {
-        autoValidateMode = AutovalidateMode.always;
-      });
     }
   }
 
   void _validateAndUpdateUserWithProfileImage(context) {
     if (_formKey.currentState!.validate()) {
-      Helper.keyboardUnfocus(context);
+      AuthHelper.keyboardUnfocus(context);
       _updateUserAndProfileImage(context);
-    } else {
-      setState(() {
-        autoValidateMode = AutovalidateMode.always;
-      });
     }
   }
 
   void _updateUser(BuildContext context) {
-    BlocProvider.of<RoomeCubit>(context).updateUser(
-      uId: Helper.uId,
-      firstName: _nameController.text.split(' ').first.trim(),
-      lastName: _nameController.text.split(' ').last.trim(),
-      username: _usernameController.text.trim(),
-      occupation: _occupationController.text.trim(),
-      nationality: _nationalityController.text.trim(),
-      phoneNumber: _phoneNumberController.text,
-      email: _emailController.text.trim(),
-      password: _passwordController.text,
+    BlocProvider.of<EditProfileCubit>(context).updateUser(
+      context: context,
+      updateUserParams: UpdateUserParams(
+        userId: Helper.uId,
+        firstName: _nameController.text.split(' ').first.trim(),
+        lastName: _nameController.text.split(' ').last.trim(),
+        username: _usernameController.text.trim(),
+        occupation: _occupationController.text.trim(),
+        nationality: _nationalityController.text.trim(),
+        phoneNumber: _phoneNumberController.text,
+        email: _emailController.text.trim(),
+        password: _passwordController.text,
+      ),
     );
   }
 
   void _updateUserAndProfileImage(context) {
-    BlocProvider.of<RoomeCubit>(context).uploadProfileImage(
+    BlocProvider.of<EditProfileCubit>(context).uploadProfileImage(
+      context: context,
       firstName: _nameController.text.split(' ').first.trim(),
       lastName: _nameController.text.split(' ').last.trim(),
       username: _usernameController.text.trim(),
@@ -334,44 +294,20 @@ class _EditProfileFormState extends State<EditProfileForm> {
     );
   }
 
-  void _forceConditionsToFalse() {
-    if (_isContactValidateError) {
-      setState(() {
-        _isContactValidateError = false;
-      });
-    } else if (_isPersonalValidateError) {
-      setState(() {
-        _isPersonalValidateError = false;
-      });
-    }
-  }
-
-  void _controlUpdateUserStates(RoomeState state, BuildContext context) {
-    if (state is UpdateUserLoadingState) {
-      showAdaptiveDialog<Widget>(
-        context: context,
-        builder: (context) => const LoadingDialog(),
-      );
-
-      _forceConditionsToFalse();
-    }
-
+  void _controlUpdateUserStates(EditProfileState state, BuildContext context) {
     if (state is UpdateUserSuccessState) {
-      context.getBack();
       CustomSnackBar.show(
         context: context,
         message: 'User updated successfully',
-        title: 'Success',
-        backgroundColor: Colors.green,
+        state: CustomSnackBarState.success,
       );
     }
 
     if (state is UpdateUserErrorState) {
-      context.getBack();
       CustomSnackBar.show(
         context: context,
         message: state.error,
-        title: 'Warning',
+        state: CustomSnackBarState.error,
       );
     }
   }

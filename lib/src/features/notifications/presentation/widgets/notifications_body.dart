@@ -1,6 +1,7 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:roome/src/core/utils/app_assets.dart';
 import 'package:roome/src/core/utils/app_constants.dart';
@@ -34,11 +35,11 @@ class NotificationsBody extends StatelessWidget {
                       },
                     ),
                     SliverPadding(
-                      padding: const EdgeInsets.only(
-                        top: 40,
-                        bottom: 16,
-                        right: 29,
-                        left: 29,
+                      padding: EdgeInsets.only(
+                        top: 20.h,
+                        bottom: 16.h,
+                        right: 29.w,
+                        left: 29.w,
                       ),
                       sliver: SliverToBoxAdapter(
                         child: ListView.separated(
@@ -52,7 +53,7 @@ class NotificationsBody extends StatelessWidget {
                             );
                           },
                           separatorBuilder: (context, index) =>
-                              const SeparatorWidget(height: 33),
+                              SeparatorWidget(height: 33.h),
                         ),
                       ),
                     ),
@@ -63,10 +64,7 @@ class NotificationsBody extends StatelessWidget {
                 from: AppConstants.fadeInUpValue,
                 child: Center(
                   child: Padding(
-                    padding: const EdgeInsets.only(
-                      right: 27,
-                      left: 14,
-                    ),
+                    padding: EdgeInsets.only(right: 27.w, left: 14.w),
                     child: SvgPicture.asset(
                       AppAssets.imageNoNotifications,
                       fit: BoxFit.contain,

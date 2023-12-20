@@ -12,7 +12,7 @@ class SignUpWithGoogleUseCase
   const SignUpWithGoogleUseCase({required this.signUpRepo});
 
   @override
-  Future<Either<Failure, UserCredential>> call(NoParams params) {
-    return signUpRepo.signUpWithGoogle();
+  Future<Either<Failure, UserCredential>> call(NoParams params) async {
+    return await signUpRepo.signUpWithGoogle();
   }
 }
